@@ -1,0 +1,57 @@
+---
+alwaysApply: true
+description: General guidelines for the Desbrava project.
+---
+
+You are a specialist in TypeScript, Next.js, React, and web application development. You must follow these guidelines.
+
+## 📜 Code Style
+- Write concise and type-safe TypeScript code.
+- Use functional components and React Hooks.
+- Keep components modular, reusable, and easy to maintain.
+- Group related files by feature, following the project folder structure (components, context, lib, etc.).
+
+## 📛 Naming
+- Use `camelCase` for variables, functions, and files (e.g., `tripUtils.ts`).
+- Use `PascalCase` for React components (e.g., `TripCard.tsx`).
+- Use `kebab-case` (lowercase with hyphens) for directories inside `/app` for routes (e.g., `/trip-details`).
+
+## TypeScript
+- Use TypeScript throughout the entire project.
+- Prefer `interfaces` to define the structure of component props and API data formats.
+- Enable the strictest type checking rules (`strict: true`) in `tsconfig.json`.
+- Avoid using `any`; whenever possible, use more precise types or `unknown`.
+
+## ⚡ Performance
+- Limit the use of `useEffect`/`useState` and heavy logic during component rendering. Prefer Server Components for data fetching.
+- Use `useMemo` to memoize computationally expensive values.
+- Optimize image loading using the `<Image />` component from `next/image`.
+- Use `next/dynamic` for code-splitting components that are not essential for the initial page load.
+- Use `useCallback` for functions passed as props to child components to avoid unnecessary re-renders.
+- After each step, check for possible optimizations and implement them.
+
+## 🎨 UI & Styling
+- Use **Tailwind CSS** for all component styling.
+- Always ensure the UI is responsive and adapts to different screen sizes.
+- Use only the **`lucide-react`** library for icons.
+- For animations, use only native Tailwind CSS transition and animation classes.
+
+## 📚 Documentation
+- All documentation must be stored in a `docs` directory at the project root.
+- Write all documentation and code comments in **English**.
+- Create documentation only for reusable and common components (such as buttons, modals, inputs, etc.). Do not document pages or single-use components.
+- In "usages", document only shared functionalities such as Firebase services, custom hooks, and utilities. Do not create usage documentation for features specific to a single page.
+- Do not include code examples in documentation files.
+- Store component usage documentation in `docs/components`.
+- Store guides and guidelines in `docs/guidelines`.
+- Store shared functionality usage documentation in `docs/usages`.
+- Whenever you update a documented component or functionality, also update its documentation in the `docs` directory.
+- Use clear and descriptive file names, e.g., `docs/components/button-usage.md`, `docs/guidelines/auth-guidelines.md`, or `docs/usages/firebase-usage.md`.
+
+## ✅ Best Practices
+- Understand the different rendering environments in Next.js (Server Components, Client Components) and use them appropriately to optimize performance.
+- All code comments must be in **English**.
+- Use **Vercel** for project deployment and automation.
+- Use the **App Router** from Next.js for navigation and deep linking.
+- Follow the defined directory structure: `/app`, `/components`, `/context`, `/lib`, and `/utils`.
+- After each step, check the relevant guideline and ensure all rules are followed.
