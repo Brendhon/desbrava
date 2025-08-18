@@ -9,7 +9,8 @@
     "region": "Oceania",
     "country": "Austrália",
     "currency_code": "AUD",
-    "currency_name_pt": "Dólar australiano"
+    "currency_name_pt": "Dólar australiano",
+    "iso_country": "AU"
   },
   {
     "continent": "Europa",
@@ -21,7 +22,8 @@
     "region": "Europa Central",
     "country": "Áustria",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "AT"
   },
   {
     "continent": "Ásia",
@@ -33,7 +35,8 @@
     "region": "Cáucaso",
     "country": "Azerbaijão",
     "currency_code": "AZN",
-    "currency_name_pt": "Manat do Azerbaijão"
+    "currency_name_pt": "Manat do Azerbaijão",
+    "iso_country": "AZ"
   },
   {
     "continent": "Europa",
@@ -45,7 +48,8 @@
     "region": "Balcãs",
     "country": "Albânia",
     "currency_code": "ALL",
-    "currency_name_pt": "Lek"
+    "currency_name_pt": "Lek",
+    "iso_country": "AL"
   },
   {
     "continent": "África",
@@ -57,7 +61,8 @@
     "region": "Magrebe",
     "country": "Argélia",
     "currency_code": "DZD",
-    "currency_name_pt": "Dinar argelino"
+    "currency_name_pt": "Dinar argelino",
+    "iso_country": "DZ"
   },
   {
     "continent": "Oceania",
@@ -69,7 +74,8 @@
     "region": "Oceania",
     "country": "Samoa Americana",
     "currency_code": "USD",
-    "currency_name_pt": "Dólar dos Estados Unidos"
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "iso_country": "AS"
   },
   {
     "continent": "América do Norte",
@@ -81,7 +87,8 @@
     "region": "Caribe",
     "country": "Anguilla",
     "currency_code": "XCD",
-    "currency_name_pt": "Dólar do Caribe Oriental"
+    "currency_name_pt": "Dólar do Caribe Oriental",
+    "iso_country": "AI"
   },
   {
     "continent": "África",
@@ -93,7 +100,8 @@
     "region": "África Subsaariana",
     "country": "Angola",
     "currency_code": "AOA",
-    "currency_name_pt": "Kwanza"
+    "currency_name_pt": "Kwanza",
+    "iso_country": "AO"
   },
   {
     "continent": "Europa",
@@ -105,7 +113,8 @@
     "currency_name_pt": "Euro",
     "language": [
       "Catalão"
-    ]
+    ],
+    "iso_country": "AD"
   },
   {
     "continent": "América do Norte",
@@ -117,7 +126,8 @@
     "region": "Caribe",
     "country": "Antígua e Barbuda (Reino Unido)",
     "currency_code": "XCD",
-    "currency_name_pt": "Dólar do Caribe Oriental"
+    "currency_name_pt": "Dólar do Caribe Oriental",
+    "iso_country": "AG"
   },
   {
     "continent": "América do Sul",
@@ -129,7 +139,8 @@
     "region": "América Latina",
     "country": "Argentina",
     "currency_code": "ARS",
-    "currency_name_pt": "Peso argentino"
+    "currency_name_pt": "Peso argentino",
+    "iso_country": "AR"
   },
   {
     "continent": "Ásia",
@@ -141,7 +152,8 @@
     "region": "Cáucaso",
     "country": "Armênia",
     "currency_code": "AMD",
-    "currency_name_pt": "Dram armênio"
+    "currency_name_pt": "Dram armênio",
+    "iso_country": "AM"
   },
   {
     "continent": "América do Norte",
@@ -153,7 +165,8 @@
     "region": "Caribe",
     "country": "Aruba (Holanda)",
     "currency_code": "AWG",
-    "currency_name_pt": "Florim de Aruba"
+    "currency_name_pt": "Florim de Aruba",
+    "iso_country": "AW"
   },
   {
     "continent": "Ásia",
@@ -165,7 +178,8 @@
     "region": "Ásia",
     "country": "Afeganistão",
     "currency_code": "AFN",
-    "currency_name_pt": "Afegane afegão"
+    "currency_name_pt": "Afegane afegão",
+    "iso_country": "AF"
   },
   {
     "continent": "América do Norte",
@@ -177,7 +191,8 @@
     "region": "Caribe",
     "country": "Bahamas",
     "currency_code": "BSD",
-    "currency_name_pt": "Dólar das Bahamas"
+    "currency_name_pt": "Dólar das Bahamas",
+    "iso_country": "BS"
   },
   {
     "continent": "Ásia",
@@ -189,7 +204,8 @@
     "region": "Ásia",
     "country": "Bangladesh",
     "currency_code": "BDT",
-    "currency_name_pt": "Taka"
+    "currency_name_pt": "Taka",
+    "iso_country": "BD"
   },
   {
     "continent": "América do Norte",
@@ -201,7 +217,8 @@
     "region": "Caribe",
     "country": "Barbados",
     "currency_code": "BBD",
-    "currency_name_pt": "Dólar de Barbados"
+    "currency_name_pt": "Dólar de Barbados",
+    "iso_country": "BB"
   },
   {
     "continent": "Ásia",
@@ -213,7 +230,8 @@
     "region": "Oriente Médio",
     "country": "Bahrein",
     "currency_code": "BHD",
-    "currency_name_pt": "Dinar do Bahrein"
+    "currency_name_pt": "Dinar do Bahrein",
+    "iso_country": "BH"
   },
   {
     "continent": "Europa",
@@ -225,7 +243,8 @@
     "region": "Europa Oriental",
     "country": "Bielorrússia",
     "currency_code": "BYN",
-    "currency_name_pt": "Rublo bielorrusso"
+    "currency_name_pt": "Rublo bielorrusso",
+    "iso_country": "BY"
   },
   {
     "continent": "América do Norte",
@@ -237,7 +256,8 @@
     "region": "América Central",
     "country": "Belize (Reino Unido)",
     "currency_code": "BZD",
-    "currency_name_pt": "Dólar de Belize"
+    "currency_name_pt": "Dólar de Belize",
+    "iso_country": "BZ"
   },
   {
     "continent": "Europa",
@@ -251,7 +271,8 @@
     "region": "Benelux",
     "country": "Bélgica",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "BE"
   },
   {
     "continent": "África",
@@ -263,7 +284,8 @@
     "currency_name_pt": "Franco CFA da África Ocidental",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "BJ"
   },
   {
     "continent": "América do Norte",
@@ -275,7 +297,8 @@
     "currency_name_pt": "Dólar das Bermudas",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "BM"
   },
   {
     "continent": "Europa",
@@ -287,7 +310,8 @@
     "currency_name_pt": "Lev búlgaro",
     "language": [
       "Búlgaro"
-    ]
+    ],
+    "iso_country": "BG"
   },
   {
     "continent": "América do Sul",
@@ -299,7 +323,8 @@
     "region": "América Latina",
     "country": "Bolívia",
     "currency_code": "BOB",
-    "currency_name_pt": "Boliviano"
+    "currency_name_pt": "Boliviano",
+    "iso_country": "BO"
   },
   {
     "continent": "Europa",
@@ -311,7 +336,8 @@
     "region": "Balcãs",
     "country": "Bósnia e Herzegovina",
     "currency_code": "BAM",
-    "currency_name_pt": "Marco conversível"
+    "currency_name_pt": "Marco conversível",
+    "iso_country": "BA"
   },
   {
     "continent": "África",
@@ -324,7 +350,8 @@
     "language": [
       "Inglês",
       "Tswana"
-    ]
+    ],
+    "iso_country": "BW"
   },
   {
     "continent": "América do Sul",
@@ -336,7 +363,8 @@
     "region": "América Latina",
     "country": "Brasil",
     "currency_code": "BRL",
-    "currency_name_pt": "Real brasileiro"
+    "currency_name_pt": "Real brasileiro",
+    "iso_country": "BR"
   },
   {
     "continent": "Ásia",
@@ -348,7 +376,8 @@
     "currency_name_pt": "Dólar de Brunei",
     "language": [
       "Malaio"
-    ]
+    ],
+    "iso_country": "BN"
   },
   {
     "continent": "África",
@@ -360,7 +389,8 @@
     "currency_name_pt": "Franco CFA da África Ocidental",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "BF"
   },
   {
     "continent": "África",
@@ -374,7 +404,8 @@
       "Kirundi",
       "Francês",
       "Inglês"
-    ]
+    ],
+    "iso_country": "BI"
   },
   {
     "continent": "Ásia",
@@ -386,7 +417,8 @@
     "currency_name_pt": "Ngultrum",
     "language": [
       "Dzongkha"
-    ]
+    ],
+    "iso_country": "BT"
   },
   {
     "continent": "Oceania",
@@ -400,7 +432,8 @@
       "Bislama",
       "Inglês",
       "Francês"
-    ]
+    ],
+    "iso_country": "VU"
   },
   {
     "continent": "Europa",
@@ -412,7 +445,8 @@
     "region": "Europa Central",
     "country": "Hungria",
     "currency_code": "HUF",
-    "currency_name_pt": "Forint"
+    "currency_name_pt": "Forint",
+    "iso_country": "HU"
   },
   {
     "continent": "América do Sul",
@@ -424,7 +458,8 @@
     "region": "América Latina",
     "country": "Venezuela",
     "currency_code": "VES",
-    "currency_name_pt": "Bolívar soberano"
+    "currency_name_pt": "Bolívar soberano",
+    "iso_country": "VE"
   },
   {
     "continent": "América do Norte",
@@ -436,7 +471,8 @@
     "currency_name_pt": "Dólar dos Estados Unidos",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "VG"
   },
   {
     "continent": "América do Norte",
@@ -448,7 +484,8 @@
     "currency_name_pt": "Dólar dos Estados Unidos",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "VI"
   },
   {
     "continent": "Ásia",
@@ -461,7 +498,8 @@
     "language": [
       "Tétum",
       "Português"
-    ]
+    ],
+    "iso_country": "TL"
   },
   {
     "continent": "Ásia",
@@ -473,7 +511,8 @@
     "region": "Ásia",
     "country": "Vietnã",
     "currency_code": "VND",
-    "currency_name_pt": "Dong"
+    "currency_name_pt": "Dong",
+    "iso_country": "VN"
   },
   {
     "continent": "África",
@@ -485,7 +524,8 @@
     "region": "África Subsaariana",
     "country": "Gabão",
     "currency_code": "XAF",
-    "currency_name_pt": "Franco CFA da África Central"
+    "currency_name_pt": "Franco CFA da África Central",
+    "iso_country": "GA"
   },
   {
     "continent": "América do Norte",
@@ -497,7 +537,8 @@
     "region": "América Latina",
     "country": "Haiti",
     "currency_code": "HTG",
-    "currency_name_pt": "Gourde"
+    "currency_name_pt": "Gourde",
+    "iso_country": "HT"
   },
   {
     "continent": "América do Sul",
@@ -509,7 +550,8 @@
     "currency_name_pt": "Dólar guianense",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "GY"
   },
   {
     "continent": "África",
@@ -521,7 +563,8 @@
     "currency_name_pt": "Dalasi",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "GM"
   },
   {
     "continent": "África",
@@ -533,7 +576,8 @@
     "currency_name_pt": "Cedi",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "GH"
   },
   {
     "continent": "América do Norte",
@@ -545,7 +589,8 @@
     "region": "América Latina",
     "country": "Guatemala",
     "currency_code": "GTQ",
-    "currency_name_pt": "Quetzal"
+    "currency_name_pt": "Quetzal",
+    "iso_country": "GT"
   },
   {
     "continent": "África",
@@ -557,7 +602,8 @@
     "region": "África Subsaariana",
     "country": "Guiné",
     "currency_code": "GNF",
-    "currency_name_pt": "Franco guineense"
+    "currency_name_pt": "Franco guineense",
+    "iso_country": "GN"
   },
   {
     "continent": "África",
@@ -569,7 +615,8 @@
     "currency_name_pt": "Franco CFA da África Ocidental",
     "language": [
       "Português"
-    ]
+    ],
+    "iso_country": "GW"
   },
   {
     "continent": "Europa",
@@ -581,7 +628,8 @@
     "region": "Europa Central",
     "country": "Alemanha",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "DE"
   },
   {
     "continent": "Europa",
@@ -593,7 +641,8 @@
     "currency_name_pt": "Libra de Gibraltar",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "GI"
   },
   {
     "continent": "América do Norte",
@@ -605,7 +654,8 @@
     "region": "América Latina",
     "country": "Honduras",
     "currency_code": "HNL",
-    "currency_name_pt": "Lempira"
+    "currency_name_pt": "Lempira",
+    "iso_country": "HN"
   },
   {
     "continent": "Ásia",
@@ -617,7 +667,8 @@
     "region": "Ásia",
     "country": "Hong Kong",
     "currency_code": "HKD",
-    "currency_name_pt": "Dólar de Hong Kong"
+    "currency_name_pt": "Dólar de Hong Kong",
+    "iso_country": "HK"
   },
   {
     "continent": "América do Norte",
@@ -629,7 +680,8 @@
     "currency_name_pt": "Dólar do Caribe Oriental",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "GD"
   },
   {
     "continent": "Vários",
@@ -642,7 +694,8 @@
     "language": [
       "Gronelandês",
       "Dinamarquês"
-    ]
+    ],
+    "iso_country": "GL"
   },
   {
     "continent": "Europa",
@@ -654,7 +707,8 @@
     "region": "Europa Central",
     "country": "Grécia",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "GR"
   },
   {
     "continent": "Ásia",
@@ -666,7 +720,8 @@
     "currency_name_pt": "Lari",
     "language": [
       "Georgiano"
-    ]
+    ],
+    "iso_country": "GE"
   },
   {
     "continent": "América do Norte",
@@ -679,7 +734,8 @@
     "language": [
       "Inglês",
       "Chamorro"
-    ]
+    ],
+    "iso_country": "GU"
   },
   {
     "continent": "Europa",
@@ -691,7 +747,8 @@
     "region": "Escandinávia",
     "country": "Dinamarca",
     "currency_code": "DKK",
-    "currency_name_pt": "Coroa dinamarquesa"
+    "currency_name_pt": "Coroa dinamarquesa",
+    "iso_country": "DK"
   },
   {
     "continent": "África",
@@ -703,7 +760,8 @@
     "region": "África Subsaariana",
     "country": "Djibouti",
     "currency_code": "DJF",
-    "currency_name_pt": "Franco djibutiano"
+    "currency_name_pt": "Franco djibutiano",
+    "iso_country": "DJ"
   },
   {
     "continent": "América do Norte",
@@ -715,7 +773,8 @@
     "currency_name_pt": "Dólar do Caribe Oriental",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "DM"
   },
   {
     "continent": "América do Norte",
@@ -727,7 +786,8 @@
     "region": "Caribe",
     "country": "República Dominicana",
     "currency_code": "DOP",
-    "currency_name_pt": "Peso dominicano"
+    "currency_name_pt": "Peso dominicano",
+    "iso_country": "DO"
   },
   {
     "continent": "Ásia",
@@ -739,7 +799,8 @@
     "region": "Oriente Médio",
     "country": "Egito",
     "currency_code": "EGP",
-    "currency_name_pt": "Libra egípcia"
+    "currency_name_pt": "Libra egípcia",
+    "iso_country": "EG"
   },
   {
     "continent": "África",
@@ -751,7 +812,8 @@
     "currency_name_pt": "Kwacha zambiano",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "ZM"
   },
   {
     "continent": "África",
@@ -764,7 +826,8 @@
     "language": [
       "Árabe",
       "Espanhol"
-    ]
+    ],
+    "iso_country": "EH"
   },
   {
     "continent": "África",
@@ -778,7 +841,8 @@
       "Inglês",
       "Shona",
       "Ndebele"
-    ]
+    ],
+    "iso_country": "ZW"
   },
   {
     "continent": "Ásia",
@@ -790,7 +854,8 @@
     "region": "Oriente Médio",
     "country": "Israel",
     "currency_code": "ILS",
-    "currency_name_pt": "Novo shekel israelense"
+    "currency_name_pt": "Novo shekel israelense",
+    "iso_country": "IL"
   },
   {
     "continent": "Ásia",
@@ -802,7 +867,8 @@
     "region": "Ásia",
     "country": "Índia",
     "currency_code": "INR",
-    "currency_name_pt": "Rúpia indiana"
+    "currency_name_pt": "Rúpia indiana",
+    "iso_country": "IN"
   },
   {
     "continent": "Ásia",
@@ -814,7 +880,8 @@
     "currency_name_pt": "Rúpia",
     "language": [
       "Indonésio"
-    ]
+    ],
+    "iso_country": "ID"
   },
   {
     "continent": "Ásia",
@@ -826,7 +893,8 @@
     "region": "Oriente Médio",
     "country": "Jordânia",
     "currency_code": "JOD",
-    "currency_name_pt": "Dinar jordaniano"
+    "currency_name_pt": "Dinar jordaniano",
+    "iso_country": "JO"
   },
   {
     "continent": "Ásia",
@@ -838,7 +906,8 @@
     "region": "Oriente Médio",
     "country": "Iraque",
     "currency_code": "IQD",
-    "currency_name_pt": "Dinar iraquiano"
+    "currency_name_pt": "Dinar iraquiano",
+    "iso_country": "IQ"
   },
   {
     "continent": "Ásia",
@@ -850,7 +919,8 @@
     "region": "Oriente Médio",
     "country": "Irã",
     "currency_code": "IRR",
-    "currency_name_pt": "Rial iraniano"
+    "currency_name_pt": "Rial iraniano",
+    "iso_country": "IR"
   },
   {
     "continent": "Europa",
@@ -862,7 +932,8 @@
     "region": "Europa Ocidental",
     "country": "Irlanda",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "IE"
   },
   {
     "continent": "Europa",
@@ -874,7 +945,8 @@
     "region": "Escandinávia",
     "country": "Islândia",
     "currency_code": "ISK",
-    "currency_name_pt": "Coroa islandesa"
+    "currency_name_pt": "Coroa islandesa",
+    "iso_country": "IS"
   },
   {
     "continent": "Europa",
@@ -886,7 +958,8 @@
     "region": "Península Ibérica",
     "country": "Espanha",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "ES"
   },
   {
     "continent": "Europa",
@@ -898,7 +971,8 @@
     "region": "Europa Ocidental",
     "country": "Itália",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "IT"
   },
   {
     "continent": "Ásia",
@@ -910,7 +984,8 @@
     "region": "Oriente Médio",
     "country": "Iêmen",
     "currency_code": "YER",
-    "currency_name_pt": "Rial iemenita"
+    "currency_name_pt": "Rial iemenita",
+    "iso_country": "YE"
   },
   {
     "continent": "África",
@@ -922,7 +997,8 @@
     "region": "África Subsaariana",
     "country": "Cabo Verde",
     "currency_code": "CVE",
-    "currency_name_pt": "Escudo cabo-verdiano"
+    "currency_name_pt": "Escudo cabo-verdiano",
+    "iso_country": "CV"
   },
   {
     "continent": "Ásia",
@@ -934,7 +1010,8 @@
     "region": "Ásia",
     "country": "Cazaquistão",
     "currency_code": "KZT",
-    "currency_name_pt": "Tenge"
+    "currency_name_pt": "Tenge",
+    "iso_country": "KZ"
   },
   {
     "continent": "Ásia",
@@ -946,7 +1023,8 @@
     "region": "Indochina",
     "country": "Camboja",
     "currency_code": "KHR",
-    "currency_name_pt": "Riel"
+    "currency_name_pt": "Riel",
+    "iso_country": "KH"
   },
   {
     "continent": "África",
@@ -959,7 +1037,8 @@
     "region": "África Subsaariana",
     "country": "Camarões",
     "currency_code": "XAF",
-    "currency_name_pt": "Franco CFA da África Central"
+    "currency_name_pt": "Franco CFA da África Central",
+    "iso_country": "CM"
   },
   {
     "continent": "América do Norte",
@@ -971,7 +1050,8 @@
     "region": "América do Norte",
     "country": "Canadá",
     "currency_code": "CAD",
-    "currency_name_pt": "Dólar canadense"
+    "currency_name_pt": "Dólar canadense",
+    "iso_country": "CA"
   },
   {
     "continent": "Ásia",
@@ -983,7 +1063,8 @@
     "region": "Oriente Médio",
     "country": "Catar",
     "currency_code": "QAR",
-    "currency_name_pt": "Rial do Catar"
+    "currency_name_pt": "Rial do Catar",
+    "iso_country": "QA"
   },
   {
     "continent": "África",
@@ -996,7 +1077,8 @@
     "language": [
       "Suaíli",
       "Inglês"
-    ]
+    ],
+    "iso_country": "KE"
   },
   {
     "continent": "Ásia",
@@ -1009,7 +1091,8 @@
     "language": [
       "Grego",
       "Turco"
-    ]
+    ],
+    "iso_country": "CY"
   },
   {
     "continent": "Ásia",
@@ -1022,7 +1105,8 @@
     "language": [
       "Quirguiz",
       "Russo"
-    ]
+    ],
+    "iso_country": "KG"
   },
   {
     "continent": "Oceania",
@@ -1035,7 +1119,8 @@
     "language": [
       "Gilbertês",
       "Inglês"
-    ]
+    ],
+    "iso_country": "KI"
   },
   {
     "continent": "Ásia",
@@ -1047,7 +1132,8 @@
     "region": "Ásia",
     "country": "China",
     "currency_code": "CNY",
-    "currency_name_pt": "Yuan Renminbi"
+    "currency_name_pt": "Yuan Renminbi",
+    "iso_country": "CN"
   },
   {
     "continent": "Oceania",
@@ -1060,7 +1146,8 @@
     "language": [
       "Malaio",
       "Inglês"
-    ]
+    ],
+    "iso_country": "CC"
   },
   {
     "continent": "América do Sul",
@@ -1072,7 +1159,8 @@
     "region": "América Latina",
     "country": "Colômbia",
     "currency_code": "COP",
-    "currency_name_pt": "Peso colombiano"
+    "currency_name_pt": "Peso colombiano",
+    "iso_country": "CO"
   },
   {
     "continent": "África",
@@ -1086,7 +1174,8 @@
       "Comoriano",
       "Árabe",
       "Francês"
-    ]
+    ],
+    "iso_country": "KM"
   },
   {
     "continent": "África",
@@ -1098,7 +1187,8 @@
     "currency_name_pt": "Franco congolês",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "CG"
   },
   {
     "continent": "África",
@@ -1110,7 +1200,8 @@
     "currency_name_pt": "Franco congolês",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "CG"
   },
   {
     "continent": "Ásia",
@@ -1122,7 +1213,8 @@
     "currency_name_pt": "Won norte-coreano",
     "language": [
       "Coreano"
-    ]
+    ],
+    "iso_country": "KP"
   },
   {
     "continent": "Ásia",
@@ -1134,7 +1226,8 @@
     "currency_name_pt": "Won sul-coreano",
     "language": [
       "Coreano"
-    ]
+    ],
+    "iso_country": "KR"
   },
   {
     "continent": "América do Norte",
@@ -1146,7 +1239,8 @@
     "region": "América Latina",
     "country": "Costa Rica",
     "currency_code": "CRC",
-    "currency_name_pt": "Colón costa-riquenho"
+    "currency_name_pt": "Colón costa-riquenho",
+    "iso_country": "CR"
   },
   {
     "continent": "África",
@@ -1158,7 +1252,8 @@
     "currency_name_pt": "Franco CFA da África Ocidental",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "CI"
   },
   {
     "continent": "América do Norte",
@@ -1170,7 +1265,8 @@
     "region": "América Latina",
     "country": "Cuba",
     "currency_code": "CUP",
-    "currency_name_pt": "Peso cubano"
+    "currency_name_pt": "Peso cubano",
+    "iso_country": "CU"
   },
   {
     "continent": "Ásia",
@@ -1182,7 +1278,8 @@
     "region": "Oriente Médio",
     "country": "Kuwait",
     "currency_code": "KWD",
-    "currency_name_pt": "Dinar kuwaitiano"
+    "currency_name_pt": "Dinar kuwaitiano",
+    "iso_country": "KW"
   },
   {
     "continent": "Europa",
@@ -1194,7 +1291,8 @@
     "region": "Báltico",
     "country": "Letônia",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "LV"
   },
   {
     "continent": "África",
@@ -1207,7 +1305,8 @@
     "language": [
       "Sesoto",
       "Inglês"
-    ]
+    ],
+    "iso_country": "LS"
   },
   {
     "continent": "África",
@@ -1219,7 +1318,8 @@
     "currency_name_pt": "Dólar liberiano",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "LR"
   },
   {
     "continent": "Ásia",
@@ -1231,7 +1331,8 @@
     "region": "Oriente Médio",
     "country": "Líbano",
     "currency_code": "LBP",
-    "currency_name_pt": "Libra libanesa"
+    "currency_name_pt": "Libra libanesa",
+    "iso_country": "LB"
   },
   {
     "continent": "África",
@@ -1243,7 +1344,8 @@
     "currency_name_pt": "Dinar líbio",
     "language": [
       "Árabe"
-    ]
+    ],
+    "iso_country": "LY"
   },
   {
     "continent": "Europa",
@@ -1255,7 +1357,8 @@
     "region": "Báltico",
     "country": "Lituânia",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "LT"
   },
   {
     "continent": "Europa",
@@ -1267,7 +1370,8 @@
     "region": "Europa Central",
     "country": "Liechtenstein",
     "currency_code": "CHF",
-    "currency_name_pt": "Franco suíço"
+    "currency_name_pt": "Franco suíço",
+    "iso_country": "LI"
   },
   {
     "continent": "Europa",
@@ -1279,7 +1383,8 @@
     "region": "Benelux",
     "country": "Luxemburgo",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "LU"
   },
   {
     "continent": "África",
@@ -1292,7 +1397,8 @@
     "language": [
       "Inglês",
       "Francês"
-    ]
+    ],
+    "iso_country": "MU"
   },
   {
     "continent": "África",
@@ -1304,7 +1410,8 @@
     "currency_name_pt": "Ouguiya",
     "language": [
       "Árabe"
-    ]
+    ],
+    "iso_country": "MR"
   },
   {
     "continent": "África",
@@ -1317,7 +1424,8 @@
     "language": [
       "Malgaxe",
       "Francês"
-    ]
+    ],
+    "iso_country": "MG"
   },
   {
     "continent": "Ásia",
@@ -1329,7 +1437,8 @@
     "region": "Ásia",
     "country": "Macau",
     "currency_code": "MOP",
-    "currency_name_pt": "Pataca"
+    "currency_name_pt": "Pataca",
+    "iso_country": "MO"
   },
   {
     "continent": "Europa",
@@ -1341,7 +1450,8 @@
     "currency_name_pt": "Denar",
     "language": [
       "Macedônio"
-    ]
+    ],
+    "iso_country": "MK"
   },
   {
     "continent": "África",
@@ -1354,7 +1464,8 @@
     "language": [
       "Inglês",
       "Chichewa"
-    ]
+    ],
+    "iso_country": "MW"
   },
   {
     "continent": "Ásia",
@@ -1366,7 +1477,8 @@
     "currency_name_pt": "Ringgit",
     "language": [
       "Malaio"
-    ]
+    ],
+    "iso_country": "MY"
   },
   {
     "continent": "África",
@@ -1378,7 +1490,8 @@
     "currency_name_pt": "Franco CFA da África Ocidental",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "ML"
   },
   {
     "continent": "Ásia",
@@ -1390,7 +1503,8 @@
     "currency_name_pt": "Rufiyaa",
     "language": [
       "Dhivehi"
-    ]
+    ],
+    "iso_country": "MV"
   },
   {
     "continent": "Europa",
@@ -1403,7 +1517,8 @@
     "language": [
       "Maltês",
       "Inglês"
-    ]
+    ],
+    "iso_country": "MT"
   },
   {
     "continent": "África",
@@ -1415,7 +1530,8 @@
     "region": "África",
     "country": "Marrocos",
     "currency_code": "MAD",
-    "currency_name_pt": "Dirham marroquino"
+    "currency_name_pt": "Dirham marroquino",
+    "iso_country": "MA"
   },
   {
     "continent": "América do Norte",
@@ -1427,7 +1543,8 @@
     "region": "Caribe",
     "country": "Martinica",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "MQ"
   },
   {
     "continent": "Oceania",
@@ -1440,7 +1557,8 @@
     "language": [
       "Marshallês",
       "Inglês"
-    ]
+    ],
+    "iso_country": "MH"
   },
   {
     "continent": "América do Norte",
@@ -1452,7 +1570,8 @@
     "region": "América Latina",
     "country": "México",
     "currency_code": "MXN",
-    "currency_name_pt": "Peso mexicano"
+    "currency_name_pt": "Peso mexicano",
+    "iso_country": "MX"
   },
   {
     "continent": "Oceania",
@@ -1464,7 +1583,8 @@
     "currency_name_pt": "Dólar dos Estados Unidos",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "FM"
   },
   {
     "continent": "África",
@@ -1476,7 +1596,8 @@
     "region": "África Subsaariana",
     "country": "Moçambique",
     "currency_code": "MZN",
-    "currency_name_pt": "Metical"
+    "currency_name_pt": "Metical",
+    "iso_country": "MZ"
   },
   {
     "continent": "Europa",
@@ -1488,7 +1609,8 @@
     "currency_name_pt": "Leu moldavo",
     "language": [
       "Romeno"
-    ]
+    ],
+    "iso_country": "MD"
   },
   {
     "continent": "Europa",
@@ -1500,7 +1622,8 @@
     "region": "Europa Central",
     "country": "Mônaco",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "MC"
   },
   {
     "continent": "Ásia",
@@ -1512,7 +1635,8 @@
     "currency_name_pt": "Tugrik",
     "language": [
       "Mongol"
-    ]
+    ],
+    "iso_country": "MN"
   },
   {
     "continent": "América do Norte",
@@ -1524,7 +1648,8 @@
     "currency_name_pt": "Dólar do Caribe Oriental",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "MS"
   },
   {
     "continent": "Ásia",
@@ -1536,7 +1661,8 @@
     "currency_name_pt": "Kyat",
     "language": [
       "Birmanês"
-    ]
+    ],
+    "iso_country": "MM"
   },
   {
     "continent": "África",
@@ -1548,7 +1674,8 @@
     "currency_name_pt": "Dólar da Namíbia",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "NA"
   },
   {
     "continent": "Oceania",
@@ -1561,7 +1688,8 @@
     "language": [
       "Nauruano",
       "Inglês"
-    ]
+    ],
+    "iso_country": "NR"
   },
   {
     "continent": "Ásia",
@@ -1573,7 +1701,8 @@
     "currency_name_pt": "Rúpia nepalesa",
     "language": [
       "Nepalês"
-    ]
+    ],
+    "iso_country": "NP"
   },
   {
     "continent": "África",
@@ -1585,7 +1714,8 @@
     "currency_name_pt": "Franco CFA da África Ocidental",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "NE"
   },
   {
     "continent": "África",
@@ -1597,7 +1727,8 @@
     "region": "África Subsaariana",
     "country": "Nigéria",
     "currency_code": "NGN",
-    "currency_name_pt": "Naira"
+    "currency_name_pt": "Naira",
+    "iso_country": "NG"
   },
   {
     "continent": "Outro",
@@ -1611,7 +1742,8 @@
       "Holandês",
       "Papiamento",
       "Inglês"
-    ]
+    ],
+    "iso_country": "AN"
   },
   {
     "continent": "Europa",
@@ -1623,7 +1755,8 @@
     "region": "Benelux",
     "country": "Países Baixos",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "NL"
   },
   {
     "continent": "América do Norte",
@@ -1635,7 +1768,8 @@
     "region": "América Latina",
     "country": "Nicarágua",
     "currency_code": "NIO",
-    "currency_name_pt": "Córdoba"
+    "currency_name_pt": "Córdoba",
+    "iso_country": "NI"
   },
   {
     "continent": "Oceania",
@@ -1648,7 +1782,8 @@
     "language": [
       "Niueano",
       "Inglês"
-    ]
+    ],
+    "iso_country": "NU"
   },
   {
     "continent": "Oceania",
@@ -1660,7 +1795,8 @@
     "region": "Polinésia",
     "country": "Nova Zelândia",
     "currency_code": "NZD",
-    "currency_name_pt": "Dólar da Nova Zelândia"
+    "currency_name_pt": "Dólar da Nova Zelândia",
+    "iso_country": "NZ"
   },
   {
     "continent": "Oceania",
@@ -1672,7 +1808,8 @@
     "currency_name_pt": "Euro",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "NC"
   },
   {
     "continent": "Europa",
@@ -1684,7 +1821,8 @@
     "region": "Escandinávia",
     "country": "Noruega",
     "currency_code": "NOK",
-    "currency_name_pt": "Coroa norueguesa"
+    "currency_name_pt": "Coroa norueguesa",
+    "iso_country": "NO"
   },
   {
     "continent": "Ásia",
@@ -1696,7 +1834,8 @@
     "region": "Oriente Médio",
     "country": "Emirados Árabes Unidos",
     "currency_code": "AED",
-    "currency_name_pt": "Dirham dos Emirados Árabes Unidos"
+    "currency_name_pt": "Dirham dos Emirados Árabes Unidos",
+    "iso_country": "AE"
   },
   {
     "continent": "Ásia",
@@ -1708,7 +1847,8 @@
     "region": "Oriente Médio",
     "country": "Omã",
     "currency_code": "OMR",
-    "currency_name_pt": "Rial de Omã"
+    "currency_name_pt": "Rial de Omã",
+    "iso_country": "OM"
   },
   {
     "continent": "Vários",
@@ -1720,7 +1860,8 @@
     "currency_name_pt": null,
     "language": [
       "Norueguês"
-    ]
+    ],
+    "iso_country": "BV"
   },
   {
     "continent": "Vários",
@@ -1733,7 +1874,8 @@
     "language": [
       "Inglês",
       "Manx"
-    ]
+    ],
+    "iso_country": "IM"
   },
   {
     "continent": "Oceania",
@@ -1746,7 +1888,8 @@
     "language": [
       "Inglês",
       "Norfuk"
-    ]
+    ],
+    "iso_country": "NF"
   },
   {
     "continent": "Vários",
@@ -1758,7 +1901,8 @@
     "currency_name_pt": "Dólar australiano",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "HM"
   },
   {
     "continent": "América do Norte",
@@ -1770,7 +1914,8 @@
     "currency_name_pt": "Dólar das Ilhas Cayman",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "KY"
   },
   {
     "continent": "Oceania",
@@ -1783,7 +1928,8 @@
     "language": [
       "Maori",
       "Inglês"
-    ]
+    ],
+    "iso_country": "CK"
   },
   {
     "continent": "América do Norte",
@@ -1795,7 +1941,8 @@
     "currency_name_pt": "Dólar dos Estados Unidos",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "TC"
   },
   {
     "continent": "Oceania",
@@ -1809,7 +1956,8 @@
       "Francês",
       "Wallisiano",
       "Futuniano"
-    ]
+    ],
+    "iso_country": "WF"
   },
   {
     "continent": "Ásia",
@@ -1822,7 +1970,8 @@
     "language": [
       "Urdu",
       "Inglês"
-    ]
+    ],
+    "iso_country": "PK"
   },
   {
     "continent": "Oceania",
@@ -1835,7 +1984,8 @@
     "language": [
       "Palauense",
       "Inglês"
-    ]
+    ],
+    "iso_country": "PW"
   },
   {
     "continent": "Ásia",
@@ -1847,7 +1997,8 @@
     "currency_name_pt": "Novo shekel israelense",
     "language": [
       "Árabe"
-    ]
+    ],
+    "iso_country": "PS"
   },
   {
     "continent": "América do Norte",
@@ -1859,7 +2010,8 @@
     "region": "América Latina",
     "country": "Panamá",
     "currency_code": "PAB",
-    "currency_name_pt": "Balboa"
+    "currency_name_pt": "Balboa",
+    "iso_country": "PA"
   },
   {
     "continent": "Europa",
@@ -1872,7 +2024,8 @@
     "language": [
       "Italiano",
       "Latim"
-    ]
+    ],
+    "iso_country": "VA"
   },
   {
     "continent": "Oceania",
@@ -1886,7 +2039,8 @@
       "Tok Pisin",
       "Inglês",
       "Hiri Motu"
-    ]
+    ],
+    "iso_country": "PG"
   },
   {
     "continent": "América do Sul",
@@ -1899,7 +2053,8 @@
     "language": [
       "Espanhol",
       "Guarani"
-    ]
+    ],
+    "iso_country": "PY"
   },
   {
     "continent": "América do Sul",
@@ -1911,7 +2066,8 @@
     "region": "América Latina",
     "country": "Peru",
     "currency_code": "PEN",
-    "currency_name_pt": "Sol"
+    "currency_name_pt": "Sol",
+    "iso_country": "PE"
   },
   {
     "continent": "Oceania",
@@ -1924,7 +2080,8 @@
     "language": [
       "Inglês",
       "Pitcairnês"
-    ]
+    ],
+    "iso_country": "PN"
   },
   {
     "continent": "Europa",
@@ -1936,7 +2093,8 @@
     "currency_name_pt": "Zloty",
     "language": [
       "Polonês"
-    ]
+    ],
+    "iso_country": "PL"
   },
   {
     "continent": "Europa",
@@ -1948,7 +2106,8 @@
     "region": "Península Ibérica",
     "country": "Portugal",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "PT"
   },
   {
     "continent": "América do Norte",
@@ -1960,7 +2119,8 @@
     "region": "Caribe ou Outros Territórios",
     "country": "Porto Rico",
     "currency_code": "USD",
-    "currency_name_pt": "Dólar dos Estados Unidos"
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "iso_country": "PR"
   },
   {
     "continent": "América do Norte",
@@ -1972,7 +2132,8 @@
     "region": "Caribe ou Outros Territórios",
     "country": "Reunião",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "RE"
   },
   {
     "continent": "Europa",
@@ -1984,7 +2145,8 @@
     "region": "Europa Oriental",
     "country": "Rússia",
     "currency_code": "RUB",
-    "currency_name_pt": "Rublo russo"
+    "currency_name_pt": "Rublo russo",
+    "iso_country": "RU"
   },
   {
     "continent": "África",
@@ -1998,7 +2160,8 @@
       "Kinyarwanda",
       "Francês",
       "Inglês"
-    ]
+    ],
+    "iso_country": "RW"
   },
   {
     "continent": "Europa",
@@ -2010,7 +2173,8 @@
     "currency_name_pt": "Leu romeno",
     "language": [
       "Romeno"
-    ]
+    ],
+    "iso_country": "RO"
   },
   {
     "continent": "América do Norte",
@@ -2022,7 +2186,8 @@
     "region": "América Latina",
     "country": "El Salvador",
     "currency_code": "USD",
-    "currency_name_pt": "Dólar dos Estados Unidos"
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "iso_country": "SV"
   },
   {
     "continent": "Oceania",
@@ -2035,7 +2200,8 @@
     "language": [
       "Samoano",
       "Inglês"
-    ]
+    ],
+    "iso_country": "WS"
   },
   {
     "continent": "Europa",
@@ -2047,7 +2213,8 @@
     "currency_name_pt": "Euro",
     "language": [
       "Italiano"
-    ]
+    ],
+    "iso_country": "SM"
   },
   {
     "continent": "África",
@@ -2059,7 +2226,8 @@
     "currency_name_pt": "Dobra",
     "language": [
       "Português"
-    ]
+    ],
+    "iso_country": "ST"
   },
   {
     "continent": "Ásia",
@@ -2071,7 +2239,8 @@
     "region": "Oriente Médio",
     "country": "Arábia Saudita",
     "currency_code": "SAR",
-    "currency_name_pt": "Rial saudita"
+    "currency_name_pt": "Rial saudita",
+    "iso_country": "SA"
   },
   {
     "continent": "África",
@@ -2084,7 +2253,8 @@
     "language": [
       "Swati",
       "Inglês"
-    ]
+    ],
+    "iso_country": "SZ"
   },
   {
     "continent": "Vários",
@@ -2096,7 +2266,8 @@
     "currency_name_pt": "Libra esterlina",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "SH"
   },
   {
     "continent": "América do Norte",
@@ -2110,7 +2281,8 @@
       "Inglês",
       "Chamorro",
       "Caroliniano"
-    ]
+    ],
+    "iso_country": "MP"
   },
   {
     "continent": "Europa",
@@ -2122,7 +2294,8 @@
     "currency_name_pt": "Dinar sérvio",
     "language": [
       "Sérvio"
-    ]
+    ],
+    "iso_country": "RS"
   },
   {
     "continent": "África",
@@ -2134,7 +2307,8 @@
     "region": "África Subsaariana",
     "country": "Seychelles",
     "currency_code": "SCR",
-    "currency_name_pt": "Rúpia de Seychelles"
+    "currency_name_pt": "Rúpia de Seychelles",
+    "iso_country": "SC"
   },
   {
     "continent": "África",
@@ -2146,7 +2320,8 @@
     "region": "África Subsaariana",
     "country": "Senegal",
     "currency_code": "XOF",
-    "currency_name_pt": "Franco CFA da África Ocidental"
+    "currency_name_pt": "Franco CFA da África Ocidental",
+    "iso_country": "SN"
   },
   {
     "continent": "América do Norte",
@@ -2158,7 +2333,8 @@
     "currency_name_pt": "Dólar do Caribe Oriental",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "VC"
   },
   {
     "continent": "América do Norte",
@@ -2170,7 +2346,8 @@
     "currency_name_pt": "Dólar do Caribe Oriental",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "KN"
   },
   {
     "continent": "América do Norte",
@@ -2182,7 +2359,8 @@
     "currency_name_pt": "Dólar do Caribe Oriental",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "LC"
   },
   {
     "continent": "América do Norte",
@@ -2194,7 +2372,8 @@
     "currency_name_pt": "Euro",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "PM"
   },
   {
     "continent": "Ásia",
@@ -2209,7 +2388,8 @@
       "Malaio",
       "Mandarim",
       "Tâmil"
-    ]
+    ],
+    "iso_country": "SG"
   },
   {
     "continent": "Ásia",
@@ -2221,7 +2401,8 @@
     "region": "Oriente Médio",
     "country": "Síria",
     "currency_code": "SYP",
-    "currency_name_pt": "Libra síria"
+    "currency_name_pt": "Libra síria",
+    "iso_country": "SY"
   },
   {
     "continent": "Europa",
@@ -2233,7 +2414,8 @@
     "currency_name_pt": "Euro",
     "language": [
       "Eslovaco"
-    ]
+    ],
+    "iso_country": "SK"
   },
   {
     "continent": "Europa",
@@ -2245,7 +2427,8 @@
     "currency_name_pt": "Euro",
     "language": [
       "Esloveno"
-    ]
+    ],
+    "iso_country": "SI"
   },
   {
     "continent": "Europa",
@@ -2257,7 +2440,8 @@
     "region": "Europa Ocidental",
     "country": "Reino Unido",
     "currency_code": "GBP",
-    "currency_name_pt": "Libra esterlina"
+    "currency_name_pt": "Libra esterlina",
+    "iso_country": "GB"
   },
   {
     "continent": "América do Norte",
@@ -2269,7 +2453,8 @@
     "region": "América do Norte",
     "country": "Estados Unidos",
     "currency_code": "USD",
-    "currency_name_pt": "Dólar dos Estados Unidos"
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "iso_country": "US"
   },
   {
     "continent": "Oceania",
@@ -2281,7 +2466,8 @@
     "currency_name_pt": "Dólar das Ilhas Salomão",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "SB"
   },
   {
     "continent": "África",
@@ -2293,7 +2479,8 @@
     "region": "África",
     "country": "Somália",
     "currency_code": "SOS",
-    "currency_name_pt": "Xelim somali"
+    "currency_name_pt": "Xelim somali",
+    "iso_country": "SO"
   },
   {
     "continent": "África",
@@ -2305,7 +2492,8 @@
     "region": "África",
     "country": "Sudão",
     "currency_code": "SDG",
-    "currency_name_pt": "Libra sudanesa"
+    "currency_name_pt": "Libra sudanesa",
+    "iso_country": "SD"
   },
   {
     "continent": "América do Sul",
@@ -2317,7 +2505,8 @@
     "region": "América do Sul",
     "country": "Suriname",
     "currency_code": "SRD",
-    "currency_name_pt": "Dólar do Suriname"
+    "currency_name_pt": "Dólar do Suriname",
+    "iso_country": "SR"
   },
   {
     "continent": "África",
@@ -2329,7 +2518,8 @@
     "currency_name_pt": "Leone",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "SL"
   },
   {
     "continent": "Ásia",
@@ -2341,7 +2531,8 @@
     "currency_name_pt": "Somoni",
     "language": [
       "Tajique"
-    ]
+    ],
+    "iso_country": "TJ"
   },
   {
     "continent": "Ásia",
@@ -2353,7 +2544,8 @@
     "currency_name_pt": "Baht",
     "language": [
       "Tailandês"
-    ]
+    ],
+    "iso_country": "TH"
   },
   {
     "continent": "Ásia",
@@ -2365,7 +2557,8 @@
     "region": "Ásia",
     "country": "Taiwan",
     "currency_code": "TWD",
-    "currency_name_pt": "Novo dólar de Taiwan"
+    "currency_name_pt": "Novo dólar de Taiwan",
+    "iso_country": "TW"
   },
   {
     "continent": "África",
@@ -2378,7 +2571,8 @@
     "language": [
       "Suaíli",
       "Inglês"
-    ]
+    ],
+    "iso_country": "TZ"
   },
   {
     "continent": "África",
@@ -2390,7 +2584,8 @@
     "currency_name_pt": "Franco CFA da África Ocidental",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "TG"
   },
   {
     "continent": "Oceania",
@@ -2403,7 +2598,8 @@
     "language": [
       "Tokelauano",
       "Inglês"
-    ]
+    ],
+    "iso_country": "TK"
   },
   {
     "continent": "Oceania",
@@ -2416,7 +2612,8 @@
     "language": [
       "Tonganês",
       "Inglês"
-    ]
+    ],
+    "iso_country": "TO"
   },
   {
     "continent": "América do Norte",
@@ -2428,7 +2625,8 @@
     "currency_name_pt": "Dólar de Trinidad e Tobago",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "TT"
   },
   {
     "continent": "Oceania",
@@ -2441,7 +2639,8 @@
     "language": [
       "Tuvaluano",
       "Inglês"
-    ]
+    ],
+    "iso_country": "TV"
   },
   {
     "continent": "África",
@@ -2453,7 +2652,8 @@
     "region": "África",
     "country": "Tunísia",
     "currency_code": "TND",
-    "currency_name_pt": "Dinar tunisiano"
+    "currency_name_pt": "Dinar tunisiano",
+    "iso_country": "TN"
   },
   {
     "continent": "Ásia",
@@ -2465,7 +2665,8 @@
     "currency_name_pt": "Manat do Turcomenistão",
     "language": [
       "Turcomeno"
-    ]
+    ],
+    "iso_country": "TM"
   },
   {
     "continent": "Ásia",
@@ -2477,7 +2678,8 @@
     "region": "Oriente Médio",
     "country": "Turquia",
     "currency_code": "TRY",
-    "currency_name_pt": "Lira turca"
+    "currency_name_pt": "Lira turca",
+    "iso_country": "TR"
   },
   {
     "continent": "África",
@@ -2490,7 +2692,8 @@
     "language": [
       "Inglês",
       "Suaíli"
-    ]
+    ],
+    "iso_country": "UG"
   },
   {
     "continent": "Ásia",
@@ -2502,7 +2705,8 @@
     "currency_name_pt": "Som do Uzbequistão",
     "language": [
       "Uzbeque"
-    ]
+    ],
+    "iso_country": "UZ"
   },
   {
     "continent": "Europa",
@@ -2514,7 +2718,8 @@
     "currency_name_pt": "Hryvnia",
     "language": [
       "Ucraniano"
-    ]
+    ],
+    "iso_country": "UA"
   },
   {
     "continent": "América do Sul",
@@ -2526,7 +2731,8 @@
     "region": "América Latina",
     "country": "Uruguai",
     "currency_code": "UYU",
-    "currency_name_pt": "Peso uruguaio"
+    "currency_name_pt": "Peso uruguaio",
+    "iso_country": "UY"
   },
   {
     "continent": "Vários",
@@ -2539,7 +2745,8 @@
     "language": [
       "Feroês",
       "Dinamarquês"
-    ]
+    ],
+    "iso_country": "FO"
   },
   {
     "continent": "Oceania",
@@ -2553,7 +2760,8 @@
       "Inglês",
       "Fijiano",
       "Hindi"
-    ]
+    ],
+    "iso_country": "FJ"
   },
   {
     "continent": "Ásia",
@@ -2566,7 +2774,8 @@
     "language": [
       "Filipino",
       "Inglês"
-    ]
+    ],
+    "iso_country": "PH"
   },
   {
     "continent": "Europa",
@@ -2578,7 +2787,8 @@
     "region": "Escandinávia",
     "country": "Finlândia",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "FI"
   },
   {
     "continent": "Vários",
@@ -2590,7 +2800,8 @@
     "currency_name_pt": "Libra das Malvinas",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "FK"
   },
   {
     "continent": "Europa",
@@ -2602,7 +2813,8 @@
     "region": "Europa Ocidental",
     "country": "França",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "FR"
   },
   {
     "continent": "América do Norte",
@@ -2614,7 +2826,8 @@
     "region": "Caribe ou Outros Territórios",
     "country": "Guiana Francesa",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "GF"
   },
   {
     "continent": "Vários",
@@ -2626,7 +2839,8 @@
     "region": "Outras Ilhas",
     "country": "Polinésia Francesa",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "PF"
   },
   {
     "continent": "Europa",
@@ -2638,7 +2852,8 @@
     "currency_name_pt": "Euro",
     "language": [
       "Croata"
-    ]
+    ],
+    "iso_country": "HR"
   },
   {
     "continent": "África",
@@ -2651,7 +2866,8 @@
     "language": [
       "Francês",
       "Sango"
-    ]
+    ],
+    "iso_country": "CF"
   },
   {
     "continent": "África",
@@ -2664,7 +2880,8 @@
     "language": [
       "Francês",
       "Árabe"
-    ]
+    ],
+    "iso_country": "TD"
   },
   {
     "continent": "Europa",
@@ -2676,7 +2893,8 @@
     "currency_name_pt": "Coroa tcheca",
     "language": [
       "Tcheco"
-    ]
+    ],
+    "iso_country": "CZ"
   },
   {
     "continent": "América do Sul",
@@ -2688,7 +2906,8 @@
     "region": "América Latina",
     "country": "Chile",
     "currency_code": "CLP",
-    "currency_name_pt": "Peso chileno"
+    "currency_name_pt": "Peso chileno",
+    "iso_country": "CL"
   },
   {
     "continent": "Europa",
@@ -2703,7 +2922,8 @@
     "region": "Europa Central",
     "country": "Suíça",
     "currency_code": "CHF",
-    "currency_name_pt": "Franco suíço"
+    "currency_name_pt": "Franco suíço",
+    "iso_country": "CH"
   },
   {
     "continent": "Europa",
@@ -2715,7 +2935,8 @@
     "region": "Escandinávia",
     "country": "Suécia",
     "currency_code": "SEK",
-    "currency_name_pt": "Coroa sueca"
+    "currency_name_pt": "Coroa sueca",
+    "iso_country": "SE"
   },
   {
     "continent": "Vários",
@@ -2727,7 +2948,8 @@
     "currency_name_pt": "Coroa norueguesa",
     "language": [
       "Norueguês"
-    ]
+    ],
+    "iso_country": "SJ"
   },
   {
     "continent": "Ásia",
@@ -2740,7 +2962,8 @@
     "language": [
       "Cingalês",
       "Tâmil"
-    ]
+    ],
+    "iso_country": "LK"
   },
   {
     "continent": "América do Sul",
@@ -2752,7 +2975,8 @@
     "region": "América Latina",
     "country": "Equador",
     "currency_code": "USD",
-    "currency_name_pt": "Dólar dos Estados Unidos"
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "iso_country": "EC"
   },
   {
     "continent": "África",
@@ -2766,7 +2990,8 @@
       "Espanhol",
       "Francês",
       "Português"
-    ]
+    ],
+    "iso_country": "GQ"
   },
   {
     "continent": "África",
@@ -2778,7 +3003,8 @@
     "region": "Chifre da África",
     "country": "Eritreia",
     "currency_code": "ERN",
-    "currency_name_pt": "Nakfa"
+    "currency_name_pt": "Nakfa",
+    "iso_country": "ER"
   },
   {
     "continent": "Europa",
@@ -2790,7 +3016,8 @@
     "region": "Báltico",
     "country": "Estônia",
     "currency_code": "EUR",
-    "currency_name_pt": "Euro"
+    "currency_name_pt": "Euro",
+    "iso_country": "EE"
   },
   {
     "continent": "África",
@@ -2802,7 +3029,8 @@
     "region": "Chifre da África",
     "country": "Etiópia",
     "currency_code": "ETB",
-    "currency_name_pt": "Birr etíope"
+    "currency_name_pt": "Birr etíope",
+    "iso_country": "ET"
   },
   {
     "continent": "África",
@@ -2814,7 +3042,8 @@
     "region": "África",
     "country": "África do Sul",
     "currency_code": "ZAR",
-    "currency_name_pt": "Rand"
+    "currency_name_pt": "Rand",
+    "iso_country": "ZA"
   },
   {
     "continent": "América do Norte",
@@ -2826,7 +3055,8 @@
     "region": "Caribe",
     "country": "Jamaica",
     "currency_code": "JMD",
-    "currency_name_pt": "Dólar jamaicano"
+    "currency_name_pt": "Dólar jamaicano",
+    "iso_country": "JM"
   },
   {
     "continent": "Ásia",
@@ -2838,7 +3068,8 @@
     "region": "Ásia",
     "country": "Japão",
     "currency_code": "JPY",
-    "currency_name_pt": "Iene"
+    "currency_name_pt": "Iene",
+    "iso_country": "JP"
   },
   {
     "continent": "Vários",
@@ -2848,7 +3079,8 @@
     "country": "Antártica",
     "currency_code": null,
     "currency_name_pt": null,
-    "language": []
+    "language": [],
+    "iso_country": "AQ"
   },
   {
     "continent": "Vários",
@@ -2860,7 +3092,8 @@
     "currency_name_pt": "Libra esterlina",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "IO"
   },
   {
     "continent": "Vários",
@@ -2873,7 +3106,8 @@
     "language": [
       "Inglês",
       "Francês"
-    ]
+    ],
+    "iso_country": "GG"
   },
   {
     "continent": "Vários",
@@ -2886,7 +3120,8 @@
     "language": [
       "Inglês",
       "Francês"
-    ]
+    ],
+    "iso_country": "JE"
   },
   {
     "continent": "Vários",
@@ -2898,7 +3133,8 @@
     "currency_name_pt": "Euro",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "YT"
   },
   {
     "continent": "África",
@@ -2922,7 +3158,8 @@
     "currency_name_pt": "Libra esterlina",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "AC"
   },
   {
     "continent": "Vários",
@@ -2936,7 +3173,8 @@
       "Inglês",
       "Chinês",
       "Malaio"
-    ]
+    ],
+    "iso_country": "CX"
   },
   {
     "continent": "Europa",
@@ -2948,7 +3186,8 @@
     "currency_name_pt": "Euro",
     "language": [
       "Montenegrino"
-    ]
+    ],
+    "iso_country": "ME"
   },
   {
     "continent": "América do Norte",
@@ -2961,7 +3200,8 @@
     "language": [
       "Holandês",
       "Inglês"
-    ]
+    ],
+    "iso_country": "SX"
   },
   {
     "continent": "América do Norte",
@@ -2975,7 +3215,8 @@
       "Holandês",
       "Papiamento",
       "Inglês"
-    ]
+    ],
+    "iso_country": "CW"
   },
   {
     "continent": "Vários",
@@ -2987,7 +3228,8 @@
     "currency_name_pt": null,
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "CP"
   },
   {
     "continent": "Vários",
@@ -3001,7 +3243,8 @@
       "Holandês",
       "Inglês",
       "Papiamento"
-    ]
+    ],
+    "iso_country": "BQ"
   },
   {
     "continent": "América do Norte",
@@ -3013,7 +3256,8 @@
     "currency_name_pt": "Euro",
     "language": [
       "Francês"
-    ]
+    ],
+    "iso_country": "BL"
   },
   {
     "continent": "África",
@@ -3025,7 +3269,8 @@
     "currency_name_pt": "Libra sul-sudanesa",
     "language": [
       "Inglês"
-    ]
+    ],
+    "iso_country": "SS"
   },
   {
     "continent": "Outro",
