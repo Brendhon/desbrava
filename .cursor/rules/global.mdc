@@ -31,12 +31,18 @@ You are a specialist in TypeScript, Next.js, React, and web application developm
 - After each step, check for possible optimizations and implement them.
 
 ## 🎨 UI & Styling
-- Use **Tailwind CSS** for all component styling.
-- Always ensure the UI is responsive and adapts to different screen sizes.
-- Use only the **`lucide-react`** library for icons.
-- For animations, use only native Tailwind CSS transition and animation classes.
+- Style all components exclusively with **Tailwind CSS** utility classes.
+- Guarantee that every UI is fully responsive and adapts smoothly to all screen sizes.
+- Use icons only from the **`lucide-react`** library—no other icon sets are permitted.
+- For animations, rely solely on Tailwind CSS's built-in transition and animation classes.
+- For component-specific styles, define a `styles` constant at the end of each component file. This constant should be an object mapping semantic keys to Tailwind CSS class strings.
+- Reference these classes via the `styles` object in your JSX, instead of placing Tailwind classes directly in the HTML or TypeScript code.
+- Do not use or modify global styles.
+- Do not use separate CSS files for component-specific styles.
+- Centralize and simplify all styling logic by using the `styles` constant pattern.
 
 ## 📚 Documentation
+- Only create necessary documentation.
 - All documentation must be stored in a `docs` directory at the project root.
 - Write all documentation and code comments in **English**.
 - Create documentation only for reusable and common components (such as buttons, modals, inputs, etc.). Do not document pages or single-use components.

@@ -64,7 +64,7 @@ O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um
 | **Ardósia Escuro** | `#1B263B` | Fundo para cards e modais. |
 | **Branco Pergaminho** | `#E0E1DD` | Textos principais e títulos. |
 | **Cinza Névoa** | `#A9B4C2` | Textos secundários e ícones. |
-| **Laranja Pôr do Sol** | `#F77F00` | Destaques, botões e links. |
+| **Roxo Real** | `#8443A4` | Destaques, botões e links. |
 
 ---
 
