@@ -1,36 +1,184 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center">
+  Desbrava
+</h1>
 
-## Getting Started
+<p align="center">
+  <strong>Seu planejador de viagens pessoal, simples e intuitivo.</strong>
+</p>
 
-First, run the development server:
+<p align="center">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg"/>
+  <img alt="Repo Size" src="https://img.shields.io/github/repo-size/SEU_USUARIO/desbrava?color=blue&style=flat-square">
+  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/SEU_USUARIO/desbrava?color=blue&style=flat-square">
+</p>
+
+<p align="center">
+  </p>
+
+---
+
+## 📜 Índice
+
+- [📜 Índice](#-índice)
+- [✈️ Sobre o Projeto](#️-sobre-o-projeto)
+- [✨ Features](#-features)
+- [🎨 Layout e Paleta de Cores](#-layout-e-paleta-de-cores)
+- [🚀 Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [📁 Estrutura do Projeto](#-estrutura-do-projeto)
+- [👨‍💻 Como Executar](#-como-executar)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Configuração do Ambiente](#configuração-do-ambiente)
+  - [Rodando a Aplicação](#rodando-a-aplicação)
+- [🤝 Como Contribuir](#-como-contribuir)
+- [📝 Licença](#-licença)
+
+---
+
+## ✈️ Sobre o Projeto
+
+O **Desbrava** nasceu da ideia de simplificar o planejamento de viagens. Em vez de planilhas complexas e informações espalhadas, o Desbrava oferece uma interface centralizada, limpa e focada para que você possa organizar seus roteiros de forma intuitiva.
+
+O objetivo é permitir que o usuário crie uma viagem, adicione um ponto de referência e, a partir daí, construa seu itinerário dia a dia, mesclando atividades planejadas manualmente com sugestões inteligentes de locais próximos.
+
+---
+
+## ✨ Features
+
+-   [ ] **Autenticação Segura com Google:** Login rápido e seguro utilizando NextAuth.js.
+-   [ ] **Criação de Viagens:** Fluxo simplificado em etapas para criar uma nova viagem, selecionando o país e as datas.
+-   [ ] **Dashboard Pessoal:** Visualize todas as suas viagens (passadas, presentes e futuras) em um só lugar.
+-   [ ] **Detalhes da Viagem:** Página dedicada para cada viagem, servindo como hub central do planejamento.
+-   [ ] **Adição de Ponto de Referência:** Use o Google Places para definir um endereço principal (hotel, etc.) e obter coordenadas.
+-   [ ] **Criação de Atividades Manuais:** Adicione qualquer tipo de atividade ao seu roteiro com um sistema de categorização (Transporte, Hospedagem, Alimentação, etc.).
+-   [ ] **Sugestões de Atividades:** Com base no seu ponto de referência, receba sugestões de restaurantes, pontos turísticos e mais.
+-   [ ] **Visualização em Calendário:** Veja seu roteiro em um layout de calendário interativo.
+
+---
+
+## 🎨 Layout e Paleta de Cores
+
+O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um tema escuro que remete à exploração e aventura. A paleta de cores "Diário de Explorador" foi escolhida para ser moderna e funcional.
+
+| Nome Sugerido | HEX Code | Uso Principal |
+| :--- | :--- | :--- |
+| **Azul Meia-Noite** | `#0D1B2A` | Fundo principal da aplicação. |
+| **Ardósia Escuro** | `#1B263B` | Fundo para cards e modais. |
+| **Branco Pergaminho** | `#E0E1DD` | Textos principais e títulos. |
+| **Cinza Névoa** | `#A9B4C2` | Textos secundários e ícones. |
+| **Laranja Pôr do Sol** | `#F77F00` | Destaques, botões e links. |
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+-   **Next.js:** Framework React para renderização no servidor (SSR) e uma estrutura robusta.
+-   **React:** Biblioteca para construção da interface de usuário.
+-   **TypeScript:** Para adicionar tipagem estática e aumentar a segurança do código.
+-   **Tailwind CSS:** Framework CSS utilitário para estilização rápida e responsiva.
+-   **Lucide Icons:** Biblioteca de ícones open-source e customizável.
+-   **Firebase:** Utilizado como Backend as a Service (BaaS) para:
+    -   **Authentication:** Gerenciamento de usuários com o provedor do Google.
+    -   **Firestore:** Banco de dados NoSQL para armazenar dados de viagens e atividades.
+-   **NextAuth.js:** Solução completa de autenticação para aplicações Next.js.
+-   **Google Places API:** Para busca e sugestão de locais.
+
+---
+
+## 📁 Estrutura do Projeto
+
+O projeto utiliza o App Router do Next.js, com uma estrutura de pastas organizada para escalabilidade.
+
+```
+
+desbrava/
+├── public/                \# Arquivos estáticos (imagens, fontes, JSON de países)
+├── src/
+│   ├── app/               \# Rotas da aplicação, layouts e páginas
+│   │   ├── (private)/     \# Rotas que exigem autenticação (dashboard, etc.)
+│   │   ├── (public)/      \# Rotas públicas (página de login)
+│   │   └── api/           \# API Routes do Next.js
+│   ├── components/        \# Componentes React reutilizáveis (botões, modais, cards)
+│   ├── context/           \# Contextos React para gerenciamento de estado global
+│   ├── lib/               \# Configurações de bibliotecas (Firebase, NextAuth)
+│   └── utils/             \# Funções utilitárias
+├── .env.local             \# Arquivo para variáveis de ambiente (NÃO versionar)
+└── package.json
+
+```
+
+---
+
+## 👨‍💻 Como Executar
+
+### Pré-requisitos
+
+-   Node.js (v18 ou superior)
+-   Git
+-   npm ou yarn
+
+### Configuração do Ambiente
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/SEU_USUARIO/desbrava.git](https://github.com/SEU_USUARIO/desbrava.git)
+    cd desbrava
+    ```
+
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+
+3.  **Configure as variáveis de ambiente:**
+    Crie um arquivo `.env.local` na raiz e preencha com suas chaves:
+    ```env
+    # NextAuth.js - Gerado com 'openssl rand -base64 32' no terminal
+    NEXTAUTH_SECRET=
+    NEXTAUTH_URL=http://localhost:3000
+
+    # NextAuth.js - Credenciais do Provedor Google
+    # Obtenha no console do Google Cloud
+    GOOGLE_CLIENT_ID=
+    GOOGLE_CLIENT_SECRET=
+
+    # Firebase - Configurações do seu projeto
+    # Obtenha no console do Firebase
+    NEXT_PUBLIC_FIREBASE_API_KEY=
+    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+    NEXT_PUBLIC_FIREBASE_APP_ID=
+
+    # Google Cloud - Chave de API para o Places
+    # Habilite a "Places API" no console do Google Cloud
+    NEXT_PUBLIC_GOOGLE_PLACES_API_KEY=
+    ```
+
+### Rodando a Aplicação
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse `http://localhost:3000` em seu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🤝 Como Contribuir
 
-## Learn More
+Este é um projeto pessoal, mas contribuições são bem-vindas\! Se você tiver ideias ou encontrar bugs, sinta-se à vontade para:
 
-To learn more about Next.js, take a look at the following resources:
+1.  Fazer um **Fork** do projeto.
+2.  Criar uma nova **Branch** (`git checkout -b feature/sua-feature`).
+3.  Fazer **Commit** de suas mudanças (`git commit -m 'feat: Minha nova feature'`).
+4.  Fazer **Push** para a Branch (`git push origin feature/sua-feature`).
+5.  Abrir um **Pull Request**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📝 Licença
 
-## Deploy on Vercel
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://www.google.com/search?q=LICENSE) para mais detalhes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
