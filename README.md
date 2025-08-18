@@ -8,8 +8,6 @@
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg"/>
-  <img alt="Repo Size" src="https://img.shields.io/github/repo-size/SEU_USUARIO/desbrava?color=blue&style=flat-square">
-  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/SEU_USUARIO/desbrava?color=blue&style=flat-square">
 </p>
 
 <p align="center">
@@ -31,6 +29,7 @@
   - [Rodando a Aplicação](#rodando-a-aplicação)
 - [🤝 Como Contribuir](#-como-contribuir)
 - [📝 Licença](#-licença)
+- [👥 Autor](#-autor)
 
 ---
 
@@ -112,15 +111,15 @@ desbrava/
 
 ### Pré-requisitos
 
--   Node.js (v18 ou superior)
+-   Node.js (v22 ou superior)
 -   Git
--   npm ou yarn
+-   npm
 
 ### Configuração do Ambiente
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/SEU_USUARIO/desbrava.git](https://github.com/SEU_USUARIO/desbrava.git)
+    git clone [git@github.com:Brendhon/desbrava.git](git@github.com:Brendhon/desbrava.git)
     cd desbrava
     ```
 
@@ -182,3 +181,9 @@ Este é um projeto pessoal, mas contribuições são bem-vindas\! Se você tiver
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://www.google.com/search?q=LICENSE) para mais detalhes.
 
 ---
+
+## 👥 Autor
+
+**Brendhon Moreira**
+
+[LinkedIn](https://www.linkedin.com/in/brendhon-moreira) | [GitHub](https://github.com/Brendhon)
