@@ -1,0 +1,3039 @@
+[
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_as-flag.gif ",
+    "id": 1,
+    "language": [
+      "Inglês"
+    ],
+    "region": "Oceania",
+    "country": "Austrália",
+    "currency_code": "AUD",
+    "currency_name_pt": "Dólar australiano"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_au-flag.gif ",
+    "id": 2,
+    "language": [
+      "Alemão"
+    ],
+    "region": "Europa Central",
+    "country": "Áustria",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_aj-flag.gif ",
+    "id": 3,
+    "language": [
+      "Azeri"
+    ],
+    "region": "Cáucaso",
+    "country": "Azerbaijão",
+    "currency_code": "AZN",
+    "currency_name_pt": "Manat do Azerbaijão"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_al-flag.gif ",
+    "id": 4,
+    "language": [
+      "Albanês"
+    ],
+    "region": "Balcãs",
+    "country": "Albânia",
+    "currency_code": "ALL",
+    "currency_name_pt": "Lek"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ag-flag.gif ",
+    "id": 5,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Magrebe",
+    "country": "Argélia",
+    "currency_code": "DZD",
+    "currency_name_pt": "Dinar argelino"
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_aq-flag.gif",
+    "id": 6,
+    "language": [
+      "Inglês"
+    ],
+    "region": "Oceania",
+    "country": "Samoa Americana",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_av-flag.gif",
+    "id": 7,
+    "language": [
+      "Inglês"
+    ],
+    "region": "Caribe",
+    "country": "Anguilla",
+    "currency_code": "XCD",
+    "currency_name_pt": "Dólar do Caribe Oriental"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ao-flag.gif ",
+    "id": 8,
+    "language": [
+      "Português"
+    ],
+    "region": "África Subsaariana",
+    "country": "Angola",
+    "currency_code": "AOA",
+    "currency_name_pt": "Kwanza"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_an-flag.gif ",
+    "id": 9,
+    "region": "Microestados",
+    "country": "Andorra",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Catalão"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_ac-flag.gif",
+    "id": 10,
+    "language": [
+      "Inglês"
+    ],
+    "region": "Caribe",
+    "country": "Antígua e Barbuda (Reino Unido)",
+    "currency_code": "XCD",
+    "currency_name_pt": "Dólar do Caribe Oriental"
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ar-flag.gif ",
+    "id": 11,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Argentina",
+    "currency_code": "ARS",
+    "currency_name_pt": "Peso argentino"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_am-flag.gif ",
+    "id": 12,
+    "language": [
+      "Armênio"
+    ],
+    "region": "Cáucaso",
+    "country": "Armênia",
+    "currency_code": "AMD",
+    "currency_name_pt": "Dram armênio"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_aa-flag.gif",
+    "id": 13,
+    "language": [
+      "Holandês"
+    ],
+    "region": "Caribe",
+    "country": "Aruba (Holanda)",
+    "currency_code": "AWG",
+    "currency_name_pt": "Florim de Aruba"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_af-flag.gif ",
+    "id": 14,
+    "language": [
+      "Pachto"
+    ],
+    "region": "Ásia",
+    "country": "Afeganistão",
+    "currency_code": "AFN",
+    "currency_name_pt": "Afegane afegão"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_bf-flag.gif",
+    "id": 15,
+    "language": [
+      "Inglês"
+    ],
+    "region": "Caribe",
+    "country": "Bahamas",
+    "currency_code": "BSD",
+    "currency_name_pt": "Dólar das Bahamas"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bg-flag.gif ",
+    "id": 16,
+    "language": [
+      "Bengali"
+    ],
+    "region": "Ásia",
+    "country": "Bangladesh",
+    "currency_code": "BDT",
+    "currency_name_pt": "Taka"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bb-flag.gif ",
+    "id": 17,
+    "language": [
+      "Inglês"
+    ],
+    "region": "Caribe",
+    "country": "Barbados",
+    "currency_code": "BBD",
+    "currency_name_pt": "Dólar de Barbados"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ba-flag.gif ",
+    "id": 18,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Bahrein",
+    "currency_code": "BHD",
+    "currency_name_pt": "Dinar do Bahrein"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bo-flag.gif ",
+    "id": 19,
+    "language": [
+      "Russo"
+    ],
+    "region": "Europa Oriental",
+    "country": "Bielorrússia",
+    "currency_code": "BYN",
+    "currency_name_pt": "Rublo bielorrusso"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bh-flag.gif",
+    "id": 20,
+    "language": [
+      "Inglês"
+    ],
+    "region": "América Central",
+    "country": "Belize (Reino Unido)",
+    "currency_code": "BZD",
+    "currency_name_pt": "Dólar de Belize"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_be-flag.gif ",
+    "id": 21,
+    "language": [
+      "Holandês",
+      "Francês",
+      "Alemão"
+    ],
+    "region": "Benelux",
+    "country": "Bélgica",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bn-flag.gif ",
+    "id": 22,
+    "region": "África Subsaariana",
+    "country": "Benin",
+    "currency_code": "XOF",
+    "currency_name_pt": "Franco CFA da África Ocidental",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_bd-flag.gif",
+    "id": 23,
+    "region": "Caribe",
+    "country": "Bermudas",
+    "currency_code": "BMD",
+    "currency_name_pt": "Dólar das Bermudas",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bu-flag.gif ",
+    "id": 24,
+    "region": "Balcãs",
+    "country": "Bulgária",
+    "currency_code": "BGN",
+    "currency_name_pt": "Lev búlgaro",
+    "language": [
+      "Búlgaro"
+    ]
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bl-flag.gif",
+    "id": 25,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Bolívia",
+    "currency_code": "BOB",
+    "currency_name_pt": "Boliviano"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bk-flag.gif",
+    "id": 26,
+    "language": [
+      "Bósnio"
+    ],
+    "region": "Balcãs",
+    "country": "Bósnia e Herzegovina",
+    "currency_code": "BAM",
+    "currency_name_pt": "Marco conversível"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bc-flag.gif ",
+    "id": 27,
+    "region": "África Subsaariana",
+    "country": "Botsuana",
+    "currency_code": "BWP",
+    "currency_name_pt": "Pula",
+    "language": [
+      "Inglês",
+      "Tswana"
+    ]
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_br-flag.gif ",
+    "id": 28,
+    "language": [
+      "Português"
+    ],
+    "region": "América Latina",
+    "country": "Brasil",
+    "currency_code": "BRL",
+    "currency_name_pt": "Real brasileiro"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bx-flag.gif ",
+    "id": 29,
+    "region": "Ásia",
+    "country": "Brunei Darussalam",
+    "currency_code": "BND",
+    "currency_name_pt": "Dólar de Brunei",
+    "language": [
+      "Malaio"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_uv-flag.gif ",
+    "id": 30,
+    "region": "África Subsaariana",
+    "country": "Burkina Faso",
+    "currency_code": "XOF",
+    "currency_name_pt": "Franco CFA da África Ocidental",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_by-flag.gif ",
+    "id": 31,
+    "region": "África Subsaariana",
+    "country": "Burundi",
+    "currency_code": "BIF",
+    "currency_name_pt": "Franco do Burundi",
+    "language": [
+      "Kirundi",
+      "Francês",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bt-flag.gif ",
+    "id": 32,
+    "region": "Ásia",
+    "country": "Butão",
+    "currency_code": "BTN",
+    "currency_name_pt": "Ngultrum",
+    "language": [
+      "Dzongkha"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_nh-flag.gif ",
+    "id": 33,
+    "region": "Oceania",
+    "country": "Vanuatu",
+    "currency_code": "VUV",
+    "currency_name_pt": "Vatu",
+    "language": [
+      "Bislama",
+      "Inglês",
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_hu-flag.gif ",
+    "id": 34,
+    "language": [
+      "Húngaro"
+    ],
+    "region": "Europa Central",
+    "country": "Hungria",
+    "currency_code": "HUF",
+    "currency_name_pt": "Forint"
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ve-flag.gif",
+    "id": 35,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Venezuela",
+    "currency_code": "VES",
+    "currency_name_pt": "Bolívar soberano"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_vi-flag.gif",
+    "id": 36,
+    "region": "Caribe",
+    "country": "Ilhas Virgens Britânicas",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_vq-flag.gif",
+    "id": 37,
+    "region": "Caribe ou Outros Territórios",
+    "country": "Ilhas Virgens Americanas",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_tt-flag.gif",
+    "id": 38,
+    "region": "Sudeste Asiático",
+    "country": "Timor Leste",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "language": [
+      "Tétum",
+      "Português"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_vm-flag.gif",
+    "id": 39,
+    "language": [
+      "Vietnamita"
+    ],
+    "region": "Ásia",
+    "country": "Vietnã",
+    "currency_code": "VND",
+    "currency_name_pt": "Dong"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_gb-flag.gif ",
+    "id": 40,
+    "language": [
+      "Francês"
+    ],
+    "region": "África Subsaariana",
+    "country": "Gabão",
+    "currency_code": "XAF",
+    "currency_name_pt": "Franco CFA da África Central"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ha-flag.gif ",
+    "id": 41,
+    "language": [
+      "Francês"
+    ],
+    "region": "América Latina",
+    "country": "Haiti",
+    "currency_code": "HTG",
+    "currency_name_pt": "Gourde"
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_gy-flag.gif ",
+    "id": 42,
+    "region": "América do Sul",
+    "country": "Guiana",
+    "currency_code": "GYD",
+    "currency_name_pt": "Dólar guianense",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ga-flag.gif",
+    "id": 43,
+    "region": "África Subsaariana",
+    "country": "Gâmbia",
+    "currency_code": "GMD",
+    "currency_name_pt": "Dalasi",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_gh-flag.gif ",
+    "id": 44,
+    "region": "África Subsaariana",
+    "country": "Gana",
+    "currency_code": "GHS",
+    "currency_name_pt": "Cedi",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_gt-flag.gif ",
+    "id": 46,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Guatemala",
+    "currency_code": "GTQ",
+    "currency_name_pt": "Quetzal"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_gv-flag.gif ",
+    "id": 47,
+    "language": [
+      "Francês"
+    ],
+    "region": "África Subsaariana",
+    "country": "Guiné",
+    "currency_code": "GNF",
+    "currency_name_pt": "Franco guineense"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_pu-flag.gif ",
+    "id": 48,
+    "region": "África Subsaariana",
+    "country": "Guiné-Bissau",
+    "currency_code": "XOF",
+    "currency_name_pt": "Franco CFA da África Ocidental",
+    "language": [
+      "Português"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_gm-flag.gif ",
+    "id": 49,
+    "language": [
+      "Alemão"
+    ],
+    "region": "Europa Central",
+    "country": "Alemanha",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_gi-flag.gif",
+    "id": 50,
+    "region": "Europa do Sul",
+    "country": "Gibraltar",
+    "currency_code": "GIP",
+    "currency_name_pt": "Libra de Gibraltar",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ho-flag.gif ",
+    "id": 51,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Honduras",
+    "currency_code": "HNL",
+    "currency_name_pt": "Lempira"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_hk-flag.gif",
+    "id": 52,
+    "language": [
+      "Chinês Mandarim"
+    ],
+    "region": "Ásia",
+    "country": "Hong Kong",
+    "currency_code": "HKD",
+    "currency_name_pt": "Dólar de Hong Kong"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_gj-flag.gif ",
+    "id": 53,
+    "region": "Caribe",
+    "country": "Granada",
+    "currency_code": "XCD",
+    "currency_name_pt": "Dólar do Caribe Oriental",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_gl-flag.gif",
+    "id": 54,
+    "region": "Outras Ilhas",
+    "country": "Groenlândia",
+    "currency_code": "DKK",
+    "currency_name_pt": "Coroa dinamarquesa",
+    "language": [
+      "Gronelandês",
+      "Dinamarquês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_gr-flag.gif ",
+    "id": 55,
+    "language": [
+      "Grego"
+    ],
+    "region": "Europa Central",
+    "country": "Grécia",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_gg-flag.gif ",
+    "id": 56,
+    "region": "Cáucaso",
+    "country": "Geórgia",
+    "currency_code": "GEL",
+    "currency_name_pt": "Lari",
+    "language": [
+      "Georgiano"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_gq-flag.gif",
+    "id": 57,
+    "region": "Caribe ou Outros Territórios",
+    "country": "Guam",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "language": [
+      "Inglês",
+      "Chamorro"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_da-flag.gif ",
+    "id": 58,
+    "language": [
+      "Dinamarquês"
+    ],
+    "region": "Escandinávia",
+    "country": "Dinamarca",
+    "currency_code": "DKK",
+    "currency_name_pt": "Coroa dinamarquesa"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_dj-flag.gif ",
+    "id": 59,
+    "language": [
+      "Francês"
+    ],
+    "region": "África Subsaariana",
+    "country": "Djibouti",
+    "currency_code": "DJF",
+    "currency_name_pt": "Franco djibutiano"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_do-flag.gif ",
+    "id": 60,
+    "region": "Caribe",
+    "country": "Dominica",
+    "currency_code": "XCD",
+    "currency_name_pt": "Dólar do Caribe Oriental",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_dr-flag.gif",
+    "id": 61,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "Caribe",
+    "country": "República Dominicana",
+    "currency_code": "DOP",
+    "currency_name_pt": "Peso dominicano"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_eg-flag.gif ",
+    "id": 62,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Egito",
+    "currency_code": "EGP",
+    "currency_name_pt": "Libra egípcia"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_za-flag.gif ",
+    "id": 63,
+    "region": "África Subsaariana",
+    "country": "Zâmbia",
+    "currency_code": "ZMW",
+    "currency_name_pt": "Kwacha zambiano",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Flag_of_the_Sahrawi_Arab_Democratic_Republic.svg/510px-Flag_of_the_Sahrawi_Arab_Democratic_Republic.svg.png",
+    "id": 64,
+    "region": "África",
+    "country": "Saara Ocidental",
+    "currency_code": "MAD",
+    "currency_name_pt": "Dirham marroquino",
+    "language": [
+      "Árabe",
+      "Espanhol"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_zi-flag.gif ",
+    "id": 65,
+    "region": "África Subsaariana",
+    "country": "Zimbábue",
+    "currency_code": "ZWL",
+    "currency_name_pt": "Dólar do Zimbábue",
+    "language": [
+      "Inglês",
+      "Shona",
+      "Ndebele"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_is-flag.gif ",
+    "id": 66,
+    "language": [
+      "Hebraico"
+    ],
+    "region": "Oriente Médio",
+    "country": "Israel",
+    "currency_code": "ILS",
+    "currency_name_pt": "Novo shekel israelense"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_in-flag.gif ",
+    "id": 67,
+    "language": [
+      "Hindi"
+    ],
+    "region": "Ásia",
+    "country": "Índia",
+    "currency_code": "INR",
+    "currency_name_pt": "Rúpia indiana"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_id-flag.gif ",
+    "id": 68,
+    "region": "Ásia",
+    "country": "Indonésia",
+    "currency_code": "IDR",
+    "currency_name_pt": "Rúpia",
+    "language": [
+      "Indonésio"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_jo-flag.gif ",
+    "id": 69,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Jordânia",
+    "currency_code": "JOD",
+    "currency_name_pt": "Dinar jordaniano"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_iz-flag.gif ",
+    "id": 70,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Iraque",
+    "currency_code": "IQD",
+    "currency_name_pt": "Dinar iraquiano"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ir-flag.gif",
+    "id": 71,
+    "language": [
+      "Persa"
+    ],
+    "region": "Oriente Médio",
+    "country": "Irã",
+    "currency_code": "IRR",
+    "currency_name_pt": "Rial iraniano"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ei-flag.gif ",
+    "id": 72,
+    "language": [
+      "Inglês"
+    ],
+    "region": "Europa Ocidental",
+    "country": "Irlanda",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ic-flag.gif ",
+    "id": 73,
+    "language": [
+      "Islandês"
+    ],
+    "region": "Escandinávia",
+    "country": "Islândia",
+    "currency_code": "ISK",
+    "currency_name_pt": "Coroa islandesa"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sp-flag.gif ",
+    "id": 74,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "Península Ibérica",
+    "country": "Espanha",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_it-flag.gif ",
+    "id": 75,
+    "language": [
+      "Italiano"
+    ],
+    "region": "Europa Ocidental",
+    "country": "Itália",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ym-flag.gif ",
+    "id": 76,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Iêmen",
+    "currency_code": "YER",
+    "currency_name_pt": "Rial iemenita"
+  },
+  {
+    "continent": "África",
+    "flag": "https://commons.wikimedia.org/wiki/File:Flag_of_Cape_Verde_(3-2).svg",
+    "id": 77,
+    "language": [
+      "Português"
+    ],
+    "region": "África Subsaariana",
+    "country": "Cabo Verde",
+    "currency_code": "CVE",
+    "currency_name_pt": "Escudo cabo-verdiano"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_kz-flag.gif ",
+    "id": 78,
+    "language": [
+      "Russo"
+    ],
+    "region": "Ásia",
+    "country": "Cazaquistão",
+    "currency_code": "KZT",
+    "currency_name_pt": "Tenge"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_cb-flag.gif ",
+    "id": 79,
+    "language": [
+      "Vietnamita"
+    ],
+    "region": "Indochina",
+    "country": "Camboja",
+    "currency_code": "KHR",
+    "currency_name_pt": "Riel"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_cm-flag.gif ",
+    "id": 80,
+    "language": [
+      "Inglês",
+      "Francês"
+    ],
+    "region": "África Subsaariana",
+    "country": "Camarões",
+    "currency_code": "XAF",
+    "currency_name_pt": "Franco CFA da África Central"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ca-flag.gif ",
+    "id": 81,
+    "language": [
+      "Inglês"
+    ],
+    "region": "América do Norte",
+    "country": "Canadá",
+    "currency_code": "CAD",
+    "currency_name_pt": "Dólar canadense"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_qa-flag.gif ",
+    "id": 82,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Catar",
+    "currency_code": "QAR",
+    "currency_name_pt": "Rial do Catar"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ke-flag.gif ",
+    "id": 83,
+    "region": "África",
+    "country": "Quênia",
+    "currency_code": "KES",
+    "currency_name_pt": "Xelim queniano",
+    "language": [
+      "Suaíli",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_cy-flag.gif ",
+    "id": 84,
+    "region": "Oriente Médio",
+    "country": "Chipre",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Grego",
+      "Turco"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_kg-flag.gif ",
+    "id": 85,
+    "region": "Ásia",
+    "country": "Quirguistão",
+    "currency_code": "KGS",
+    "currency_name_pt": "Som",
+    "language": [
+      "Quirguiz",
+      "Russo"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_kr-flag.gif ",
+    "id": 86,
+    "region": "Oceania",
+    "country": "Kiribati",
+    "currency_code": "AUD",
+    "currency_name_pt": "Dólar australiano",
+    "language": [
+      "Gilbertês",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ch-flag.gif ",
+    "id": 87,
+    "language": [
+      "Chinês Mandarim"
+    ],
+    "region": "Ásia",
+    "country": "China",
+    "currency_code": "CNY",
+    "currency_name_pt": "Yuan Renminbi"
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Flag_of_the_Cocos_%28Keeling%29_Islands.svg/1200px-Flag_of_the_Cocos_%28Keeling%29_Islands.svg.png?20140510192012",
+    "id": 88,
+    "region": "Oceania",
+    "country": "Ilhas Cocos",
+    "currency_code": "AUD",
+    "currency_name_pt": "Dólar australiano",
+    "language": [
+      "Malaio",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_co-flag.gif ",
+    "id": 89,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Colômbia",
+    "currency_code": "COP",
+    "currency_name_pt": "Peso colombiano"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_cn-flag.gif",
+    "id": 90,
+    "region": "África Subsaariana",
+    "country": "Comores",
+    "currency_code": "KMF",
+    "currency_name_pt": "Franco comorense",
+    "language": [
+      "Comoriano",
+      "Árabe",
+      "Francês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_congo-flag.gif",
+    "id": 91,
+    "region": "África Subsaariana",
+    "country": "Congo",
+    "currency_code": "CDF",
+    "currency_name_pt": "Franco congolês",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_congo-flag.gif",
+    "id": 92,
+    "region": "África Subsaariana",
+    "country": "Congo",
+    "currency_code": "CDF",
+    "currency_name_pt": "Franco congolês",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_kn-flag.gif",
+    "id": 93,
+    "region": "Ásia",
+    "country": "Coreia, República Democrática Popular da",
+    "currency_code": "KPW",
+    "currency_name_pt": "Won norte-coreano",
+    "language": [
+      "Coreano"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ks-flag.gif",
+    "id": 94,
+    "region": "Ásia",
+    "country": "Coreia, República da",
+    "currency_code": "KRW",
+    "currency_name_pt": "Won sul-coreano",
+    "language": [
+      "Coreano"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_cs-flag.gif ",
+    "id": 95,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Costa Rica",
+    "currency_code": "CRC",
+    "currency_name_pt": "Colón costa-riquenho"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_iv-flag.gif",
+    "id": 96,
+    "region": "África Subsaariana",
+    "country": "Costa do Marfim",
+    "currency_code": "XOF",
+    "currency_name_pt": "Franco CFA da África Ocidental",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_cu-flag.gif ",
+    "id": 97,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Cuba",
+    "currency_code": "CUP",
+    "currency_name_pt": "Peso cubano"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ku-flag.gif ",
+    "id": 98,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Kuwait",
+    "currency_code": "KWD",
+    "currency_name_pt": "Dinar kuwaitiano"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_lg-flag.gif ",
+    "id": 100,
+    "language": [
+      "Letão"
+    ],
+    "region": "Báltico",
+    "country": "Letônia",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_lt-flag.gif ",
+    "id": 101,
+    "region": "África Subsaariana",
+    "country": "Lesoto",
+    "currency_code": "LSL",
+    "currency_name_pt": "Loti",
+    "language": [
+      "Sesoto",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_li-flag.gif ",
+    "id": 102,
+    "region": "África Subsaariana",
+    "country": "Libéria",
+    "currency_code": "LRD",
+    "currency_name_pt": "Dólar liberiano",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_le-flag.gif ",
+    "id": 103,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Líbano",
+    "currency_code": "LBP",
+    "currency_name_pt": "Libra libanesa"
+  },
+  {
+    "continent": "África",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Libya.svg/510px-Flag_of_Libya.svg.png",
+    "id": 104,
+    "region": "África",
+    "country": "Jamahiriya Árabe da Líbia",
+    "currency_code": "LYD",
+    "currency_name_pt": "Dinar líbio",
+    "language": [
+      "Árabe"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_lh-flag.gif ",
+    "id": 105,
+    "language": [
+      "Lituano"
+    ],
+    "region": "Báltico",
+    "country": "Lituânia",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ls-flag.gif ",
+    "id": 106,
+    "language": [
+      "Alemão"
+    ],
+    "region": "Europa Central",
+    "country": "Liechtenstein",
+    "currency_code": "CHF",
+    "currency_name_pt": "Franco suíço"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_lu-flag.gif ",
+    "id": 107,
+    "language": [
+      "Alemão"
+    ],
+    "region": "Benelux",
+    "country": "Luxemburgo",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mp-flag.gif ",
+    "id": 108,
+    "region": "África Subsaariana",
+    "country": "Maurício",
+    "currency_code": "MUR",
+    "currency_name_pt": "Rúpia mauriciana",
+    "language": [
+      "Inglês",
+      "Francês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mr-flag.gif ",
+    "id": 109,
+    "region": "África Subsaariana",
+    "country": "Mauritânia",
+    "currency_code": "MRU",
+    "currency_name_pt": "Ouguiya",
+    "language": [
+      "Árabe"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ma-flag.gif ",
+    "id": 110,
+    "region": "África Subsaariana",
+    "country": "Madagascar",
+    "currency_code": "MGA",
+    "currency_name_pt": "Ariary malgaxe",
+    "language": [
+      "Malgaxe",
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_mc-flag.gif",
+    "id": 111,
+    "language": [
+      "Chinês Mandarim"
+    ],
+    "region": "Ásia",
+    "country": "Macau",
+    "currency_code": "MOP",
+    "currency_name_pt": "Pataca"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_mk-flag.gif",
+    "id": 112,
+    "region": "Europa do Sul",
+    "country": "Macedônia do Norte",
+    "currency_code": "MKD",
+    "currency_name_pt": "Denar",
+    "language": [
+      "Macedônio"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mi-flag.gif ",
+    "id": 113,
+    "region": "África Subsaariana",
+    "country": "Malaui",
+    "currency_code": "MWK",
+    "currency_name_pt": "Kwacha malawiana",
+    "language": [
+      "Inglês",
+      "Chichewa"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_my-flag.gif ",
+    "id": 114,
+    "region": "Ásia",
+    "country": "Malásia",
+    "currency_code": "MYR",
+    "currency_name_pt": "Ringgit",
+    "language": [
+      "Malaio"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ml-flag.gif ",
+    "id": 115,
+    "region": "África Subsaariana",
+    "country": "Mali",
+    "currency_code": "XOF",
+    "currency_name_pt": "Franco CFA da África Ocidental",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mv-flag.gif ",
+    "id": 116,
+    "region": "Ásia",
+    "country": "Maldivas",
+    "currency_code": "MVR",
+    "currency_name_pt": "Rufiyaa",
+    "language": [
+      "Dhivehi"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mt-flag.gif ",
+    "id": 117,
+    "region": "Europa do Sul",
+    "country": "Malta",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Maltês",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mo-flag.gif ",
+    "id": 118,
+    "language": [
+      "Árabe"
+    ],
+    "region": "África",
+    "country": "Marrocos",
+    "currency_code": "MAD",
+    "currency_name_pt": "Dirham marroquino"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Flag-of-Martinique.svg/440px-Flag-of-Martinique.svg.png",
+    "id": 119,
+    "language": [
+      "Francês"
+    ],
+    "region": "Caribe",
+    "country": "Martinica",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_rm-flag.gif",
+    "id": 120,
+    "region": "Oceania",
+    "country": "Ilhas Marshall",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "language": [
+      "Marshallês",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mx-flag.gif ",
+    "id": 121,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "México",
+    "currency_code": "MXN",
+    "currency_name_pt": "Peso mexicano"
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Flag_of_the_Federated_States_of_Micronesia.svg/500px-Flag_of_the_Federated_States_of_Micronesia.svg.png",
+    "id": 122,
+    "region": "Oceania",
+    "country": "Micronésia",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mz-flag.gif ",
+    "id": 123,
+    "language": [
+      "Português"
+    ],
+    "region": "África Subsaariana",
+    "country": "Moçambique",
+    "currency_code": "MZN",
+    "currency_name_pt": "Metical"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_md-flag.gif",
+    "id": 124,
+    "region": "Europa Ocidental",
+    "country": "Moldávia, República da",
+    "currency_code": "MDL",
+    "currency_name_pt": "Leu moldavo",
+    "language": [
+      "Romeno"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mn-flag.gif ",
+    "id": 125,
+    "language": [
+      "Francês"
+    ],
+    "region": "Europa Central",
+    "country": "Mônaco",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mg-flag.gif ",
+    "id": 126,
+    "region": "Ásia",
+    "country": "Mongólia",
+    "currency_code": "MNT",
+    "currency_name_pt": "Tugrik",
+    "language": [
+      "Mongol"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_mh-flag.gif",
+    "id": 127,
+    "region": "Caribe",
+    "country": "Montserrat",
+    "currency_code": "XCD",
+    "currency_name_pt": "Dólar do Caribe Oriental",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_bm-flag.gif ",
+    "id": 128,
+    "region": "Indochina",
+    "country": "Mianmar",
+    "currency_code": "MMK",
+    "currency_name_pt": "Kyat",
+    "language": [
+      "Birmanês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_wa-flag.gif ",
+    "id": 129,
+    "region": "África Subsaariana",
+    "country": "Namíbia",
+    "currency_code": "NAD",
+    "currency_name_pt": "Dólar da Namíbia",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_nr-flag.gif ",
+    "id": 130,
+    "region": "Oceania",
+    "country": "Nauru",
+    "currency_code": "AUD",
+    "currency_name_pt": "Dólar australiano",
+    "language": [
+      "Nauruano",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_np-flag.gif ",
+    "id": 131,
+    "region": "Ásia",
+    "country": "Nepal",
+    "currency_code": "NPR",
+    "currency_name_pt": "Rúpia nepalesa",
+    "language": [
+      "Nepalês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ng-flag.gif",
+    "id": 132,
+    "region": "África Subsaariana",
+    "country": "Níger",
+    "currency_code": "XOF",
+    "currency_name_pt": "Franco CFA da África Ocidental",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ni-flag.gif ",
+    "id": 133,
+    "language": [
+      "Inglês"
+    ],
+    "region": "África Subsaariana",
+    "country": "Nigéria",
+    "currency_code": "NGN",
+    "currency_name_pt": "Naira"
+  },
+  {
+    "continent": "Outro",
+    "flag": null,
+    "id": 134,
+    "region": "Outro",
+    "country": "Antilhas Holandesas",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Holandês",
+      "Papiamento",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_nl-flag.gif",
+    "id": 135,
+    "language": [
+      "Holandês"
+    ],
+    "region": "Benelux",
+    "country": "Países Baixos",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_nu-flag.gif ",
+    "id": 136,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Nicarágua",
+    "currency_code": "NIO",
+    "currency_name_pt": "Córdoba"
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_ne-flag.gif",
+    "id": 137,
+    "region": "Oceania",
+    "country": "Niue",
+    "currency_code": "NZD",
+    "currency_name_pt": "Dólar da Nova Zelândia",
+    "language": [
+      "Niueano",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_nz-flag.gif ",
+    "id": 138,
+    "language": [
+      "Inglês"
+    ],
+    "region": "Polinésia",
+    "country": "Nova Zelândia",
+    "currency_code": "NZD",
+    "currency_name_pt": "Dólar da Nova Zelândia"
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_nc-flag.gif",
+    "id": 139,
+    "region": "Oceania",
+    "country": "Nova Caledônia",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_no-flag.gif ",
+    "id": 140,
+    "language": [
+      "Norueguês"
+    ],
+    "region": "Escandinávia",
+    "country": "Noruega",
+    "currency_code": "NOK",
+    "currency_name_pt": "Coroa norueguesa"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ae-flag.gif",
+    "id": 141,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Emirados Árabes Unidos",
+    "currency_code": "AED",
+    "currency_name_pt": "Dirham dos Emirados Árabes Unidos"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mu-flag.gif ",
+    "id": 142,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Omã",
+    "currency_code": "OMR",
+    "currency_name_pt": "Rial de Omã"
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Bouvet_Island_flagmap.png",
+    "id": 143,
+    "region": "Outras Ilhas",
+    "country": "Ilha Bouvet",
+    "currency_code": null,
+    "currency_name_pt": null,
+    "language": [
+      "Norueguês"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_im-flag.gif",
+    "id": 144,
+    "region": "Outras Ilhas",
+    "country": "Ilha de Man",
+    "currency_code": "GBP",
+    "currency_name_pt": "Libra esterlina",
+    "language": [
+      "Inglês",
+      "Manx"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Flag_of_Norfolk_Island.svg/192px-Flag_of_Norfolk_Island.svg.png",
+    "id": 145,
+    "region": "Oceania",
+    "country": "Ilha Norfolk",
+    "currency_code": "AUD",
+    "currency_name_pt": "Dólar australiano",
+    "language": [
+      "Inglês",
+      "Norfuk"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/3/39/Flag_Map_of_the_Heard_Island_and_McDonald_Islands.png",
+    "id": 146,
+    "region": "Outras Ilhas",
+    "country": "Ilhas Heard e McDonald",
+    "currency_code": "AUD",
+    "currency_name_pt": "Dólar australiano",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_cj-flag.gif",
+    "id": 147,
+    "region": "Caribe",
+    "country": "Ilhas Cayman",
+    "currency_code": "KYD",
+    "currency_name_pt": "Dólar das Ilhas Cayman",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_cw-flag.gif",
+    "id": 148,
+    "region": "Oceania",
+    "country": "Ilhas Cook",
+    "currency_code": "NZD",
+    "currency_name_pt": "Dólar da Nova Zelândia",
+    "language": [
+      "Maori",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_tk-flag.gif",
+    "id": 149,
+    "region": "Caribe",
+    "country": "Ilhas Turks e Caicos",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_wf-flag.gif",
+    "id": 150,
+    "region": "Oceania",
+    "country": "Wallis e Futuna",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Francês",
+      "Wallisiano",
+      "Futuniano"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_pk-flag.gif ",
+    "id": 151,
+    "region": "Ásia",
+    "country": "Paquistão",
+    "currency_code": "PKR",
+    "currency_name_pt": "Rúpia paquistanesa",
+    "language": [
+      "Urdu",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ps-flag.gif ",
+    "id": 152,
+    "region": "Oceania",
+    "country": "Palau",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "language": [
+      "Palauense",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_palestine-flag.gif",
+    "id": 153,
+    "region": "Oriente Médio",
+    "country": "Palestina",
+    "currency_code": "ILS",
+    "currency_name_pt": "Novo shekel israelense",
+    "language": [
+      "Árabe"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_pm-flag.gif ",
+    "id": 154,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Panamá",
+    "currency_code": "PAB",
+    "currency_name_pt": "Balboa"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Flag_of_the_Vatican_City_%282023%E2%80%93present%29.svg/340px-Flag_of_the_Vatican_City_%282023%E2%80%93present%29.svg.png",
+    "id": 155,
+    "region": "Microestados",
+    "country": "Cidade do Vaticano",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Italiano",
+      "Latim"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_pp-flag.gif ",
+    "id": 156,
+    "region": "Oceania",
+    "country": "Papua Nova Guiné",
+    "currency_code": "PGK",
+    "currency_name_pt": "Kina",
+    "language": [
+      "Tok Pisin",
+      "Inglês",
+      "Hiri Motu"
+    ]
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_pa-flag.gif ",
+    "id": 157,
+    "region": "América Latina",
+    "country": "Paraguai",
+    "currency_code": "PYG",
+    "currency_name_pt": "Guarani",
+    "language": [
+      "Espanhol",
+      "Guarani"
+    ]
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_pe-flag.gif ",
+    "id": 158,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Peru",
+    "currency_code": "PEN",
+    "currency_name_pt": "Sol"
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_the_Pitcairn_Islands.svg/1600px-Flag_of_the_Pitcairn_Islands.svg.png",
+    "id": 159,
+    "region": "Oceania",
+    "country": "Pitcairn",
+    "currency_code": "NZD",
+    "currency_name_pt": "Dólar da Nova Zelândia",
+    "language": [
+      "Inglês",
+      "Pitcairnês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_pl-flag.gif ",
+    "id": 160,
+    "region": "Europa Central",
+    "country": "Polônia",
+    "currency_code": "PLN",
+    "currency_name_pt": "Zloty",
+    "language": [
+      "Polonês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_po-flag.gif ",
+    "id": 161,
+    "language": [
+      "Português"
+    ],
+    "region": "Península Ibérica",
+    "country": "Portugal",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_rq-flag.gif",
+    "id": 162,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "Caribe ou Outros Territórios",
+    "country": "Porto Rico",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_fr-flag.gif",
+    "id": 163,
+    "language": [
+      "Francês"
+    ],
+    "region": "Caribe ou Outros Territórios",
+    "country": "Reunião",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_rs-flag.gif",
+    "id": 164,
+    "language": [
+      "Russo"
+    ],
+    "region": "Europa Oriental",
+    "country": "Rússia",
+    "currency_code": "RUB",
+    "currency_name_pt": "Rublo russo"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_rw-flag.gif ",
+    "id": 165,
+    "region": "África Subsaariana",
+    "country": "Ruanda",
+    "currency_code": "RWF",
+    "currency_name_pt": "Franco ruandês",
+    "language": [
+      "Kinyarwanda",
+      "Francês",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ro-flag.gif ",
+    "id": 166,
+    "region": "Europa Ocidental",
+    "country": "Romênia",
+    "currency_code": "RON",
+    "currency_name_pt": "Leu romeno",
+    "language": [
+      "Romeno"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_es-flag.gif ",
+    "id": 167,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "El Salvador",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos"
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ws-flag.gif ",
+    "id": 168,
+    "region": "Polinésia",
+    "country": "Samoa",
+    "currency_code": "WST",
+    "currency_name_pt": "Tala",
+    "language": [
+      "Samoano",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sm-flag.gif ",
+    "id": 169,
+    "region": "Microestados",
+    "country": "San Marino",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Italiano"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe.svg",
+    "id": 170,
+    "region": "África Subsaariana",
+    "country": "São Tomé e Príncipe",
+    "currency_code": "STN",
+    "currency_name_pt": "Dobra",
+    "language": [
+      "Português"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sa-flag.gif ",
+    "id": 171,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Arábia Saudita",
+    "currency_code": "SAR",
+    "currency_name_pt": "Rial saudita"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sz-flag.gif",
+    "id": 172,
+    "region": "África Subsaariana",
+    "country": "Suazilândia",
+    "currency_code": "SZL",
+    "currency_name_pt": "Lilangeni",
+    "language": [
+      "Swati",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/0/00/Flag_of_Saint_Helena.svg",
+    "id": 173,
+    "region": "Outras Ilhas",
+    "country": "Santa Helena (Reino Unido)",
+    "currency_code": "GBP",
+    "currency_name_pt": "Libra esterlina",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_cq-flag.gif",
+    "id": 174,
+    "region": "Caribe ou Outros Territórios",
+    "country": "Ilhas Marianas do Norte",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "language": [
+      "Inglês",
+      "Chamorro",
+      "Caroliniano"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ri-flag.gif ",
+    "id": 175,
+    "region": "Balcãs",
+    "country": "Sérvia",
+    "currency_code": "RSD",
+    "currency_name_pt": "Dinar sérvio",
+    "language": [
+      "Sérvio"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_se-flag.gif ",
+    "id": 176,
+    "language": [
+      "Francês"
+    ],
+    "region": "África Subsaariana",
+    "country": "Seychelles",
+    "currency_code": "SCR",
+    "currency_name_pt": "Rúpia de Seychelles"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sg-flag.gif ",
+    "id": 177,
+    "language": [
+      "Francês"
+    ],
+    "region": "África Subsaariana",
+    "country": "Senegal",
+    "currency_code": "XOF",
+    "currency_name_pt": "Franco CFA da África Ocidental"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_vc-flag.gif",
+    "id": 178,
+    "region": "Caribe",
+    "country": "São Vicente e Granadinas",
+    "currency_code": "XCD",
+    "currency_name_pt": "Dólar do Caribe Oriental",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_sc-flag.gif",
+    "id": 179,
+    "region": "Caribe",
+    "country": "São Cristóvão-Neves",
+    "currency_code": "XCD",
+    "currency_name_pt": "Dólar do Caribe Oriental",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_st-flag.gif",
+    "id": 180,
+    "region": "Caribe",
+    "country": "Santa Lúcia",
+    "currency_code": "XCD",
+    "currency_name_pt": "Dólar do Caribe Oriental",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_sb-flag.gif",
+    "id": 181,
+    "region": "Caribe ou Outros Territórios",
+    "country": "São Pedro e Miquelon",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sn-flag.gif ",
+    "id": 182,
+    "region": "Ásia",
+    "country": "Singapura",
+    "currency_code": "SGD",
+    "currency_name_pt": "Dólar de Singapura",
+    "language": [
+      "Inglês",
+      "Malaio",
+      "Mandarim",
+      "Tâmil"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sy-flag.gif ",
+    "id": 183,
+    "language": [
+      "Árabe"
+    ],
+    "region": "Oriente Médio",
+    "country": "Síria",
+    "currency_code": "SYP",
+    "currency_name_pt": "Libra síria"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_lo-flag.gif ",
+    "id": 184,
+    "region": "Europa Central",
+    "country": "Eslováquia",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Eslovaco"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_si-flag.gif ",
+    "id": 185,
+    "region": "Europa Central",
+    "country": "Eslovênia",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Esloveno"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_uk-flag.gif",
+    "id": 186,
+    "language": [
+      "Inglês"
+    ],
+    "region": "Europa Ocidental",
+    "country": "Reino Unido",
+    "currency_code": "GBP",
+    "currency_name_pt": "Libra esterlina"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_us-flag.gif",
+    "id": 187,
+    "language": [
+      "Inglês"
+    ],
+    "region": "América do Norte",
+    "country": "Estados Unidos",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos"
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_bp-flag.gif",
+    "id": 188,
+    "region": "Oceania",
+    "country": "Ilhas Salomão",
+    "currency_code": "SBD",
+    "currency_name_pt": "Dólar das Ilhas Salomão",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_so-flag.gif ",
+    "id": 189,
+    "language": [
+      "Árabe"
+    ],
+    "region": "África",
+    "country": "Somália",
+    "currency_code": "SOS",
+    "currency_name_pt": "Xelim somali"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_su-flag.gif",
+    "id": 190,
+    "language": [
+      "Árabe"
+    ],
+    "region": "África",
+    "country": "Sudão",
+    "currency_code": "SDG",
+    "currency_name_pt": "Libra sudanesa"
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ns-flag.gif ",
+    "id": 191,
+    "language": [
+      "Holandês"
+    ],
+    "region": "América do Sul",
+    "country": "Suriname",
+    "currency_code": "SRD",
+    "currency_name_pt": "Dólar do Suriname"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sl-flag.gif ",
+    "id": 192,
+    "region": "África Subsaariana",
+    "country": "Serra Leoa",
+    "currency_code": "SLE",
+    "currency_name_pt": "Leone",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ti-flag.gif ",
+    "id": 193,
+    "region": "Ásia",
+    "country": "Tajiquistão",
+    "currency_code": "TJS",
+    "currency_name_pt": "Somoni",
+    "language": [
+      "Tajique"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_th-flag.gif ",
+    "id": 194,
+    "region": "Ásia",
+    "country": "Tailândia",
+    "currency_code": "THB",
+    "currency_name_pt": "Baht",
+    "language": [
+      "Tailandês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_tw-flag.gif",
+    "id": 195,
+    "language": [
+      "Chinês Mandarim"
+    ],
+    "region": "Ásia",
+    "country": "Taiwan",
+    "currency_code": "TWD",
+    "currency_name_pt": "Novo dólar de Taiwan"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_tz-flag.gif ",
+    "id": 196,
+    "region": "África Subsaariana",
+    "country": "Tanzânia, República Unida da",
+    "currency_code": "TZS",
+    "currency_name_pt": "Xelim da Tanzânia",
+    "language": [
+      "Suaíli",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_to-flag.gif ",
+    "id": 197,
+    "region": "África Subsaariana",
+    "country": "Togo",
+    "currency_code": "XOF",
+    "currency_name_pt": "Franco CFA da África Ocidental",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_tl-flag.gif",
+    "id": 198,
+    "region": "Oceania",
+    "country": "Tokelau",
+    "currency_code": "NZD",
+    "currency_name_pt": "Dólar da Nova Zelândia",
+    "language": [
+      "Tokelauano",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_tn-flag.gif ",
+    "id": 199,
+    "region": "Oceania",
+    "country": "Tonga",
+    "currency_code": "TOP",
+    "currency_name_pt": "Pa'anga",
+    "language": [
+      "Tonganês",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_td-flag.gif",
+    "id": 200,
+    "region": "Caribe",
+    "country": "Trinidad e Tobago",
+    "currency_code": "TTD",
+    "currency_name_pt": "Dólar de Trinidad e Tobago",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_tv-flag.gif",
+    "id": 201,
+    "region": "Oceania",
+    "country": "Tuvalu",
+    "currency_code": "AUD",
+    "currency_name_pt": "Dólar australiano",
+    "language": [
+      "Tuvaluano",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ts-flag.gif ",
+    "id": 202,
+    "language": [
+      "Árabe"
+    ],
+    "region": "África",
+    "country": "Tunísia",
+    "currency_code": "TND",
+    "currency_name_pt": "Dinar tunisiano"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_tx-flag.gif ",
+    "id": 203,
+    "region": "Ásia",
+    "country": "Turcomenistão",
+    "currency_code": "TMT",
+    "currency_name_pt": "Manat do Turcomenistão",
+    "language": [
+      "Turcomeno"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_tu-flag.gif ",
+    "id": 204,
+    "language": [
+      "Turco"
+    ],
+    "region": "Oriente Médio",
+    "country": "Turquia",
+    "currency_code": "TRY",
+    "currency_name_pt": "Lira turca"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ug-flag.gif ",
+    "id": 205,
+    "region": "África Subsaariana",
+    "country": "Uganda",
+    "currency_code": "UGX",
+    "currency_name_pt": "Xelim de Uganda",
+    "language": [
+      "Inglês",
+      "Suaíli"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_uz-flag.gif ",
+    "id": 206,
+    "region": "Ásia",
+    "country": "Uzbequistão",
+    "currency_code": "UZS",
+    "currency_name_pt": "Som do Uzbequistão",
+    "language": [
+      "Uzbeque"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_up-flag.gif ",
+    "id": 207,
+    "region": "Europa Oriental",
+    "country": "Ucrânia",
+    "currency_code": "UAH",
+    "currency_name_pt": "Hryvnia",
+    "language": [
+      "Ucraniano"
+    ]
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_uy-flag.gif ",
+    "id": 208,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Uruguai",
+    "currency_code": "UYU",
+    "currency_name_pt": "Peso uruguaio"
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Flag_of_the_Faroe_Islands.svg/192px-Flag_of_the_Faroe_Islands.svg.png",
+    "id": 209,
+    "region": "Outras Ilhas",
+    "country": "Ilhas Faroe",
+    "currency_code": "DKK",
+    "currency_name_pt": "Coroa dinamarquesa",
+    "language": [
+      "Feroês",
+      "Dinamarquês"
+    ]
+  },
+  {
+    "continent": "Oceania",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_fj-flag.gif ",
+    "id": 210,
+    "region": "Oceania",
+    "country": "Fiji",
+    "currency_code": "FJD",
+    "currency_name_pt": "Dólar de Fiji",
+    "language": [
+      "Inglês",
+      "Fijiano",
+      "Hindi"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_rp-flag.gif",
+    "id": 211,
+    "region": "Ásia",
+    "country": "Filipinas",
+    "currency_code": "PHP",
+    "currency_name_pt": "Peso filipino",
+    "language": [
+      "Filipino",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_fi-flag.gif ",
+    "id": 212,
+    "language": [
+      "Finlandês"
+    ],
+    "region": "Escandinávia",
+    "country": "Finlândia",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_Falkland_Islands.svg/120px-Flag_of_the_Falkland_Islands.svg.png",
+    "id": 213,
+    "region": "Outras Ilhas",
+    "country": "Ilhas Falkland",
+    "currency_code": "FKP",
+    "currency_name_pt": "Libra das Malvinas",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_fr-flag.gif ",
+    "id": 214,
+    "language": [
+      "Francês"
+    ],
+    "region": "Europa Ocidental",
+    "country": "França",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Flag_of_French_Guiana.svg/120px-Flag_of_French_Guiana.svg.png",
+    "id": 215,
+    "language": [
+      "Francês"
+    ],
+    "region": "Caribe ou Outros Territórios",
+    "country": "Guiana Francesa",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_fp-flag.gif",
+    "id": 216,
+    "language": [
+      "Francês"
+    ],
+    "region": "Outras Ilhas",
+    "country": "Polinésia Francesa",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_hr-flag.gif ",
+    "id": 217,
+    "region": "Balcãs",
+    "country": "Croácia",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Croata"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info/img/flags/small/tn_ct-flag.gif",
+    "id": 218,
+    "region": "África Subsaariana",
+    "country": "República Centro-Africana",
+    "currency_code": "XAF",
+    "currency_name_pt": "Franco CFA da África Central",
+    "language": [
+      "Francês",
+      "Sango"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_cd-flag.gif ",
+    "id": 219,
+    "region": "África Subsaariana",
+    "country": "Chade",
+    "currency_code": "XAF",
+    "currency_name_pt": "Franco CFA da África Central",
+    "language": [
+      "Francês",
+      "Árabe"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ez-flag.gif",
+    "id": 220,
+    "region": "Europa Central",
+    "country": "República Tcheca",
+    "currency_code": "CZK",
+    "currency_name_pt": "Coroa tcheca",
+    "language": [
+      "Tcheco"
+    ]
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ci-flag.gif ",
+    "id": 221,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Chile",
+    "currency_code": "CLP",
+    "currency_name_pt": "Peso chileno"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sz-flag.gif ",
+    "id": 222,
+    "language": [
+      "Alemão",
+      "Francês",
+      "Italiano",
+      "Romanche"
+    ],
+    "region": "Europa Central",
+    "country": "Suíça",
+    "currency_code": "CHF",
+    "currency_name_pt": "Franco suíço"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sw-flag.gif ",
+    "id": 223,
+    "language": [
+      "Sueco"
+    ],
+    "region": "Escandinávia",
+    "country": "Suécia",
+    "currency_code": "SEK",
+    "currency_name_pt": "Coroa sueca"
+  },
+  {
+    "continent": "Vários",
+    "flag": null,
+    "id": 224,
+    "region": "Outras Ilhas",
+    "country": "Ilhas Svalbard e Jan Mayen (Noruega)",
+    "currency_code": "NOK",
+    "currency_name_pt": "Coroa norueguesa",
+    "language": [
+      "Norueguês"
+    ]
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ce-flag.gif ",
+    "id": 225,
+    "region": "Ásia",
+    "country": "Sri Lanka",
+    "currency_code": "LKR",
+    "currency_name_pt": "Rúpia do Sri Lanka",
+    "language": [
+      "Cingalês",
+      "Tâmil"
+    ]
+  },
+  {
+    "continent": "América do Sul",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ec-flag.gif ",
+    "id": 226,
+    "language": [
+      "Espanhol"
+    ],
+    "region": "América Latina",
+    "country": "Equador",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ek-flag.gif ",
+    "id": 227,
+    "region": "África Subsaariana",
+    "country": "Guiné Equatorial",
+    "currency_code": "XAF",
+    "currency_name_pt": "Franco CFA da África Central",
+    "language": [
+      "Espanhol",
+      "Francês",
+      "Português"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_er-flag.gif ",
+    "id": 228,
+    "language": [
+      "Tigrinya"
+    ],
+    "region": "Chifre da África",
+    "country": "Eritreia",
+    "currency_code": "ERN",
+    "currency_name_pt": "Nakfa"
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_en-flag.gif ",
+    "id": 229,
+    "language": [
+      "Estoniano"
+    ],
+    "region": "Báltico",
+    "country": "Estônia",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_et-flag.gif ",
+    "id": 230,
+    "language": [
+      "Amárico"
+    ],
+    "region": "Chifre da África",
+    "country": "Etiópia",
+    "currency_code": "ETB",
+    "currency_name_pt": "Birr etíope"
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_sf-flag.gif ",
+    "id": 231,
+    "language": [
+      "Zulu"
+    ],
+    "region": "África",
+    "country": "África do Sul",
+    "currency_code": "ZAR",
+    "currency_name_pt": "Rand"
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_jm-flag.gif ",
+    "id": 232,
+    "language": [
+      "Inglês"
+    ],
+    "region": "Caribe",
+    "country": "Jamaica",
+    "currency_code": "JMD",
+    "currency_name_pt": "Dólar jamaicano"
+  },
+  {
+    "continent": "Ásia",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_ja-flag.gif ",
+    "id": 233,
+    "language": [
+      "Japonês"
+    ],
+    "region": "Ásia",
+    "country": "Japão",
+    "currency_code": "JPY",
+    "currency_name_pt": "Iene"
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Flag_of_the_Antarctic_Treaty.svg/440px-Flag_of_the_Antarctic_Treaty.svg.png",
+    "id": 234,
+    "region": "Outras Ilhas",
+    "country": "Antártica",
+    "currency_code": null,
+    "currency_name_pt": null,
+    "language": []
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Flag_of_the_British_Indian_Ocean_Territory_1990.svg/192px-Flag_of_the_British_Indian_Ocean_Territory_1990.svg.png",
+    "id": 235,
+    "region": "Outras Ilhas",
+    "country": "Território Britânico do Oceano Índico (Reino Unido)",
+    "currency_code": "GBP",
+    "currency_name_pt": "Libra esterlina",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_Guernsey.svg/192px-Flag_of_Guernsey.svg.png",
+    "id": 236,
+    "region": "Outras Ilhas",
+    "country": "Bailiado de Guernsey",
+    "currency_code": "GBP",
+    "currency_name_pt": "Libra esterlina",
+    "language": [
+      "Inglês",
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Flag_of_Jersey.svg/192px-Flag_of_Jersey.svg.png",
+    "id": 237,
+    "region": "Outras Ilhas",
+    "country": "Jersey (Reino Unido)",
+    "currency_code": "GBP",
+    "currency_name_pt": "Libra esterlina",
+    "language": [
+      "Inglês",
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Flag_of_Mayotte_%28local%29.svg/400px-Flag_of_Mayotte_%28local%29.svg.png",
+    "id": 238,
+    "region": "Outras Ilhas",
+    "country": "Mayotte (França)",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Flag_of_Mayotte_%28Local%29.svg",
+    "id": 239,
+    "region": "África Subsaariana",
+    "country": "Mayotte",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Ascension_Island.svg/510px-Flag_of_Ascension_Island.svg.png",
+    "id": 240,
+    "region": "Outras Ilhas",
+    "country": "Ilha de Ascensão",
+    "currency_code": "GBP",
+    "currency_name_pt": "Libra esterlina",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/6/67/Flag_of_Christmas_Island.svg",
+    "id": 241,
+    "region": "Outras Ilhas",
+    "country": "Ilha Christmas",
+    "currency_code": "AUD",
+    "currency_name_pt": "Dólar australiano",
+    "language": [
+      "Inglês",
+      "Chinês",
+      "Malaio"
+    ]
+  },
+  {
+    "continent": "Europa",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_mj-flag.gif ",
+    "id": 243,
+    "region": "Balcãs",
+    "country": "Montenegro",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Montenegrino"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Flag_of_Sint_Maarten.svg/1350px-Flag_of_Sint_Maarten.svg.png",
+    "id": 244,
+    "region": "Caribe",
+    "country": "Sint Maarten",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Holandês",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Flag_of_Cura%C3%A7ao.svg",
+    "id": 247,
+    "region": "Caribe",
+    "country": "Curaçao",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Holandês",
+      "Papiamento",
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Unofficial_flag_Clipperton_island.png",
+    "id": 250,
+    "region": "Outras Ilhas",
+    "country": "Ilha Clipperton",
+    "currency_code": null,
+    "currency_name_pt": null,
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "Vários",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Flag_of_Bonaire.svg",
+    "id": 253,
+    "region": "Outras Ilhas",
+    "country": "Bonaire, Santo Eustáquio e Saba",
+    "currency_code": "USD",
+    "currency_name_pt": "Dólar dos Estados Unidos",
+    "language": [
+      "Holandês",
+      "Inglês",
+      "Papiamento"
+    ]
+  },
+  {
+    "continent": "América do Norte",
+    "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Saint_Barth%C3%A9lemy_%28local%29.svg/900px-Flag_of_Saint_Barth%C3%A9lemy_%28local%29.svg.png",
+    "id": 256,
+    "region": "Caribe",
+    "country": "São Bartolomeu",
+    "currency_code": "EUR",
+    "currency_name_pt": "Euro",
+    "language": [
+      "Francês"
+    ]
+  },
+  {
+    "continent": "África",
+    "flag": "https://www.worldometers.info//img/flags/small/tn_od-flag.gif ",
+    "id": 260,
+    "region": "África Subsaariana",
+    "country": "Sudão do Sul",
+    "currency_code": "SSP",
+    "currency_name_pt": "Libra sul-sudanesa",
+    "language": [
+      "Inglês"
+    ]
+  },
+  {
+    "continent": "Outro",
+    "id": 0,
+    "region": "Outro",
+    "country": "Outro",
+    "currency_code": null,
+    "currency_name_pt": null,
+    "language": []
+  }
+]
