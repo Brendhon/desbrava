@@ -1,0 +1,80 @@
+import { useState, useEffect } from 'react';
+import { Country } from '@/lib/types/country';
+import { useDebounce } from './useDebounce';
+
+interface UseCountriesSearchReturn {
+  countries: Country[];
+  loading: boolean;
+  error: string | null;
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+}
+
+/**
+ * Hook to search countries using the countries API with debouncing
+ * @param initialSearchTerm - Initial search term
+ * @param debounceDelay - Delay for debouncing in milliseconds (default: 300ms)
+ * @returns Object with countries data, loading state, error state, and search controls
+ */
+export function useCountriesSearch(
+  initialSearchTerm: string = '',
+  debounceDelay: number = 300
+): UseCountriesSearchReturn {
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+  const [countries, setCountries] = useState<Country[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Debounce the search term to avoid excessive API calls
+  const debouncedSearchTerm = useDebounce(searchTerm, debounceDelay);
+
+  useEffect(() => {
+    const searchCountries = async () => {
+      // Don't search for very short terms or empty terms
+      if (!debouncedSearchTerm.trim() || debouncedSearchTerm.trim().length < 2) {
+        setCountries([]);
+        setError(null);
+        setLoading(false);
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(
+          `/api/countries?name=${encodeURIComponent(debouncedSearchTerm)}`
+        );
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+          setCountries(data.data);
+        } else {
+          setError(data.message || 'Failed to search countries');
+          setCountries([]);
+        }
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to search countries';
+        setError(errorMessage);
+        setCountries([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    searchCountries();
+  }, [debouncedSearchTerm]);
+
+  return {
+    countries,
+    loading,
+    error,
+    searchTerm,
+    setSearchTerm,
+  };
+}

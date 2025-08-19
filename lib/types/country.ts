@@ -10,7 +10,7 @@ export interface Country {
   iso_country: string;
 }
 
-enum Continent {
+export enum Continent {
   AméricaDoNorte = 'América do Norte',
   AméricaDoSul = 'América do Sul',
   Europa = 'Europa',

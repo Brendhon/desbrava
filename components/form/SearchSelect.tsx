@@ -1,17 +1,11 @@
 import { forwardRef, InputHTMLAttributes, useMemo, useState, useRef, useCallback } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { X } from 'lucide-react';
-import { useFormStyles } from '../../hooks/useFormStyles';
 import { useDropdown } from '../../hooks/useDropdown';
 import { useFormField } from '../../hooks/useFormField';
+import { SelectOption } from '@/lib/types';
 import InputWithIcon from './InputWithIcon';
 import Dropdown from './Dropdown';
-
-interface SelectOption {
-  value: string;
-  label: React.ReactNode;
-  disabled?: boolean;
-}
 
 interface SearchSelectProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -79,6 +73,7 @@ const SearchSelect = forwardRef<HTMLInputElement, SearchSelectProps>(
       setSelectedValue(option.value);
       setSearchValue(typeof option.label === 'string' ? option.label : option.value);
       handleChange(option.value);
+      closeDropdown();
     }, [handleChange]);
 
     const { isOpen, highlightedIndex, dropdownRef, openDropdown, closeDropdown } = useDropdown({
@@ -92,7 +87,7 @@ const SearchSelect = forwardRef<HTMLInputElement, SearchSelectProps>(
       setSelectedValue('');
       openDropdown();
       handleInputChange(e);
-    }, [openDropdown, handleInputChange]);
+    }, [openDropdown]);
 
     const handleInputFocus = useCallback(() => {
       openDropdown();
