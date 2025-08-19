@@ -36,12 +36,6 @@ export default function LoadingSpinner({
     '5xl': 128,
   };
 
-  const variantClasses = {
-    default: 'border-royal-purple border-t-transparent',
-    primary: 'border-blue-500 border-t-transparent',
-    secondary: 'border-emerald-500 border-t-transparent',
-  };
-
   const textSizeClasses = {
     sm: 'text-sm',
     md: 'text-base',
@@ -66,14 +60,18 @@ export default function LoadingSpinner({
   return (
     <div className={`${styles.container} ${className}`}>
       {/* Main spinner container */}
-      <Loader2 size={sizeClasses[size]} className={`${styles.spinner} ${isVisible ? styles.visible : styles.hidden}`} />
+      <Loader2
+        size={sizeClasses[size]}
+        className={`${styles.spinner} ${isVisible ? styles.visible : styles.hidden}`}
+      />
 
       {/* Loading text */}
       {showText && (
         <div className={styles.textContainer}>
           <p
-            className={`${textSizeClasses[size]} ${styles.loadingText} ${isVisible ? styles.textVisible : styles.textHidden
-              }`}
+            className={`${textSizeClasses[size]} ${styles.loadingText} ${
+              isVisible ? styles.textVisible : styles.textHidden
+            }`}
           >
             {loadingTexts[textIndex]}
           </p>
@@ -83,10 +81,11 @@ export default function LoadingSpinner({
             {loadingTexts.map((_, index) => (
               <div
                 key={index}
-                className={`${styles.progressDot} ${index === textIndex
+                className={`${styles.progressDot} ${
+                  index === textIndex
                     ? styles.progressDotActive
                     : styles.progressDotInactive
-                  }`}
+                }`}
               />
             ))}
           </div>
@@ -102,11 +101,13 @@ const styles = {
   visible: 'opacity-100 scale-100',
   hidden: 'opacity-0 scale-95',
   textContainer: 'mt-4 sm:mt-6 text-center',
-  loadingText: 'text-parchment-white font-medium transition-all duration-500 text-center',
+  loadingText:
+    'text-parchment-white font-medium transition-all duration-500 text-center',
   textVisible: 'opacity-100 translate-y-0',
   textHidden: 'opacity-0 translate-y-2',
   progressDots: 'flex justify-center mt-2 sm:mt-3 space-x-1',
-  progressDot: 'w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300',
+  progressDot:
+    'w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300',
   progressDotActive: 'bg-royal-purple scale-125',
   progressDotInactive: 'bg-royal-purple/30 scale-100',
 };

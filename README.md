@@ -22,7 +22,6 @@
 - [🔐 Processo de Autenticação](#-processo-de-autenticação)
   - [Como Funciona o Login](#como-funciona-o-login)
   - [Fluxo de Telas](#fluxo-de-telas)
-  - [Estrutura de Autenticação](#estrutura-de-autenticação)
 - [👨‍💻 Como Executar](#-como-executar)
   - [Pré-requisitos](#pré-requisitos)
   - [Configuração do Ambiente](#configuração-do-ambiente)
@@ -45,6 +44,7 @@ O objetivo é permitir que o usuário crie uma viagem, adicione um ponto de refe
 ## ✨ Features
 
 - [x] **Autenticação Segura com Google:** Login rápido e seguro utilizando NextAuth.js.
+- [x] **Sistema de Formulários:** Componentes de input reutilizáveis com validação robusta usando React Hook Form e Zod.
 - [ ] **Criação de Viagens:** Fluxo simplificado em etapas para criar uma nova viagem, selecionando o país e as datas.
 - [ ] **Dashboard Pessoal:** Visualize todas as suas viagens (passadas, presentes e futuras) em um só lugar.
 - [ ] **Detalhes da Viagem:** Página dedicada para cada viagem, servindo como hub central do planejamento.
@@ -81,6 +81,9 @@ O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um
   - **Firestore:** Banco de dados NoSQL para armazenar dados de viagens e atividades.
 - **NextAuth.js:** Solução completa de autenticação para aplicações Next.js.
 - **Google Places API:** Para busca e sugestão de locais.
+- **React Hook Form:** Biblioteca para gerenciamento eficiente de formulários com validação e performance otimizada.
+- **Zod:** Biblioteca TypeScript-first para validação de schemas com inferência de tipos estática.
+- **@hookform/resolvers:** Integração oficial entre React Hook Form e bibliotecas de validação como Zod.
 
 ## 🔐 Processo de Autenticação
 
@@ -98,45 +101,17 @@ O sistema de autenticação do Desbrava utiliza NextAuth.js com Google OAuth par
 ### Fluxo de Telas
 
 ```
+
 Página Inicial → Login Google → Dashboard (Protegido)
-     ↓              ↓              ↓
+↓ ↓ ↓
 Botão "Entrar" → Autorização → Lista de Viagens
-     ↓              ↓              ↓
+↓ ↓ ↓
 Dashboard → Nova Viagem → Detalhes da Viagem
-     ↓              ↓              ↓
+↓ ↓ ↓
 Dashboard → Configurações da Conta → Logout
-     ↓              ↓              ↓
+↓ ↓ ↓
 Detalhes da Viagem → Configurações da Viagem → Edição
-```
 
-### Estrutura de Autenticação
-
-```
-├── auth.ts                           # Configuração principal do NextAuth
-├── middleware.ts                     # Middleware para proteção de rotas
-├── app/
-│   ├── api/auth/[...nextauth]/
-│   │   └── route.ts                 # API route para NextAuth
-│   ├── (protected)/                 # Grupo de rotas protegidas
-│   │   ├── layout.tsx               # Layout compartilhado com ProtectedRoute
-│   │   ├── dashboard/
-│   │   │   └── page.tsx             # Dashboard principal
-│   │   ├── trip/
-│   │   │   ├── page.tsx             # Criação de nova viagem
-│   │   │   └── [id]/
-│   │   │       ├── page.tsx         # Detalhes da viagem
-│   │   │       └── settings/
-│   │   │           └── page.tsx     # Configurações da viagem
-│   │   └── account/
-│   │       └── page.tsx             # Configurações da conta
-│   └── layout.tsx                   # Layout raiz com SessionProvider
-└── components/
-    ├── auth/
-    │   └── ProtectedRoute.tsx       # Componente de proteção de rotas
-    ├── navigation/
-    │   └── Navigation.tsx           # Navegação principal
-    └── providers/
-        └── SessionProvider.tsx      # Provider de sessão
 ```
 
 ---

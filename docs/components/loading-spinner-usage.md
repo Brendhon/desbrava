@@ -31,12 +31,12 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl' \| '4xl' \| '5xl'` | `'lg'` | Size of the spinner |
-| `variant` | `'default' \| 'primary' \| 'secondary'` | `'default'` | Color variant |
-| `showText` | `boolean` | `true` | Whether to show loading text |
-| `className` | `string` | `''` | Additional CSS classes |
+| Prop        | Type                                                               | Default     | Description                  |
+| ----------- | ------------------------------------------------------------------ | ----------- | ---------------------------- |
+| `size`      | `'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl' \| '4xl' \| '5xl'` | `'lg'`      | Size of the spinner          |
+| `variant`   | `'default' \| 'primary' \| 'secondary'`                            | `'default'` | Color variant                |
+| `showText`  | `boolean`                                                          | `true`      | Whether to show loading text |
+| `className` | `string`                                                           | `''`        | Additional CSS classes       |
 
 ## Size Variants
 
@@ -76,11 +76,13 @@ The component automatically cycles through these friendly messages:
 ## Examples
 
 ### Full-screen loading
+
 ```tsx
 <LoadingSpinner size="lg" />
 ```
 
 ### Inline loading
+
 ```tsx
 <div className="p-4">
   <LoadingSpinner size="sm" showText={false} />
@@ -88,10 +90,11 @@ The component automatically cycles through these friendly messages:
 ```
 
 ### Custom styling
+
 ```tsx
-<LoadingSpinner 
-  size="md" 
-  variant="primary" 
+<LoadingSpinner
+  size="md"
+  variant="primary"
   className="bg-gradient-to-r from-blue-900 to-purple-900"
 />
 ```

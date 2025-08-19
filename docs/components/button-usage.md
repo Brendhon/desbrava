@@ -24,8 +24,8 @@ import { Calendar, ExternalLink } from 'lucide-react';
 </Button>
 
 // With icon
-<Button 
-  variant="primary" 
+<Button
+  variant="primary"
   icon={Calendar}
   onClick={handleClick}
 >
@@ -33,8 +33,8 @@ import { Calendar, ExternalLink } from 'lucide-react';
 </Button>
 
 // With external icon
-<Button 
-  variant="primary" 
+<Button
+  variant="primary"
   icon={Calendar}
   externalIcon={ExternalLink}
   onClick={handleClick}
@@ -66,19 +66,19 @@ import { Calendar, ExternalLink } from 'lucide-react';
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | - | Button content |
-| `onClick` | `() => void` | - | Click handler |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `variant` | `'primary' \| 'secondary' \| 'danger' \| 'ghost'` | `'primary'` | Button style variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
-| `icon` | `LucideIcon` | - | Icon component |
-| `iconPosition` | `'left' \| 'right'` | `'left'` | Icon position |
-| `externalIcon` | `LucideIcon` | - | External icon component |
-| `className` | `string` | `''` | Additional CSS classes |
-| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type |
-| `aria-label` | `string` | - | Accessibility label |
+| Prop           | Type                                              | Default     | Description             |
+| -------------- | ------------------------------------------------- | ----------- | ----------------------- |
+| `children`     | `ReactNode`                                       | -           | Button content          |
+| `onClick`      | `() => void`                                      | -           | Click handler           |
+| `disabled`     | `boolean`                                         | `false`     | Disabled state          |
+| `variant`      | `'primary' \| 'secondary' \| 'danger' \| 'ghost'` | `'primary'` | Button style variant    |
+| `size`         | `'sm' \| 'md' \| 'lg'`                            | `'md'`      | Button size             |
+| `icon`         | `LucideIcon`                                      | -           | Icon component          |
+| `iconPosition` | `'left' \| 'right'`                               | `'left'`    | Icon position           |
+| `externalIcon` | `LucideIcon`                                      | -           | External icon component |
+| `className`    | `string`                                          | `''`        | Additional CSS classes  |
+| `type`         | `'button' \| 'submit' \| 'reset'`                 | `'button'`  | Button type             |
+| `aria-label`   | `string`                                          | -           | Accessibility label     |
 
 ## Variants
 

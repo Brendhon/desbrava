@@ -1,50 +1,53 @@
-'use client'
+'use client';
 
-import { useState, useRef, useEffect } from 'react'
-import { useSession, signOut } from 'next-auth/react'
-import Link from 'next/link'
-import { User, Settings, LogOut, ChevronDown } from 'lucide-react'
-import { useAuth } from '@/hooks/useAuth';
-import { Button } from '@/components/ui';
+import Button from '@/components/ui/Button';
+import { ChevronDown, LogOut, Settings, User } from 'lucide-react';
+import { signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 
 interface UserMenuProps {
-  className?: string
+  className?: string;
 }
 
 export default function UserMenu({ className = '' }: UserMenuProps) {
-  const { data: session } = useSession()
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const { data: session } = useSession();
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Logout
-  const logout = () => signOut({ callbackUrl: '/' })
+  const logout = () => signOut({ callbackUrl: '/' });
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Close dropdown when pressing Escape
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setIsOpen(false)
+        setIsOpen(false);
       }
-    }
+    };
 
-    document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
-  }, [])
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
 
   // If no session, return null
-  if (!session?.user) return null
+  if (!session?.user) return null;
 
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
@@ -60,9 +63,11 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
         <div className={styles.userInfo}>
           <div className={styles.avatar}>
             {session.user.image ? (
-              <img
+              <Image
+                width={32}
+                height={32} 
                 src={session.user.image}
-                alt={`Foto de ${session.user.name || "Usuário"}`}
+                alt={`Foto de ${session.user.name || 'Usuário'}`}
                 className={styles.avatarImage}
               />
             ) : (
@@ -70,7 +75,7 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
             )}
           </div>
           <span className={styles.userName}>
-            {session.user.name?.split(' ')[0] || "Usuário"}
+            {session.user.name?.split(' ')[0] || 'Usuário'}
           </span>
         </div>
         <ChevronDown
@@ -85,18 +90,23 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
           <div className={styles.dropdownHeader}>
             <div className={styles.dropdownAvatar}>
               {session.user.image ? (
-                <img
+                <Image
                   src={session.user.image}
-                  alt={`Foto de ${session.user.name || "Usuário"}`}
+                  alt={`Foto de ${session.user.name || 'Usuário'}`}
                   className={styles.dropdownAvatarImage}
+                  width={40}
+                  height={40}
                 />
               ) : (
-                <User className={styles.dropdownAvatarIcon} aria-hidden="true" />
+                <User
+                  className={styles.dropdownAvatarIcon}
+                  aria-hidden="true"
+                />
               )}
             </div>
             <div className={styles.dropdownUserInfo}>
               <span className={styles.dropdownUserName}>
-                {session.user.name || "Usuário"}
+                {session.user.name || 'Usuário'}
               </span>
               <span className={styles.dropdownUserEmail}>
                 {session.user.email}
@@ -127,7 +137,7 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 const styles = {
@@ -138,7 +148,8 @@ const styles = {
     transition-colors duration-200
   `,
   userInfo: 'flex items-center gap-3',
-  avatar: 'w-8 h-8 rounded-full bg-royal-purple flex items-center justify-center overflow-hidden',
+  avatar:
+    'w-8 h-8 rounded-full bg-royal-purple flex items-center justify-center overflow-hidden',
   avatarImage: 'w-full h-full object-cover',
   avatarIcon: 'w-5 h-5 text-parchment-white',
   userName: 'text-sm font-medium text-mist-gray hidden sm:block',
@@ -150,7 +161,8 @@ const styles = {
     py-2 z-50
   `,
   dropdownHeader: 'flex items-center gap-3 px-4 py-3',
-  dropdownAvatar: 'w-10 h-10 rounded-full bg-royal-purple flex items-center justify-center overflow-hidden',
+  dropdownAvatar:
+    'w-10 h-10 rounded-full bg-royal-purple flex items-center justify-center overflow-hidden',
   dropdownAvatarImage: 'w-full h-full object-cover',
   dropdownAvatarIcon: 'w-6 h-6 text-parchment-white',
   dropdownUserInfo: 'flex flex-col',
@@ -169,4 +181,4 @@ const styles = {
     focus:outline-none focus:bg-red-900/20 focus:text-red-300
   `,
   dropdownLogoutIcon: 'w-4 h-4',
-}
+};

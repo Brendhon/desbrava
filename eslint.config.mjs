@@ -13,8 +13,6 @@ const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
     rules: {
-      // Disable rules that might conflict with Prettier
-      'prettier/prettier': 'error',
       // Allow Prettier to handle formatting
       indent: 'off',
       quotes: 'off',

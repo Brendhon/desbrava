@@ -12,16 +12,16 @@ import { Card } from '@/components/ui';
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Content to be displayed inside the card |
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `padding` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'lg'` | Internal padding size |
-| `shadow` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'` | `'lg'` | Shadow depth |
-| `background` | `'dark' \| 'light'` | `'dark'` | Background color theme |
-| `maxWidth` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| 'full' \| '7xl'` | `'none'` | Maximum width constraint |
-| `border` | `boolean` | `true` | Whether to show border |
-| `rounded` | `'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'` | `'lg'` | Border radius size |
+| Prop         | Type                                                                 | Default  | Description                             |
+| ------------ | -------------------------------------------------------------------- | -------- | --------------------------------------- |
+| `children`   | `React.ReactNode`                                                    | -        | Content to be displayed inside the card |
+| `className`  | `string`                                                             | `''`     | Additional CSS classes to apply         |
+| `padding`    | `'sm' \| 'md' \| 'lg' \| 'xl'`                                       | `'lg'`   | Internal padding size                   |
+| `shadow`     | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'`                    | `'lg'`   | Shadow depth                            |
+| `background` | `'dark' \| 'light'`                                                  | `'dark'` | Background color theme                  |
+| `maxWidth`   | `'none' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| 'full' \| '7xl'` | `'none'` | Maximum width constraint                |
+| `border`     | `boolean`                                                            | `true`   | Whether to show border                  |
+| `rounded`    | `'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'`                              | `'lg'`   | Border radius size                      |
 
 ## Padding Options
 
@@ -77,35 +77,27 @@ import { Card } from '@/components/ui';
 ### Form Container
 
 ```tsx
-<Card 
-  padding="xl" 
-  shadow="lg" 
-  background="dark" 
-  maxWidth="none" 
-  border={false}
->
-  <form>
-    {/* Form content */}
-  </form>
+<Card padding="xl" shadow="lg" background="dark" maxWidth="none" border={false}>
+  <form>{/* Form content */}</form>
 </Card>
 ```
 
 ### Statistics Card
 
 ```tsx
-<Card 
-  padding="md" 
-  shadow="lg" 
-  background="dark" 
-  maxWidth="none" 
+<Card
+  padding="md"
+  shadow="lg"
+  background="dark"
+  maxWidth="none"
   border={false}
   className="flex items-center gap-4"
 >
-  <div className="w-12 h-12 bg-royal-purple rounded-lg flex items-center justify-center">
-    <MapPin className="w-6 h-6 text-parchment-white" />
+  <div className="bg-royal-purple flex h-12 w-12 items-center justify-center rounded-lg">
+    <MapPin className="text-parchment-white h-6 w-6" />
   </div>
   <div>
-    <h3 className="text-3xl font-bold text-parchment-white">0</h3>
+    <h3 className="text-parchment-white text-3xl font-bold">0</h3>
     <p className="text-mist-gray">Viagens Criadas</p>
   </div>
 </Card>
@@ -114,17 +106,17 @@ import { Card } from '@/components/ui';
 ### Info Card
 
 ```tsx
-<Card 
-  padding="sm" 
-  shadow="none" 
-  background="dark" 
-  maxWidth="none" 
+<Card
+  padding="sm"
+  shadow="none"
+  background="dark"
+  maxWidth="none"
   border={false}
   className="flex items-center gap-3"
 >
-  <Globe className="w-5 h-5 text-royal-purple" />
+  <Globe className="text-royal-purple h-5 w-5" />
   <div>
-    <p className="text-sm text-mist-gray">País</p>
+    <p className="text-mist-gray text-sm">País</p>
     <p className="text-parchment-white font-medium">França</p>
   </div>
 </Card>
@@ -133,16 +125,10 @@ import { Card } from '@/components/ui';
 ### Section Container
 
 ```tsx
-<Card 
-  padding="xl" 
-  shadow="lg" 
-  background="dark" 
-  maxWidth="none" 
-  border={false}
->
-  <div className="flex items-center gap-3 mb-6">
-    <User className="w-6 h-6 text-royal-purple" />
-    <h2 className="text-xl font-semibold text-parchment-white">Perfil</h2>
+<Card padding="xl" shadow="lg" background="dark" maxWidth="none" border={false}>
+  <div className="mb-6 flex items-center gap-3">
+    <User className="text-royal-purple h-6 w-6" />
+    <h2 className="text-parchment-white text-xl font-semibold">Perfil</h2>
   </div>
   {/* Section content */}
 </Card>
@@ -170,10 +156,10 @@ When migrating from custom card implementations:
 The Card component is a semantic `div` element that can be enhanced with ARIA attributes as needed:
 
 ```tsx
-<Card 
-  padding="lg" 
+<Card
+  padding="lg"
   background="dark"
-  className="focus-within:ring-2 focus-within:ring-royal-purple"
+  className="focus-within:ring-royal-purple focus-within:ring-2"
   role="region"
   aria-labelledby="card-title"
 >

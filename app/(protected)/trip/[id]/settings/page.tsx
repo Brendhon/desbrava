@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
+import { ArrowLeft, Calendar, Globe, MapPin, Save, Trash2 } from 'lucide-react';
 import Link from 'next/link';
-import { ArrowLeft, MapPin, Calendar, Globe, Save, Trash2 } from 'lucide-react';
-import { Button, Card } from '@/components/ui';
+import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function TripSettingsPage() {
   const params = useParams();
@@ -17,8 +18,9 @@ export default function TripSettingsPage() {
     country: 'França',
     startDate: '2024-06-15',
     endDate: '2024-06-30',
-    description: 'Uma incrível jornada pela França, explorando Paris, Lyon e Nice.',
-    referencePoint: 'Hotel Le Grand, Paris'
+    description:
+      'Uma incrível jornada pela França, explorando Paris, Lyon e Nice.',
+    referencePoint: 'Hotel Le Grand, Paris',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,14 +29,20 @@ export default function TripSettingsPage() {
     console.log('Atualizando viagem:', formData);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleDelete = () => {
     // TODO: Implementar exclusão da viagem
-    if (confirm('Tem certeza que deseja excluir esta viagem? Esta ação não pode ser desfeita.')) {
+    if (
+      confirm(
+        'Tem certeza que deseja excluir esta viagem? Esta ação não pode ser desfeita.'
+      )
+    ) {
       console.log('Excluindo viagem:', tripId);
       router.push('/dashboard');
     }
@@ -52,20 +60,16 @@ export default function TripSettingsPage() {
           <ArrowLeft className={styles.backIcon} aria-hidden="true" />
           Voltar aos Detalhes da Viagem
         </Link>
-        <h1 className={styles.title}>
-          Configurações da Viagem
-        </h1>
-        <p className={styles.subtitle}>
-          Edite os detalhes da sua viagem
-        </p>
+        <h1 className={styles.title}>Configurações da Viagem</h1>
+        <p className={styles.subtitle}>Edite os detalhes da sua viagem</p>
       </div>
 
       {/* Form */}
-      <Card 
-        padding="xl" 
-        shadow="lg" 
-        background="dark" 
-        maxWidth="none" 
+      <Card
+        padding="xl"
+        shadow="lg"
+        background="dark"
+        maxWidth="none"
         border={false}
         className={styles.formContainer}
       >
@@ -199,16 +203,13 @@ export default function TripSettingsPage() {
             >
               Salvar Alterações
             </Button>
-            
+
             <Link
               href={`/trip/${tripId}`}
               aria-label="Cancelar edição da viagem"
               className="flex-1"
             >
-              <Button
-                variant="ghost"
-                className="w-full"
-              >
+              <Button variant="ghost" className="w-full">
                 Cancelar
               </Button>
             </Link>
@@ -217,24 +218,21 @@ export default function TripSettingsPage() {
 
         {/* Danger Zone */}
         <div className={styles.dangerZone}>
-          <h3 className={styles.dangerZoneTitle}>
-            Zona de Perigo
-          </h3>
-          <Card 
-            padding="sm" 
-            shadow="none" 
-            background="light" 
-            maxWidth="none" 
+          <h3 className={styles.dangerZoneTitle}>Zona de Perigo</h3>
+          <Card
+            padding="sm"
+            shadow="none"
+            background="light"
+            maxWidth="none"
             border={false}
             className={styles.dangerZoneContent}
           >
             <div className={styles.deleteSection}>
               <div>
-                <h4 className={styles.deleteTitle}>
-                  Excluir Viagem
-                </h4>
+                <h4 className={styles.deleteTitle}>Excluir Viagem</h4>
                 <p className={styles.deleteDescription}>
-                  Esta ação não pode ser desfeita. Todos os dados da viagem serão perdidos permanentemente.
+                  Esta ação não pode ser desfeita. Todos os dados da viagem
+                  serão perdidos permanentemente.
                 </p>
               </div>
               <Button
@@ -255,28 +253,33 @@ export default function TripSettingsPage() {
 }
 
 const styles = {
-  container: "max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8",
-  header: "mb-8",
-  backLink: "inline-flex items-center gap-2 text-mist-gray hover:text-parchment-white transition-colors mb-4",
-  backIcon: "w-4 h-4",
-  title: "text-3xl md:text-4xl font-bold text-parchment-white mb-3",
-  subtitle: "text-lg text-mist-gray",
-  formContainer: "",
-  form: "space-y-6",
-  formField: "space-y-2",
-  label: "block text-parchment-white font-medium",
-  input: "w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent",
-  inputWrapper: "relative",
-  inputIcon: "absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-mist-gray",
-  inputWithIcon: "w-full pl-12 pr-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent",
-  textarea: "w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent resize-none",
-  dateGrid: "grid grid-cols-1 md:grid-cols-2 gap-6",
-  buttonGroup: "flex flex-col sm:flex-row gap-4 pt-4",
+  container: 'max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8',
+  header: 'mb-8',
+  backLink:
+    'inline-flex items-center gap-2 text-mist-gray hover:text-parchment-white transition-colors mb-4',
+  backIcon: 'w-4 h-4',
+  title: 'text-3xl md:text-4xl font-bold text-parchment-white mb-3',
+  subtitle: 'text-lg text-mist-gray',
+  formContainer: '',
+  form: 'space-y-6',
+  formField: 'space-y-2',
+  label: 'block text-parchment-white font-medium',
+  input:
+    'w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent',
+  inputWrapper: 'relative',
+  inputIcon:
+    'absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-mist-gray',
+  inputWithIcon:
+    'w-full pl-12 pr-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent',
+  textarea:
+    'w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent resize-none',
+  dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
+  buttonGroup: 'flex flex-col sm:flex-row gap-4 pt-4',
 
-  dangerZone: "mt-12 pt-8 border-t border-slate-dark/20",
-  dangerZoneTitle: "text-lg font-semibold text-parchment-white mb-4",
-  dangerZoneContent: "",
-  deleteSection: "flex items-center justify-between",
-  deleteTitle: "text-parchment-white font-medium mb-1",
-  deleteDescription: "text-sm text-mist-gray",
+  dangerZone: 'mt-12 pt-8 border-t border-slate-dark/20',
+  dangerZoneTitle: 'text-lg font-semibold text-parchment-white mb-4',
+  dangerZoneContent: '',
+  deleteSection: 'flex items-center justify-between',
+  deleteTitle: 'text-parchment-white font-medium mb-1',
+  deleteDescription: 'text-sm text-mist-gray',
 };

@@ -7,7 +7,8 @@ import { useState } from 'react';
 
 export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { isAuthenticated, isLoading, login, redirectIfAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading, login, redirectIfAuthenticated } =
+    useAuth();
 
   // Redirects authenticated users to the dashboard
   redirectIfAuthenticated();
@@ -33,5 +34,5 @@ export default function Home() {
 }
 
 const styles = {
-  main: "bg-midnight-blue min-h-screen",
-}
+  main: 'bg-midnight-blue min-h-screen',
+};

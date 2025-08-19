@@ -1,5 +1,5 @@
-import NextAuth from "next-auth"
-import Google from "next-auth/providers/google"
+import NextAuth from 'next-auth';
+import Google from 'next-auth/providers/google';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -9,15 +9,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   pages: {
-    signIn: "/",
+    signIn: '/',
   },
   callbacks: {
     async redirect({ url, baseUrl }) {
       // Redireciona para dashboard após login bem-sucedido
-      if (url.startsWith(baseUrl)) return `${baseUrl}/dashboard`
+      if (url.startsWith(baseUrl)) return `${baseUrl}/dashboard`;
       // Permite redirecionamentos externos (Google OAuth)
-      else if (url.startsWith("/")) return `${baseUrl}${url}`
-      return baseUrl
+      else if (url.startsWith('/')) return `${baseUrl}${url}`;
+      return baseUrl;
     },
   },
-})
+});
