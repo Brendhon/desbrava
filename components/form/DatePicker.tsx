@@ -176,6 +176,9 @@ const DatePicker = ({
                 onSelect={handleDateSelect}
                 formatters={{ formatCaption }}
                 locale={ptBR}
+                lang='pt-BR'
+                defaultMonth={selectedDate ? new Date(selectedDate) : new Date()}
+                timeZone='America/Sao_Paulo'
                 showOutsideDays={true}
                 fixedWeeks={true}
               />
