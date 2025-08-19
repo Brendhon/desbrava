@@ -101,6 +101,12 @@ O sistema de autenticação do Desbrava utiliza NextAuth.js com Google OAuth par
 Página Inicial → Login Google → Dashboard (Protegido)
      ↓              ↓              ↓
 Botão "Entrar" → Autorização → Lista de Viagens
+     ↓              ↓              ↓
+Dashboard → Nova Viagem → Detalhes da Viagem
+     ↓              ↓              ↓
+Dashboard → Configurações da Conta → Logout
+     ↓              ↓              ↓
+Detalhes da Viagem → Configurações da Viagem → Edição
 ```
 
 ### Estrutura de Autenticação
@@ -111,12 +117,26 @@ Botão "Entrar" → Autorização → Lista de Viagens
 ├── app/
 │   ├── api/auth/[...nextauth]/
 │   │   └── route.ts                 # API route para NextAuth
-│   ├── dashboard/
-│   │   └── page.tsx                 # Página protegida do dashboard
-│   └── layout.tsx                   # Layout com SessionProvider
+│   ├── (protected)/                 # Grupo de rotas protegidas
+│   │   ├── layout.tsx               # Layout compartilhado com ProtectedRoute
+│   │   ├── dashboard/
+│   │   │   └── page.tsx             # Dashboard principal
+│   │   ├── trip/
+│   │   │   ├── page.tsx             # Criação de nova viagem
+│   │   │   └── [id]/
+│   │   │       ├── page.tsx         # Detalhes da viagem
+│   │   │       └── settings/
+│   │   │           └── page.tsx     # Configurações da viagem
+│   │   └── account/
+│   │       └── page.tsx             # Configurações da conta
+│   └── layout.tsx                   # Layout raiz com SessionProvider
 └── components/
+    ├── auth/
+    │   └── ProtectedRoute.tsx       # Componente de proteção de rotas
+    ├── navigation/
+    │   └── Navigation.tsx           # Navegação principal
     └── providers/
-        └── SessionProvider.tsx       # Provider de sessão
+        └── SessionProvider.tsx      # Provider de sessão
 ```
 
 ---
