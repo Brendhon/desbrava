@@ -1,11 +1,24 @@
 @import 'tailwindcss';
+@import 'react-day-picker/style.css';
+
+:root {
+  --midnight-color: #0d1b2a;
+  --slate-color: #1b263b;
+  --parchment-color: #e0e1dd;
+  --mist-color: #a9b4c2;
+  --royal-color: #8443a4;
+}
 
 @theme {
-  --color-midnight-blue: #0d1b2a;
-  --color-slate-dark: #1b263b;
-  --color-parchment-white: #e0e1dd;
-  --color-mist-gray: #a9b4c2;
-  --color-royal-purple: #8443a4;
+  --color-midnight-blue: var(--midnight-color);
+  --color-slate-dark: var(--slate-color);
+  --color-parchment-white: var(--parchment-color);
+  --color-mist-gray: var(--mist-color);
+  --color-royal-purple: var(--royal-color);
+}
+
+.rdp-root {
+  --rdp-accent-color: var(--royal-color); /* Use blue as the accent color. */
 }
 
 body {
@@ -90,4 +103,18 @@ body {
 
 .form-helper-text {
   @apply mt-2 text-sm text-mist-gray;
+}
+
+/* DatePicker Component Styles */
+.datepicker-container {
+  @apply relative w-full;
+}
+
+/* Calendar Popup Styles */
+.datepicker-popup {
+  @apply absolute z-50 mt-1 w-auto bg-midnight-blue border border-slate-dark/20 rounded-lg shadow-lg;
+}
+
+.datepicker-calendar {
+  @apply p-4;
 }

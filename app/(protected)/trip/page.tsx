@@ -1,10 +1,11 @@
 'use client';
 
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
+import DatePicker from '@/components/form/DatePicker';
 import Input from '@/components/form/Input';
 import Textarea from '@/components/form/Textarea';
-import { Calendar, Globe, Plus } from 'lucide-react';
+import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
+import { Globe, Plus } from 'lucide-react';
 import { useState } from 'react';
 
 export default function CreateTripPage() {
@@ -77,25 +78,19 @@ export default function CreateTripPage() {
 
           {/* Datas */}
           <div className={styles.dateGrid}>
-            <Input
+            <DatePicker
               label="Data de Início"
-              type="date"
-              name="startDate"
               value={formData.startDate}
-              onChange={handleInputChange}
-              icon={Calendar}
-              required
+              placeholder="dd/MM/aaaa"
+              onChange={(value) => setFormData({ ...formData, startDate: value })}
               helperText="Quando sua viagem começa"
             />
 
-            <Input
+            <DatePicker
               label="Data de Fim"
-              type="date"
-              name="endDate"
               value={formData.endDate}
-              onChange={handleInputChange}
-              icon={Calendar}
-              required
+              onChange={(value) => setFormData({ ...formData, endDate: value })}
+              placeholder="dd/MM/aaaa"
               helperText="Quando sua viagem termina"
             />
           </div>
