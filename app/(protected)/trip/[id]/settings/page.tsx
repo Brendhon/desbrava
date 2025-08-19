@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, MapPin, Calendar, Globe, Save, Trash2 } from 'lucide-react';
+import { Button } from '@/components/ui';
 
 export default function TripSettingsPage() {
   const params = useParams();
@@ -182,21 +183,27 @@ export default function TripSettingsPage() {
 
           {/* Botões */}
           <div className={styles.buttonGroup}>
-            <button
+            <Button
               type="submit"
-              className={styles.saveButton}
+              variant="primary"
+              icon={Save}
               aria-label="Salvar alterações da viagem"
+              className="flex-1"
             >
-              <Save className={styles.saveButtonIcon} aria-hidden="true" />
               Salvar Alterações
-            </button>
+            </Button>
             
             <Link
               href={`/trip/${tripId}`}
-              className={styles.cancelButton}
               aria-label="Cancelar edição da viagem"
+              className="flex-1"
             >
-              Cancelar
+              <Button
+                variant="ghost"
+                className="w-full"
+              >
+                Cancelar
+              </Button>
             </Link>
           </div>
         </form>
@@ -216,15 +223,15 @@ export default function TripSettingsPage() {
                   Esta ação não pode ser desfeita. Todos os dados da viagem serão perdidos permanentemente.
                 </p>
               </div>
-              <button
+              <Button
                 type="button"
                 onClick={handleDelete}
-                className={styles.deleteButton}
+                variant="danger"
+                icon={Trash2}
                 aria-label="Excluir viagem permanentemente"
               >
-                <Trash2 className={styles.deleteButtonIcon} aria-hidden="true" />
                 Excluir
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -251,15 +258,12 @@ const styles = {
   textarea: "w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent resize-none",
   dateGrid: "grid grid-cols-1 md:grid-cols-2 gap-6",
   buttonGroup: "flex flex-col sm:flex-row gap-4 pt-4",
-  saveButton: "flex-1 bg-royal-purple text-parchment-white px-6 py-3 rounded-lg hover:bg-royal-purple/80 transition-colors font-medium flex items-center justify-center gap-2",
-  saveButtonIcon: "w-5 h-5",
-  cancelButton: "flex-1 bg-slate-dark text-mist-gray px-6 py-3 rounded-lg hover:bg-slate-dark/60 hover:text-parchment-white transition-colors font-medium text-center",
+
   dangerZone: "mt-12 pt-8 border-t border-slate-dark/20",
   dangerZoneTitle: "text-lg font-semibold text-parchment-white mb-4",
   dangerZoneContent: "bg-midnight-blue rounded-lg p-4",
   deleteSection: "flex items-center justify-between",
   deleteTitle: "text-parchment-white font-medium mb-1",
   deleteDescription: "text-sm text-mist-gray",
-  deleteButton: "bg-red-600 text-parchment-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2",
-  deleteButtonIcon: "w-4 h-4",
+
 };

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { MapPin, Calendar, Globe, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { Button } from '@/components/ui';
 
 export default function CreateTripPage() {
   const [formData, setFormData] = useState({
@@ -28,14 +29,6 @@ export default function CreateTripPage() {
     <div className={styles.container}>
       {/* Header */}
       <div className={styles.header}>
-        <Link
-          href="/dashboard"
-          className={styles.backLink}
-          aria-label="Voltar ao Dashboard"
-        >
-          <ArrowLeft className={styles.backIcon} aria-hidden="true" />
-          Voltar ao Dashboard
-        </Link>
         <h1 className={styles.title}>
           Criar Nova Viagem
         </h1>
@@ -146,20 +139,26 @@ export default function CreateTripPage() {
 
           {/* Botões */}
           <div className={styles.buttonGroup}>
-            <button
+            <Button
               type="submit"
-              className={styles.submitButton}
+              variant="primary"
+              icon={MapPin}
               aria-label="Criar viagem"
+              className="flex-1"
             >
-              <MapPin className={styles.submitButtonIcon} aria-hidden="true" />
               Criar Viagem
-            </button>
+            </Button>
             <Link
               href="/dashboard"
-              className={styles.cancelButton}
               aria-label="Cancelar criação da viagem"
+              className="flex-1"
             >
-              Cancelar
+              <Button
+                variant="ghost"
+                className="w-full"
+              >
+                Cancelar
+              </Button>
             </Link>
           </div>
         </form>
@@ -186,7 +185,5 @@ const styles = {
   textarea: "w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent resize-none",
   dateGrid: "grid grid-cols-1 md:grid-cols-2 gap-6",
   buttonGroup: "flex flex-col sm:flex-row gap-4 pt-4",
-  submitButton: "flex-1 bg-royal-purple text-parchment-white px-6 py-3 rounded-lg hover:bg-royal-purple/80 transition-colors font-medium flex items-center justify-center gap-2",
-  submitButtonIcon: "w-5 h-5",
-  cancelButton: "flex-1 bg-slate-dark text-mist-gray px-6 py-3 rounded-lg hover:bg-slate-dark/60 hover:text-parchment-white transition-colors font-medium text-center",
+
 };

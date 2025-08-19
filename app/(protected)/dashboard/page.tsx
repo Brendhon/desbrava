@@ -3,6 +3,7 @@
 import { useAuth } from '@/hooks/useAuth';
 import { MapPin, Calendar, Plus } from 'lucide-react';
 import Link from 'next/link';
+import { Button } from '@/components/ui';
 
 export default function DashboardPage() {
   const { session } = useAuth();
@@ -51,13 +52,14 @@ export default function DashboardPage() {
           <p className={styles.emptyDescription}>
             Comece criando sua primeira viagem para explorar o mundo!
           </p>
-          <Link
-            href="/trip"
-            className={styles.createButton}
-            aria-label="Criar primeira viagem"
-          >
-            <Plus className={styles.createButtonIcon} aria-hidden="true" />
-            Criar Primeira Viagem
+          <Link href="/trip" aria-label="Criar primeira viagem">
+            <Button
+              variant="primary"
+              icon={Plus}
+              className="mx-auto"
+            >
+              Criar Primeira Viagem
+            </Button>
           </Link>
         </div>
       </div>
@@ -83,6 +85,5 @@ const styles = {
   emptyIconImage: "w-10 h-10 text-mist-gray",
   emptyTitle: "text-2xl font-bold text-parchment-white mb-3",
   emptyDescription: "text-mist-gray mb-8 max-w-md mx-auto",
-  createButton: "inline-flex items-center gap-2 bg-royal-purple text-parchment-white px-6 py-3 rounded-lg hover:bg-royal-purple/80 transition-colors font-medium",
-  createButtonIcon: "w-5 h-5",
+
 };

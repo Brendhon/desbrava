@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { User, Settings, LogOut, ChevronDown } from 'lucide-react'
+import { useAuth } from '@/hooks/useAuth';
+import { Button } from '@/components/ui';
 
 interface UserMenuProps {
   className?: string
@@ -47,8 +49,9 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
       {/* Trigger Button */}
-      <button
+      <Button
         onClick={() => setIsOpen(!isOpen)}
+        variant="ghost"
         className={styles.triggerButton}
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -74,7 +77,7 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
           className={`${styles.chevron} ${isOpen ? styles.chevronRotated : ''}`}
           aria-hidden="true"
         />
-      </button>
+      </Button>
 
       {/* Dropdown Menu */}
       {isOpen && (
@@ -161,7 +164,7 @@ const styles = {
   `,
   dropdownLinkIcon: 'w-4 h-4',
   dropdownLogoutButton: `
-    flex items-center gap-3 w-full px-4 py-2 text-sm text-red-400
+    flex items-center gap-3 w-full px-4 py-2 text-sm text-red-400 cursor-pointer
     hover:bg-red-900/20 hover:text-red-300 transition-colors duration-200
     focus:outline-none focus:bg-red-900/20 focus:text-red-300
   `,

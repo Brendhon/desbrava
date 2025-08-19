@@ -10,9 +10,7 @@ export default function ProtectedLayout({
     <ProtectedRoute>
       <div className="min-h-screen bg-midnight-blue">
         <Navigation />
-        <main className="pt-8">
-          {children}
-        </main>
+        <main> {children} </main>
       </div>
     </ProtectedRoute>
   );

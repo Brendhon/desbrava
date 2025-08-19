@@ -1,8 +1,9 @@
 'use client';
 
-import { useParams } from 'next/navigation';
+import { Button } from '@/components/ui';
+import { ArrowLeft, Calendar, Globe, Map, MapPin, Plus, Settings } from 'lucide-react';
 import Link from 'next/link';
-import { ArrowLeft, MapPin, Calendar, Globe, Settings, Plus, Map } from 'lucide-react';
+import { useParams } from 'next/navigation';
 
 export default function TripDetailsPage() {
   const params = useParams();
@@ -106,13 +107,14 @@ export default function TripDetailsPage() {
               <h3 className={styles.itineraryTitle}>
                 Seu Itinerário
               </h3>
-              <button 
-                className={styles.addActivityButton}
+              <Button 
+                variant="primary"
+                icon={Plus}
                 aria-label="Adicionar nova atividade"
+                size="sm"
               >
-                <Plus className={styles.addActivityIcon} aria-hidden="true" />
                 Adicionar Atividade
-              </button>
+              </Button>
             </div>
 
             {/* Empty State */}
@@ -126,13 +128,13 @@ export default function TripDetailsPage() {
               <p className={styles.emptyDescription}>
                 Comece adicionando atividades ao seu itinerário para organizar melhor sua viagem.
               </p>
-              <button 
-                className={styles.firstActivityButton}
+              <Button 
+                variant="primary"
+                icon={Plus}
                 aria-label="Criar primeira atividade"
               >
-                <Plus className={styles.firstActivityIcon} aria-hidden="true" />
                 Primeira Atividade
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -165,13 +167,11 @@ const styles = {
   itineraryContent: "space-y-6",
   itineraryHeader: "flex items-center justify-between",
   itineraryTitle: "text-xl font-semibold text-parchment-white",
-  addActivityButton: "inline-flex items-center gap-2 bg-royal-purple text-parchment-white px-4 py-2 rounded-lg hover:bg-royal-purple/80 transition-colors",
-  addActivityIcon: "w-4 h-4",
+
   emptyState: "text-center py-16",
   emptyIcon: "w-20 h-20 bg-midnight-blue rounded-full flex items-center justify-center mx-auto mb-6",
   emptyIconImage: "w-10 h-10 text-mist-gray",
   emptyTitle: "text-xl font-semibold text-parchment-white mb-3",
   emptyDescription: "text-mist-gray mb-6 max-w-md mx-auto",
-  firstActivityButton: "inline-flex items-center gap-2 bg-royal-purple text-parchment-white px-6 py-3 rounded-lg hover:bg-royal-purple/80 transition-colors font-medium",
-  firstActivityIcon: "w-5 h-5",
+
 };
