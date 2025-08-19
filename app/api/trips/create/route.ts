@@ -28,12 +28,12 @@ export async function POST(request: NextRequest) {
     const tripData: Omit<CreateTripData, 'userId'> = body;
 
     // Validate required fields
-    if (!tripData.name || !tripData.description || !tripData.startDate || !tripData.endDate || !tripData.country) {
+    if (!tripData.name || !tripData.startDate || !tripData.endDate || !tripData.country) {
       return NextResponse.json(
         {
           success: false,
           error: 'Bad request',
-          message: 'All fields are required: name, description, startDate, endDate, country'
+          message: 'All fields are required: name, startDate, endDate, country'
         },
         { status: 400 }
       );

@@ -1,8 +1,9 @@
 'use client';
 
 import Button from '@/components/ui/Button';
+import DatePicker from '@/components/form/DatePicker';
 import { Search, Filter, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface TripSearchProps {
   onSearch: (searchTerm: string, filters: TripFilters) => void;
@@ -29,6 +30,13 @@ export default function TripSearch({ onSearch, onClear, loading = false }: TripS
     setSearchTerm('');
     setFilters({});
     onClear();
+  };
+
+  const handleClearSingleFilter = (key: keyof TripFilters) => {
+    setFilters(prev => ({
+      ...prev,
+      [key]: undefined
+    }));
   };
 
   const handleFilterChange = (key: keyof TripFilters, value: string) => {
@@ -82,37 +90,28 @@ export default function TripSearch({ onSearch, onClear, loading = false }: TripS
           <div className={styles.filtersGrid}>
             <div className={styles.filterGroup}>
               <label className={styles.filterLabel}>Data de Início</label>
-              <input
-                type="date"
-                value={filters.startDate || ''}
-                onChange={(e) => handleFilterChange('startDate', e.target.value)}
-                className={styles.filterInput}
+              <DatePicker
+                size="md"
+                variant="default"
+                placeholder="dd/mm/aaaa"
                 disabled={loading}
+                defaultValue={filters.startDate}
+                onValueChange={(value) => handleFilterChange('startDate', value)}
               />
             </div>
 
             <div className={styles.filterGroup}>
               <label className={styles.filterLabel}>Data de Fim</label>
-              <input
-                type="date"
-                value={filters.endDate || ''}
-                onChange={(e) => handleFilterChange('endDate', e.target.value)}
-                className={styles.filterInput}
+              <DatePicker
+                size="md"
+                variant="default"
+                placeholder="dd/mm/aaaa"
                 disabled={loading}
+                defaultValue={filters.endDate}
+                onValueChange={(value) => handleFilterChange('endDate', value)}
               />
             </div>
 
-            <div className={styles.filterGroup}>
-              <label className={styles.filterLabel}>País</label>
-              <input
-                type="text"
-                placeholder="Código do país (ex: BR, FR)"
-                value={filters.country || ''}
-                onChange={(e) => handleFilterChange('country', e.target.value.toUpperCase())}
-                className={styles.filterInput}
-                disabled={loading}
-              />
-            </div>
           </div>
         </div>
       )}
@@ -123,7 +122,7 @@ export default function TripSearch({ onSearch, onClear, loading = false }: TripS
           
           {searchTerm && (
             <span className={styles.filterTag}>
-              Busca: "{searchTerm}"
+              Busca: &quot;{searchTerm}&quot;
               <button
                 onClick={() => setSearchTerm('')}
                 className={styles.removeFilter}
@@ -138,7 +137,7 @@ export default function TripSearch({ onSearch, onClear, loading = false }: TripS
             <span className={styles.filterTag}>
               Início: {new Date(filters.startDate).toLocaleDateString('pt-BR')}
               <button
-                onClick={() => handleFilterChange('startDate', '')}
+                onClick={() => handleClearSingleFilter('startDate')}
                 className={styles.removeFilter}
                 aria-label="Remover filtro de data de início"
               >
@@ -151,22 +150,9 @@ export default function TripSearch({ onSearch, onClear, loading = false }: TripS
             <span className={styles.filterTag}>
               Fim: {new Date(filters.endDate).toLocaleDateString('pt-BR')}
               <button
-                onClick={() => handleFilterChange('endDate', '')}
+                onClick={() => handleClearSingleFilter('endDate')}
                 className={styles.removeFilter}
                 aria-label="Remover filtro de data de fim"
-              >
-                <X className={styles.removeIcon} />
-              </button>
-            </span>
-          )}
-
-          {filters.country && (
-            <span className={styles.filterTag}>
-              País: {filters.country}
-              <button
-                onClick={() => handleFilterChange('country', '')}
-                className={styles.removeFilter}
-                aria-label="Remover filtro de país"
               >
                 <X className={styles.removeIcon} />
               </button>

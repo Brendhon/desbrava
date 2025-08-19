@@ -33,6 +33,10 @@ interface DatePickerProps {
   disabled?: boolean;
   /** Position of the calendar popup relative to the input */
   popupPosition?: 'top' | 'bottom' | 'left' | 'right';
+  /** Default value for the date picker (string in dd/MM/yyyy format or Date object) */
+  defaultValue?: string | Date;
+  /** Callback function called when the date value changes */
+  onValueChange?: (value: string) => void;
 }
 
 const DatePicker = ({
@@ -47,6 +51,8 @@ const DatePicker = ({
   placeholder = 'dd/mm/aaaa',
   disabled = false,
   popupPosition = 'bottom',
+  defaultValue,
+  onValueChange,
 }: DatePickerProps) => {
   // States
   const [isOpen, setIsOpen] = useState(false);
@@ -89,6 +95,36 @@ const DatePicker = ({
     return isValid(parsed) ? parsed : undefined;
   }, []);
 
+  // Convert ISO date string (YYYY-MM-DD) to Brazilian format (dd/MM/yyyy)
+  const convertISOToBrazilian = useCallback((isoDate: string): string => {
+    try {
+      const date = new Date(isoDate);
+      if (isValid(date)) {
+        return format(date, 'dd/MM/yyyy');
+      }
+    } catch (error) {
+      // If parsing fails, try to parse as dd/MM/yyyy
+      const parsed = parse(isoDate, 'dd/MM/yyyy', new Date());
+      if (isValid(parsed)) {
+        return isoDate;
+      }
+    }
+    return '';
+  }, []);
+
+  // Convert Brazilian format (dd/MM/yyyy) to ISO format (YYYY-MM-DD)
+  const convertBrazilianToISO = useCallback((brazilianDate: string): string => {
+    try {
+      const parsed = parse(brazilianDate, 'dd/MM/yyyy', new Date());
+      if (isValid(parsed)) {
+        return format(parsed, 'yyyy-MM-dd');
+      }
+    } catch (error) {
+      // If parsing fails, return empty string
+    }
+    return '';
+  }, []);
+
   // Memoized popup position styles
   const popupStyles = useMemo(() => {
     const baseStyles = ['datepicker-popup'];
@@ -122,9 +158,12 @@ const DatePicker = ({
       // Use the hook for form integration
       handleChange(formattedDate);
       
+      // Call external callback if provided (convert to ISO format for compatibility)
+      onValueChange?.(convertBrazilianToISO(formattedDate));
+      
       setIsOpen(false);
     }
-  }, [handleChange, formatInputDate]);
+  }, [handleChange, formatInputDate, onValueChange, convertBrazilianToISO]);
 
   // Update input when input is typed
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -137,12 +176,13 @@ const DatePicker = ({
       if (parsedDate) {
         setSelectedDate(parsedDate);
         handleChange(newValue);
+        onValueChange?.(convertBrazilianToISO(newValue));
       }
     }
     
     // Always trigger change for React Hook Form
     handleChange(newValue);
-  }, [handleChange, parseInputDate]);
+  }, [handleChange, parseInputDate, onValueChange, convertBrazilianToISO]);
 
   // Handle input blur for React Hook Form
   const handleInputBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
@@ -185,6 +225,35 @@ const DatePicker = ({
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Set initial value if defaultValue is provided
+  useEffect(() => {
+    if (defaultValue) {
+      let date: Date | undefined;
+      let formattedValue: string;
+      
+      if (typeof defaultValue === 'string') {
+        // Try to parse as ISO format first, then as Brazilian format
+        const isoConverted = convertISOToBrazilian(defaultValue);
+        if (isoConverted) {
+          date = parseInputDate(isoConverted);
+          formattedValue = isoConverted;
+        } else {
+          date = parseInputDate(defaultValue);
+          formattedValue = defaultValue;
+        }
+      } else {
+        date = defaultValue;
+        formattedValue = formatInputDate(defaultValue);
+      }
+      
+      if (date) {
+        setSelectedDate(date);
+        setInputValue(formattedValue);
+        handleChange(formattedValue);
+      }
+    }
+  }, [defaultValue, parseInputDate, formatInputDate, handleChange, convertISOToBrazilian]);
 
   return (
     <div className="datepicker-container" ref={containerRef}>
