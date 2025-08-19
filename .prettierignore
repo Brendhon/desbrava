@@ -47,3 +47,5 @@ pnpm-lock.yaml
 
 # OS
 Thumbs.db
+
+public/data
