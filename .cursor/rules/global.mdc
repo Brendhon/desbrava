@@ -29,9 +29,9 @@ You are a specialist in TypeScript, Next.js, React, and web application developm
 - Check for optimizations after each step
 
 ## 🎨 UI & Styling
-- Use **only** Tailwind CSS utility classes
+- Use only Tailwind CSS utility classes
 - Make every UI fully responsive
-- Use **only** icons from `lucide-react`
+- Use only icons from `lucide-react`
 - Use Tailwind's built-in animations
 - Define `styles` constant at the end of each component
 - Reference styles via `styles` object, not inline classes
@@ -40,12 +40,12 @@ You are a specialist in TypeScript, Next.js, React, and web application developm
 ## 📚 Documentation
 - Create documentation only for reusable components
 - Store in `docs` directory at project root
-- Write in **English** only
-- **Structure**:
+- Write in English only
+- Structure:
   - `docs/components/` - component usage
   - `docs/guidelines/` - guides and guidelines
   - `docs/usages/` - shared functionality
-- Update docs when updating components
+- Update docs when updating components, guidelines, or usages
 - Use clear file names (e.g., `button-usage.md`)
 
 ## ✅ Best Practices
@@ -53,61 +53,5 @@ You are a specialist in TypeScript, Next.js, React, and web application developm
 - Use Server/Client Components appropriately
 - Follow directory structure: `/app`, `/components`, `/context`, `/lib`, `/utils`, `/models`, `/services`, `/hooks`
 - Deploy with Vercel
-- Write all comments in **English**
-- After each step, check the relevant guideline and ensure all rules are followed.
-
-## 📜 Code Style
-- Write concise and type-safe TypeScript code
-- Use functional components and React Hooks
-- Keep components modular and reusable
-- Group files by feature (components, context, lib, etc.)
-
-## 📛 Naming
-- **Variables/Functions/Files**: `camelCase` (e.g., `tripUtils.ts`)
-- **React Components**: `PascalCase` (e.g., `TripCard.tsx`)
-- **App Routes**: `kebab-case` (e.g., `/trip-details`)
-
-## TypeScript
-- Use TypeScript throughout the project
-- Prefer `interfaces` for component props and API data
-- Enable strict type checking (`strict: true`)
-- Avoid `any` - use precise types or `unknown`
-
-## ⚡ Performance
-- Prefer Server Components for data fetching
-- Use `useMemo` for expensive calculations
-- Use `useCallback` for functions passed as props
-- Use `<Image />` from `next/image`
-- Use `next/dynamic` for code-splitting
-- Check for optimizations after each step
-
-## 🎨 UI & Styling
-- Use **only** Tailwind CSS utility classes
-- Make every UI fully responsive
-- Use **only** icons from `lucide-react`
-- Use Tailwind's built-in animations
-- Define `styles` constant at the end of each component
-- Reference styles via `styles` object, not inline classes
-- No custom CSS files or global styles
-
-## 📚 Documentation
-- Create documentation only for reusable components
-- Store in `docs` directory at project root
-- Write in **English** only
-- **Structure**:
-  - `docs/components/` - component usage
-  - `docs/guidelines/` - guides and guidelines
-  - `docs/usages/` - shared functionality
-- Update docs when updating components
-- Use clear file names (e.g., `button-usage.md`)
-
-## ✅ Best Practices
-- Use Next.js App Router for navigation
-- Use Server/Client Components appropriately
-- Follow directory structure: `/app`, `/components`, `/context`, `/lib`, `/utils`
-- Deploy with Vercel
-- Write all comments in **English**
-- Use **Vercel** for project deployment and automation.
-- Use the **App Router** from Next.js for navigation and deep linking.
-- Follow the defined directory structure: `/app`, `/components`, `/context`, `/lib`, and `/utils`.
+- Write all comments in English
 - After each step, check the relevant guideline and ensure all rules are followed.
