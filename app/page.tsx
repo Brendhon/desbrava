@@ -24,8 +24,12 @@ export default function Home() {
   };
 
   return (
-    <main className="bg-midnight-blue min-h-screen">
+    <main className={styles.main}>
       <HeroSection onGoogleLogin={handleGoogleLogin} isLoading={isLoading} />
     </main>
   );
+}
+
+const styles = {
+  main: "bg-midnight-blue min-h-screen",
 }
