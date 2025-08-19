@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, MapPin, Calendar, Globe, Save, Trash2 } from 'lucide-react';
-import { Button } from '@/components/ui';
+import { Button, Card } from '@/components/ui';
 
 export default function TripSettingsPage() {
   const params = useParams();
@@ -61,7 +61,14 @@ export default function TripSettingsPage() {
       </div>
 
       {/* Form */}
-      <div className={styles.formContainer}>
+      <Card 
+        padding="xl" 
+        shadow="lg" 
+        background="dark" 
+        maxWidth="none" 
+        border={false}
+        className={styles.formContainer}
+      >
         <form onSubmit={handleSubmit} className={styles.form}>
           {/* Título da Viagem */}
           <div className={styles.formField}>
@@ -213,7 +220,14 @@ export default function TripSettingsPage() {
           <h3 className={styles.dangerZoneTitle}>
             Zona de Perigo
           </h3>
-          <div className={styles.dangerZoneContent}>
+          <Card 
+            padding="sm" 
+            shadow="none" 
+            background="light" 
+            maxWidth="none" 
+            border={false}
+            className={styles.dangerZoneContent}
+          >
             <div className={styles.deleteSection}>
               <div>
                 <h4 className={styles.deleteTitle}>
@@ -233,9 +247,9 @@ export default function TripSettingsPage() {
                 Excluir
               </Button>
             </div>
-          </div>
+          </Card>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
@@ -247,7 +261,7 @@ const styles = {
   backIcon: "w-4 h-4",
   title: "text-3xl md:text-4xl font-bold text-parchment-white mb-3",
   subtitle: "text-lg text-mist-gray",
-  formContainer: "bg-slate-dark rounded-lg p-6 md:p-8",
+  formContainer: "",
   form: "space-y-6",
   formField: "space-y-2",
   label: "block text-parchment-white font-medium",
@@ -261,9 +275,8 @@ const styles = {
 
   dangerZone: "mt-12 pt-8 border-t border-slate-dark/20",
   dangerZoneTitle: "text-lg font-semibold text-parchment-white mb-4",
-  dangerZoneContent: "bg-midnight-blue rounded-lg p-4",
+  dangerZoneContent: "",
   deleteSection: "flex items-center justify-between",
   deleteTitle: "text-parchment-white font-medium mb-1",
   deleteDescription: "text-sm text-mist-gray",
-
 };

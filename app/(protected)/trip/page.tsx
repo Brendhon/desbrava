@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { MapPin, Calendar, Globe, ArrowLeft } from 'lucide-react';
+import { MapPin, Calendar, Globe, ArrowLeft, Plus } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from '@/components/ui';
+import { Button, Card } from '@/components/ui';
 
 export default function CreateTripPage() {
   const [formData, setFormData] = useState({
@@ -38,7 +38,14 @@ export default function CreateTripPage() {
       </div>
 
       {/* Form */}
-      <div className={styles.formContainer}>
+      <Card 
+        padding="xl" 
+        shadow="lg" 
+        background="dark" 
+        maxWidth="none" 
+        border={false}
+        className={styles.formContainer}
+      >
         <form onSubmit={handleSubmit} className={styles.form}>
           {/* Título da Viagem */}
           <div className={styles.formField}>
@@ -142,27 +149,24 @@ export default function CreateTripPage() {
             <Button
               type="submit"
               variant="primary"
-              icon={MapPin}
+              icon={Plus}
               aria-label="Criar viagem"
               className="flex-1"
             >
               Criar Viagem
             </Button>
-            <Link
-              href="/dashboard"
-              aria-label="Cancelar criação da viagem"
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => window.history.back()}
+              aria-label="Cancelar criação"
               className="flex-1"
             >
-              <Button
-                variant="ghost"
-                className="w-full"
-              >
-                Cancelar
-              </Button>
-            </Link>
+              Cancelar
+            </Button>
           </div>
         </form>
-      </div>
+      </Card>
     </div>
   );
 }
@@ -174,7 +178,7 @@ const styles = {
   backIcon: "w-4 h-4",
   title: "text-3xl md:text-4xl font-bold text-parchment-white mb-3",
   subtitle: "text-lg text-mist-gray",
-  formContainer: "bg-slate-dark rounded-lg p-6 md:p-8",
+  formContainer: "",
   form: "space-y-6",
   formField: "space-y-2",
   label: "block text-parchment-white font-medium",
@@ -185,5 +189,4 @@ const styles = {
   textarea: "w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent resize-none",
   dateGrid: "grid grid-cols-1 md:grid-cols-2 gap-6",
   buttonGroup: "flex flex-col sm:flex-row gap-4 pt-4",
-
 };

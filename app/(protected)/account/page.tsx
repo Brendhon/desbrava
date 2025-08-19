@@ -3,7 +3,7 @@
 import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
 import { Shield, Calendar, Trash2, LogOut, ExternalLink } from 'lucide-react';
-import { Button } from '@/components/ui';
+import { Button, Card } from '@/components/ui';
 
 export default function AccountPage() {
   const { session, logout } = useAuth();
@@ -57,7 +57,13 @@ export default function AccountPage() {
 
       <div className={styles.content}>
         {/* Google Calendar Integration Section */}
-        <div className={styles.section}>
+        <Card 
+          padding="xl" 
+          shadow="lg" 
+          background="dark" 
+          maxWidth="none" 
+          border={false}
+        >
           <div className={styles.sectionHeader}>
             <Calendar className={styles.sectionIcon} aria-hidden="true" />
             <h2 className={styles.sectionTitle}>
@@ -104,10 +110,16 @@ export default function AccountPage() {
               )}
             </div>
           </div>
-        </div>
+        </Card>
 
         {/* Account Data Management Section */}
-        <div className={styles.section}>
+        <Card 
+          padding="xl" 
+          shadow="lg" 
+          background="dark" 
+          maxWidth="none" 
+          border={false}
+        >
           <div className={styles.sectionHeader}>
             <Trash2 className={styles.sectionIcon} aria-hidden="true" />
             <h2 className={styles.sectionTitle}>
@@ -138,10 +150,16 @@ export default function AccountPage() {
               {isClearingData ? 'Limpando...' : 'Limpar Dados da Conta'}
             </Button>
           </div>
-        </div>
+        </Card>
 
         {/* Security Section */}
-        <div className={styles.section}>
+        <Card 
+          padding="xl" 
+          shadow="lg" 
+          background="dark" 
+          maxWidth="none" 
+          border={false}
+        >
           <div className={styles.sectionHeader}>
             <Shield className={styles.sectionIcon} aria-hidden="true" />
             <h2 className={styles.sectionTitle}>
@@ -169,10 +187,16 @@ export default function AccountPage() {
               </div>
             </div>
           </div>
-        </div>
+        </Card>
 
         {/* Logout Section */}
-        <div className={styles.section}>
+        <Card 
+          padding="xl" 
+          shadow="lg" 
+          background="dark" 
+          maxWidth="none" 
+          border={false}
+        >
           <div className={styles.logoutContent}>
             <h2 className={styles.logoutTitle}>
               Sair da Conta
@@ -190,7 +214,7 @@ export default function AccountPage() {
               Sair
             </Button>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   );
@@ -202,7 +226,6 @@ const styles = {
   title: "text-3xl md:text-4xl font-bold text-parchment-white mb-3",
   subtitle: "text-lg text-mist-gray",
   content: "space-y-8",
-  section: "bg-slate-dark rounded-lg p-6 md:p-8",
   sectionHeader: "flex items-center gap-3 mb-6",
   sectionIcon: "w-6 h-6 text-royal-purple",
   sectionTitle: "text-xl font-semibold text-parchment-white",

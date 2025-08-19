@@ -28,7 +28,7 @@ export default function Button({
   type = 'button',
   'aria-label': ariaLabel,
 }: ButtonProps) {
-  const baseStyles = "cursor-pointer font-medium flex items-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseStyles = "cursor-pointer font-medium flex items-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed justify-center";
   
   const variantStyles = {
     primary: "bg-royal-purple text-parchment-white hover:bg-royal-purple/80",

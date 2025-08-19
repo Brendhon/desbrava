@@ -3,7 +3,7 @@
 import { useAuth } from '@/hooks/useAuth';
 import { MapPin, Calendar, Plus } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from '@/components/ui';
+import { Button, Card } from '@/components/ui';
 
 export default function DashboardPage() {
   const { session } = useAuth();
@@ -21,7 +21,14 @@ export default function DashboardPage() {
 
       <div className={styles.content}>
         <div className={styles.statsGrid}>
-          <div className={styles.statCard}>
+          <Card 
+            padding="md" 
+            shadow="lg" 
+            background="dark" 
+            maxWidth="none" 
+            border={false}
+            className={styles.statCard}
+          >
             <div className={styles.statIcon}>
               <MapPin className={styles.icon} aria-hidden="true" />
             </div>
@@ -29,9 +36,16 @@ export default function DashboardPage() {
               <h3 className={styles.statNumber}>0</h3>
               <p className={styles.statLabel}>Viagens Criadas</p>
             </div>
-          </div>
+          </Card>
 
-          <div className={styles.statCard}>
+          <Card 
+            padding="md" 
+            shadow="lg" 
+            background="dark" 
+            maxWidth="none" 
+            border={false}
+            className={styles.statCard}
+          >
             <div className={styles.statIcon}>
               <Calendar className={styles.icon} aria-hidden="true" />
             </div>
@@ -39,7 +53,7 @@ export default function DashboardPage() {
               <h3 className={styles.statNumber}>0</h3>
               <p className={styles.statLabel}>Dias de Viagem</p>
             </div>
-          </div>
+          </Card>
         </div>
 
         <div className={styles.emptyState}>
@@ -74,7 +88,7 @@ const styles = {
   subtitle: "text-lg text-mist-gray",
   content: "space-y-8",
   statsGrid: "grid grid-cols-1 md:grid-cols-2 gap-6",
-  statCard: "bg-slate-dark rounded-lg p-6 flex items-center gap-4",
+  statCard: "flex items-center gap-4",
   statIcon: "w-12 h-12 bg-royal-purple rounded-lg flex items-center justify-center",
   icon: "w-6 h-6 text-parchment-white",
   statContent: "space-y-1",
@@ -85,5 +99,4 @@ const styles = {
   emptyIconImage: "w-10 h-10 text-mist-gray",
   emptyTitle: "text-2xl font-bold text-parchment-white mb-3",
   emptyDescription: "text-mist-gray mb-8 max-w-md mx-auto",
-
 };
