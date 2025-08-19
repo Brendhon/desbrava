@@ -5,29 +5,46 @@ import Input from '@/components/form/Input';
 import Textarea from '@/components/form/Textarea';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import { createTripSchema, type CreateTripFormData } from '@/lib/schemas/trip';
 import { Globe, Plus } from 'lucide-react';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export default function CreateTripPage() {
-  const [formData, setFormData] = useState({
-    title: '',
-    country: '',
-    startDate: '',
-    endDate: '',
-    description: '',
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<CreateTripFormData>({
+    resolver: zodResolver(createTripSchema),
+    defaultValues: {
+      title: '',
+      country: '',
+      startDate: '',
+      endDate: '',
+      description: '',
+    },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implementar criação da viagem
-    console.log('Criando viagem:', formData);
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const onSubmit = async (data: CreateTripFormData) => {
+    try {
+      // TODO: Implementar criação da viagem na API
+      console.log('Criando viagem:', data);
+      
+      // Simular delay da API
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // TODO: Mostrar mensagem de sucesso e redirecionar
+      console.log('Viagem criada com sucesso!');
+      
+      // Reset form após sucesso
+      reset();
+      
+    } catch (error) {
+      console.error('Erro ao criar viagem:', error);
+      // TODO: Mostrar mensagem de erro
+    }
   };
 
   return (
@@ -49,48 +66,41 @@ export default function CreateTripPage() {
         border={false}
         className={styles.formContainer}
       >
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           {/* Título da Viagem */}
           <Input
             label="Nome da Viagem"
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleInputChange}
             placeholder="Ex: Aventura na Europa"
-            required
+            error={errors.title?.message}
+            register={register('title')}
             helperText="Escolha um nome descritivo para sua viagem"
+            required
           />
 
           {/* País */}
           <Input
             label="País"
-            type="text"
-            name="country"
-            value={formData.country}
-            onChange={handleInputChange}
             placeholder="Ex: França"
             icon={Globe}
-            iconPosition="left"
-            required
+            error={errors.country?.message}
+            register={register('country')}
             helperText="País principal da sua viagem"
+            required
           />
 
           {/* Datas */}
           <div className={styles.dateGrid}>
             <DatePicker
               label="Data de Início"
-              value={formData.startDate}
-              placeholder="dd/MM/aaaa"
-              onChange={(value) => setFormData({ ...formData, startDate: value })}
+              error={errors.startDate?.message}
+              register={register('startDate')}
               helperText="Quando sua viagem começa"
             />
 
             <DatePicker
               label="Data de Fim"
-              value={formData.endDate}
-              onChange={(value) => setFormData({ ...formData, endDate: value })}
-              placeholder="dd/MM/aaaa"
+              error={errors.endDate?.message}
+              register={register('endDate')}
               helperText="Quando sua viagem termina"
             />
           </div>
@@ -98,10 +108,9 @@ export default function CreateTripPage() {
           {/* Descrição */}
           <Textarea
             label="Descrição (opcional)"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
             placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
+            error={errors.description?.message}
+            register={register('description')}
             rows={4}
             helperText="Adicione detalhes sobre seus planos de viagem"
           />
@@ -114,8 +123,9 @@ export default function CreateTripPage() {
               icon={Plus}
               aria-label="Criar viagem"
               className="flex-1"
+              disabled={isSubmitting}
             >
-              Criar Viagem
+              {isSubmitting ? 'Criando...' : 'Criar Viagem'}
             </Button>
             <Button
               type="button"
@@ -123,6 +133,7 @@ export default function CreateTripPage() {
               onClick={() => window.history.back()}
               aria-label="Cancelar criação"
               className="flex-1"
+              disabled={isSubmitting}
             >
               Cancelar
             </Button>
@@ -136,9 +147,6 @@ export default function CreateTripPage() {
 const styles = {
   container: 'max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8',
   header: 'mb-8',
-  backLink:
-    'inline-flex items-center gap-2 text-mist-gray hover:text-parchment-white transition-colors mb-4',
-  backIcon: 'w-4 h-4',
   title: 'text-3xl md:text-4xl font-bold text-parchment-white mb-3',
   subtitle: 'text-lg text-mist-gray',
   formContainer: '',

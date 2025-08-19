@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { DayPicker, getDefaultClassNames } from 'react-day-picker';
+import { DayPicker } from 'react-day-picker';
 import { format, parse, isValid } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Calendar, X } from 'lucide-react';
@@ -17,8 +17,6 @@ interface DatePickerProps {
   className?: string;
   id?: string;
   placeholder?: string;
-  value?: string;
-  onChange?: (value: string) => void;
   disabled?: boolean;
 }
 
@@ -32,31 +30,21 @@ const DatePicker = ({
   className = '',
   id,
   placeholder = 'dd/MM/aaaa',
-  value,
-  onChange,
   disabled = false,
 }: DatePickerProps) => {
-  // Get default class names
-  const defaultClassNames = getDefaultClassNames();
-  
+  // States
   const [isOpen, setIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(value || '');
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    value ? parse(value, 'dd/MM/yyyy', new Date()) : undefined
-  );
+  const [inputValue, setInputValue] = useState('');
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+
+  // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Format month for calendar
-  const formatCaption = (month: Date) => {
-    return format(month, 'MMMM yyyy', { locale: ptBR });
-  };
+  // Formatters
+  const formatCaption = (month: Date) => format(month, 'MMMM yyyy', { locale: ptBR });
 
-  // Format date for input
-  const formatInputDate = (date: Date): string => {
-    return format(date, 'dd/MM/yyyy');
-  };
+  const formatInputDate = (date: Date): string => format(date, 'dd/MM/yyyy');
 
-  // Parse date from input
   const parseInputDate = (input: string): Date | undefined => {
     const parsed = parse(input, 'dd/MM/yyyy', new Date());
     return isValid(parsed) ? parsed : undefined;
@@ -68,7 +56,17 @@ const DatePicker = ({
       const formattedDate = formatInputDate(date);
       setInputValue(formattedDate);
       setSelectedDate(date);
-      onChange?.(formattedDate);
+      
+      // Trigger React Hook Form change event
+      if (register?.onChange) {
+        register.onChange({
+          target: {
+            name: register.name,
+            value: formattedDate,
+          },
+        } as React.ChangeEvent<HTMLInputElement>);
+      }
+      
       setIsOpen(false);
     }
   };
@@ -83,8 +81,29 @@ const DatePicker = ({
       const parsedDate = parseInputDate(newValue);
       if (parsedDate) {
         setSelectedDate(parsedDate);
-        onChange?.(newValue);
+        
+        // Trigger React Hook Form change event
+        if (register?.onChange) {
+          register.onChange({
+            target: {
+              name: register.name,
+              value: newValue,
+            },
+          } as React.ChangeEvent<HTMLInputElement>);
+        }
       }
+    }
+    
+    // Always trigger change for React Hook Form
+    if (register?.onChange) {
+      register.onChange(e);
+    }
+  };
+
+  // Handle input blur for React Hook Form
+  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (register?.onBlur) {
+      register.onBlur(e);
     }
   };
 
@@ -99,14 +118,6 @@ const DatePicker = ({
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
-  // Sync with external value
-  useEffect(() => {
-    if (value !== undefined) {
-      setInputValue(value);
-      setSelectedDate(value ? parse(value, 'dd/MM/yyyy', new Date()) : undefined);
-    }
-  }, [value]);
 
   const inputId = id || `datepicker-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -150,11 +161,12 @@ const DatePicker = ({
           type="text"
           value={inputValue}
           onChange={handleInputChange}
+          onBlur={handleInputBlur}
           onFocus={() => setIsOpen(true)}
           placeholder={placeholder}
           className={getInputStyles()}
           disabled={disabled}
-          {...register}
+          name={register?.name}
         />
         
         <button
