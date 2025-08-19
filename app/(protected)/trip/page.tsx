@@ -2,6 +2,8 @@
 
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import Input from '@/components/form/Input';
+import Textarea from '@/components/form/Textarea';
 import { Calendar, Globe, Plus } from 'lucide-react';
 import { useState } from 'react';
 
@@ -48,101 +50,66 @@ export default function CreateTripPage() {
       >
         <form onSubmit={handleSubmit} className={styles.form}>
           {/* Título da Viagem */}
-          <div className={styles.formField}>
-            <label htmlFor="title" className={styles.label}>
-              Nome da Viagem
-            </label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleInputChange}
-              placeholder="Ex: Aventura na Europa"
-              className={styles.input}
-              required
-              aria-describedby="title-help"
-            />
-          </div>
+          <Input
+            label="Nome da Viagem"
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleInputChange}
+            placeholder="Ex: Aventura na Europa"
+            required
+            helperText="Escolha um nome descritivo para sua viagem"
+          />
 
           {/* País */}
-          <div className={styles.formField}>
-            <label htmlFor="country" className={styles.label}>
-              País
-            </label>
-            <div className={styles.inputWrapper}>
-              <Globe className={styles.inputIcon} aria-hidden="true" />
-              <input
-                type="text"
-                id="country"
-                name="country"
-                value={formData.country}
-                onChange={handleInputChange}
-                placeholder="Ex: França"
-                className={styles.inputWithIcon}
-                required
-                aria-describedby="country-help"
-              />
-            </div>
-          </div>
+          <Input
+            label="País"
+            type="text"
+            name="country"
+            value={formData.country}
+            onChange={handleInputChange}
+            placeholder="Ex: França"
+            icon={Globe}
+            iconPosition="left"
+            required
+            helperText="País principal da sua viagem"
+          />
 
           {/* Datas */}
           <div className={styles.dateGrid}>
-            <div className={styles.formField}>
-              <label htmlFor="startDate" className={styles.label}>
-                Data de Início
-              </label>
-              <div className={styles.inputWrapper}>
-                <Calendar className={styles.inputIcon} aria-hidden="true" />
-                <input
-                  type="date"
-                  id="startDate"
-                  name="startDate"
-                  value={formData.startDate}
-                  onChange={handleInputChange}
-                  className={styles.inputWithIcon}
-                  required
-                  aria-describedby="startDate-help"
-                />
-              </div>
-            </div>
+            <Input
+              label="Data de Início"
+              type="date"
+              name="startDate"
+              value={formData.startDate}
+              onChange={handleInputChange}
+              icon={Calendar}
+              required
+              helperText="Quando sua viagem começa"
+            />
 
-            <div className={styles.formField}>
-              <label htmlFor="endDate" className={styles.label}>
-                Data de Fim
-              </label>
-              <div className={styles.inputWrapper}>
-                <Calendar className={styles.inputIcon} aria-hidden="true" />
-                <input
-                  type="date"
-                  id="endDate"
-                  name="endDate"
-                  value={formData.endDate}
-                  onChange={handleInputChange}
-                  className={styles.inputWithIcon}
-                  required
-                  aria-describedby="endDate-help"
-                />
-              </div>
-            </div>
+            <Input
+              label="Data de Fim"
+              type="date"
+              name="endDate"
+              value={formData.endDate}
+              onChange={handleInputChange}
+              icon={Calendar}
+              required
+              helperText="Quando sua viagem termina"
+            />
           </div>
 
           {/* Descrição */}
-          <div className={styles.formField}>
-            <label htmlFor="description" className={styles.label}>
-              Descrição (opcional)
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
-              rows={4}
-              className={styles.textarea}
-              aria-describedby="description-help"
-            />
-          </div>
+          <Textarea
+            label="Descrição (opcional)"
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
+            rows={4}
+            helperText="Adicione detalhes sobre seus planos de viagem"
+          />
 
           {/* Botões */}
           <div className={styles.buttonGroup}>
@@ -181,17 +148,6 @@ const styles = {
   subtitle: 'text-lg text-mist-gray',
   formContainer: '',
   form: 'space-y-6',
-  formField: 'space-y-2',
-  label: 'block text-parchment-white font-medium',
-  input:
-    'w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent',
-  inputWrapper: 'relative',
-  inputIcon:
-    'absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-mist-gray',
-  inputWithIcon:
-    'w-full pl-12 pr-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent',
-  textarea:
-    'w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent resize-none',
   dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
   buttonGroup: 'flex flex-col sm:flex-row gap-4 pt-4',
 };
