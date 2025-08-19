@@ -15,6 +15,17 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Desbrava",
   description: "Desbrava - O seu diário de viagens",
+  manifest: "/manifest.json",
+  authors: [
+    {
+      name: "Brendhon Moreira",
+      url: "https://www.linkedin.com/in/brendhon-moreira/",
+    },
+  ],
+  icons: [
+    { rel: "apple-touch-icon", url: "ios/128.png" },
+    { rel: "icon", url: "ios/128.png" },
+  ],
 };
 
 export default function RootLayout({

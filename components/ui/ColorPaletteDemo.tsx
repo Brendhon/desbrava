@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * Color palette demonstration component for the Desbrava project
  * Shows all available colors and how to use them
