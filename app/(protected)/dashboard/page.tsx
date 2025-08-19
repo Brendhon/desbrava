@@ -1,97 +1,152 @@
 'use client';
 
 import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
 import { useAuth } from '@/hooks/useAuth';
-import { Calendar, MapPin, Plus } from 'lucide-react';
+import { useTrips } from '@/hooks/useTrips';
+import { TripStats, TripSearch, TripList, EmptyState } from '@/components/dashboard';
+import { Plus } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { Trip } from '@/lib/types/trip';
 
 export default function DashboardPage() {
   const { session } = useAuth();
+  const {
+    trips,
+    loading,
+    error,
+    fetchTrips,
+    searchTrips,
+    deleteTrip,
+    clearError
+  } = useTrips();
+
+  const [showSearch, setShowSearch] = useState(false);
+
+  useEffect(() => {
+    fetchTrips();
+  }, [fetchTrips]);
+
+  const handleSearch = (searchTerm: string, filters: any) => {
+    searchTrips(searchTerm, filters);
+    setShowSearch(true);
+  };
+
+  const handleClearSearch = () => {
+    fetchTrips();
+    setShowSearch(false);
+  };
+
+  const handleDeleteTrip = async (tripId: string) => {
+    if (confirm('Tem certeza que deseja deletar esta viagem?')) {
+      const success = await deleteTrip(tripId);
+      if (success) {
+        // Trip will be automatically removed from state
+        console.log('Viagem deletada com sucesso');
+      }
+    }
+  };
+
+  const handleEditTrip = (trip: Trip) => {
+    // TODO: Implement edit functionality
+    console.log('Editar viagem:', trip);
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>
-          Olá, {session?.user?.name || 'Viajante'}! 👋
-        </h1>
-        <p className={styles.subtitle}>Bem-vindo ao seu painel de viagens</p>
-      </div>
 
-      <div className={styles.content}>
-        <div className={styles.statsGrid}>
-          <Card
-            padding="md"
-            shadow="lg"
-            background="dark"
-            maxWidth="none"
-            border={false}
-            className={styles.statCard}
-          >
-            <div className={styles.statIcon}>
-              <MapPin className={styles.icon} aria-hidden="true" />
-            </div>
-            <div className={styles.statContent}>
-              <h3 className={styles.statNumber}>0</h3>
-              <p className={styles.statLabel}>Viagens Criadas</p>
-            </div>
-          </Card>
-
-          <Card
-            padding="md"
-            shadow="lg"
-            background="dark"
-            maxWidth="none"
-            border={false}
-            className={styles.statCard}
-          >
-            <div className={styles.statIcon}>
-              <Calendar className={styles.icon} aria-hidden="true" />
-            </div>
-            <div className={styles.statContent}>
-              <h3 className={styles.statNumber}>0</h3>
-              <p className={styles.statLabel}>Dias de Viagem</p>
-            </div>
-          </Card>
+        <div>
+          <h1 className={styles.title}>
+            Olá, {session?.user?.name || 'Viajante'}! 👋
+          </h1>
+          <p className={styles.subtitle}>Bem-vindo ao seu painel de viagens</p>
         </div>
 
-        <div className={styles.emptyState}>
-          <div className={styles.emptyIcon}>
-            <MapPin className={styles.emptyIconImage} aria-hidden="true" />
-          </div>
-          <h2 className={styles.emptyTitle}>Nenhuma viagem ainda</h2>
-          <p className={styles.emptyDescription}>
-            Comece criando sua primeira viagem para explorar o mundo!
-          </p>
-          <Link href="/trip" aria-label="Criar primeira viagem">
-            <Button variant="primary" icon={Plus} className="mx-auto">
-              Criar Primeira Viagem
+        <div className={styles.headerActions}>
+          <Button
+            variant="secondary"
+            onClick={() => setShowSearch(!showSearch)}
+            className={styles.searchToggle}
+          >
+            {showSearch ? 'Ocultar Busca' : 'Mostrar Busca'}
+          </Button>
+
+          <Link href="/trip" aria-label="Criar nova viagem">
+            <Button variant="primary" icon={Plus}>
+              Nova Viagem
             </Button>
           </Link>
         </div>
+      </div>
+
+      {/* Search Section */}
+      {showSearch && (
+        <TripSearch
+          onSearch={handleSearch}
+          onClear={handleClearSearch}
+          loading={loading}
+        />
+      )}
+
+      {/* Error Display */}
+      {error && (
+        <div className={styles.errorContainer}>
+          <p className={styles.errorText}>{error}</p>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={clearError}
+            className={styles.errorButton}
+          >
+            Fechar
+          </Button>
+        </div>
+      )}
+
+      {/* Stats Section */}
+      <TripStats trips={trips} />
+
+      {/* Trips Section */}
+      <div className={styles.tripsSection}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>
+            {showSearch ? 'Resultados da Busca' : 'Suas Viagens'}
+          </h2>
+          {trips.length > 0 && (
+            <p className={styles.sectionSubtitle}>
+              {trips.length} {trips.length === 1 ? 'viagem encontrada' : 'viagens encontradas'}
+            </p>
+          )}
+        </div>
+
+        {trips.length === 0 && !loading && !showSearch ? (
+          <EmptyState />
+        ) : (
+          <TripList
+            trips={trips}
+            loading={loading}
+            onEdit={handleEditTrip}
+            onDelete={handleDeleteTrip}
+          />
+        )}
       </div>
     </div>
   );
 }
 
 const styles = {
-  container: 'max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8',
-  header: 'mb-12',
-  title: 'text-3xl md:text-4xl font-bold text-parchment-white mb-3',
+  container: 'max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 space-y-8',
+  header: 'flex gap-4 flex-col lg:flex-row justify-center items-center lg:items-start lg:justify-between',
+  title: 'text-3xl md:text-4xl font-bold text-parchment-white',
   subtitle: 'text-lg text-mist-gray',
-  content: 'space-y-8',
-  statsGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
-  statCard: 'flex items-center gap-4',
-  statIcon:
-    'w-12 h-12 bg-royal-purple rounded-lg flex items-center justify-center',
-  icon: 'w-6 h-6 text-parchment-white',
-  statContent: 'space-y-1',
-  statNumber: 'text-3xl font-bold text-parchment-white',
-  statLabel: 'text-mist-gray',
-  emptyState: 'text-center py-16',
-  emptyIcon:
-    'w-20 h-20 bg-slate-dark rounded-full flex items-center justify-center mx-auto mb-6',
-  emptyIconImage: 'w-10 h-10 text-mist-gray',
-  emptyTitle: 'text-2xl font-bold text-parchment-white mb-3',
-  emptyDescription: 'text-mist-gray mb-8 max-w-md mx-auto',
+  headerActions: 'flex flex-col sm:flex-row gap-3 pt-4',
+  searchToggle: 'self-start sm:self-auto',
+  errorContainer: 'bg-red-900/20 border border-red-700 rounded-lg p-4 flex items-center justify-between',
+  errorText: 'text-red-300',
+  errorButton: 'text-red-300 hover:text-red-100',
+  tripsSection: 'space-y-6',
+  sectionHeader: 'space-y-2',
+  sectionTitle: 'text-2xl font-bold text-parchment-white',
+  sectionSubtitle: 'text-mist-gray',
 };
