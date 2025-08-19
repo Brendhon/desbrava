@@ -1,5 +1,5 @@
 ---
 alwaysApply: false
-description: Backend logic rules
+description: Authentication, data fetching, mutations, service layer, error handling, and more. This is a guideline for the backend logic of the Desbrava project.
 ---
 @docs/guidelines/backend-logic-guideline.md
