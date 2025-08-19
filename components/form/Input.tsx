@@ -1,5 +1,6 @@
 import { forwardRef, InputHTMLAttributes } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { LucideIcon } from 'lucide-react';
 
 interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -9,6 +10,11 @@ interface InputProps
   variant?: 'default' | 'error' | 'success';
   register?: UseFormRegisterReturn;
   helperText?: string;
+  className?: string;
+  id?: string;
+  // Props para ícones (opcionais)
+  icon?: LucideIcon;
+  iconPosition?: 'left' | 'right';
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -22,6 +28,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       helperText,
       className = '',
       id,
+      icon: Icon,
+      iconPosition = 'left',
       ...props
     },
     ref
@@ -46,14 +54,35 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         'border-green-500 bg-slate-dark text-parchment-white placeholder-mist-gray focus:ring-green-500 focus:border-green-500',
     };
 
+    const iconStyles = {
+      sm: 'w-4 h-4',
+      md: 'w-5 h-5',
+      lg: 'w-6 h-6',
+    };
+
+    // Aplicar padding baseado na presença e posição do ícone
+    const getPaddingStyles = () => {
+      if (!Icon) return '';
+      
+      if (iconPosition === 'left') {
+        return 'pl-12 pr-4';
+      } else if (iconPosition === 'right') {
+        return 'pl-4 pr-12';
+      }
+      
+      return '';
+    };
+
     const labelStyles = 'block text-sm font-medium text-parchment-white mb-2';
     const errorStyles = 'mt-2 text-sm text-red-400';
     const helperTextStyles = 'mt-2 text-sm text-mist-gray';
+    const iconContainerStyles = 'absolute top-1/2 transform -translate-y-1/2 text-mist-gray';
 
     const inputStyles = [
       baseStyles,
       sizeStyles[size],
       variantStyles[variant],
+      getPaddingStyles(),
       error && 'border-red-500 focus:ring-red-500 focus:border-red-500',
       className,
     ]
@@ -68,13 +97,24 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           </label>
         )}
 
-        <input
-          id={inputId}
-          ref={register ? register.ref : ref}
-          className={inputStyles}
-          {...register}
-          {...props}
-        />
+        <div className="relative">
+          {Icon && (
+            <Icon
+              className={`${iconContainerStyles} ${iconStyles[size]} ${
+                iconPosition === 'left' ? 'left-3' : 'right-3'
+              }`}
+              aria-hidden="true"
+            />
+          )}
+          
+          <input
+            id={inputId}
+            ref={register ? register.ref : ref}
+            className={inputStyles}
+            {...register}
+            {...props}
+          />
+        </div>
 
         {error && (
           <p className={errorStyles} role="alert">

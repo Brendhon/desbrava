@@ -8,7 +8,7 @@ export default function ProtectedLayout({
 }) {
   return (
     <ProtectedRoute>
-      <div className="bg-midnight-blue">
+      <div className={styles.container}>
         <Navigation />
         <main className={styles.main}> {children} </main>
       </div>
@@ -17,5 +17,6 @@ export default function ProtectedLayout({
 }
 
 const styles = {
-  main: 'mt-20',
+  container: 'bg-midnight-blue',
+  main: 'mt-25',
 };

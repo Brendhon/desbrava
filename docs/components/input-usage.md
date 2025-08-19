@@ -1,6 +1,6 @@
 # Componente Input
 
-O componente `Input` é um componente reutilizável para campos de formulário que integra perfeitamente com **React Hook Form** e **Zod**.
+O componente `Input` é um componente reutilizável para campos de formulário que integra perfeitamente com **React Hook Form** e **Zod**. Suporta tanto campos básicos quanto campos com ícones.
 
 ## Características
 
@@ -10,19 +10,22 @@ O componente `Input` é um componente reutilizável para campos de formulário q
 - ✅ **Temático:** Segue a paleta de cores do Desbrava
 - ✅ **Integrado:** Funciona perfeitamente com React Hook Form
 - ✅ **Validado:** Suporte nativo para mensagens de erro
+- ✅ **Iconizado:** Suporte opcional para ícones do Lucide React
 
 ## Props
 
-| Prop         | Tipo                                | Padrão      | Descrição                                                  |
-| ------------ | ----------------------------------- | ----------- | ---------------------------------------------------------- |
-| `label`      | `string`                            | -           | Label do campo                                             |
-| `error`      | `string`                            | -           | Mensagem de erro                                           |
-| `size`       | `'sm' \| 'md' \| 'lg'`              | `'md'`      | Tamanho do input                                           |
-| `variant`    | `'default' \| 'error' \| 'success'` | `'default'` | Variante visual                                            |
-| `register`   | `UseFormRegisterReturn`             | -           | Objeto de registro do React Hook Form                      |
-| `helperText` | `string`                            | -           | Texto de ajuda                                             |
-| `className`  | `string`                            | -           | Classes CSS adicionais                                     |
-| `id`         | `string`                            | -           | ID personalizado (gerado automaticamente se não fornecido) |
+| Prop           | Tipo                                | Padrão      | Descrição                                                  |
+| -------------- | ----------------------------------- | ----------- | ---------------------------------------------------------- |
+| `label`        | `string`                            | -           | Label do campo                                             |
+| `error`        | `string`                            | -           | Mensagem de erro                                           |
+| `size`         | `'sm' \| 'md' \| 'lg'`              | `'md'`      | Tamanho do input                                           |
+| `variant`      | `'default' \| 'error' \| 'success'` | `'default'` | Variante visual                                            |
+| `register`     | `UseFormRegisterReturn`             | -           | Objeto de registro do React Hook Form                      |
+| `helperText`   | `string`                            | -           | Texto de ajuda                                             |
+| `className`    | `string`                            | -           | Classes CSS adicionais                                     |
+| `id`           | `string`                            | -           | ID personalizado (gerado automaticamente se não fornecido) |
+| `icon`         | `LucideIcon`                        | -           | Ícone a ser exibido (opcional)                             |
+| `iconPosition` | `'left' \| 'right'`                 | `'left'`    | Posição do ícone (quando `icon` é fornecido)              |
 
 ## Tamanhos
 
@@ -30,18 +33,21 @@ O componente `Input` é um componente reutilizável para campos de formulário q
 
 - Padding: `px-3 py-2`
 - Texto: `text-sm`
+- Ícone: `w-4 h-4` (quando aplicável)
 - Ideal para formulários compactos
 
 ### Medium (`md`) - Padrão
 
 - Padding: `px-4 py-3`
 - Texto: `text-base`
+- Ícone: `w-5 h-5` (quando aplicável)
 - Tamanho padrão para a maioria dos casos
 
 ### Large (`lg`)
 
 - Padding: `px-5 py-4`
 - Texto: `text-lg`
+- Ícone: `w-6 h-6` (quando aplicável)
 - Ideal para formulários de destaque
 
 ## Variantes
@@ -62,10 +68,26 @@ O componente `Input` é um componente reutilizável para campos de formulário q
 - Borda: `border-green-500`
 - Foco: `focus:ring-green-500`
 
+## Posições do Ícone
+
+### Left (Padrão)
+
+- Ícone posicionado à esquerda
+- Padding esquerdo: `pl-12`
+- Padding direito: `pr-4`
+
+### Right
+
+- Ícone posicionado à direita
+- Padding esquerdo: `pl-4`
+- Padding direito: `pr-12`
+
 ## Uso Básico
 
-````tsx
-import Input from '@/components/form/Input';
+### Campo Simples
+
+```tsx
+import { Input } from '@/components/form';
 
 function BasicForm() {
   return (
@@ -76,12 +98,33 @@ function BasicForm() {
     />
   );
 }
+```
+
+### Campo com Ícone
+
+```tsx
+import { Input } from '@/components/form';
+import { Mail } from 'lucide-react';
+
+function IconForm() {
+  return (
+    <Input
+      label="Email"
+      placeholder="seu@email.com"
+      icon={Mail}
+      required
+    />
+  );
+}
+```
 
 ## Com React Hook Form
 
+### Campo Simples
+
 ```tsx
 import { useForm } from 'react-hook-form';
-import Input from '@/components/form/Input';
+import { Input } from '@/components/form';
 
 function HookFormExample() {
   const { register, formState: { errors } } = useForm();
@@ -103,30 +146,72 @@ function HookFormExample() {
     />
   );
 }
+```
+
+### Campo com Ícone
+
+```tsx
+import { useForm } from 'react-hook-form';
+import { Input } from '@/components/form';
+import { Mail } from 'lucide-react';
+
+function HookFormIconExample() {
+  const { register, formState: { errors } } = useForm();
+
+  return (
+    <Input
+      label="Email"
+      type="email"
+      placeholder="seu@email.com"
+      icon={Mail}
+      error={errors.email?.message}
+      register={register('email', {
+        required: 'Email é obrigatório',
+        pattern: {
+          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+          message: 'Email inválido'
+        }
+      })}
+      required
+    />
+  );
+}
+```
 
 ## Com Zod e React Hook Form
 
 ```tsx
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createTripSchema } from '@/lib/schemas';
-import Input from '@/components/form/Input';
+import { z } from 'zod';
+import { Input } from '@/components/form';
+import { Mail } from 'lucide-react';
+
+const emailSchema = z.object({
+  email: z.string()
+    .min(1, 'Email é obrigatório')
+    .email('Email inválido')
+});
 
 function ZodFormExample() {
   const { register, formState: { errors } } = useForm({
-    resolver: zodResolver(createTripSchema)
+    resolver: zodResolver(emailSchema)
   });
 
   return (
     <Input
-      label="Título da Viagem"
-      placeholder="Ex: Aventura na Europa"
-      error={errors.title?.message}
-      register={register('title')}
+      label="Email"
+      type="email"
+      placeholder="seu@email.com"
+      icon={Mail}
+      error={errors.email?.message}
+      register={register('email')}
+      helperText="Usaremos para enviar confirmações"
       required
     />
   );
 }
+```
 
 ## Estados Visuais
 
@@ -134,6 +219,7 @@ function ZodFormExample() {
 - Borda cinza com transparência
 - Fundo escuro
 - Texto branco
+- Ícone em cor neutra (quando aplicável)
 
 ### Estado de Foco
 - Anel roxo ao redor do campo
@@ -156,6 +242,7 @@ function ZodFormExample() {
 - **Mensagens de erro:** Usam `role="alert"` para leitores de tela
 - **Estados visuais:** Cores e bordas indicam claramente o estado
 - **Foco visível:** Anel de foco sempre visível
+- **Ícones decorativos:** Marcados com `aria-hidden="true"` quando aplicável
 
 ## Personalização
 
@@ -166,12 +253,15 @@ function ZodFormExample() {
   label="Campo Personalizado"
   className="border-2 border-dashed"
 />
-````
+```
 
 ### Estilos Inline
 
 ```tsx
-<Input label="Campo com Estilo" style={{ borderWidth: '3px' }} />
+<Input 
+  label="Campo com Estilo" 
+  style={{ borderWidth: '3px' }} 
+/>
 ```
 
 ## Exemplos de Uso
@@ -179,16 +269,21 @@ function ZodFormExample() {
 ### Campo de Texto Simples
 
 ```tsx
-<Input label="Nome Completo" placeholder="Digite seu nome completo" required />
+<Input 
+  label="Nome Completo" 
+  placeholder="Digite seu nome completo" 
+  required 
+/>
 ```
 
-### Campo de Email com Validação
+### Campo de Email com Validação e Ícone
 
 ```tsx
 <Input
   label="Email"
   type="email"
   placeholder="seu@email.com"
+  icon={Mail}
   error={errors.email?.message}
   register={register('email')}
   helperText="Usaremos para enviar confirmações"
@@ -209,10 +304,29 @@ function ZodFormExample() {
 />
 ```
 
-### Campo de Data
+### Campo de Data com Ícone
 
 ```tsx
-<Input label="Data de Nascimento" type="date" required />
+<Input 
+  label="Data de Nascimento" 
+  type="date" 
+  icon={Calendar}
+  helperText="Data no formato DD/MM/AAAA"
+  required 
+/>
+```
+
+### Campo de Telefone com Ícone à Direita
+
+```tsx
+<Input
+  label="Telefone"
+  type="tel"
+  placeholder="(11) 99999-9999"
+  icon={Phone}
+  iconPosition="right"
+  helperText="Telefone para contato"
+/>
 ```
 
 ### Campo com Tamanho Personalizado
@@ -226,14 +340,28 @@ function ZodFormExample() {
 />
 ```
 
+### Campo de Localização com Ícone
+
+```tsx
+<Input
+  label="Endereço"
+  placeholder="Rua, número, bairro..."
+  icon={MapPin}
+  helperText="Endereço completo"
+  required
+/>
+```
+
 ## Boas Práticas
 
 1. **Sempre use labels:** Ajuda na acessibilidade e usabilidade
-2. **Mensagens de erro claras:** Explique o que está errado e como corrigir
-3. **Textos de ajuda:** Use `helperText` para orientações adicionais
-4. **Validação em tempo real:** Configure o React Hook Form para validar no blur
-5. **Estados visuais consistentes:** Use as variantes para indicar estados claramente
-6. **IDs únicos:** Deixe o componente gerar IDs automaticamente para evitar conflitos
+2. **Escolha ícones apropriados:** Use ícones que representem claramente o campo
+3. **Mensagens de erro claras:** Explique o que está errado e como corrigir
+4. **Textos de ajuda:** Use `helperText` para orientações adicionais
+5. **Validação em tempo real:** Configure o React Hook Form para validar no blur
+6. **Estados visuais consistentes:** Use as variantes para indicar estados claramente
+7. **IDs únicos:** Deixe o componente gerar IDs automaticamente para evitar conflitos
+8. **Posicionamento de ícones:** Use `left` para campos de entrada e `right` para campos de ação
 
 ## Troubleshooting
 
@@ -254,3 +382,15 @@ function ZodFormExample() {
 - Verifique se o Tailwind CSS está configurado corretamente
 - Confirme se as classes estão sendo aplicadas via `className`
 - Verifique se não há conflitos de CSS
+
+### Ícone não está aparecendo
+
+- Certifique-se de passar um ícone válido do Lucide React
+- Verifique se o ícone está sendo importado corretamente
+- Confirme se não há conflitos de CSS que possam estar ocultando o ícone
+
+### Padding incorreto com ícones
+
+- O componente aplica automaticamente o padding correto baseado na presença do ícone
+- Para campos sem ícone, o padding padrão é aplicado
+- Para campos com ícone, o padding é ajustado para acomodar o ícone

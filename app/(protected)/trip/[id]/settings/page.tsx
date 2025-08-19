@@ -2,10 +2,15 @@
 
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import Input from '@/components/form/Input';
+import Textarea from '@/components/form/Textarea';
+import { tripSettingsSchema, type TripSettingsFormData } from '@/lib/schemas/trip';
 import { ArrowLeft, Calendar, Globe, MapPin, Save, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export default function TripSettingsPage() {
   const params = useParams();
@@ -13,7 +18,7 @@ export default function TripSettingsPage() {
   const tripId = params.id;
 
   // TODO: Buscar dados da viagem pelo ID
-  const [formData, setFormData] = useState({
+  const defaultValues: TripSettingsFormData = {
     title: 'Aventura na Europa',
     country: 'França',
     startDate: '2024-06-15',
@@ -21,19 +26,41 @@ export default function TripSettingsPage() {
     description:
       'Uma incrível jornada pela França, explorando Paris, Lyon e Nice.',
     referencePoint: 'Hotel Le Grand, Paris',
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implementar atualização da viagem
-    console.log('Atualizando viagem:', formData);
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+    setValue,
+  } = useForm<TripSettingsFormData>({
+    resolver: zodResolver(tripSettingsSchema),
+    defaultValues,
+  });
+
+  // Carregar dados iniciais quando o componente montar
+  useEffect(() => {
+    // TODO: Buscar dados da viagem da API
+    // Por enquanto, usando dados mockados
+    reset(defaultValues);
+  }, [reset]);
+
+  const onSubmit = async (data: TripSettingsFormData) => {
+    try {
+      // TODO: Implementar atualização da viagem na API
+      console.log('Atualizando viagem:', data);
+      
+      // Simular delay da API
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // TODO: Mostrar mensagem de sucesso
+      console.log('Viagem atualizada com sucesso!');
+      
+    } catch (error) {
+      console.error('Erro ao atualizar viagem:', error);
+      // TODO: Mostrar mensagem de erro
+    }
   };
 
   const handleDelete = () => {
@@ -73,124 +100,72 @@ export default function TripSettingsPage() {
         border={false}
         className={styles.formContainer}
       >
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           {/* Título da Viagem */}
-          <div className={styles.formField}>
-            <label htmlFor="title" className={styles.label}>
-              Nome da Viagem
-            </label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleInputChange}
-              placeholder="Ex: Aventura na Europa"
-              className={styles.input}
-              required
-              aria-describedby="title-help"
-            />
-          </div>
+          <Input
+            label="Nome da Viagem"
+            placeholder="Ex: Aventura na Europa"
+            error={errors.title?.message}
+            register={register('title')}
+            helperText="Escolha um nome descritivo para sua viagem"
+            required
+          />
 
           {/* País */}
-          <div className={styles.formField}>
-            <label htmlFor="country" className={styles.label}>
-              País
-            </label>
-            <div className={styles.inputWrapper}>
-              <Globe className={styles.inputIcon} aria-hidden="true" />
-              <input
-                type="text"
-                id="country"
-                name="country"
-                value={formData.country}
-                onChange={handleInputChange}
-                placeholder="Ex: França"
-                className={styles.inputWithIcon}
-                required
-                aria-describedby="country-help"
-              />
-            </div>
-          </div>
+          <Input
+            label="País"
+            placeholder="Ex: França"
+            icon={Globe}
+            error={errors.country?.message}
+            register={register('country')}
+            helperText="País principal da sua viagem"
+            required
+          />
 
           {/* Datas */}
           <div className={styles.dateGrid}>
-            <div className={styles.formField}>
-              <label htmlFor="startDate" className={styles.label}>
-                Data de Início
-              </label>
-              <div className={styles.inputWrapper}>
-                <Calendar className={styles.inputIcon} aria-hidden="true" />
-                <input
-                  type="date"
-                  id="startDate"
-                  name="startDate"
-                  value={formData.startDate}
-                  onChange={handleInputChange}
-                  className={styles.inputWithIcon}
-                  required
-                  aria-describedby="startDate-help"
-                />
-              </div>
-            </div>
+            <Input
+              label="Data de Início"
+              type="date"
+              icon={Calendar}
+              error={errors.startDate?.message}
+              register={register('startDate')}
+              helperText="Quando sua viagem começa"
+              required
+            />
 
-            <div className={styles.formField}>
-              <label htmlFor="endDate" className={styles.label}>
-                Data de Fim
-              </label>
-              <div className={styles.inputWrapper}>
-                <Calendar className={styles.inputIcon} aria-hidden="true" />
-                <input
-                  type="date"
-                  id="endDate"
-                  name="endDate"
-                  value={formData.endDate}
-                  onChange={handleInputChange}
-                  className={styles.inputWithIcon}
-                  required
-                  aria-describedby="endDate-help"
-                />
-              </div>
-            </div>
+            <Input
+              label="Data de Fim"
+              type="date"
+              icon={Calendar}
+              error={errors.endDate?.message}
+              register={register('endDate')}
+              helperText="Quando sua viagem termina"
+              required
+            />
           </div>
 
           {/* Ponto de Referência */}
-          <div className={styles.formField}>
-            <label htmlFor="referencePoint" className={styles.label}>
-              Ponto de Referência
-            </label>
-            <div className={styles.inputWrapper}>
-              <MapPin className={styles.inputIcon} aria-hidden="true" />
-              <input
-                type="text"
-                id="referencePoint"
-                name="referencePoint"
-                value={formData.referencePoint}
-                onChange={handleInputChange}
-                placeholder="Ex: Hotel Le Grand, Paris"
-                className={styles.inputWithIcon}
-                required
-                aria-describedby="referencePoint-help"
-              />
-            </div>
-          </div>
+          <Input
+            label="Ponto de Referência"
+            placeholder="Ex: Hotel Le Grand, Paris"
+            icon={MapPin}
+            error={errors.referencePoint?.message}
+            register={register('referencePoint')}
+            helperText="Local principal ou ponto de partida da viagem"
+            required
+          />
 
           {/* Descrição */}
-          <div className={styles.formField}>
-            <label htmlFor="description" className={styles.label}>
-              Descrição
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
-              rows={4}
-              className={styles.textarea}
-              aria-describedby="description-help"
-            />
-          </div>
+          <Textarea
+            label="Descrição"
+            placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
+            rows={4}
+            error={errors.description?.message}
+            register={register('description')}
+            helperText="Descreva os planos, atividades e expectativas da viagem"
+            required
+          />
 
           {/* Botões */}
           <div className={styles.buttonGroup}>
@@ -200,8 +175,9 @@ export default function TripSettingsPage() {
               icon={Save}
               aria-label="Salvar alterações da viagem"
               className="flex-1"
+              disabled={isSubmitting}
             >
-              Salvar Alterações
+              {isSubmitting ? 'Salvando...' : 'Salvar Alterações'}
             </Button>
 
             <Link
@@ -262,20 +238,8 @@ const styles = {
   subtitle: 'text-lg text-mist-gray',
   formContainer: '',
   form: 'space-y-6',
-  formField: 'space-y-2',
-  label: 'block text-parchment-white font-medium',
-  input:
-    'w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent',
-  inputWrapper: 'relative',
-  inputIcon:
-    'absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-mist-gray',
-  inputWithIcon:
-    'w-full pl-12 pr-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent',
-  textarea:
-    'w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white placeholder-mist-gray focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent resize-none',
   dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
   buttonGroup: 'flex flex-col sm:flex-row gap-4 pt-4',
-
   dangerZone: 'mt-12 pt-8 border-t border-slate-dark/20',
   dangerZoneTitle: 'text-lg font-semibold text-parchment-white mb-4',
   dangerZoneContent: '',
