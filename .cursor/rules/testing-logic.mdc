@@ -1,0 +1,5 @@
+---
+description: Testing rules, unit tests, integration tests, e2e tests, and more. This is a guideline for the testing logic of the Desbrava project.
+alwaysApply: false
+---
+@docs/guidelines/testing-guideline.md

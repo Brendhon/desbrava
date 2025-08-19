@@ -1,5 +1,0 @@
----
-alwaysApply: false
-description: Service layer rules
----
-@docs/guidelines/service-layer-guideline.md
