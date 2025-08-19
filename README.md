@@ -3,15 +3,12 @@
 </h1>
 
 <p align="center">
-  <strong>Seu planejador de viagens pessoal, simples e intuitivo.</strong>
+  <strong>Seu planejador de viagens pessoal, focado em uma experiência simples e intuitiva.</strong>
 </p>
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg"/>
 </p>
-
-<p align="center">
-  </p>
 
 ---
 
@@ -22,7 +19,6 @@
 - [✨ Features](#-features)
 - [🎨 Layout e Paleta de Cores](#-layout-e-paleta-de-cores)
 - [🚀 Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [📁 Estrutura do Projeto](#-estrutura-do-projeto)
 - [👨‍💻 Como Executar](#-como-executar)
   - [Pré-requisitos](#pré-requisitos)
   - [Configuração do Ambiente](#configuração-do-ambiente)
@@ -64,7 +60,7 @@ O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um
 | **Ardósia Escuro** | `#1B263B` | Fundo para cards e modais. |
 | **Branco Pergaminho** | `#E0E1DD` | Textos principais e títulos. |
 | **Cinza Névoa** | `#A9B4C2` | Textos secundários e ícones. |
-| **Roxo Real** | `#8443A4` | Destaques, botões e links. |
+| **Roxo Real** | `#8443A4` | Logo, destaques, botões e links. |
 
 ---
 
@@ -80,30 +76,6 @@ O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um
     -   **Firestore:** Banco de dados NoSQL para armazenar dados de viagens e atividades.
 -   **NextAuth.js:** Solução completa de autenticação para aplicações Next.js.
 -   **Google Places API:** Para busca e sugestão de locais.
-
----
-
-## 📁 Estrutura do Projeto
-
-O projeto utiliza o App Router do Next.js, com uma estrutura de pastas organizada para escalabilidade.
-
-```
-
-desbrava/
-├── public/                \# Arquivos estáticos (imagens, fontes, JSON de países)
-├── src/
-│   ├── app/               \# Rotas da aplicação, layouts e páginas
-│   │   ├── (private)/     \# Rotas que exigem autenticação (dashboard, etc.)
-│   │   ├── (public)/      \# Rotas públicas (página de login)
-│   │   └── api/           \# API Routes do Next.js
-│   ├── components/        \# Componentes React reutilizáveis (botões, modais, cards)
-│   ├── context/           \# Contextos React para gerenciamento de estado global
-│   ├── lib/               \# Configurações de bibliotecas (Firebase, NextAuth)
-│   └── utils/             \# Funções utilitárias
-├── .env.local             \# Arquivo para variáveis de ambiente (NÃO versionar)
-└── package.json
-
-```
 
 ---
 
@@ -129,7 +101,7 @@ desbrava/
     ```
 
 3.  **Configure as variáveis de ambiente:**
-    Crie um arquivo `.env.local` na raiz e preencha com suas chaves:
+    Crie um arquivo `.env` na raiz e preencha com suas chaves:
     ```env
     # NextAuth.js - Gerado com 'openssl rand -base64 32' no terminal
     NEXTAUTH_SECRET=
