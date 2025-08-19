@@ -1,18 +1,18 @@
 import { z } from 'zod';
 
-export const tripSettingsSchema = z.object({
+const baseSchema = z.object({
   title: z
     .string()
     .min(1, 'Nome da viagem é obrigatório')
     .min(3, 'Nome da viagem deve ter pelo menos 3 caracteres')
     .max(100, 'Nome da viagem deve ter no máximo 100 caracteres'),
-  
+
   country: z
     .string()
     .min(1, 'País é obrigatório')
     .min(2, 'País deve ter pelo menos 2 caracteres')
     .max(50, 'País deve ter no máximo 50 caracteres'),
-  
+
   startDate: z
     .string()
     .min(1, 'Data de início é obrigatória')
@@ -22,17 +22,11 @@ export const tripSettingsSchema = z.object({
       today.setHours(0, 0, 0, 0);
       return selectedDate >= today;
     }, 'Data de início deve ser hoje ou uma data futura'),
-  
+
   endDate: z
     .string()
     .min(1, 'Data de fim é obrigatória'),
-  
-  referencePoint: z
-    .string()
-    .min(1, 'Ponto de referência é obrigatório')
-    .min(5, 'Ponto de referência deve ter pelo menos 5 caracteres')
-    .max(200, 'Ponto de referência deve ter no máximo 200 caracteres'),
-  
+
   description: z
     .string()
     .min(1, 'Descrição é obrigatória')
@@ -47,4 +41,8 @@ export const tripSettingsSchema = z.object({
   path: ['endDate'],
 });
 
+export const tripSettingsSchema = baseSchema.extend({})
+export const createTripSchema = baseSchema.extend({})
+
 export type TripSettingsFormData = z.infer<typeof tripSettingsSchema>;
+export type CreateTripFormData = z.infer<typeof createTripSchema>;
