@@ -1,6 +1,6 @@
+import { LucideIcon } from 'lucide-react';
 import { forwardRef, InputHTMLAttributes, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { LucideIcon } from 'lucide-react';
 import InputWithIcon from './InputWithIcon';
 
 interface InputProps
@@ -43,7 +43,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={inputId} className="form-label">
+          <label htmlFor={inputId} className={styles.label}>
             {label}
           </label>
         )}
@@ -59,20 +59,20 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             id={inputId}
             ref={register ? register.ref : ref}
-            className="form-input-base form-input-size-md form-input-variant-default w-full"
+            className={styles.input}
             {...register}
             {...props}
           />
         </InputWithIcon>
 
         {error && (
-          <p className="form-error" role="alert">
+          <p className={styles.error} role="alert">
             {error}
           </p>
         )}
 
         {helperText && !error && (
-          <p className="form-helper-text">{helperText}</p>
+          <p className={styles.helperText}>{helperText}</p>
         )}
       </div>
     );
@@ -82,3 +82,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 Input.displayName = 'Input';
 
 export default Input;
+
+const styles = {
+  label: 'form-label',
+  input: 'form-input-base form-input-size-md form-input-variant-default w-full',
+  error: 'form-error',
+  helperText: 'form-helper-text',
+};
