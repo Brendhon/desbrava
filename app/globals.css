@@ -11,5 +11,5 @@
 body {
   background: #0D1B2A;
   color: #E0E1DD;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins);
 }
