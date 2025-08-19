@@ -55,6 +55,7 @@ const MyComponent = () => {
 | `value` | `string` | - | Controlled value |
 | `onChange` | `(value: string) => void` | - | Change handler |
 | `disabled` | `boolean` | `false` | Whether the input is disabled |
+| `popupPosition` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'bottom'` | Position of the calendar popup relative to the input |
 
 ## Size Variants
 
@@ -97,6 +98,36 @@ const MyComponent = () => {
   helperText="Data confirmada"
 />
 ```
+
+## Popup Position
+
+The `popupPosition` prop controls where the calendar popup appears relative to the input field. This is useful for optimizing space usage in different layouts.
+
+### Bottom (Default)
+```tsx
+<DatePicker popupPosition="bottom" label="Data com Popup Abaixo" />
+```
+The popup appears below the input field.
+
+### Top
+```tsx
+<DatePicker popupPosition="top" label="Data com Popup Acima" />
+```
+The popup appears above the input field. Useful when there's limited space below.
+
+### Left
+```tsx
+<DatePicker popupPosition="left" label="Data com Popup à Esquerda" />
+```
+The popup appears to the left of the input field. Useful for right-aligned forms.
+
+### Right
+```tsx
+<DatePicker popupPosition="right" label="Data com Popup à Direita" />
+```
+The popup appears to the right of the input field. Useful for left-aligned forms.
+
+**Note**: The component automatically adjusts positioning to ensure the popup remains visible within the viewport.
 
 ## React Hook Form Integration
 
@@ -203,3 +234,5 @@ See `components/form/DatePickerExample.tsx` for comprehensive usage examples inc
 - The component is fully responsive and follows the project's design system
 - Styling is consistent with other form components using the same base classes
 - Calendar appearance is controlled through DayPicker CSS variables for easy theming
+- The `popupPosition` prop allows flexible positioning of the calendar popup
+- Popup positioning automatically adapts to available space in the viewport

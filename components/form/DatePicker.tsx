@@ -8,16 +8,28 @@ import { Calendar, X } from 'lucide-react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface DatePickerProps {
+  /** Label text displayed above the input */
   label?: string;
+  /** Error message to display below the input */
   error?: string;
+  /** Size variant of the input */
   size?: 'sm' | 'md' | 'lg';
+  /** Visual variant of the input */
   variant?: 'default' | 'error' | 'success';
+  /** React Hook Form register object */
   register?: UseFormRegisterReturn;
+  /** Helper text displayed below the input */
   helperText?: string;
+  /** Additional CSS classes */
   className?: string;
+  /** Input ID attribute */
   id?: string;
+  /** Placeholder text for the input */
   placeholder?: string;
+  /** Whether the input is disabled */
   disabled?: boolean;
+  /** Position of the calendar popup relative to the input */
+  popupPosition?: 'top' | 'bottom' | 'left' | 'right';
 }
 
 const DatePicker = ({
@@ -31,6 +43,7 @@ const DatePicker = ({
   id,
   placeholder = 'dd/MM/aaaa',
   disabled = false,
+  popupPosition = 'bottom',
 }: DatePickerProps) => {
   // States
   const [isOpen, setIsOpen] = useState(false);
@@ -87,6 +100,29 @@ const DatePicker = ({
       'cursor-pointer',
     ].join(' ');
   }, [size]);
+
+  // Memoized popup position styles
+  const popupStyles = useMemo(() => {
+    const baseStyles = ['datepicker-popup'];
+    
+    switch (popupPosition) {
+      case 'top':
+        baseStyles.push('datepicker-popup-top');
+        break;
+      case 'left':
+        baseStyles.push('datepicker-popup-left');
+        break;
+      case 'right':
+        baseStyles.push('datepicker-popup-right');
+        break;
+      case 'bottom':
+      default:
+        baseStyles.push('datepicker-popup-bottom');
+        break;
+    }
+    
+    return baseStyles.join(' ');
+  }, [popupPosition]);
 
   // Update input when date is selected
   const handleDateSelect = useCallback((date: Date | undefined) => {
@@ -210,11 +246,11 @@ const DatePicker = ({
           disabled={disabled}
           aria-label="Abrir calendário"
         >
-          {isOpen ? <X className="w-full h-full" /> : <Calendar className="w-full h-full" />}
+          {isOpen ? <X className={styles.buttonSize} /> : <Calendar className={styles.buttonSize} />}
         </button>
 
         {isOpen && (
-          <div className="datepicker-popup">
+          <div className={popupStyles}>
             <div className="datepicker-calendar">
               <DayPicker
                 mode="single"
@@ -247,3 +283,7 @@ const DatePicker = ({
 };
 
 export default DatePicker;
+
+const styles = {
+  buttonSize: 'w-full h-full',
+}

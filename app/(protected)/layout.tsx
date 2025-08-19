@@ -18,5 +18,5 @@ export default function ProtectedLayout({
 
 const styles = {
   container: 'bg-midnight-blue',
-  main: 'mt-25',
+  main: 'mt-20',
 };

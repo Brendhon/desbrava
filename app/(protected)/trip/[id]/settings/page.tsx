@@ -25,7 +25,6 @@ export default function TripSettingsPage() {
     endDate: '2024-06-30',
     description:
       'Uma incrível jornada pela França, explorando Paris, Lyon e Nice.',
-    referencePoint: 'Hotel Le Grand, Paris',
   };
 
   const {
@@ -144,17 +143,6 @@ export default function TripSettingsPage() {
               required
             />
           </div>
-
-          {/* Ponto de Referência */}
-          <Input
-            label="Ponto de Referência"
-            placeholder="Ex: Hotel Le Grand, Paris"
-            icon={MapPin}
-            error={errors.referencePoint?.message}
-            register={register('referencePoint')}
-            helperText="Local principal ou ponto de partida da viagem"
-            required
-          />
 
           {/* Descrição */}
           <Textarea

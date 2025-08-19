@@ -112,7 +112,24 @@ body {
 
 /* Calendar Popup Styles */
 .datepicker-popup {
-  @apply absolute z-50 mt-1 w-auto bg-midnight-blue border border-slate-dark/20 rounded-lg shadow-lg;
+  @apply absolute z-50 w-auto bg-midnight-blue border border-slate-dark/20 rounded-lg shadow-lg;
+}
+
+/* Popup Position Variants */
+.datepicker-popup-bottom {
+  @apply top-full mt-1;
+}
+
+.datepicker-popup-top {
+  @apply bottom-full mb-1;
+}
+
+.datepicker-popup-left {
+  @apply right-full mr-1 top-1/2 -translate-y-1/2;
+}
+
+.datepicker-popup-right {
+  @apply left-full ml-1 top-1/2 -translate-y-1/2;
 }
 
 .datepicker-calendar {

@@ -95,12 +95,14 @@ export default function CreateTripPage() {
               error={errors.startDate?.message}
               register={register('startDate')}
               helperText="Quando sua viagem começa"
+              popupPosition='top'
             />
 
             <DatePicker
               label="Data de Fim"
               error={errors.endDate?.message}
               register={register('endDate')}
+              popupPosition='top'
               helperText="Quando sua viagem termina"
             />
           </div>
@@ -111,7 +113,7 @@ export default function CreateTripPage() {
             placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
             error={errors.description?.message}
             register={register('description')}
-            rows={4}
+            rows={2}
             helperText="Adicione detalhes sobre seus planos de viagem"
           />
 
