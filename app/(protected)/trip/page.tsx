@@ -2,6 +2,7 @@
 
 import DatePicker from '@/components/form/DatePicker';
 import Input from '@/components/form/Input';
+import SearchSelect from '@/components/form/SearchSelect';
 import Textarea from '@/components/form/Textarea';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
@@ -9,8 +10,26 @@ import { createTripSchema, type CreateTripFormData } from '@/lib/schemas/trip';
 import { Globe, Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { SelectOption } from '@/lib/types';
+import Image from 'next/image';
 
 export default function CreateTripPage() {
+  // Dados mockados de países
+  const countries: SelectOption[] = [
+    { value: 'br', label: <div className='flex items-center gap-2'>
+      <Globe />
+      Brasil
+    </div> },
+    { value: 'ar', label: 'Argentina' },
+    { value: 'cl', label: 'Chile' },
+    { value: 'co', label: 'Colômbia' },
+    { value: 'pe', label: 'Peru' },
+    { value: 'mx', label: 'México' },
+    { value: 'us', label: 'Estados Unidos' },
+    { value: 'ca', label: 'Canadá' },
+    { value: 'fr', label: 'França' },
+  ];
+
   const {
     register,
     handleSubmit,
@@ -78,10 +97,10 @@ export default function CreateTripPage() {
           />
 
           {/* País */}
-          <Input
-            label="País"
-            placeholder="Ex: França"
-            icon={Globe}
+          <SearchSelect
+            label='País'
+            options={countries}
+            placeholder="Digite para buscar um país..."
             error={errors.country?.message}
             register={register('country')}
             helperText="País principal da sua viagem"
