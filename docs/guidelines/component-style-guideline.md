@@ -52,21 +52,6 @@ const styles = {
   <h1 className="text-parchment-white text-2xl font-bold">Hello</h1>
 </div>
 ```
-
-## Common Styles
-
-### Buttons
-- **Primary**: `bg-royal-purple text-parchment-white px-4 py-2 rounded-md hover:bg-royal-purple/80`
-- **Secondary**: `bg-slate-dark text-parchment-white border border-royal-purple px-4 py-2 rounded-md`
-
-### Cards
-- **Container**: `bg-slate-dark rounded-lg p-6 shadow-lg border border-mist-gray/20`
-- **Title**: `text-parchment-white text-xl font-bold mb-4`
-
-### Forms
-- **Input**: `bg-slate-dark border border-mist-gray/30 rounded-md px-3 py-2 text-parchment-white focus:border-royal-purple focus:outline-none transition-colors`
-- **Label**: `text-parchment-white font-medium mb-2 block`
-
 ## Simple Example
 
 ```tsx
