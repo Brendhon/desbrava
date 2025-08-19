@@ -1,3 +1,4 @@
+import Card from './Card';
 import GoogleLoginButton from './GoogleLoginButton';
 
 interface HeroSectionProps {
@@ -14,24 +15,24 @@ export default function HeroSection({ onGoogleLogin, isLoading = false }: HeroSe
             <h1 className={styles.title}>
               ✈️ Bem-vindo ao <span className={styles.highlight}>Desbrava</span>
             </h1>
-            
+
             <p className={styles.subtitle}>
               Seu planejador de viagens pessoal, focado em uma experiência simples e intuitiva
             </p>
-            
+
             <div className={styles.description}>
               <p className={styles.descriptionText}>
-                Em vez de planilhas complexas e informações espalhadas, o Desbrava oferece uma 
-                interface centralizada, limpa e focada para que você possa organizar seus roteiros 
+                Em vez de planilhas complexas e informações espalhadas, o Desbrava oferece uma
+                interface centralizada, limpa e focada para que você possa organizar seus roteiros
                 de forma intuitiva.
               </p>
-              
+
               <p className={styles.descriptionText}>
-                Crie viagens, adicione pontos de referência e construa seu itinerário dia a dia, 
+                Crie viagens, adicione pontos de referência e construa seu itinerário dia a dia,
                 mesclando atividades planejadas manualmente com sugestões inteligentes de locais próximos.
               </p>
             </div>
-            
+
             <div className={styles.features}>
               <div className={styles.feature}>
                 <span className={styles.featureIcon}>🗺️</span>
@@ -51,23 +52,23 @@ export default function HeroSection({ onGoogleLogin, isLoading = false }: HeroSe
               </div>
             </div>
           </div>
-          
+
           <div className={styles.loginSection}>
-            <div className={styles.loginCard}>
+            <Card>
               <h2 className={styles.loginTitle}>Comece sua aventura</h2>
               <p className={styles.loginSubtitle}>
                 Faça login com sua conta Google para começar a planejar suas viagens
               </p>
-              
-              <GoogleLoginButton 
+
+              <GoogleLoginButton
                 onClick={onGoogleLogin}
                 isLoading={isLoading}
               />
-              
+
               <p className={styles.loginNote}>
                 🔒 Login seguro e rápido com Google
               </p>
-            </div>
+            </Card>
           </div>
         </div>
       </div>
@@ -90,12 +91,6 @@ const styles = {
   featureIcon: "text-2xl",
   featureText: "text-mist-gray text-sm",
   loginSection: "flex justify-center lg:justify-end",
-  loginCard: `
-    bg-slate-dark border border-mist-gray/20 
-    rounded-2xl p-8 
-    max-w-md w-full
-    shadow-2xl
-  `,
   loginTitle: "text-2xl font-bold text-parchment-white text-center mb-2",
   loginSubtitle: "text-mist-gray text-center mb-6",
   loginNote: "text-xs text-mist-gray text-center mt-4",
