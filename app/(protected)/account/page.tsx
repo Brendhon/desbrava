@@ -2,32 +2,44 @@
 
 import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
-import { User, Mail, Shield, Bell, Globe, Save, LogOut } from 'lucide-react';
+import { Shield, Calendar, Trash2, LogOut, ExternalLink } from 'lucide-react';
 
 export default function AccountPage() {
   const { session, logout } = useAuth();
-  const [profileData, setProfileData] = useState({
-    name: session?.user?.name || '',
-    email: session?.user?.email || '',
-    language: 'pt-BR',
-    notifications: true,
-    emailUpdates: true
-  });
+  const [isCalendarConnected, setIsCalendarConnected] = useState(false);
+  const [isClearingData, setIsClearingData] = useState(false);
 
-  const handleProfileSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implementar atualização do perfil
-    console.log('Atualizando perfil:', profileData);
+  const handleGoogleCalendarConnect = () => {
+    // TODO: Implementar integração com Google Calendar
+    console.log('Conectando com Google Calendar...');
+    setIsCalendarConnected(true);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
-    
-    setProfileData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
+  const handleGoogleCalendarDisconnect = () => {
+    // TODO: Implementar desconexão do Google Calendar
+    console.log('Desconectando do Google Calendar...');
+    setIsCalendarConnected(false);
+  };
+
+  const handleClearAccountData = async () => {
+    if (!confirm('Tem certeza que deseja excluir todos os seus dados? Esta ação não pode ser desfeita.')) {
+      return;
+    }
+
+    setIsClearingData(true);
+    try {
+      // TODO: Implementar limpeza de dados da conta
+      console.log('Limpando dados da conta...');
+      // Aguardar um pouco para simular a operação
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Redirecionar para logout após limpeza
+      logout();
+    } catch (error) {
+      console.error('Erro ao limpar dados:', error);
+    } finally {
+      setIsClearingData(false);
+    }
   };
 
   return (
@@ -38,141 +50,92 @@ export default function AccountPage() {
           Configurações da Conta
         </h1>
         <p className={styles.subtitle}>
-          Gerencie suas preferências e informações pessoais
+          Gerencie suas integrações e configurações de segurança
         </p>
       </div>
 
       <div className={styles.content}>
-        {/* Profile Section */}
+        {/* Google Calendar Integration Section */}
         <div className={styles.section}>
           <div className={styles.sectionHeader}>
-            <User className={styles.sectionIcon} aria-hidden="true" />
+            <Calendar className={styles.sectionIcon} aria-hidden="true" />
             <h2 className={styles.sectionTitle}>
-              Informações do Perfil
+              Integração com Google Calendar
             </h2>
           </div>
 
-          <form onSubmit={handleProfileSubmit} className={styles.form}>
-            {/* Name */}
-            <div className={styles.formField}>
-              <label htmlFor="name" className={styles.label}>
-                Nome Completo
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={profileData.name}
-                onChange={handleInputChange}
-                className={styles.input}
-                required
-                aria-describedby="name-help"
-              />
-            </div>
-
-            {/* Email */}
-            <div className={styles.formField}>
-              <label htmlFor="email" className={styles.label}>
-                Email
-              </label>
-              <div className={styles.inputWrapper}>
-                <Mail className={styles.inputIcon} aria-hidden="true" />
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={profileData.email}
-                  onChange={handleInputChange}
-                  className={styles.inputWithIcon}
-                  required
-                  disabled
-                  aria-describedby="email-help"
-                />
-              </div>
-              <p className={styles.helpText}>
-                O email não pode ser alterado pois está vinculado à sua conta Google
+          <div className={styles.integrationContent}>
+            <div className={styles.integrationInfo}>
+              <h3 className={styles.integrationTitle}>Sincronização de Atividades</h3>
+              <p className={styles.integrationDescription}>
+                Conecte sua conta do Google Calendar para sincronizar automaticamente suas atividades e viagens
               </p>
+              {isCalendarConnected && (
+                <div className={styles.connectionStatus}>
+                  <span className={styles.statusConnected}>Conectado</span>
+                  <p className={styles.statusText}>
+                    Suas atividades estão sendo sincronizadas automaticamente
+                  </p>
+                </div>
+              )}
             </div>
 
-            {/* Language */}
-            <div className={styles.formField}>
-              <label htmlFor="language" className={styles.label}>
-                Idioma
-              </label>
-              <div className={styles.inputWrapper}>
-                <Globe className={styles.inputIcon} aria-hidden="true" />
-                <select
-                  id="language"
-                  name="language"
-                  value={profileData.language}
-                  onChange={handleInputChange}
-                  className={styles.selectWithIcon}
-                  aria-describedby="language-help"
+            <div className={styles.integrationActions}>
+              {!isCalendarConnected ? (
+                <button
+                  onClick={handleGoogleCalendarConnect}
+                  className={styles.connectButton}
+                  aria-label="Conectar com Google Calendar"
                 >
-                  <option value="pt-BR">Português (Brasil)</option>
-                  <option value="en-US">English (US)</option>
-                  <option value="es-ES">Español</option>
-                  <option value="fr-FR">Français</option>
-                </select>
+                  <Calendar className={styles.buttonIcon} aria-hidden="true" />
+                  Conectar Google Calendar
+                  <ExternalLink className={styles.externalIcon} aria-hidden="true" />
+                </button>
+              ) : (
+                <button
+                  onClick={handleGoogleCalendarDisconnect}
+                  className={styles.disconnectButton}
+                  aria-label="Desconectar do Google Calendar"
+                >
+                  <Calendar className={styles.buttonIcon} aria-hidden="true" />
+                  Desconectar
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Account Data Management Section */}
+        <div className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <Trash2 className={styles.sectionIcon} aria-hidden="true" />
+            <h2 className={styles.sectionTitle}>
+              Gerenciamento de Dados
+            </h2>
+          </div>
+
+          <div className={styles.dataContent}>
+            <div className={styles.dataInfo}>
+              <h3 className={styles.dataTitle}>Limpar Dados da Conta</h3>
+              <p className={styles.dataDescription}>
+                Excluir permanentemente todas as suas viagens, atividades e dados pessoais
+              </p>
+              <div className={styles.dataWarning}>
+                <p className={styles.warningText}>
+                  ⚠️ Esta ação é irreversível e excluirá todos os seus dados
+                </p>
               </div>
             </div>
 
             <button
-              type="submit"
-              className={styles.saveButton}
-              aria-label="Salvar alterações do perfil"
+              onClick={handleClearAccountData}
+              disabled={isClearingData}
+              className={styles.clearDataButton}
+              aria-label="Limpar todos os dados da conta"
             >
-              <Save className={styles.saveButtonIcon} aria-hidden="true" />
-              Salvar Alterações
+              <Trash2 className={styles.buttonIcon} aria-hidden="true" />
+              {isClearingData ? 'Limpando...' : 'Limpar Dados da Conta'}
             </button>
-          </form>
-        </div>
-
-        {/* Notifications Section */}
-        <div className={styles.section}>
-          <div className={styles.sectionHeader}>
-            <Bell className={styles.sectionIcon} aria-hidden="true" />
-            <h2 className={styles.sectionTitle}>
-              Notificações
-            </h2>
-          </div>
-
-          <div className={styles.notificationsContent}>
-            <div className={styles.notificationItem}>
-              <div>
-                <h3 className={styles.notificationTitle}>Notificações Push</h3>
-                <p className={styles.notificationDescription}>Receba lembretes sobre suas viagens</p>
-              </div>
-              <label className={styles.toggleWrapper}>
-                <input
-                  type="checkbox"
-                  name="notifications"
-                  checked={profileData.notifications}
-                  onChange={handleInputChange}
-                  className={styles.toggleInput}
-                  aria-label="Ativar notificações push"
-                />
-                <div className={styles.toggle}></div>
-              </label>
-            </div>
-
-            <div className={styles.notificationItem}>
-              <div>
-                <h3 className={styles.notificationTitle}>Atualizações por Email</h3>
-                <p className={styles.notificationDescription}>Receba novidades sobre o Desbrava</p>
-              </div>
-              <label className={styles.toggleWrapper}>
-                <input
-                  type="checkbox"
-                  name="emailUpdates"
-                  checked={profileData.emailUpdates}
-                  onChange={handleInputChange}
-                  className={styles.toggleInput}
-                  aria-label="Ativar atualizações por email"
-                />
-                <div className={styles.toggle}></div>
-              </label>
-            </div>
           </div>
         </div>
 
@@ -241,24 +204,25 @@ const styles = {
   sectionHeader: "flex items-center gap-3 mb-6",
   sectionIcon: "w-6 h-6 text-royal-purple",
   sectionTitle: "text-xl font-semibold text-parchment-white",
-  form: "space-y-6",
-  formField: "space-y-2",
-  label: "block text-parchment-white font-medium",
-  input: "w-full px-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent",
-  inputWrapper: "relative",
-  inputIcon: "absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-mist-gray",
-  inputWithIcon: "w-full pl-12 pr-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent",
-  selectWithIcon: "w-full pl-12 pr-4 py-3 bg-midnight-blue border border-slate-dark/20 rounded-lg text-parchment-white focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent",
-  helpText: "text-sm text-mist-gray mt-1",
-  saveButton: "bg-royal-purple text-parchment-white px-6 py-3 rounded-lg hover:bg-royal-purple/80 transition-colors font-medium flex items-center gap-2",
-  saveButtonIcon: "w-5 h-5",
-  notificationsContent: "space-y-4",
-  notificationItem: "flex items-center justify-between",
-  notificationTitle: "text-parchment-white font-medium",
-  notificationDescription: "text-sm text-mist-gray",
-  toggleWrapper: "relative inline-flex items-center cursor-pointer",
-  toggleInput: "sr-only peer",
-  toggle: "w-11 h-6 bg-midnight-blue peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-royal-purple/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-royal-purple",
+  integrationContent: "flex flex-col gap-4",
+  integrationInfo: "space-y-3",
+  integrationTitle: "text-lg font-medium text-parchment-white",
+  integrationDescription: "text-mist-gray",
+  connectionStatus: "mt-4 p-4 bg-green-900/20 border border-green-500/30 rounded-lg",
+  statusConnected: "inline-block text-green-400 text-sm font-medium mb-2",
+  statusText: "text-green-300 text-sm",
+  integrationActions: "flex",
+  connectButton: "cursor-pointer bg-royal-purple text-parchment-white px-6 py-3 rounded-lg hover:bg-royal-purple/80 transition-colors font-medium flex items-center gap-2",
+  disconnectButton: "bg-midnight-blue text-parchment-white px-6 py-3 rounded-lg hover:bg-slate-dark/80 transition-colors font-medium flex items-center gap-2 border border-slate-dark/20",
+  buttonIcon: "w-5 h-5",
+  externalIcon: "w-4 h-4",
+  dataContent: "space-y-6",
+  dataInfo: "space-y-3",
+  dataTitle: "text-lg font-medium text-parchment-white",
+  dataDescription: "text-mist-gray",
+  dataWarning: "mt-4 p-4 bg-red-900/20 border border-red-500/30 rounded-lg",
+  warningText: "text-red-300 text-sm",
+  clearDataButton: "cursor-pointer bg-red-700 text-parchment-white px-6 py-3 rounded-lg hover:bg-red-800 transition-colors font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed",
   securityContent: "space-y-4",
   securityItem: "flex items-center justify-between p-4 bg-midnight-blue rounded-lg",
   securityTitle: "text-parchment-white font-medium",
@@ -267,6 +231,6 @@ const styles = {
   logoutContent: "text-center",
   logoutTitle: "text-xl font-semibold text-parchment-white mb-4",
   logoutDescription: "text-mist-gray mb-6",
-  logoutButton: "bg-red-600 text-parchment-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors font-medium flex items-center gap-2 mx-auto",
+  logoutButton: "cursor-pointer bg-red-700 text-parchment-white px-6 py-3 rounded-lg hover:bg-red-800 transition-colors font-medium flex items-center gap-2 mx-auto",
   logoutButtonIcon: "w-5 h-5",
 };
