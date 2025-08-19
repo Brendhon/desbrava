@@ -99,7 +99,7 @@ const styles = {
   userDetails: "space-y-1",
   welcome: "text-3xl md:text-4xl font-bold text-parchment-white",
   subtitle: "text-lg text-mist-gray",
-  logoutButton: "flex items-center gap-2 bg-slate-dark text-parchment-white px-4 py-2 rounded-lg hover:bg-slate-dark/80 transition-colors",
+  logoutButton: "flex items-center gap-2 bg-slate-dark text-parchment-white px-4 py-2 rounded-lg hover:bg-slate-dark/60 transition-colors cursor-pointer",
   logoutIcon: "w-4 h-4",
   content: "space-y-8",
   statsGrid: "grid grid-cols-1 md:grid-cols-2 gap-6",

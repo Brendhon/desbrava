@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 
 interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
-  variant?: 'default' | 'primary' | 'secondary';
   showText?: boolean;
   className?: string;
 }

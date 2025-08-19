@@ -20,7 +20,7 @@ export default function Home() {
   };
 
   // Shows loading while checking the session
-  if (isLoading) return <LoadingSpinner size="lg" variant="default" />;
+  if (isLoading) return <LoadingSpinner size="lg" />;
 
   // If already authenticated, show nothing (will be redirected)
   if (isAuthenticated) return null;

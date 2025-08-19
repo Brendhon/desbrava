@@ -1,6 +1,7 @@
 'use client';
 
 import { useAuth } from '@/hooks/useAuth';
+import LoadingSpinner from '../ui/LoadingSpinner';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -8,31 +9,18 @@ interface ProtectedRouteProps {
 }
 
 export function ProtectedRoute({ children, fallback }: ProtectedRouteProps) {
+  // Get auth state from hook
   const { isLoading, isAuthenticated, redirectIfNotAuthenticated } = useAuth();
 
   // Redirect unauthenticated users
   redirectIfNotAuthenticated();
 
   // Show loading while checking session
-  if (isLoading) {
-    return (
-      <div className={styles.loadingContainer}>
-        <div className={styles.loadingSpinner}></div>
-        <p className={styles.loadingText}>Checking authentication...</p>
-      </div>
-    );
-  }
+  if (isLoading) return <LoadingSpinner size="lg" />;
 
   // If not authenticated, show fallback or nothing (will be redirected)
-  if (!isAuthenticated) {
-    return fallback || null;
-  }
+  if (!isAuthenticated) return fallback || null;
 
+  // If authenticated, show children
   return <>{children}</>;
-}
-
-const styles = {
-  loadingContainer: "flex flex-col items-center justify-center min-h-screen",
-  loadingSpinner: "w-8 h-8 border-4 border-royal-purple border-t-transparent rounded-full animate-spin mb-4",
-  loadingText: "text-parchment-white text-lg",
 }
