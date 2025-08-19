@@ -41,7 +41,7 @@ const DatePicker = ({
   helperText,
   className = '',
   id,
-  placeholder = 'dd/MM/aaaa',
+  placeholder = 'dd/mm/aaaa',
   disabled = false,
   popupPosition = 'bottom',
 }: DatePickerProps) => {
