@@ -2,7 +2,7 @@ import { Country } from "./country";
 
 export interface Trip {
   id: string;
-  userId: string;
+  user: string;
   name: string;
   description: string;
   startDate: string;
@@ -13,7 +13,7 @@ export interface Trip {
 }
 
 export interface CreateTripData {
-  userId: string;
+  user: string;
   name: string;
   description: string;
   startDate: string;
