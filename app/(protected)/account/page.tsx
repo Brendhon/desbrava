@@ -3,6 +3,7 @@
 import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
 import { Shield, Calendar, Trash2, LogOut, ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui';
 
 export default function AccountPage() {
   const { session, logout } = useAuth();
@@ -82,24 +83,24 @@ export default function AccountPage() {
 
             <div className={styles.integrationActions}>
               {!isCalendarConnected ? (
-                <button
+                <Button
                   onClick={handleGoogleCalendarConnect}
-                  className={styles.connectButton}
+                  variant="primary"
+                  icon={Calendar}
+                  externalIcon={ExternalLink}
                   aria-label="Conectar com Google Calendar"
                 >
-                  <Calendar className={styles.buttonIcon} aria-hidden="true" />
                   Conectar Google Calendar
-                  <ExternalLink className={styles.externalIcon} aria-hidden="true" />
-                </button>
+                </Button>
               ) : (
-                <button
+                <Button
                   onClick={handleGoogleCalendarDisconnect}
-                  className={styles.disconnectButton}
+                  variant="secondary"
+                  icon={Calendar}
                   aria-label="Desconectar do Google Calendar"
                 >
-                  <Calendar className={styles.buttonIcon} aria-hidden="true" />
                   Desconectar
-                </button>
+                </Button>
               )}
             </div>
           </div>
@@ -127,15 +128,15 @@ export default function AccountPage() {
               </div>
             </div>
 
-            <button
+            <Button
               onClick={handleClearAccountData}
               disabled={isClearingData}
-              className={styles.clearDataButton}
+              variant="danger"
+              icon={Trash2}
               aria-label="Limpar todos os dados da conta"
             >
-              <Trash2 className={styles.buttonIcon} aria-hidden="true" />
               {isClearingData ? 'Limpando...' : 'Limpar Dados da Conta'}
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -179,14 +180,15 @@ export default function AccountPage() {
             <p className={styles.logoutDescription}>
               Você será redirecionado para a página inicial
             </p>
-            <button
+            <Button
               onClick={logout}
-              className={styles.logoutButton}
+              variant="danger"
+              icon={LogOut}
               aria-label="Sair da conta"
+              className="mx-auto"
             >
-              <LogOut className={styles.logoutButtonIcon} aria-hidden="true" />
               Sair
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -212,17 +214,13 @@ const styles = {
   statusConnected: "inline-block text-green-400 text-sm font-medium mb-2",
   statusText: "text-green-300 text-sm",
   integrationActions: "flex",
-  connectButton: "cursor-pointer bg-royal-purple text-parchment-white px-6 py-3 rounded-lg hover:bg-royal-purple/80 transition-colors font-medium flex items-center gap-2",
-  disconnectButton: "bg-midnight-blue text-parchment-white px-6 py-3 rounded-lg hover:bg-slate-dark/80 transition-colors font-medium flex items-center gap-2 border border-slate-dark/20",
-  buttonIcon: "w-5 h-5",
-  externalIcon: "w-4 h-4",
   dataContent: "space-y-6",
   dataInfo: "space-y-3",
   dataTitle: "text-lg font-medium text-parchment-white",
   dataDescription: "text-mist-gray",
   dataWarning: "mt-4 p-4 bg-red-900/20 border border-red-500/30 rounded-lg",
   warningText: "text-red-300 text-sm",
-  clearDataButton: "cursor-pointer bg-red-700 text-parchment-white px-6 py-3 rounded-lg hover:bg-red-800 transition-colors font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed",
+
   securityContent: "space-y-4",
   securityItem: "flex items-center justify-between p-4 bg-midnight-blue rounded-lg",
   securityTitle: "text-parchment-white font-medium",
@@ -231,6 +229,5 @@ const styles = {
   logoutContent: "text-center",
   logoutTitle: "text-xl font-semibold text-parchment-white mb-4",
   logoutDescription: "text-mist-gray mb-6",
-  logoutButton: "cursor-pointer bg-red-700 text-parchment-white px-6 py-3 rounded-lg hover:bg-red-800 transition-colors font-medium flex items-center gap-2 mx-auto",
-  logoutButtonIcon: "w-5 h-5",
+
 };
