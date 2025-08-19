@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes } from 'react';
+import { forwardRef, InputHTMLAttributes, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { LucideIcon } from 'lucide-react';
 
@@ -34,10 +34,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
+    // Memoized input ID to prevent recreation on every render
+    const inputId = useMemo(() => 
+      id || `input-${Math.random().toString(36).substr(2, 9)}`, 
+      [id]
+    );
 
-    // Aplicar padding baseado na presença e posição do ícone
-    const getPaddingStyles = () => {
+    // Memoized padding styles based on icon presence and position
+    const paddingStyles = useMemo(() => {
       if (!Icon) return '';
       
       if (iconPosition === 'left') {
@@ -47,18 +51,30 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       }
       
       return '';
-    };
+    }, [Icon, iconPosition]);
 
-    const inputStyles = [
-      'form-input-base',
-      `form-input-size-${size}`,
-      `form-input-variant-${variant}`,
-      getPaddingStyles(),
-      error && 'form-input-variant-error',
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ');
+    // Memoized input styles to prevent recalculation on every render
+    const inputStyles = useMemo(() => {
+      return [
+        'form-input-base',
+        `form-input-size-${size}`,
+        `form-input-variant-${variant}`,
+        paddingStyles,
+        error && 'form-input-variant-error',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ');
+    }, [size, variant, paddingStyles, error, className]);
+
+    // Memoized icon styles to prevent string recreation on every render
+    const iconStyles = useMemo(() => {
+      return [
+        'form-input-icon-container',
+        `form-input-icon-${size}`,
+        iconPosition === 'left' ? 'form-input-icon-left' : 'form-input-icon-right'
+      ].join(' ');
+    }, [size, iconPosition]);
 
     return (
       <div className="w-full">
@@ -71,9 +87,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <div className="relative">
           {Icon && (
             <Icon
-              className={`form-input-icon-container form-input-icon-${size} ${
-                iconPosition === 'left' ? 'form-input-icon-left' : 'form-input-icon-right'
-              }`}
+              className={iconStyles}
               aria-hidden="true"
             />
           )}

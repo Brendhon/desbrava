@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { DayPicker } from 'react-day-picker';
 import { format, parse, isValid } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -40,18 +40,56 @@ const DatePicker = ({
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Formatters
-  const formatCaption = (month: Date) => format(month, 'MMMM yyyy', { locale: ptBR });
+  // Memoized formatters
+  const formatCaption = useCallback((month: Date) => 
+    format(month, 'MMMM yyyy', { locale: ptBR }), 
+    []
+  );
 
-  const formatInputDate = (date: Date): string => format(date, 'dd/MM/yyyy');
+  const formatInputDate = useCallback((date: Date): string => 
+    format(date, 'dd/MM/yyyy'), 
+    []
+  );
 
-  const parseInputDate = (input: string): Date | undefined => {
+  const parseInputDate = useCallback((input: string): Date | undefined => {
     const parsed = parse(input, 'dd/MM/yyyy', new Date());
     return isValid(parsed) ? parsed : undefined;
-  };
+  }, []);
+
+  // Memoized input ID to prevent recreation on every render
+  const inputId = useMemo(() => 
+    id || `datepicker-${Math.random().toString(36).substr(2, 9)}`, 
+    [id]
+  );
+
+  // Memoized styles to prevent recalculation on every render
+  const inputStyles = useMemo(() => {
+    const baseStyles = [
+      'form-input-base',
+      `form-input-size-${size}`,
+      `form-input-variant-${error ? 'error' : variant}`,
+      'form-input-padding-right-icon',
+      'cursor-pointer',
+      disabled && 'opacity-50 cursor-not-allowed',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    return baseStyles;
+  }, [size, error, variant, disabled, className]);
+
+  const iconStyles = useMemo(() => {
+    return [
+      'form-input-icon-container',
+      'form-input-icon-right',
+      `form-input-icon-size-${size}`,
+      'cursor-pointer',
+    ].join(' ');
+  }, [size]);
 
   // Update input when date is selected
-  const handleDateSelect = (date: Date | undefined) => {
+  const handleDateSelect = useCallback((date: Date | undefined) => {
     if (date) {
       const formattedDate = formatInputDate(date);
       setInputValue(formattedDate);
@@ -69,10 +107,10 @@ const DatePicker = ({
       
       setIsOpen(false);
     }
-  };
+  }, [register, formatInputDate]);
 
   // Update input when input is typed
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setInputValue(newValue);
     
@@ -98,14 +136,37 @@ const DatePicker = ({
     if (register?.onChange) {
       register.onChange(e);
     }
-  };
+  }, [register, parseInputDate]);
 
   // Handle input blur for React Hook Form
-  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleInputBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
     if (register?.onBlur) {
       register.onBlur(e);
     }
-  };
+  }, [register]);
+
+  // Handle input focus to open calendar
+  const handleInputFocus = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  // Handle button click to toggle calendar
+  const handleButtonClick = useCallback(() => {
+    if (!disabled) {
+      setIsOpen(!isOpen);
+    }
+  }, [disabled, isOpen]);
+
+  // Memoized default month for DayPicker
+  const defaultMonth = useMemo(() => 
+    selectedDate ? new Date(selectedDate) : new Date(), 
+    [selectedDate]
+  );
+
+  // Memoized formatters object for DayPicker
+  const formatters = useMemo(() => ({
+    formatCaption
+  }), [formatCaption]);
 
   // Close popup when clicking outside
   useEffect(() => {
@@ -118,33 +179,6 @@ const DatePicker = ({
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
-  const inputId = id || `datepicker-${Math.random().toString(36).substr(2, 9)}`;
-
-  const getInputStyles = () => {
-    const baseStyles = [
-      'form-input-base',
-      `form-input-size-${size}`,
-      `form-input-variant-${error ? 'error' : variant}`,
-      'form-input-padding-right-icon',
-      'cursor-pointer',
-      disabled && 'opacity-50 cursor-not-allowed',
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    return baseStyles;
-  };
-
-  const getIconStyles = () => {
-    return [
-      'form-input-icon-container',
-      'form-input-icon-right',
-      `form-input-icon-size-${size}`,
-      'cursor-pointer',
-    ].join(' ');
-  };
 
   return (
     <div className="datepicker-container" ref={containerRef}>
@@ -162,17 +196,17 @@ const DatePicker = ({
           value={inputValue}
           onChange={handleInputChange}
           onBlur={handleInputBlur}
-          onFocus={() => setIsOpen(true)}
+          onFocus={handleInputFocus}
           placeholder={placeholder}
-          className={getInputStyles()}
+          className={inputStyles}
           disabled={disabled}
           name={register?.name}
         />
         
         <button
           type="button"
-          onClick={() => !disabled && setIsOpen(!isOpen)}
-          className={getIconStyles()}
+          onClick={handleButtonClick}
+          className={iconStyles}
           disabled={disabled}
           aria-label="Abrir calendário"
         >
@@ -186,10 +220,10 @@ const DatePicker = ({
                 mode="single"
                 selected={selectedDate}
                 onSelect={handleDateSelect}
-                formatters={{ formatCaption }}
+                formatters={formatters}
                 locale={ptBR}
                 lang='pt-BR'
-                defaultMonth={selectedDate ? new Date(selectedDate) : new Date()}
+                defaultMonth={defaultMonth}
                 timeZone='America/Sao_Paulo'
                 showOutsideDays={true}
                 fixedWeeks={true}
