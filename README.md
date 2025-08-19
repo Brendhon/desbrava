@@ -39,14 +39,14 @@ O objetivo é permitir que o usuário crie uma viagem, adicione um ponto de refe
 
 ## ✨ Features
 
--   [ ] **Autenticação Segura com Google:** Login rápido e seguro utilizando NextAuth.js.
--   [ ] **Criação de Viagens:** Fluxo simplificado em etapas para criar uma nova viagem, selecionando o país e as datas.
--   [ ] **Dashboard Pessoal:** Visualize todas as suas viagens (passadas, presentes e futuras) em um só lugar.
--   [ ] **Detalhes da Viagem:** Página dedicada para cada viagem, servindo como hub central do planejamento.
--   [ ] **Adição de Ponto de Referência:** Use o Google Places para definir um endereço principal (hotel, etc.) e obter coordenadas.
--   [ ] **Criação de Atividades Manuais:** Adicione qualquer tipo de atividade ao seu roteiro com um sistema de categorização (Transporte, Hospedagem, Alimentação, etc.).
--   [ ] **Sugestões de Atividades:** Com base no seu ponto de referência, receba sugestões de restaurantes, pontos turísticos e mais.
--   [ ] **Visualização em Calendário:** Veja seu roteiro em um layout de calendário interativo.
+- [ ] **Autenticação Segura com Google:** Login rápido e seguro utilizando NextAuth.js.
+- [ ] **Criação de Viagens:** Fluxo simplificado em etapas para criar uma nova viagem, selecionando o país e as datas.
+- [ ] **Dashboard Pessoal:** Visualize todas as suas viagens (passadas, presentes e futuras) em um só lugar.
+- [ ] **Detalhes da Viagem:** Página dedicada para cada viagem, servindo como hub central do planejamento.
+- [ ] **Adição de Ponto de Referência:** Use o Google Places para definir um endereço principal (hotel, etc.) e obter coordenadas.
+- [ ] **Criação de Atividades Manuais:** Adicione qualquer tipo de atividade ao seu roteiro com um sistema de categorização (Transporte, Hospedagem, Alimentação, etc.).
+- [ ] **Sugestões de Atividades:** Com base no seu ponto de referência, receba sugestões de restaurantes, pontos turísticos e mais.
+- [ ] **Visualização em Calendário:** Veja seu roteiro em um layout de calendário interativo.
 
 ---
 
@@ -54,28 +54,28 @@ O objetivo é permitir que o usuário crie uma viagem, adicione um ponto de refe
 
 O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um tema escuro que remete à exploração e aventura. A paleta de cores "Diário de Explorador" foi escolhida para ser moderna e funcional.
 
-| Nome Sugerido | HEX Code | Uso Principal |
-| :--- | :--- | :--- |
-| **Azul Meia-Noite** | `#0D1B2A` | Fundo principal da aplicação. |
-| **Ardósia Escuro** | `#1B263B` | Fundo para cards e modais. |
-| **Branco Pergaminho** | `#E0E1DD` | Textos principais e títulos. |
-| **Cinza Névoa** | `#A9B4C2` | Textos secundários e ícones. |
-| **Roxo Real** | `#8443A4` | Logo, destaques, botões e links. |
+| Nome Sugerido         | HEX Code  | Uso Principal                    |
+| :-------------------- | :-------- | :------------------------------- |
+| **Azul Meia-Noite**   | `#0D1B2A` | Fundo principal da aplicação.    |
+| **Ardósia Escuro**    | `#1B263B` | Fundo para cards e modais.       |
+| **Branco Pergaminho** | `#E0E1DD` | Textos principais e títulos.     |
+| **Cinza Névoa**       | `#A9B4C2` | Textos secundários e ícones.     |
+| **Roxo Real**         | `#8443A4` | Logo, destaques, botões e links. |
 
 ---
 
 ## 🚀 Tecnologias Utilizadas
 
--   **Next.js:** Framework React para renderização no servidor (SSR) e uma estrutura robusta.
--   **React:** Biblioteca para construção da interface de usuário.
--   **TypeScript:** Para adicionar tipagem estática e aumentar a segurança do código.
--   **Tailwind CSS:** Framework CSS utilitário para estilização rápida e responsiva.
--   **Lucide Icons:** Biblioteca de ícones open-source e customizável.
--   **Firebase:** Utilizado como Backend as a Service (BaaS) para:
-    -   **Authentication:** Gerenciamento de usuários com o provedor do Google.
-    -   **Firestore:** Banco de dados NoSQL para armazenar dados de viagens e atividades.
--   **NextAuth.js:** Solução completa de autenticação para aplicações Next.js.
--   **Google Places API:** Para busca e sugestão de locais.
+- **Next.js:** Framework React para renderização no servidor (SSR) e uma estrutura robusta.
+- **React:** Biblioteca para construção da interface de usuário.
+- **TypeScript:** Para adicionar tipagem estática e aumentar a segurança do código.
+- **Tailwind CSS:** Framework CSS utilitário para estilização rápida e responsiva.
+- **Lucide Icons:** Biblioteca de ícones open-source e customizável.
+- **Firebase:** Utilizado como Backend as a Service (BaaS) para:
+  - **Authentication:** Gerenciamento de usuários com o provedor do Google.
+  - **Firestore:** Banco de dados NoSQL para armazenar dados de viagens e atividades.
+- **NextAuth.js:** Solução completa de autenticação para aplicações Next.js.
+- **Google Places API:** Para busca e sugestão de locais.
 
 ---
 
@@ -83,25 +83,28 @@ O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um
 
 ### Pré-requisitos
 
--   Node.js (v22 ou superior)
--   Git
--   npm
+- Node.js (v22 ou superior)
+- Git
+- npm
 
 ### Configuração do Ambiente
 
 1.  **Clone o repositório:**
+
     ```bash
     git clone [git@github.com:Brendhon/desbrava.git](git@github.com:Brendhon/desbrava.git)
     cd desbrava
     ```
 
 2.  **Instale as dependências:**
+
     ```bash
     npm install
     ```
 
 3.  **Configure as variáveis de ambiente:**
     Crie um arquivo `.env` na raiz e preencha com suas chaves:
+
     ```env
     # NextAuth.js - Gerado com 'openssl rand -base64 32' no terminal
     NEXTAUTH_SECRET=

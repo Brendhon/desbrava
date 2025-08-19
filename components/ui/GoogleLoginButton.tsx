@@ -5,7 +5,10 @@ interface GoogleLoginButtonProps {
   isLoading?: boolean;
 }
 
-export default function GoogleLoginButton({ onClick, isLoading = false }: GoogleLoginButtonProps) {
+export default function GoogleLoginButton({
+  onClick,
+  isLoading = false,
+}: GoogleLoginButtonProps) {
   return (
     <button
       onClick={onClick}
@@ -44,7 +47,7 @@ const styles = {
     focus:ring-2 
     focus:ring-royal-purple/20
   `,
-  iconContainer: "flex-shrink-0",
-  icon: "rounded-sm",
-  text: "font-medium text-sm",
+  iconContainer: 'flex-shrink-0',
+  icon: 'rounded-sm',
+  text: 'font-medium text-sm',
 };

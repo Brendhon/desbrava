@@ -8,15 +8,14 @@ export default function Home() {
 
   const handleGoogleLogin = async () => {
     setIsLoading(true);
-    
+
     try {
       // TODO: Implementar autenticação com Google
       // Por enquanto, apenas simula um delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       console.log('Login com Google iniciado');
       // Aqui será implementada a lógica de autenticação
-      
     } catch (error) {
       console.error('Erro no login:', error);
     } finally {
@@ -25,11 +24,8 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-midnight-blue">
-      <HeroSection 
-        onGoogleLogin={handleGoogleLogin}
-        isLoading={isLoading}
-      />
+    <main className="bg-midnight-blue min-h-screen">
+      <HeroSection onGoogleLogin={handleGoogleLogin} isLoading={isLoading} />
     </main>
   );
 }

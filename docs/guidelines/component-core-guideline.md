@@ -33,6 +33,7 @@ A unified guide for creating components in the Desbrava project, covering compon
 This example combines several core concepts. A **Server Component** (`TripPage`) fetches data and passes it to a **Client Component** (`TripDetails`), which manages its own state, uses an accessible button, and lazy-loads a map.
 
 ### Server Component
+
 ```tsx
 // app/trips/[id]/page.tsx
 import { getTrip } from '@/lib/data';
@@ -53,6 +54,7 @@ export default async function TripPage({ params }) {
 ```
 
 ### Client Component
+
 ```tsx
 // components/TripDetails.tsx
 'use client';
@@ -74,9 +76,9 @@ export function TripDetails({ trip }) {
     <div>
       <h2>{trip.title}</h2>
       <p>{trip.destination}</p>
-      
-      <button 
-        onClick={() => setShowMap(!showMap)} 
+
+      <button
+        onClick={() => setShowMap(!showMap)}
         className={styles.button}
         // 5. Add ARIA label for accessibility
         aria-label="Toggle map view"
@@ -91,8 +93,9 @@ export function TripDetails({ trip }) {
 }
 
 const styles = {
-  button: "flex items-center gap-2 bg-royal-purple text-parchment-white px-4 py-2 rounded-md",
-  icon: "w-5 h-5"
+  button:
+    'flex items-center gap-2 bg-royal-purple text-parchment-white px-4 py-2 rounded-md',
+  icon: 'w-5 h-5',
 };
 ```
 

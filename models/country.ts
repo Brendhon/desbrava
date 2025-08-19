@@ -11,12 +11,12 @@ export interface Country {
 }
 
 export enum Continent {
-  AméricaDoNorte = "América do Norte",
-  AméricaDoSul = "América do Sul",
-  Europa = "Europa",
-  Oceania = "Oceania",
-  Outro = "Outro",
-  Vários = "Vários",
-  África = "África",
-  Ásia = "Ásia",
+  AméricaDoNorte = 'América do Norte',
+  AméricaDoSul = 'América do Sul',
+  Europa = 'Europa',
+  Oceania = 'Oceania',
+  Outro = 'Outro',
+  Vários = 'Vários',
+  África = 'África',
+  Ásia = 'Ásia',
 }
