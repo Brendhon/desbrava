@@ -17,14 +17,13 @@ interface TripListProps {
 
 export default function TripList({ trips, loading = false, onEdit, onDelete }: TripListProps) {
   const [statusFilter, setStatusFilter] = useState<'all' | 'past' | 'active' | 'future'>('all');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
   // Filter and sort trips
   const filteredTrips = statusFilter === 'all' 
     ? trips 
     : filterTripsByStatus(trips, statusFilter);
   
-  const sortedTrips = sortTripsByDate(filteredTrips, sortOrder);
+  const sortedTrips = sortTripsByDate(filteredTrips, 'desc');
 
   const getStatusCount = (status: string) => {
     if (status === 'all') return trips.length;
