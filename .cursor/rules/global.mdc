@@ -35,7 +35,6 @@ You are a specialist in TypeScript, Next.js, React, and web application developm
 - Use Tailwind's built-in animations
 - Define `styles` constant at the end of each component
 - Reference styles via `styles` object, not inline classes
-- No custom CSS files or global styles
 
 ## 📚 Documentation
 - Create documentation only for reusable components

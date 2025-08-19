@@ -8,7 +8,6 @@ How to style components in the Desbrava project using Tailwind CSS.
 
 ### 1. Use Only Tailwind CSS
 
-- No custom CSS files
 - No inline styles
 - Only Tailwind utility classes
 
