@@ -1,35 +1,45 @@
 'use client';
 
-import { useState } from 'react';
+import { useAuth } from '@/hooks/useAuth';
 import HeroSection from '@/components/ui/HeroSection';
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
+  const { isAuthenticated, isLoading, login, redirectIfAuthenticated } = useAuth();
+
+  // Redireciona usuários autenticados para o dashboard
+  redirectIfAuthenticated();
 
   const handleGoogleLogin = async () => {
-    setIsLoading(true);
-
-    try {
-      // TODO: Implementar autenticação com Google
-      // Por enquanto, apenas simula um delay
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      console.log('Login com Google iniciado');
-      // Aqui será implementada a lógica de autenticação
-    } catch (error) {
-      console.error('Erro no login:', error);
-    } finally {
-      setIsLoading(false);
-    }
+    await login('google');
   };
+
+  // Mostra loading enquanto verifica a sessão
+  if (isLoading) {
+    return (
+      <main className={styles.main}>
+        <div className={styles.loadingContainer}>
+          <div className={styles.loadingSpinner}></div>
+          <p className={styles.loadingText}>Carregando...</p>
+        </div>
+      </main>
+    );
+  }
+
+  // Se já estiver autenticado, não mostra nada (será redirecionado)
+  if (isAuthenticated) {
+    return null;
+  }
 
   return (
     <main className={styles.main}>
-      <HeroSection onGoogleLogin={handleGoogleLogin} isLoading={isLoading} />
+      <HeroSection onGoogleLogin={handleGoogleLogin} isLoading={false} />
     </main>
   );
 }
 
 const styles = {
   main: "bg-midnight-blue min-h-screen",
+  loadingContainer: "flex flex-col items-center justify-center min-h-screen",
+  loadingSpinner: "w-8 h-8 border-4 border-royal-purple border-t-transparent rounded-full animate-spin mb-4",
+  loadingText: "text-parchment-white text-lg",
 }

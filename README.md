@@ -19,9 +19,14 @@
 - [✨ Features](#-features)
 - [🎨 Layout e Paleta de Cores](#-layout-e-paleta-de-cores)
 - [🚀 Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [🔐 Processo de Autenticação](#-processo-de-autenticação)
+  - [Como Funciona o Login](#como-funciona-o-login)
+  - [Fluxo de Telas](#fluxo-de-telas)
+  - [Estrutura de Autenticação](#estrutura-de-autenticação)
 - [👨‍💻 Como Executar](#-como-executar)
   - [Pré-requisitos](#pré-requisitos)
   - [Configuração do Ambiente](#configuração-do-ambiente)
+  - [Configuração do Google OAuth](#configuração-do-google-oauth)
   - [Rodando a Aplicação](#rodando-a-aplicação)
 - [🤝 Como Contribuir](#-como-contribuir)
 - [📝 Licença](#-licença)
@@ -39,7 +44,7 @@ O objetivo é permitir que o usuário crie uma viagem, adicione um ponto de refe
 
 ## ✨ Features
 
-- [ ] **Autenticação Segura com Google:** Login rápido e seguro utilizando NextAuth.js.
+- [x] **Autenticação Segura com Google:** Login rápido e seguro utilizando NextAuth.js.
 - [ ] **Criação de Viagens:** Fluxo simplificado em etapas para criar uma nova viagem, selecionando o país e as datas.
 - [ ] **Dashboard Pessoal:** Visualize todas as suas viagens (passadas, presentes e futuras) em um só lugar.
 - [ ] **Detalhes da Viagem:** Página dedicada para cada viagem, servindo como hub central do planejamento.
@@ -77,6 +82,43 @@ O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um
 - **NextAuth.js:** Solução completa de autenticação para aplicações Next.js.
 - **Google Places API:** Para busca e sugestão de locais.
 
+## 🔐 Processo de Autenticação
+
+### Como Funciona o Login
+
+O sistema de autenticação do Desbrava utiliza NextAuth.js com Google OAuth para proporcionar uma experiência de login simples e segura:
+
+1. **Página Inicial**: Usuário acessa a aplicação e vê o botão "Entrar com Google"
+2. **Autenticação Google**: Ao clicar, é redirecionado para a tela de login do Google
+3. **Autorização**: Usuário autoriza o acesso aos dados básicos da conta Google
+4. **Redirecionamento**: Após login bem-sucedido, é automaticamente redirecionado para `/dashboard`
+5. **Dashboard Protegido**: A rota `/dashboard` só é acessível para usuários autenticados
+6. **Sessão Persistente**: A sessão é mantida automaticamente pelo NextAuth.js
+
+### Fluxo de Telas
+
+```
+Página Inicial → Login Google → Dashboard (Protegido)
+     ↓              ↓              ↓
+Botão "Entrar" → Autorização → Lista de Viagens
+```
+
+### Estrutura de Autenticação
+
+```
+├── auth.ts                           # Configuração principal do NextAuth
+├── middleware.ts                     # Middleware para proteção de rotas
+├── app/
+│   ├── api/auth/[...nextauth]/
+│   │   └── route.ts                 # API route para NextAuth
+│   ├── dashboard/
+│   │   └── page.tsx                 # Página protegida do dashboard
+│   └── layout.tsx                   # Layout com SessionProvider
+└── components/
+    └── providers/
+        └── SessionProvider.tsx       # Provider de sessão
+```
+
 ---
 
 ## 👨‍💻 Como Executar
@@ -103,17 +145,17 @@ O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um
     ```
 
 3.  **Configure as variáveis de ambiente:**
-    Crie um arquivo `.env` na raiz e preencha com suas chaves:
+    Crie um arquivo `.env.local` na raiz e preencha com suas chaves:
 
     ```env
     # NextAuth.js - Gerado com 'openssl rand -base64 32' no terminal
-    NEXTAUTH_SECRET=
+    NEXTAUTH_SECRET=your-nextauth-secret-key
     NEXTAUTH_URL=http://localhost:3000
 
     # NextAuth.js - Credenciais do Provedor Google
     # Obtenha no console do Google Cloud
-    GOOGLE_CLIENT_ID=
-    GOOGLE_CLIENT_SECRET=
+    GOOGLE_CLIENT_ID=your-google-client-id
+    GOOGLE_CLIENT_SECRET=your-google-client-secret
 
     # Firebase - Configurações do seu projeto
     # Obtenha no console do Firebase
@@ -128,6 +170,19 @@ O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um
     # Habilite a "Places API" no console do Google Cloud
     NEXT_PUBLIC_GOOGLE_PLACES_API_KEY=
     ```
+
+### Configuração do Google OAuth
+
+Para que a autenticação funcione, você precisa configurar o Google OAuth:
+
+1. Acesse [Google Cloud Console](https://console.cloud.google.com/)
+2. Crie um novo projeto ou selecione um existente
+3. Ative a API do Google+
+4. Vá para "Credenciais" > "Criar credenciais" > "ID do cliente OAuth 2.0"
+5. Configure as URIs de redirecionamento autorizadas:
+   - `http://localhost:3000/api/auth/callback/google` (desenvolvimento)
+   - `https://seu-dominio.com/api/auth/callback/google` (produção)
+6. Copie o Client ID e Client Secret para o arquivo `.env.local`
 
 ### Rodando a Aplicação
 
