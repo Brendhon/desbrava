@@ -8,10 +8,14 @@ export default function ProtectedLayout({
 }) {
   return (
     <ProtectedRoute>
-      <div className="min-h-screen bg-midnight-blue">
+      <div className="bg-midnight-blue">
         <Navigation />
-        <main> {children} </main>
+        <main className={styles.main}> {children} </main>
       </div>
     </ProtectedRoute>
   );
 }
+
+const styles = {
+  main: 'mt-20',
+};

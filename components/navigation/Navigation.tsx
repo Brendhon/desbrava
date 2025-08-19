@@ -51,7 +51,7 @@ export function Navigation() {
 }
 
 const styles = {
-  nav: "bg-slate-dark border-b border-parchment-white/30",
+  nav: "bg-slate-dark border-b border-parchment-white/30 fixed top-0 left-0 right-0 z-50",
   container: "w-full mx-auto px-4 sm:px-6 lg:px-8",
   navContent: "flex justify-between items-center h-18",
   logo: "flex items-center gap-2 text-xl font-bold text-parchment-white hover:opacity-80 transition-opacity",
