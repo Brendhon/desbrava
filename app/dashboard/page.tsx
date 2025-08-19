@@ -97,7 +97,7 @@ const styles = {
   avatarImage: "w-16 h-16 rounded-full object-cover",
   avatarIcon: "w-8 h-8 text-parchment-white",
   userDetails: "space-y-1",
-  welcome: "text-3xl md:text-4xl font-bold text-parchment-white",
+  welcome: "text-2xl md:text-3xl font-bold text-parchment-white",
   subtitle: "text-lg text-mist-gray",
   logoutButton: "flex items-center gap-2 bg-slate-dark text-parchment-white px-4 py-2 rounded-lg hover:bg-slate-dark/60 transition-colors cursor-pointer",
   logoutIcon: "w-4 h-4",
