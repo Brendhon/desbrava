@@ -82,7 +82,7 @@ export default function TripCard({ trip, onEdit, onDelete }: TripCardProps) {
         </div>
       </div>
 
-      <p className={styles.description}>{trip.description}</p>
+      <p className={styles.description} title={trip.description}>{trip.description || 'Sem descrição' }</p>
 
       <div className={styles.details}>
         <div className={styles.detailItem}>
@@ -122,7 +122,7 @@ const styles = {
   actions: 'flex items-center gap-2',
   actionButton: 'p-2 text-mist-gray hover:text-parchment-white transition-colors duration-200',
   actionIcon: 'w-4 h-4',
-  description: 'text-mist-gray mb-4 line-clamp-2',
+  description: 'text-mist-gray mb-4 line-clamp-2 text-sm text-ellipsis overflow-hidden whitespace-nowrap',
   details: 'space-y-2 mb-4',
   detailItem: 'flex items-center gap-2',
   detailIcon: 'w-4 h-4 text-royal-purple',
