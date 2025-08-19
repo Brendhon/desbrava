@@ -36,54 +36,25 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
 
-    const baseStyles =
-      'w-full transition-colors duration-200 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-midnight-blue';
-
-    const sizeStyles = {
-      sm: 'px-3 py-2 text-sm',
-      md: 'px-4 py-3 text-base',
-      lg: 'px-5 py-4 text-lg',
-    };
-
-    const variantStyles = {
-      default:
-        'border-slate-dark/20 bg-slate-dark text-parchment-white placeholder-mist-gray focus:ring-royal-purple focus:border-royal-purple',
-      error:
-        'border-red-500 bg-slate-dark text-parchment-white placeholder-mist-gray focus:ring-red-500 focus:border-red-500',
-      success:
-        'border-green-500 bg-slate-dark text-parchment-white placeholder-mist-gray focus:ring-green-500 focus:border-green-500',
-    };
-
-    const iconStyles = {
-      sm: 'w-4 h-4',
-      md: 'w-5 h-5',
-      lg: 'w-6 h-6',
-    };
-
     // Aplicar padding baseado na presença e posição do ícone
     const getPaddingStyles = () => {
       if (!Icon) return '';
       
       if (iconPosition === 'left') {
-        return 'pl-12 pr-4';
+        return 'form-input-padding-left-icon';
       } else if (iconPosition === 'right') {
-        return 'pl-4 pr-12';
+        return 'form-input-padding-right-icon';
       }
       
       return '';
     };
 
-    const labelStyles = 'block text-sm font-medium text-parchment-white mb-2';
-    const errorStyles = 'mt-2 text-sm text-red-400';
-    const helperTextStyles = 'mt-2 text-sm text-mist-gray';
-    const iconContainerStyles = 'absolute top-1/2 transform -translate-y-1/2 text-mist-gray';
-
     const inputStyles = [
-      baseStyles,
-      sizeStyles[size],
-      variantStyles[variant],
+      'form-input-base',
+      `form-input-size-${size}`,
+      `form-input-variant-${variant}`,
       getPaddingStyles(),
-      error && 'border-red-500 focus:ring-red-500 focus:border-red-500',
+      error && 'form-input-variant-error',
       className,
     ]
       .filter(Boolean)
@@ -92,7 +63,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={inputId} className={labelStyles}>
+          <label htmlFor={inputId} className="form-label">
             {label}
           </label>
         )}
@@ -100,8 +71,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <div className="relative">
           {Icon && (
             <Icon
-              className={`${iconContainerStyles} ${iconStyles[size]} ${
-                iconPosition === 'left' ? 'left-3' : 'right-3'
+              className={`form-input-icon-container form-input-icon-${size} ${
+                iconPosition === 'left' ? 'form-input-icon-left' : 'form-input-icon-right'
               }`}
               aria-hidden="true"
             />
@@ -117,13 +88,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {error && (
-          <p className={errorStyles} role="alert">
+          <p className="form-error" role="alert">
             {error}
           </p>
         )}
 
         {helperText && !error && (
-          <p className={helperTextStyles}>{helperText}</p>
+          <p className="form-helper-text">{helperText}</p>
         )}
       </div>
     );

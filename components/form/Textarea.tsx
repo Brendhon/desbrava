@@ -28,33 +28,11 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ) => {
     const textareaId = id || `textarea-${Math.random().toString(36).substr(2, 9)}`;
 
-    const baseStyles =
-      'w-full transition-colors duration-200 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-midnight-blue resize-none';
-
-    const sizeStyles = {
-      sm: 'px-3 py-2 text-sm',
-      md: 'px-4 py-3 text-base',
-      lg: 'px-5 py-4 text-lg',
-    };
-
-    const variantStyles = {
-      default:
-        'border-slate-dark/20 bg-slate-dark text-parchment-white placeholder-mist-gray focus:ring-royal-purple focus:border-royal-purple',
-      error:
-        'border-red-500 bg-slate-dark text-parchment-white placeholder-mist-gray focus:ring-red-500 focus:border-red-500',
-      success:
-        'border-green-500 bg-slate-dark text-parchment-white placeholder-mist-gray focus:ring-green-500 focus:border-green-500',
-    };
-
-    const labelStyles = 'block text-sm font-medium text-parchment-white mb-2';
-    const errorStyles = 'mt-2 text-sm text-red-400';
-    const helperTextStyles = 'mt-2 text-sm text-mist-gray';
-
     const textareaStyles = [
-      baseStyles,
-      sizeStyles[size],
-      variantStyles[variant],
-      error && 'border-red-500 focus:ring-red-500 focus:border-red-500',
+      'form-input-base',
+      `form-input-size-${size}`,
+      `form-input-variant-${variant}`,
+      error && 'form-input-variant-error',
       className,
     ]
       .filter(Boolean)
@@ -63,7 +41,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={textareaId} className={labelStyles}>
+          <label htmlFor={textareaId} className="form-label">
             {label}
           </label>
         )}
@@ -77,13 +55,13 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         />
 
         {error && (
-          <p className={errorStyles} role="alert">
+          <p className="form-error" role="alert">
             {error}
           </p>
         )}
 
         {helperText && !error && (
-          <p className={helperTextStyles}>{helperText}</p>
+          <p className="form-helper-text">{helperText}</p>
         )}
       </div>
     );

@@ -13,3 +13,81 @@ body {
   color: #e0e1dd;
   font-family: var(--font-poppins);
 }
+
+/* Form Components Base Styles */
+.form-input-base {
+  @apply w-full transition-colors duration-200 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-midnight-blue bg-midnight-blue;
+}
+
+/* Size Variants */
+.form-input-size-sm {
+  @apply px-3 py-2 text-sm;
+}
+
+.form-input-size-md {
+  @apply px-4 py-3 text-base;
+}
+
+.form-input-size-lg {
+  @apply px-5 py-4 text-lg;
+}
+
+/* Variant Styles */
+.form-input-variant-default {
+  @apply border-slate-dark/20 text-parchment-white placeholder-mist-gray focus:ring-royal-purple focus:border-royal-purple;
+}
+
+.form-input-variant-error {
+  @apply border-red-500 text-parchment-white placeholder-mist-gray focus:ring-red-500 focus:border-red-500;
+}
+
+.form-input-variant-success {
+  @apply border-green-500 text-parchment-white placeholder-mist-gray focus:ring-green-500 focus:border-green-500;
+}
+
+/* Icon Styles */
+.form-input-icon-size-sm {
+  @apply w-4 h-4;
+}
+
+.form-input-icon-size-md {
+  @apply w-5 h-5;
+}
+
+.form-input-icon-size-lg {
+  @apply w-6 h-6;
+}
+
+.form-input-icon-container {
+  @apply absolute top-1/2 transform -translate-y-1/2 text-mist-gray;
+}
+
+.form-input-icon-left {
+  @apply left-3;
+}
+
+.form-input-icon-right {
+  @apply right-3;
+}
+
+/* Padding adjustments for icons */
+.form-input-padding-left-icon {
+  @apply pl-12 pr-4;
+}
+
+.form-input-padding-right-icon {
+  @apply pl-4 pr-12;
+}
+
+/* Label and Text Styles */
+.form-label {
+  @apply block text-sm font-medium text-parchment-white mb-2;
+}
+
+.form-error {
+  @apply mt-2 text-sm text-red-400;
+}
+
+.form-helper-text {
+  @apply mt-2 text-sm text-mist-gray;
+}
