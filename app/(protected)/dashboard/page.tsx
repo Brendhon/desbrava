@@ -21,21 +21,9 @@ export default function DashboardPage() {
     clearError
   } = useTrips();
 
-  const [showSearch, setShowSearch] = useState(false);
-
   useEffect(() => {
     fetchTrips();
   }, [fetchTrips]);
-
-  const handleSearch = (searchTerm: string, filters: any) => {
-    searchTrips(searchTerm, filters);
-    setShowSearch(true);
-  };
-
-  const handleClearSearch = () => {
-    fetchTrips();
-    setShowSearch(false);
-  };
 
   const handleDeleteTrip = async (tripId: string) => {
     if (confirm('Tem certeza que deseja deletar esta viagem?')) {
@@ -64,14 +52,6 @@ export default function DashboardPage() {
         </div>
 
         <div className={styles.headerActions}>
-          <Button
-            variant="secondary"
-            onClick={() => setShowSearch(!showSearch)}
-            className={styles.searchToggle}
-          >
-            {showSearch ? 'Ocultar Busca' : 'Mostrar Busca'}
-          </Button>
-
           <Link href="/trip" aria-label="Criar nova viagem">
             <Button variant="primary" icon={Plus}>
               Nova Viagem
@@ -79,15 +59,6 @@ export default function DashboardPage() {
           </Link>
         </div>
       </div>
-
-      {/* Search Section */}
-      {showSearch && (
-        <TripSearch
-          onSearch={handleSearch}
-          onClear={handleClearSearch}
-          loading={loading}
-        />
-      )}
 
       {/* Error Display */}
       {error && (
@@ -111,7 +82,7 @@ export default function DashboardPage() {
       <div className={styles.tripsSection}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>
-            {showSearch ? 'Resultados da Busca' : 'Suas Viagens'}
+            Suas Viagens
           </h2>
           {trips.length > 0 && (
             <p className={styles.sectionSubtitle}>
@@ -120,7 +91,7 @@ export default function DashboardPage() {
           )}
         </div>
 
-        {trips.length === 0 && !loading && !showSearch ? (
+        {trips.length === 0 && !loading ? (
           <EmptyState />
         ) : (
           <TripList

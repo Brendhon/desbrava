@@ -4,6 +4,7 @@ import Card from '@/components/ui/Card';
 import { Trip } from '@/lib/types/trip';
 import { parsePtBrToDate } from '@/lib/utils/trip';
 import { Calendar, MapPin } from 'lucide-react';
+import { useCallback, useMemo } from 'react';
 
 interface TripStatsProps {
   trips: Trip[];
@@ -14,11 +15,16 @@ export default function TripStats({ trips }: TripStatsProps) {
   const totalTrips = trips.length;
   
   // Find next trip (closest future trip)
-  const now = new Date();
-  const futureTrips = trips.filter(trip => parsePtBrToDate(trip.startDate) > now);
-  const nextTrip = futureTrips.length > 0 
-    ? futureTrips.sort((a, b) => parsePtBrToDate(a.startDate).getTime() - parsePtBrToDate(b.startDate).getTime())[0]
-    : null;
+  const getNextTrip = useCallback((trips: Trip[]) => {
+    const futureTrips = trips.filter(trip => parsePtBrToDate(trip.startDate) >= new Date());
+    if (futureTrips.length === 0) return null;
+    return futureTrips
+      .slice() 
+      .sort((a, b) => parsePtBrToDate(a.startDate).getTime() - parsePtBrToDate(b.startDate).getTime())[0];
+  }, [trips]);
+
+  // Memoize next trip
+  const nextTrip = useMemo(() => getNextTrip(trips), [trips, getNextTrip]);
 
   return (
     <div className={styles.statsGrid}>
