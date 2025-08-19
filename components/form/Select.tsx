@@ -2,6 +2,8 @@ import { forwardRef, SelectHTMLAttributes, useMemo, ReactNode } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { ChevronDown } from 'lucide-react';
 import { SelectOption } from '@/lib/types';
+import { useFormStyles } from '../../hooks/useFormStyles';
+import InputWithIcon from './InputWithIcon';
 
 interface SelectProps
   extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
@@ -44,49 +46,22 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
       [id]
     );
 
-    // Memoized padding styles based on icon presence and position
-    const paddingStyles = useMemo(() => {
-      if (!Icon) return '';
-      
-      if (iconPosition === 'left') {
-        return 'form-input-padding-left-icon';
-      } else if (iconPosition === 'right') {
-        return 'form-input-padding-right-icon';
-      }
-      
-      return '';
-    }, [Icon, iconPosition]);
-
-    // Memoized select styles to prevent recalculation on every render
-    const selectStyles = useMemo(() => {
-      return [
-        'form-input-base',
-        `form-input-size-${size}`,
-        `form-input-variant-${variant}`,
-        paddingStyles,
-        error && 'form-input-variant-error',
-        'form-select-base', // Additional styles specific to select
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ');
-    }, [size, variant, paddingStyles, error, className]);
-
-    // Memoized icon styles to prevent string recreation on every render
-    const iconStyles = useMemo(() => {
-      return [
-        'form-input-icon-container',
-        `form-input-icon-${size}`,
-        iconPosition === 'left' ? 'form-input-icon-left' : 'form-input-icon-right'
-      ].join(' ');
-    }, [size, iconPosition]);
+    // Use custom hook for styles
+    const styles = useFormStyles({
+      size,
+      variant,
+      hasIcon: !!Icon,
+      iconPosition,
+      className: `${className} form-select-base`,
+      error
+    });
 
     // Memoized dropdown icon styles
     const dropdownIconStyles = useMemo(() => {
       return [
         'form-select-dropdown-icon',
         `form-select-dropdown-icon-${size}`,
-        'pointer-events-none' // Prevents interference with select functionality
+        'pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-mist-gray'
       ].join(' ');
     }, [size]);
 
@@ -98,18 +73,18 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           </label>
         )}
 
-        <div className="relative">
-          {Icon && iconPosition === 'left' && (
-            <Icon
-              className={iconStyles}
-              aria-hidden="true"
-            />
-          )}
-          
+        <InputWithIcon
+          icon={Icon as any}
+          iconPosition={iconPosition}
+          size={size}
+          variant={variant}
+          error={error}
+          className={className}
+        >
           <select
             id={selectId}
             ref={register ? register.ref : ref}
-            className={selectStyles}
+            className={styles.input}
             {...register}
             {...props}
           >
@@ -135,14 +110,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             className={dropdownIconStyles}
             aria-hidden="true"
           />
-
-          {Icon && iconPosition === 'right' && (
-            <Icon
-              className={iconStyles}
-              aria-hidden="true"
-            />
-          )}
-        </div>
+        </InputWithIcon>
 
         {error && (
           <p className="form-error" role="alert">

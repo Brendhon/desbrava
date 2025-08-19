@@ -1,5 +1,6 @@
-import { forwardRef, TextareaHTMLAttributes } from 'react';
+import { forwardRef, TextareaHTMLAttributes, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { useFormStyles } from '../../hooks/useFormStyles';
 
 interface TextareaProps
   extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
@@ -9,6 +10,8 @@ interface TextareaProps
   variant?: 'default' | 'error' | 'success';
   register?: UseFormRegisterReturn;
   helperText?: string;
+  className?: string;
+  id?: string;
 }
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -26,17 +29,19 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref
   ) => {
-    const textareaId = id || `textarea-${Math.random().toString(36).substr(2, 9)}`;
+    const textareaId = useMemo(() => 
+      id || `textarea-${Math.random().toString(36).substr(2, 9)}`, 
+      [id]
+    );
 
-    const textareaStyles = [
-      'form-input-base',
-      `form-input-size-${size}`,
-      `form-input-variant-${variant}`,
-      error && 'form-input-variant-error',
+    const styles = useFormStyles({
+      size,
+      variant,
+      hasIcon: false,
+      iconPosition: 'left',
       className,
-    ]
-      .filter(Boolean)
-      .join(' ');
+      error
+    });
 
     return (
       <div className="w-full">
@@ -49,7 +54,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           id={textareaId}
           ref={register ? register.ref : ref}
-          className={textareaStyles}
+          className={styles.input}
           {...register}
           {...props}
         />

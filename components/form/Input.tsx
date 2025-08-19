@@ -1,6 +1,7 @@
 import { forwardRef, InputHTMLAttributes, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { LucideIcon } from 'lucide-react';
+import InputWithIcon from './InputWithIcon';
 
 interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -12,7 +13,6 @@ interface InputProps
   helperText?: string;
   className?: string;
   id?: string;
-  // Props para ícones (opcionais)
   icon?: LucideIcon;
   iconPosition?: 'left' | 'right';
 }
@@ -40,42 +40,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       [id]
     );
 
-    // Memoized padding styles based on icon presence and position
-    const paddingStyles = useMemo(() => {
-      if (!Icon) return '';
-      
-      if (iconPosition === 'left') {
-        return 'form-input-padding-left-icon';
-      } else if (iconPosition === 'right') {
-        return 'form-input-padding-right-icon';
-      }
-      
-      return '';
-    }, [Icon, iconPosition]);
-
-    // Memoized input styles to prevent recalculation on every render
-    const inputStyles = useMemo(() => {
-      return [
-        'form-input-base',
-        `form-input-size-${size}`,
-        `form-input-variant-${variant}`,
-        paddingStyles,
-        error && 'form-input-variant-error',
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ');
-    }, [size, variant, paddingStyles, error, className]);
-
-    // Memoized icon styles to prevent string recreation on every render
-    const iconStyles = useMemo(() => {
-      return [
-        'form-input-icon-container',
-        `form-input-icon-${size}`,
-        iconPosition === 'left' ? 'form-input-icon-left' : 'form-input-icon-right'
-      ].join(' ');
-    }, [size, iconPosition]);
-
     return (
       <div className="w-full">
         {label && (
@@ -84,22 +48,22 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           </label>
         )}
 
-        <div className="relative">
-          {Icon && (
-            <Icon
-              className={iconStyles}
-              aria-hidden="true"
-            />
-          )}
-          
+        <InputWithIcon
+          icon={Icon}
+          iconPosition={iconPosition}
+          size={size}
+          variant={variant}
+          error={error}
+          className={className}
+        >
           <input
             id={inputId}
             ref={register ? register.ref : ref}
-            className={inputStyles}
+            className="form-input-base form-input-size-md form-input-variant-default w-full"
             {...register}
             {...props}
           />
-        </div>
+        </InputWithIcon>
 
         {error && (
           <p className="form-error" role="alert">

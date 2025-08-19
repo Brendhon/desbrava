@@ -6,6 +6,9 @@ import { format, parse, isValid } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Calendar, X } from 'lucide-react';
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { useFormStyles } from '../../hooks/useFormStyles';
+import { useFormField } from '../../hooks/useFormField';
+import InputWithIcon from './InputWithIcon';
 
 interface DatePickerProps {
   /** Label text displayed above the input */
@@ -53,6 +56,23 @@ const DatePicker = ({
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Memoized input ID to prevent recreation on every render
+  const inputId = useMemo(() => 
+    id || `datepicker-${Math.random().toString(36).substr(2, 9)}`, 
+    [id]
+  );
+
+  // Use custom hooks
+  const { handleChange } = useFormField({ register });
+  const styles = useFormStyles({
+    size,
+    variant: error ? 'error' : variant,
+    hasIcon: true,
+    iconPosition: 'right',
+    className: `${className} cursor-pointer`,
+    error
+  });
+
   // Memoized formatters
   const formatCaption = useCallback((month: Date) => 
     format(month, 'MMMM yyyy', { locale: ptBR }), 
@@ -68,38 +88,6 @@ const DatePicker = ({
     const parsed = parse(input, 'dd/MM/yyyy', new Date());
     return isValid(parsed) ? parsed : undefined;
   }, []);
-
-  // Memoized input ID to prevent recreation on every render
-  const inputId = useMemo(() => 
-    id || `datepicker-${Math.random().toString(36).substr(2, 9)}`, 
-    [id]
-  );
-
-  // Memoized styles to prevent recalculation on every render
-  const inputStyles = useMemo(() => {
-    const baseStyles = [
-      'form-input-base',
-      `form-input-size-${size}`,
-      `form-input-variant-${error ? 'error' : variant}`,
-      'form-input-padding-right-icon',
-      'cursor-pointer',
-      disabled && 'opacity-50 cursor-not-allowed',
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    return baseStyles;
-  }, [size, error, variant, disabled, className]);
-
-  const iconStyles = useMemo(() => {
-    return [
-      'form-input-icon-container',
-      'form-input-icon-right',
-      `form-input-icon-size-${size}`,
-      'cursor-pointer',
-    ].join(' ');
-  }, [size]);
 
   // Memoized popup position styles
   const popupStyles = useMemo(() => {
@@ -131,19 +119,12 @@ const DatePicker = ({
       setInputValue(formattedDate);
       setSelectedDate(date);
       
-      // Trigger React Hook Form change event
-      if (register?.onChange) {
-        register.onChange({
-          target: {
-            name: register.name,
-            value: formattedDate,
-          },
-        } as React.ChangeEvent<HTMLInputElement>);
-      }
+      // Use the hook for form integration
+      handleChange(formattedDate);
       
       setIsOpen(false);
     }
-  }, [register, formatInputDate]);
+  }, [handleChange, formatInputDate]);
 
   // Update input when input is typed
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -155,24 +136,13 @@ const DatePicker = ({
       const parsedDate = parseInputDate(newValue);
       if (parsedDate) {
         setSelectedDate(parsedDate);
-        
-        // Trigger React Hook Form change event
-        if (register?.onChange) {
-          register.onChange({
-            target: {
-              name: register.name,
-              value: newValue,
-            },
-          } as React.ChangeEvent<HTMLInputElement>);
-        }
+        handleChange(newValue);
       }
     }
     
     // Always trigger change for React Hook Form
-    if (register?.onChange) {
-      register.onChange(e);
-    }
-  }, [register, parseInputDate]);
+    handleChange(newValue);
+  }, [handleChange, parseInputDate]);
 
   // Handle input blur for React Hook Form
   const handleInputBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
@@ -224,7 +194,15 @@ const DatePicker = ({
         </label>
       )}
 
-      <div className="relative">
+      <InputWithIcon
+        icon={isOpen ? X : Calendar}
+        iconAction={handleButtonClick}
+        iconPosition="right"
+        size={size}
+        variant={error ? 'error' : variant}
+        error={error}
+        className={className}
+      >
         <input
           id={inputId}
           ref={register?.ref}
@@ -234,40 +212,31 @@ const DatePicker = ({
           onBlur={handleInputBlur}
           onFocus={handleInputFocus}
           placeholder={placeholder}
-          className={inputStyles}
+          className={`${styles.input} cursor-pointer`}
           disabled={disabled}
           name={register?.name}
         />
-        
-        <button
-          type="button"
-          onClick={handleButtonClick}
-          className={iconStyles}
-          disabled={disabled}
-          aria-label="Abrir calendário"
-        >
-          {isOpen ? <X className={styles.buttonSize} /> : <Calendar className={styles.buttonSize} />}
-        </button>
+    
+      </InputWithIcon>
 
-        {isOpen && (
-          <div className={popupStyles}>
-            <div className="datepicker-calendar">
-              <DayPicker
-                mode="single"
-                selected={selectedDate}
-                onSelect={handleDateSelect}
-                formatters={formatters}
-                locale={ptBR}
-                lang='pt-BR'
-                defaultMonth={defaultMonth}
-                timeZone='America/Sao_Paulo'
-                showOutsideDays={true}
-                fixedWeeks={true}
-              />
-            </div>
+      {isOpen && (
+        <div className={popupStyles}>
+          <div className="datepicker-calendar">
+            <DayPicker
+              mode="single"
+              selected={selectedDate}
+              onSelect={handleDateSelect}
+              formatters={formatters}
+              locale={ptBR}
+              lang='pt-BR'
+              defaultMonth={defaultMonth}
+              timeZone='America/Sao_Paulo'
+              showOutsideDays={true}
+              fixedWeeks={true}
+            />
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {error && (
         <p className="form-error" role="alert">
@@ -283,7 +252,3 @@ const DatePicker = ({
 };
 
 export default DatePicker;
-
-const styles = {
-  buttonSize: 'w-full h-full',
-}
