@@ -17,11 +17,7 @@ export const metadata: Metadata = {
       name: "Brendhon Moreira",
       url: "https://www.linkedin.com/in/brendhon-moreira/",
     },
-  ],
-  icons: [
-    { rel: "apple-touch-icon", url: "ios/128.png" },
-    { rel: "icon", url: "ios/128.png" },
-  ],
+  ]
 };
 
 export default function RootLayout({
