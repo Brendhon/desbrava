@@ -1,169 +1,101 @@
-# 🎨 Component Style Guidelines - Desbrava
+# 🎨 Component Style Guidelines
 
 ## Overview
 
-This document outlines the styling standards and patterns for all components in the Desbrava project. Follow these guidelines to maintain consistency and ensure optimal user experience.
+How to style components in the Desbrava project using Tailwind CSS.
 
-## Core Styling Principles
+## Rules
 
-### 1. Tailwind CSS Only
-- Use **exclusively** Tailwind CSS utility classes for all styling
-- No custom CSS files or global styles modifications
-- No inline styles or CSS-in-JS solutions
+### 1. Use Only Tailwind CSS
+- No custom CSS files
+- No inline styles
+- Only Tailwind utility classes
 
-### 2. Responsive Design
-- Every component must be **fully responsive**
-- Adapt smoothly to all screen sizes (mobile, tablet, desktop)
-- Use Tailwind's responsive prefixes (`sm:`, `md:`, `lg:`, `xl:`)
+### 2. Make It Responsive
+- Works on all screen sizes
+- Use: `sm:`, `md:`, `lg:`, `xl:`
 
-### 3. Icon Usage
-- Use **only** icons from the `lucide-react` library
-- No other icon sets are permitted
-- Import icons directly: `import { IconName } from 'lucide-react'`
+### 3. Use Lucide Icons
+- Only icons from `lucide-react`
+- Import: `import { IconName } from 'lucide-react'`
 
-### 4. Animations & Transitions
-- Rely **solely** on Tailwind CSS built-in classes
-- Use `transition-*`, `animate-*`, and `hover:*` utilities
-- No custom keyframes or CSS animations
+### 4. Use Relative Sizing
+- **Good**: `w-10`, `h-16`, `p-4`, `m-6`
+- **Bad**: `w-[50px]`, `h-[200px]`, `p-[16px]`
 
-## Color Palette Integration
+## Colors
+`bg-midnight-blue`, `bg-slate-dark`, `text-parchment-white`, `text-mist-gray`, `text-royal-purple`
 
-### Primary Colors
-- **Background**: `bg-midnight-blue` (`#0D1B2A`)
-- **Secondary Background**: `bg-slate-dark` (`#1B263B`)
-- **Primary Text**: `text-parchment-white` (`#E0E1DD`)
-- **Secondary Text**: `text-mist-gray` (`#A9B4C2`)
-- **Accent**: `text-royal-purple` (`#8443A4`)
+## How to Style
 
-### Semantic Classes
-- `bg-primary` → `bg-midnight-blue`
-- `bg-secondary` → `bg-slate-dark`
-- `bg-accent` → `bg-royal-purple`
-- `text-text-primary` → `text-parchment-white`
-- `text-text-secondary` → `text-mist-gray`
-
-## Component Style Organization
-
-### Styles Constant Pattern
-Every component must define a `styles` constant at the end of the file:
+### 1. Create Styles Object
+Put this at the end of your component file:
 
 ```typescript
 const styles = {
-  container: "bg-secondary rounded-lg p-6 shadow-lg",
-  title: "text-text-primary text-2xl font-bold mb-4",
-  button: "bg-accent text-text-primary px-4 py-2 rounded-md hover:bg-accent/80 transition-colors"
+  container: "bg-slate-dark rounded-lg p-6 shadow-lg",
+  title: "text-parchment-white text-2xl font-bold",
+  button: "bg-royal-purple text-parchment-white px-4 py-2 rounded-md"
 };
 ```
 
-### Usage in JSX
-Reference styles via the `styles` object instead of inline classes:
-
+### 2. Use in JSX
 ```tsx
 // ✅ Correct
 <div className={styles.container}>
-  <h2 className={styles.title}>Title</h2>
-  <button className={styles.button}>Action</button>
+  <h1 className={styles.title}>Hello</h1>
+  <button className={styles.button}>Click me</button>
 </div>
 
-// ❌ Incorrect
-<div className="bg-secondary rounded-lg p-6 shadow-lg">
-  <h2 className="text-text-primary text-2xl font-bold mb-4">Title</h2>
-  <button className="bg-accent text-text-primary px-4 py-2 rounded-md">Action</button>
+// ❌ Wrong
+<div className="bg-slate-dark rounded-lg p-6 shadow-lg">
+  <h1 className="text-parchment-white text-2xl font-bold">Hello</h1>
 </div>
 ```
 
-## Common Component Patterns
+## Common Styles
 
 ### Buttons
-- **Primary**: `bg-accent text-text-primary px-4 py-2 rounded-md hover:bg-accent/80 transition-colors`
-- **Secondary**: `bg-secondary text-text-primary border border-accent px-4 py-2 rounded-md hover:bg-accent/10 transition-colors`
-- **Outline**: `bg-transparent text-accent border border-accent px-4 py-2 rounded-md hover:bg-accent/10 transition-colors`
+- **Primary**: `bg-royal-purple text-parchment-white px-4 py-2 rounded-md hover:bg-royal-purple/80`
+- **Secondary**: `bg-slate-dark text-parchment-white border border-royal-purple px-4 py-2 rounded-md`
 
 ### Cards
-- **Container**: `bg-secondary rounded-lg p-6 shadow-lg border border-mist-gray/20`
-- **Header**: `border-b border-mist-gray/20 pb-4 mb-4`
-- **Content**: `text-text-secondary leading-relaxed`
+- **Container**: `bg-slate-dark rounded-lg p-6 shadow-lg border border-mist-gray/20`
+- **Title**: `text-parchment-white text-xl font-bold mb-4`
 
 ### Forms
-- **Input**: `bg-secondary border border-mist-gray/30 rounded-md px-3 py-2 text-text-primary focus:border-accent focus:outline-none transition-colors`
-- **Label**: `text-text-primary font-medium mb-2 block`
-- **Error**: `text-red-400 text-sm mt-1`
+- **Input**: `bg-slate-dark border border-mist-gray/30 rounded-md px-3 py-2 text-parchment-white focus:border-royal-purple focus:outline-none transition-colors`
+- **Label**: `text-parchment-white font-medium mb-2 block`
 
-## Responsive Patterns
-
-### Mobile-First Approach
-```typescript
-const styles = {
-  container: "p-4 md:p-6 lg:p-8",
-  grid: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6",
-  text: "text-sm md:text-base lg:text-lg"
-};
-```
-
-### Breakpoint Strategy
-- `sm:` (640px+) - Small tablets
-- `md:` (768px+) - Tablets
-- `lg:` (1024px+) - Desktops
-- `xl:` (1280px+) - Large desktops
-
-## Accessibility Considerations
-
-- Ensure sufficient color contrast ratios
-- Use semantic HTML elements
-- Provide focus indicators for interactive elements
-- Test with screen readers and keyboard navigation
-
-## Example Component
+## Simple Example
 
 ```tsx
-import { MapPin, Calendar, Users } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
-interface TripCardProps {
-  title: string;
-  location: string;
-  date: string;
-  participants: number;
+interface LikeButtonProps {
+  liked: boolean;
+  onClick: () => void;
 }
 
-export function TripCard({ title, location, date, participants }: TripCardProps) {
+export function LikeButton({ liked, onClick }: LikeButtonProps) {
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h3 className={styles.title}>{title}</h3>
-      </div>
-      
-      <div className={styles.content}>
-        <div className={styles.infoRow}>
-          <MapPin className={styles.icon} />
-          <span className={styles.text}>{location}</span>
-        </div>
-        
-        <div className={styles.infoRow}>
-          <Calendar className={styles.icon} />
-          <span className={styles.text}>{date}</span>
-        </div>
-        
-        <div className={styles.infoRow}>
-          <Users className={styles.icon} />
-          <span className={styles.text}>{participants} participants</span>
-        </div>
-      </div>
-      
-      <button className={styles.button}>
-        View Details
-      </button>
-    </div>
+    <button className={styles.button} onClick={onClick}>
+      <Heart className={styles.icon} />
+      {liked ? 'Liked' : 'Like'}
+    </button>
   );
 }
 
 const styles = {
-  container: "bg-secondary rounded-lg p-6 shadow-lg border border-mist-gray/20 hover:shadow-xl transition-shadow",
-  header: "border-b border-mist-gray/20 pb-4 mb-4",
-  title: "text-text-primary text-xl font-bold",
-  content: "space-y-3 mb-6",
-  infoRow: "flex items-center gap-3",
-  icon: "text-accent w-5 h-5",
-  text: "text-text-secondary",
-  button: "w-full bg-accent text-text-primary py-2 px-4 rounded-md hover:bg-accent/80 transition-colors font-medium"
+  button: "flex items-center gap-2 bg-royal-purple text-parchment-white px-4 py-2 rounded-md hover:bg-royal-purple/80",
+  icon: "w-5 h-5"
 };
 ```
+
+## Checklist
+
+- [ ] Uses only Tailwind CSS
+- [ ] Responsive design
+- [ ] Relative sizing (`w-10`, `h-16`)
+- [ ] Lucide icons only
+- [ ] Styles in `styles` object
