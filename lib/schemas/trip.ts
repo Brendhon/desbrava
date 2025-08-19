@@ -1,7 +1,8 @@
 import { z } from 'zod';
+import { parsePtBrToDate } from '../utils/trip';
 
 const baseSchema = z.object({
-  title: z
+  name: z
     .string()
     .min(1, 'Nome da viagem é obrigatório')
     .min(3, 'Nome da viagem deve ter pelo menos 3 caracteres')
@@ -16,12 +17,8 @@ const baseSchema = z.object({
   startDate: z
     .string()
     .min(1, 'Data de início é obrigatória')
-    .refine((date) => {
-      // Converter formato brasileiro dd/MM/yyyy para Date
-      const [day, month, year] = date.split('/');
-      if (!day || !month || !year) return false;
-      
-      const selectedDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    .refine((date) => {      
+      const selectedDate = parsePtBrToDate(date);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       
@@ -31,12 +28,8 @@ const baseSchema = z.object({
   endDate: z
     .string()
     .min(1, 'Data de fim é obrigatória')
-    .refine((date) => {
-      // Converter formato brasileiro dd/MM/yyyy para Date
-      const [day, month, year] = date.split('/');
-      if (!day || !month || !year) return false;
-      
-      const selectedDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    .refine((date) => {      
+      const selectedDate = parsePtBrToDate(date);
       return !isNaN(selectedDate.getTime());
     }, 'Data de fim deve ser uma data válida'),
   
@@ -62,7 +55,6 @@ const baseSchema = z.object({
   message: 'Data de fim deve ser posterior à data de início',
   path: ['endDate'],
 });
-
 
 export const tripSettingsSchema = baseSchema.extend({})
 export const createTripSchema = baseSchema.extend({})

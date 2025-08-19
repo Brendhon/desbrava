@@ -2,6 +2,7 @@
 
 import Card from '@/components/ui/Card';
 import { Trip } from '@/lib/types/trip';
+import { parsePtBrToDate } from '@/lib/utils/trip';
 import { Calendar, MapPin } from 'lucide-react';
 
 interface TripStatsProps {
@@ -14,9 +15,9 @@ export default function TripStats({ trips }: TripStatsProps) {
   
   // Find next trip (closest future trip)
   const now = new Date();
-  const futureTrips = trips.filter(trip => new Date(trip.startDate) > now);
+  const futureTrips = trips.filter(trip => parsePtBrToDate(trip.startDate) > now);
   const nextTrip = futureTrips.length > 0 
-    ? futureTrips.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime())[0]
+    ? futureTrips.sort((a, b) => parsePtBrToDate(a.startDate).getTime() - parsePtBrToDate(b.startDate).getTime())[0]
     : null;
 
   return (
@@ -56,7 +57,7 @@ export default function TripStats({ trips }: TripStatsProps) {
             <>
               <h3 className={styles.statNumber}>{nextTrip.name}</h3>
               <p className={styles.statLabel}>
-                Próxima Viagem • {new Date(nextTrip.startDate).toLocaleDateString('pt-BR')}
+                Próxima Viagem • {nextTrip.startDate}
               </p>
             </>
           ) : (

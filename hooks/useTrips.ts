@@ -39,6 +39,8 @@ export function useTrips(): UseTripsReturn {
       const response = await fetch('/api/trips');
       const result = await response.json();
       
+      console.log('result', result);
+
       if (!response.ok) {
         throw new Error(result.message || 'Failed to fetch trips');
       }

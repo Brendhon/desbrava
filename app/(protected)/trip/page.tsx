@@ -7,20 +7,32 @@ import Textarea from '@/components/form/Textarea';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import { createTripSchema, type CreateTripFormData } from '@/lib/schemas/trip';
+import { useTrips } from '@/hooks/useTrips';
+import { useAuth } from '@/hooks/useAuth';
+import { Continent } from '@/lib/types/country';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Plus } from 'lucide-react';
+import { Plus, CheckCircle, AlertCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
 export default function CreateTripPage() {
+  const router = useRouter();
+  const { session } = useAuth();
+  const { createTrip, loading, error, clearError } = useTrips();
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
+    setValue,
   } = useForm<CreateTripFormData>({
     resolver: zodResolver(createTripSchema),
     defaultValues: {
-      title: '',
+      name: '',
       country: '',
       startDate: '',
       endDate: '',
@@ -28,25 +40,75 @@ export default function CreateTripPage() {
     },
   });
 
+  // Handle country selection from CountrySearchSelect
+  const handleCountrySelect = (countryCode: string) => {
+    setValue('country', countryCode);
+  };
+
   const onSubmit = async (data: CreateTripFormData) => {
     try {
-      // TODO: Implementar criação da viagem na API
-      console.log('Criando viagem:', data);
+      clearError();
+      setShowError(false);
       
-      // Simular delay da API
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // TODO: Mostrar mensagem de sucesso e redirecionar
-      console.log('Viagem criada com sucesso!');
-      
-      // Reset form após sucesso
-      reset();
+      // Create trip using the hook
+      const newTrip = await createTrip({
+        name: data.name,
+        description: data.description || '',
+        startDate: data.startDate,
+        endDate: data.endDate,
+        country: { 
+          continent: Continent.Outro, 
+          id: 0, 
+          language: [], 
+          region: '', 
+          country: data.country, 
+          currency_code: null, 
+          currency_name_pt: null, 
+          iso_country: data.country 
+        },
+      });
+
+      if (newTrip) {
+        setShowSuccess(true);
+        
+        // Reset form
+        reset();
+        
+        // Redirect to dashboard after 2 seconds
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 2000);
+      } else {
+        setShowError(true);
+      }
       
     } catch (error) {
       console.error('Erro ao criar viagem:', error);
-      // TODO: Mostrar mensagem de erro
+      setShowError(true);
     }
   };
+
+  // Auto-hide success/error messages
+  useEffect(() => {
+    if (showSuccess) {
+      const timer = setTimeout(() => setShowSuccess(false), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccess]);
+
+  useEffect(() => {
+    if (showError) {
+      const timer = setTimeout(() => setShowError(false), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showError]);
+
+  // Auto-hide error when user starts typing
+  useEffect(() => {
+    if (error) {
+      setShowError(true);
+    }
+  }, [error]);
 
   return (
     <div className={styles.container}>
@@ -58,6 +120,42 @@ export default function CreateTripPage() {
         </p>
       </div>
 
+      {/* Success Message */}
+      {showSuccess && (
+        <div className={styles.successMessage}>
+          <CheckCircle className={styles.successIcon} />
+          <div>
+            <h3 className={styles.successTitle}>Viagem criada com sucesso!</h3>
+            <p className={styles.successText}>
+              Redirecionando para o dashboard...
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Error Message */}
+      {(showError || error) && (
+        <div className={styles.errorMessage}>
+          <AlertCircle className={styles.errorIcon} />
+          <div>
+            <h3 className={styles.errorTitle}>Erro ao criar viagem</h3>
+            <p className={styles.errorText}>
+              {error || 'Ocorreu um erro inesperado. Tente novamente.'}
+            </p>
+          </div>
+          <button
+            onClick={() => {
+              setShowError(false);
+              clearError();
+            }}
+            className={styles.closeButton}
+            aria-label="Fechar mensagem de erro"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
       {/* Form */}
       <Card
         padding="xl"
@@ -68,12 +166,12 @@ export default function CreateTripPage() {
         className={styles.formContainer}
       >
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          {/* Título da Viagem */}
+          {/* Nome da Viagem */}
           <Input
             label="Nome da Viagem"
             placeholder="Ex: Aventura na Europa"
-            error={errors.title?.message}
-            register={register('title')}
+            error={errors.name?.message}
+            register={register('name')}
             helperText="Escolha um nome descritivo para sua viagem"
             required
           />
@@ -86,6 +184,7 @@ export default function CreateTripPage() {
             register={register('country')}
             helperText="País principal da sua viagem"
             debounceDelay={300}
+            onValueChange={handleCountrySelect}
           />
 
           {/* Datas */}
@@ -125,17 +224,17 @@ export default function CreateTripPage() {
               icon={Plus}
               aria-label="Criar viagem"
               className="flex-1"
-              disabled={isSubmitting}
+              disabled={isSubmitting || loading}
             >
-              {isSubmitting ? 'Criando...' : 'Criar Viagem'}
+              {isSubmitting || loading ? 'Criando...' : 'Criar Viagem'}
             </Button>
             <Button
               type="button"
               variant="secondary"
-              onClick={() => window.history.back()}
+              onClick={() => router.back()}
               aria-label="Cancelar criação"
               className="flex-1"
-              disabled={isSubmitting}
+              disabled={isSubmitting || loading}
             >
               Cancelar
             </Button>
@@ -155,4 +254,13 @@ const styles = {
   form: 'space-y-6',
   dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
   buttonGroup: 'flex flex-col sm:flex-row gap-4 pt-4',
+  successMessage: 'mb-6 p-4 bg-green-900/20 border border-green-500/30 rounded-lg flex items-start gap-3 text-green-400',
+  successIcon: 'w-6 h-6 text-green-500 flex-shrink-0 mt-0.5',
+  successTitle: 'text-lg font-semibold text-green-400',
+  successText: 'text-green-300',
+  errorMessage: 'mb-6 p-4 bg-red-900/20 border border-red-500/30 rounded-lg flex items-start gap-3 text-red-400 relative',
+  errorIcon: 'w-6 h-6 text-red-500 flex-shrink-0 mt-0.5',
+  errorTitle: 'text-lg font-semibold text-red-400',
+  errorText: 'text-red-300',
+  closeButton: 'absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-red-400 hover:text-red-300 transition-colors',
 };

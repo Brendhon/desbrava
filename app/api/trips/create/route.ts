@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { createTrip } from '@/services/firebase/trip.service';
 import { CreateTripData } from '@/lib/types/trip';
+import { parsePtBrToDate } from '@/lib/utils/trip';
 
 /**
  * POST /api/trips/create
@@ -39,8 +40,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate dates
-    const startDate = new Date(tripData.startDate);
-    const endDate = new Date(tripData.endDate);
+    const startDate = parsePtBrToDate(tripData.startDate);
+    const endDate = parsePtBrToDate(tripData.endDate);
     
     if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
       return NextResponse.json(

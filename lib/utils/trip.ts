@@ -1,4 +1,4 @@
-import { Trip, CreateTripData, UpdateTripData } from '@/lib/types/trip';
+import { CreateTripData, Trip } from '@/lib/types/trip';
 
 /**
  * Validate trip data before creation
@@ -29,8 +29,8 @@ export function validateTripData(data: CreateTripData): { isValid: boolean; erro
 
   // Validate dates if they exist
   if (data.startDate && data.endDate) {
-    const startDate = new Date(data.startDate);
-    const endDate = new Date(data.endDate);
+    const startDate = parsePtBrToDate(data.startDate);
+    const endDate = parsePtBrToDate(data.endDate);
 
     if (isNaN(startDate.getTime())) {
       errors.push('Invalid start date format');
@@ -72,8 +72,8 @@ export function validateTripData(data: CreateTripData): { isValid: boolean; erro
  * Format trip dates for display
  */
 export function formatTripDates(startDate: string, endDate: string): string {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  const start = parsePtBrToDate(startDate);
+  const end = parsePtBrToDate(endDate);
   
   const startFormatted = start.toLocaleDateString('pt-BR', {
     day: '2-digit',
@@ -94,8 +94,8 @@ export function formatTripDates(startDate: string, endDate: string): string {
  * Calculate trip duration in days
  */
 export function calculateTripDuration(startDate: string, endDate: string): number {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  const start = parsePtBrToDate(startDate);
+  const end = parsePtBrToDate(endDate);
   
   const diffTime = Math.abs(end.getTime() - start.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -108,8 +108,8 @@ export function calculateTripDuration(startDate: string, endDate: string): numbe
  */
 export function isTripActive(trip: Trip): boolean {
   const now = new Date();
-  const start = new Date(trip.startDate);
-  const end = new Date(trip.endDate);
+  const start = parsePtBrToDate(trip.startDate);
+  const end = parsePtBrToDate(trip.endDate);
   
   return now >= start && now <= end;
 }
@@ -119,7 +119,7 @@ export function isTripActive(trip: Trip): boolean {
  */
 export function isTripFuture(trip: Trip): boolean {
   const now = new Date();
-  const start = new Date(trip.startDate);
+  const start = parsePtBrToDate(trip.startDate);
   
   return start > now;
 }
@@ -129,7 +129,7 @@ export function isTripFuture(trip: Trip): boolean {
  */
 export function isTripPast(trip: Trip): boolean {
   const now = new Date();
-  const end = new Date(trip.endDate);
+  const end = parsePtBrToDate(trip.endDate);
   
   return end < now;
 }
@@ -148,8 +148,8 @@ export function getTripStatus(trip: Trip): 'past' | 'active' | 'future' {
  */
 export function sortTripsByDate(trips: Trip[], order: 'asc' | 'desc' = 'desc'): Trip[] {
   return [...trips].sort((a, b) => {
-    const dateA = new Date(a.startDate).getTime();
-    const dateB = new Date(b.startDate).getTime();
+    const dateA = parsePtBrToDate(a.startDate).getTime();
+    const dateB = parsePtBrToDate(b.startDate).getTime();
     
     return order === 'asc' ? dateA - dateB : dateB - dateA;
   });
@@ -174,6 +174,14 @@ export function searchTripsByText(trips: Trip[], searchTerm: string): Trip[] {
     trip.name.toLowerCase().includes(term) ||
     trip.description.toLowerCase().includes(term) ||
     trip.country.country.toLowerCase().includes(term) ||
-    trip.country.code.toLowerCase().includes(term)
+    trip.country.iso_country.toLowerCase().includes(term)
   );
+}
+
+/**
+ * Parse date from string to Date
+ */
+export function parsePtBrToDate(date: string): Date {
+  const [day, month, year] = date.split('/');
+  return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
 }

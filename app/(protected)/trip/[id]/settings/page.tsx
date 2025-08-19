@@ -19,7 +19,7 @@ export default function TripSettingsPage() {
 
   // TODO: Buscar dados da viagem pelo ID
   const defaultValues: TripSettingsFormData = {
-    title: 'Aventura na Europa',
+    name: 'Aventura na Europa',
     country: 'França',
     startDate: '2024-06-15',
     endDate: '2024-06-30',
@@ -104,8 +104,8 @@ export default function TripSettingsPage() {
           <Input
             label="Nome da Viagem"
             placeholder="Ex: Aventura na Europa"
-            error={errors.title?.message}
-            register={register('title')}
+            error={errors.name?.message}
+            register={register('name')}
             helperText="Escolha um nome descritivo para sua viagem"
             required
           />
