@@ -20,7 +20,7 @@ export interface Airport {
   longitude: number;
 }
 
-export enum Continent {
+enum Continent {
   AF = 'AF',
   An = 'AN',
   As = 'AS',
