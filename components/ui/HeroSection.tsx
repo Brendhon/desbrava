@@ -74,14 +74,16 @@ export default function HeroSection({
                 viagens
               </p>
 
-              <GoogleLoginButton
-                onClick={onGoogleLogin}
-                isLoading={isLoading}
-              />
+              <div className={styles.googleLoginContainer}>
+                <GoogleLoginButton
+                  onClick={onGoogleLogin}
+                  isLoading={isLoading}
+                />
 
-              <p className={styles.loginNote}>
-                🔒 Login seguro e rápido com Google
-              </p>
+                <p className={styles.loginNote}>
+                  🔒 Login seguro e rápido com Google
+                </p>
+              </div>
             </Card>
           </div>
         </div>
@@ -109,4 +111,5 @@ const styles = {
   loginTitle: 'text-2xl font-bold text-parchment-white text-center mb-2',
   loginSubtitle: 'text-mist-gray text-center mb-6',
   loginNote: 'text-xs text-mist-gray text-center mt-4',
+  googleLoginContainer: 'flex flex-col justify-center items-center',
 };
