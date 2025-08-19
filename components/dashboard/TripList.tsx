@@ -92,18 +92,6 @@ export default function TripList({ trips, loading = false, onEdit, onDelete }: T
             </button>
           ))}
         </div>
-
-        <div className={styles.sortControl}>
-          <label className={styles.sortLabel}>Ordenar por:</label>
-          <select
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}
-            className={styles.sortSelect}
-          >
-            <option value="desc">Mais Recentes</option>
-            <option value="asc">Mais Antigas</option>
-          </select>
-        </div>
       </div>
 
       {/* Trips Grid */}
