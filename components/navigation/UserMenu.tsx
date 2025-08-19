@@ -14,9 +14,8 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
-  const logout = () => {
-    signOut({ callbackUrl: '/' })
-  }
+  // Logout
+  const logout = () => signOut({ callbackUrl: '/' })
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -42,9 +41,8 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
     return () => document.removeEventListener('keydown', handleEscape)
   }, [])
 
-  if (!session?.user) {
-    return null
-  }
+  // If no session, return null
+  if (!session?.user) return null
 
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
@@ -72,9 +70,9 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
             {session.user.name?.split(' ')[0] || "Usuário"}
           </span>
         </div>
-        <ChevronDown 
-          className={`${styles.chevron} ${isOpen ? styles.chevronRotated : ''}`} 
-          aria-hidden="true" 
+        <ChevronDown
+          className={`${styles.chevron} ${isOpen ? styles.chevronRotated : ''}`}
+          aria-hidden="true"
         />
       </button>
 
