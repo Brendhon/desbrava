@@ -23,7 +23,7 @@ export default function TripList({ trips, loading = false, onEdit, onDelete }: T
     ? trips 
     : filterTripsByStatus(trips, statusFilter);
   
-  const sortedTrips = sortTripsByDate(filteredTrips, 'desc');
+  const sortedTrips = sortTripsByDate(filteredTrips, 'asc');
 
   const getStatusCount = (status: string) => {
     if (status === 'all') return trips.length;

@@ -144,14 +144,19 @@ export function getTripStatus(trip: Trip): 'past' | 'active' | 'future' {
 }
 
 /**
- * Sort trips by date
+ * Sort trips by proximity to the current date.
+ * If order is 'asc', trips closer to now come first.
+ * If order is 'desc', trips farther from now come first.
  */
-export function sortTripsByDate(trips: Trip[], order: 'asc' | 'desc' = 'desc'): Trip[] {
+export function sortTripsByDate(trips: Trip[], order: 'asc' | 'desc' = 'asc'): Trip[] {
+  const now = new Date().getTime();
   return [...trips].sort((a, b) => {
     const dateA = parsePtBrToDate(a.startDate).getTime();
     const dateB = parsePtBrToDate(b.startDate).getTime();
-    
-    return order === 'asc' ? dateA - dateB : dateB - dateA;
+    const diffA = Math.abs(dateA - now);
+    const diffB = Math.abs(dateB - now);
+
+    return order === 'asc' ? diffA - diffB : diffB - diffA;
   });
 }
 
