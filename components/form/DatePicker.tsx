@@ -131,7 +131,7 @@ const DatePicker = ({
       'form-input-icon-container',
       'form-input-icon-right',
       `form-input-icon-size-${size}`,
-      'pointer-events-auto',
+      'cursor-pointer',
     ].join(' ');
   };
 
