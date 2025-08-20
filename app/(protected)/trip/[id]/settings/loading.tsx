@@ -1,39 +1,28 @@
-import { ButtonSkeleton, FormSectionSkeleton } from '@/components/ui/loading-skeleton';
+import { LoadingSkeleton, CardSkeleton, ButtonSkeleton } from '@/components/ui/loading-skeleton';
 
 export default function TripSettingsLoading() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Settings Form */}
-      <div className="max-w-2xl mx-auto">
-        <FormSectionSkeleton />
+    <div className={styles.container}>
+      <div className={styles.content}>
+        {/* Settings Form */}
+        <div className={styles.formSection}>
+          <LoadingSkeleton count={3} />
+        </div>
         
         {/* Privacy Settings */}
-        <div className="bg-slate-dark rounded-lg shadow-lg border border-midnight-blue/20 p-6 mb-6 animate-pulse">
-          <div className="h-6 bg-mist-gray/20 rounded-md w-28 mb-6 animate-pulse" />
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="h-4 bg-mist-gray/20 rounded-md w-40 animate-pulse" />
-              <div className="w-12 h-6 bg-mist-gray/20 rounded-full animate-pulse" />
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="h-4 bg-mist-gray/20 rounded-md w-36 animate-pulse" />
-              <div className="w-12 h-6 bg-mist-gray/20 rounded-full animate-pulse" />
-            </div>
-          </div>
-        </div>
-
+        <CardSkeleton />
+        
         {/* Danger Zone */}
-        <div className="bg-slate-dark rounded-lg shadow-lg border border-midnight-blue/20 p-6 mb-6 animate-pulse">
-          <div className="h-6 bg-mist-gray/20 rounded-md w-24 mb-6 animate-pulse" />
-          <div className="border border-red-200 rounded-lg p-4 bg-red-50">
-            <div className="h-5 bg-mist-gray/20 rounded-md w-32 mb-3 animate-pulse" />
-            <div className="h-4 bg-mist-gray/20 rounded-md w-full mb-4 animate-pulse" />
+        <div className={styles.dangerZone}>
+          <LoadingSkeleton count={1} />
+          <div className={styles.dangerContent}>
+            <LoadingSkeleton count={2} />
             <ButtonSkeleton />
           </div>
         </div>
 
         {/* Actions */}
-        <div className="flex justify-end space-x-4">
+        <div className={styles.actions}>
           <ButtonSkeleton />
           <ButtonSkeleton />
         </div>
@@ -41,3 +30,12 @@ export default function TripSettingsLoading() {
     </div>
   );
 }
+
+const styles = {
+  container: 'container mx-auto px-4 py-8',
+  content: 'max-w-2xl mx-auto',
+  formSection: 'mb-6',
+  dangerZone: 'bg-slate-dark rounded-lg shadow-lg border border-midnight-blue/20 p-6 mb-6',
+  dangerContent: 'border border-red-200 rounded-lg p-4 bg-red-50',
+  actions: 'flex justify-end space-x-4',
+};

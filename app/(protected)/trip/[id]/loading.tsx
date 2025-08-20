@@ -1,30 +1,28 @@
-import { CardSkeleton, ButtonSkeleton } from '@/components/ui/loading-skeleton';
+import { LoadingSkeleton, CardSkeleton, ButtonSkeleton } from '@/components/ui/loading-skeleton';
 
 export default function TripDetailsLoading() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className={styles.container}>
       {/* Header with Actions */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-6">
-          <div className="h-8 bg-mist-gray/20 rounded-md w-1/3 animate-pulse" />
-          <div className="flex space-x-3">
+      <div className={styles.header}>
+        <div className={styles.headerContent}>
+          <LoadingSkeleton count={1} />
+          <div className={styles.headerActions}>
             <ButtonSkeleton />
             <ButtonSkeleton />
           </div>
         </div>
-        <div className="h-5 bg-mist-gray/20 rounded-md w-1/2 animate-pulse" />
+        <LoadingSkeleton count={1} />
       </div>
 
       {/* Trip Info Card */}
       <CardSkeleton />
 
       {/* Tabs Navigation */}
-      <div className="mb-6">
-        <div className="flex space-x-6 border-b border-midnight-blue/20">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <div key={index} className="h-10 bg-mist-gray/20 rounded-md w-24 animate-pulse" />
-          ))}
-        </div>
+      <div className={styles.tabs}>
+        {Array.from({ length: 4 }).map((_, index) => (
+          <LoadingSkeleton key={index} count={1} />
+        ))}
       </div>
 
       {/* Content Area */}
@@ -32,3 +30,11 @@ export default function TripDetailsLoading() {
     </div>
   );
 }
+
+const styles = {
+  container: 'container mx-auto px-4 py-8',
+  header: 'mb-8',
+  headerContent: 'flex items-center justify-between mb-6',
+  headerActions: 'flex space-x-3',
+  tabs: 'mb-6 flex space-x-6 border-b border-midnight-blue/20',
+};
