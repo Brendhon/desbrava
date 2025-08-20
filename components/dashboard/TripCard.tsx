@@ -2,9 +2,10 @@
 
 import Card from '@/components/ui/Card';
 import { Trip } from '@/lib/types/trip';
-import { formatTripDates, calculateTripDuration, getTripStatus } from '@/lib/utils/trip';
-import { Calendar, MapPin, Edit, Trash2 } from 'lucide-react';
+import { calculateTripDuration, formatTripDates, getTripStatus } from '@/lib/utils/trip';
+import { Calendar, Edit, MapPin, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import Button from '../ui/Button';
 
 interface TripCardProps {
   trip: Trip;
@@ -107,10 +108,11 @@ export default function TripCard({ trip, onEdit, onDelete }: TripCardProps) {
       <div className={styles.footer}>
         <Link
           href={`/trip/${trip.id}`}
-          className={styles.viewButton}
           aria-label={`Ver detalhes da viagem ${trip.name}`}
         >
-          Ver Detalhes
+          <Button variant="primary" size="sm">
+            Ver Detalhes
+          </Button>
         </Link>
       </div>
     </Card>
@@ -133,5 +135,4 @@ const styles = {
   detailIcon: 'w-4 h-4 text-royal-purple',
   detailText: 'text-sm text-mist-gray',
   footer: 'pt-4 border-t border-slate-700 flex justify-center',
-  viewButton: 'inline-flex items-center px-4 py-2 bg-royal-purple text-parchment-white rounded-lg hover:bg-royal-purple/90 transition-colors duration-200 text-sm font-medium',
 };
