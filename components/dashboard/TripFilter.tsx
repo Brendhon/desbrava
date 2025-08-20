@@ -38,27 +38,7 @@ const TripFilter = memo(
     );
 
     return (
-      <Card padding="md" background="dark" maxWidth="none" border={false}>
-        {/* Status Filters */}
-        <div className={styles.statusFilters}>
-          {STATUS_OPTIONS.map((status) => (
-            <button
-              key={status}
-              onClick={() => handleStatusFilter(status)}
-              className={`${styles.statusFilter} ${
-                statusFilter === status ? styles.statusFilterActive : ''
-              }`}
-            >
-              {getStatusLabel(status)}
-              <span className={styles.statusCount}>
-                ({getStatusCount(status)})
-              </span>
-            </button>
-          ))}
-        </div>
-
-        <br />
-
+      <Card padding="lg" background="dark" maxWidth="none" border={false}>
         {/* Trip Search Filter */}
         <Input
           label="Buscar viagens"
@@ -71,6 +51,25 @@ const TripFilter = memo(
           size="md"
           helperText="🔎 Pesquise suas viagens por qualquer dado: nome, país, descrição, datas e mais! Use palavras-chave para encontrar rapidamente a viagem desejada. ✈️🌍"
         />
+
+        <br />
+        
+        {/* Status Filters */}
+        <div className={styles.statusFilters}>
+          {STATUS_OPTIONS.map((status) => (
+            <button
+              key={status}
+              onClick={() => handleStatusFilter(status)}
+              className={`${styles.statusFilter} ${statusFilter === status ? styles.statusFilterActive : ''
+                }`}
+            >
+              {getStatusLabel(status)}
+              <span className={styles.statusCount}>
+                ({getStatusCount(status)})
+              </span>
+            </button>
+          ))}
+        </div>
       </Card>
     );
   }
