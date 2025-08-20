@@ -159,7 +159,7 @@ export default function AccountPage() {
 
             <div className={styles.securityItem}>
               <div>
-                <h3 className={styles.securityTitle}>Último Login</h3>
+                <h3 className={styles.securityTitle}>Último Acesso</h3>
                 <p className={styles.securityDescription}>
                   {new Date().toLocaleDateString('pt-BR')} às{' '}
                   {new Date().toLocaleTimeString('pt-BR')}
