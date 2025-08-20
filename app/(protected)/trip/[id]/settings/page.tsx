@@ -4,6 +4,7 @@ import TripForm from '@/components/form/TripForm';
 import Card from '@/components/ui/Card';
 import DangerZone from '@/components/ui/DangerZone';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { ErrorPage } from '@/components/ui';
 import { useCountries } from '@/hooks/useCountries';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
@@ -186,34 +187,16 @@ export default function TripSettingsPage() {
   // Show error state
   if (error) {
     return (
-      <div className={styles.container}>
-        <PageHeader
-          backHref={backHref}
-          backText="Voltar aos Detalhes da Viagem"
-          backAriaLabel="Voltar aos detalhes da viagem"
-          title="Configurações da Viagem"
-          subtitle="Erro ao carregar dados"
-        />
-        <Card
-          padding="xl"
-          shadow="lg"
-          background="dark"
-          maxWidth="none"
-          border={false}
-          className={styles.errorContainer}
-        >
-          <div className={styles.errorContent}>
-            <p className={styles.errorMessage}>{error}</p>
-            <button
-              onClick={clearError}
-              className={styles.retryButton}
-              aria-label="Tentar carregar novamente"
-            >
-              Tentar Novamente
-            </button>
-          </div>
-        </Card>
-      </div>
+      <ErrorPage
+        backHref={backHref}
+        backText="Voltar aos Detalhes da Viagem"
+        backAriaLabel="Voltar aos detalhes da viagem"
+        title="Configurações da Viagem"
+        subtitle="Erro ao carregar dados"
+        errorMessage={error}
+        onRetry={clearError}
+        retryButtonText="Tentar Novamente"
+      />
     );
   }
 
@@ -267,11 +250,6 @@ export default function TripSettingsPage() {
 const styles = {
   container: 'max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-6',
   formContainer: 'mb-8',
-  errorContainer: 'text-center',
-  errorContent: 'text-center py-8',
-  errorMessage: 'text-red-400 mb-4',
-  retryButton:
-    'px-4 py-2 bg-royal-purple text-parchment-white rounded-lg hover:bg-royal-purple/80 transition-colors',
   loadingContainer: 'flex justify-center items-center py-12',
   loadingText: 'text-mist-gray mt-4 text-center',
 };

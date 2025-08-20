@@ -5,24 +5,75 @@ import Card from '@/components/ui/Card';
 import { Calendar, Globe, Map, MapPin, Plus, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useTrips } from '@/hooks/useTrips';
+import { useToast } from '@/hooks/useToast';
+import { Trip } from '@/lib/types/trip';
+import TripDetailsLoading from './loading';
+import { ErrorPage } from '@/components/ui';
 
 export default function TripDetailsPage() {
   const params = useParams();
-  const tripId = params.id;
+  const tripId = params.id as string;
 
-  // TODO: Buscar dados da viagem pelo ID
-  const trip = {
-    id: tripId,
-    title: 'Aventura na Europa',
-    country: 'França',
-    startDate: '2024-06-15',
-    endDate: '2024-06-30',
-    description:
-      'Uma incrível jornada pela França, explorando Paris, Lyon e Nice.',
-    referencePoint: 'Hotel Le Grand, Paris',
-    activities: [],
-  };
+  // State for trip data
+  const [trip, setTrip] = useState<Trip | null>(null);
+  const [isLoadingTrip, setIsLoadingTrip] = useState(true);
+
+  // Hooks
+  const { fetchTrip, error, clearError } = useTrips();
+  const { error: showErrorToast } = useToast();
+
+  const loadTrip = useCallback(async () => {
+    // If tripId is not set, return
+    if (!tripId) return;
+
+    // Set loading state to true
+    setIsLoadingTrip(true);
+
+    try {
+      // Fetch trip data
+      const tripData = await fetchTrip(tripId);
+
+      if (tripData) {
+        setTrip(tripData);
+      } else {
+        showErrorToast(
+          'Viagem não encontrada',
+          'A viagem solicitada não foi encontrada ou você não tem permissão para acessá-la.'
+        );
+      }
+    } finally {
+      // Set loading state to false
+      setIsLoadingTrip(false);
+    }
+  }, [tripId]);
+
+  // Load trip data when tripId changes
+  useEffect(() => void loadTrip(), [loadTrip]);
+
+  // Show loading while fetching trip data
+  if (isLoadingTrip) return <TripDetailsLoading />;
+
+  // Show error state
+  if (error) {
+    return (
+      <ErrorPage
+        backHref="/dashboard"
+        backText="Voltar ao Dashboard"
+        backAriaLabel="Voltar ao Dashboard"
+        title="Erro ao Carregar Viagem"
+        subtitle="Ocorreu um erro ao carregar os dados da viagem"
+        errorMessage={error}
+        onRetry={clearError}
+        retryButtonText="Tentar Novamente"
+      />
+    );
+  }
+
+  // Don't render content until we have trip data
+  if (!trip) return null;
 
   return (
     <div className={styles.container}>
@@ -32,7 +83,7 @@ export default function TripDetailsPage() {
           backHref="/dashboard"
           backText="Voltar ao Dashboard"
           backAriaLabel="Voltar ao Dashboard"
-          title={trip.title}
+          title={trip.name}
           subtitle={trip.description}
         />
 
@@ -59,7 +110,7 @@ export default function TripDetailsPage() {
           <Globe className={styles.infoIcon} aria-hidden="true" />
           <div>
             <p className={styles.infoLabel}>País</p>
-            <p className={styles.infoValue}>{trip.country}</p>
+            <p className={styles.infoValue}>{trip.country.country}</p>
           </div>
         </Card>
 
@@ -91,7 +142,9 @@ export default function TripDetailsPage() {
           <MapPin className={styles.infoIcon} aria-hidden="true" />
           <div>
             <p className={styles.infoLabel}>Ponto de Referência</p>
-            <p className={styles.infoValue}>{trip.referencePoint}</p>
+            <p className={styles.infoValue}>
+              {trip.description || 'Não especificado'}
+            </p>
           </div>
         </Card>
       </div>
@@ -104,58 +157,31 @@ export default function TripDetailsPage() {
         border={false}
         className={styles.tabContainer}
       >
-        {/* Tab Navigation */}
-        <div className={styles.tabNav}>
-          <nav className={styles.tabNavContent}>
-            <button
-              className={styles.tabButtonActive}
-              aria-label="Aba Itinerário"
+
+        {/* Itinerary Tab */}
+        <div className={styles.itineraryContent}>
+          <div className={styles.itineraryHeader}>
+            <h3 className={styles.itineraryTitle}>Seu Itinerário</h3>
+            <Button
+              variant="primary"
+              icon={Plus}
+              aria-label="Adicionar nova atividade"
+              size="sm"
             >
-              Itinerário
-            </button>
-            <button className={styles.tabButton} aria-label="Aba Mapa">
-              Mapa
-            </button>
-            <button className={styles.tabButton} aria-label="Aba Documentos">
-              Documentos
-            </button>
-          </nav>
-        </div>
+              Adicionar Atividade
+            </Button>
+          </div>
 
-        {/* Tab Content */}
-        <div className={styles.tabContent}>
-          {/* Itinerary Tab */}
-          <div className={styles.itineraryContent}>
-            <div className={styles.itineraryHeader}>
-              <h3 className={styles.itineraryTitle}>Seu Itinerário</h3>
-              <Button
-                variant="primary"
-                icon={Plus}
-                aria-label="Adicionar nova atividade"
-                size="sm"
-              >
-                Adicionar Atividade
-              </Button>
+          {/* Empty State */}
+          <div className={styles.emptyState}>
+            <div className={styles.emptyIcon}>
+              <Map className={styles.emptyIconImage} aria-hidden="true" />
             </div>
-
-            {/* Empty State */}
-            <div className={styles.emptyState}>
-              <div className={styles.emptyIcon}>
-                <Map className={styles.emptyIconImage} aria-hidden="true" />
-              </div>
-              <h3 className={styles.emptyTitle}>Nenhuma atividade planejada</h3>
-              <p className={styles.emptyDescription}>
-                Comece adicionando atividades ao seu itinerário para organizar
-                melhor sua viagem.
-              </p>
-              <Button
-                variant="primary"
-                icon={Plus}
-                aria-label="Criar primeira atividade"
-              >
-                Primeira Atividade
-              </Button>
-            </div>
+            <h3 className={styles.emptyTitle}>Nenhuma atividade planejada</h3>
+            <p className={styles.emptyDescription}>
+              Comece adicionando atividades ao seu itinerário para organizar
+              melhor sua viagem.
+            </p>
           </div>
         </div>
       </Card>
@@ -185,7 +211,6 @@ const styles = {
   itineraryContent: 'space-y-6',
   itineraryHeader: 'flex items-center justify-between',
   itineraryTitle: 'text-xl font-semibold text-parchment-white',
-
   emptyState: 'text-center py-16',
   emptyIcon:
     'w-20 h-20 bg-midnight-blue rounded-full flex items-center justify-center mx-auto mb-6',
