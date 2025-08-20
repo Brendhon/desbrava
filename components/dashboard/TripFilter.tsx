@@ -1,8 +1,8 @@
 'use client';
 
-import { memo, useCallback, useState } from 'react';
 import { Input } from '@/components/form';
-import { Search, X } from 'lucide-react';
+import { X } from 'lucide-react';
+import { memo, useCallback } from 'react';
 import Card from '../ui/Card';
 
 // Constants

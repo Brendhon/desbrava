@@ -178,3 +178,23 @@ body {
     transform: translateY(0) scale(1);
   }
 }
+
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--slate-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mist-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mist-color);
+  border-radius: 5px;
+}
