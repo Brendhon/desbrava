@@ -19,7 +19,6 @@ interface CountrySearchSelectProps {
   placeholder?: string;
   onValueChange?: (value: string) => void;
   debounceDelay?: number;
-  selectedCountry?: string;
 }
 
 /**
@@ -68,8 +67,6 @@ const CountrySearchSelect = forwardRef<HTMLInputElement, CountrySearchSelectProp
 
     // Handle option selection and search updates
     const handleValueChange = (value: string) => {
-      const country = countries.find((country: Country) => country.country === value);
-      
       // Update search term for API calls
       setSearchTerm(value);
       

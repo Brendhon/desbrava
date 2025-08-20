@@ -88,7 +88,7 @@ export default function TripCard({ trip, onEdit, onDelete }: TripCardProps) {
         <div className={styles.detailItem}>
           {
             trip.country.flag
-              ? <img src={trip.country.flag} alt={trip.country.country} className={styles.detailIcon} />
+              ? <img src={trip.country.flag} alt={trip.country.country} className={styles.detailImage} />
               : <MapPin className={styles.detailIcon} />
           }
           <span className={styles.detailText}>
@@ -129,6 +129,7 @@ const styles = {
   description: 'text-mist-gray mb-4 line-clamp-2 text-sm text-ellipsis overflow-hidden whitespace-nowrap',
   details: 'space-y-2 mb-4',
   detailItem: 'flex items-center gap-2',
+  detailImage: 'w-5 h-4',
   detailIcon: 'w-4 h-4 text-royal-purple',
   detailText: 'text-sm text-mist-gray',
   footer: 'pt-4 border-t border-slate-700',

@@ -6,6 +6,7 @@ import { useFormField } from '../../hooks/useFormField';
 import { SelectOption } from '@/lib/types';
 import InputWithIcon from './InputWithIcon';
 import Dropdown from './Dropdown';
+import { normalizeString } from '@/lib/utils/string-utils';
 
 interface SearchSelectProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -62,7 +63,7 @@ const SearchSelect = forwardRef<HTMLInputElement, SearchSelectProps>(
         const labelText = typeof option.label === 'string'
           ? option.label
           : option.label?.toString() || '';
-        return labelText.toLowerCase().includes(searchValue.toLowerCase());
+        return normalizeString(labelText).includes(normalizeString(searchValue));
       });
     }, [options, searchValue]);
 
