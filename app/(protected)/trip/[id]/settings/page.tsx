@@ -6,10 +6,10 @@ import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import DangerZone from '@/components/ui/DangerZone';
 import { type TripSettingsFormData } from '@/lib/schemas/trip';
-import { ArrowLeft, Save, Trash2 } from 'lucide-react';
-import Link from 'next/link';
+import { Save, Trash2 } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function TripSettingsPage() {
   const params = useParams();
@@ -65,18 +65,13 @@ export default function TripSettingsPage() {
   return (
     <div className={styles.container}>
       {/* Header */}
-      <div className={styles.header}>
-        <Link
-          href={`/trip/${tripId}`}
-          className={styles.backLink}
-          aria-label="Voltar aos detalhes da viagem"
-        >
-          <ArrowLeft className={styles.backIcon} aria-hidden="true" />
-          Voltar aos Detalhes da Viagem
-        </Link>
-        <h1 className={styles.title}>Configurações da Viagem</h1>
-        <p className={styles.subtitle}>Edite os detalhes da sua viagem</p>
-      </div>
+      <PageHeader
+        backHref={`/trip/${tripId}`}
+        backText="Voltar aos Detalhes da Viagem"
+        backAriaLabel="Voltar aos detalhes da viagem"
+        title="Configurações da Viagem"
+        subtitle="Edite os detalhes da sua viagem"
+      />
 
       {/* Form */}
       <Card
@@ -117,11 +112,5 @@ export default function TripSettingsPage() {
 
 const styles = {
   container: 'max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8',
-  header: 'mb-8',
-  backLink:
-    'inline-flex items-center gap-2 text-mist-gray hover:text-parchment-white transition-colors mb-4',
-  backIcon: 'w-4 h-4',
-  title: 'text-3xl md:text-4xl font-bold text-parchment-white mb-3',
-  subtitle: 'text-lg text-mist-gray',
   formContainer: '',
 };

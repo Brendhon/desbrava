@@ -3,7 +3,6 @@
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import {
-  ArrowLeft,
   Calendar,
   Globe,
   Map,
@@ -13,6 +12,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function TripDetailsPage() {
   const params = useParams();
@@ -33,81 +33,74 @@ export default function TripDetailsPage() {
 
   return (
     <div className={styles.container}>
-      {/* Header */}
-      <div className={styles.header}>
-        <div className={styles.headerTop}>
-          <Link
-            href="/dashboard"
-            className={styles.backLink}
-            aria-label="Voltar ao Dashboard"
-          >
-            <ArrowLeft className={styles.backIcon} aria-hidden="true" />
-            Voltar ao Dashboard
-          </Link>
+      <div className={styles.headerContainer}>
+        {/* Header */}
+        <PageHeader
+          backHref="/dashboard"
+          backText="Voltar ao Dashboard"
+          backAriaLabel="Voltar ao Dashboard"
+          title={trip.title}
+          subtitle={trip.description}
+        />
 
-          <Link
-            href={`/trip/${tripId}/settings`}
-            className={styles.settingsLink}
-            aria-label="Configurações da viagem"
-          >
-            <Settings className={styles.settingsIcon} aria-hidden="true" />
-            Configurações
-          </Link>
-        </div>
+        <Link
+          href={`/trip/${tripId}/settings`}
+          className={styles.settingsLink}
+          aria-label="Configurações da viagem"
+        >
+          <Settings className={styles.settingsIcon} aria-hidden="true" />
+          Configurações
+        </Link>
+      </div>
 
-        <h1 className={styles.title}>{trip.title}</h1>
-        <p className={styles.description}>{trip.description}</p>
+      {/* Trip Info Cards */}
+      <div className={styles.infoGrid}>
+        <Card
+          padding="sm"
+          shadow="none"
+          background="dark"
+          maxWidth="none"
+          border={false}
+          className={styles.infoCard}
+        >
+          <Globe className={styles.infoIcon} aria-hidden="true" />
+          <div>
+            <p className={styles.infoLabel}>País</p>
+            <p className={styles.infoValue}>{trip.country}</p>
+          </div>
+        </Card>
 
-        {/* Trip Info Cards */}
-        <div className={styles.infoGrid}>
-          <Card
-            padding="sm"
-            shadow="none"
-            background="dark"
-            maxWidth="none"
-            border={false}
-            className={styles.infoCard}
-          >
-            <Globe className={styles.infoIcon} aria-hidden="true" />
-            <div>
-              <p className={styles.infoLabel}>País</p>
-              <p className={styles.infoValue}>{trip.country}</p>
-            </div>
-          </Card>
+        <Card
+          padding="sm"
+          shadow="none"
+          background="dark"
+          maxWidth="none"
+          border={false}
+          className={styles.infoCard}
+        >
+          <Calendar className={styles.infoIcon} aria-hidden="true" />
+          <div>
+            <p className={styles.infoLabel}>Período</p>
+            <p className={styles.infoValue}>
+              {trip.startDate} - {trip.endDate}
+            </p>
+          </div>
+        </Card>
 
-          <Card
-            padding="sm"
-            shadow="none"
-            background="dark"
-            maxWidth="none"
-            border={false}
-            className={styles.infoCard}
-          >
-            <Calendar className={styles.infoIcon} aria-hidden="true" />
-            <div>
-              <p className={styles.infoLabel}>Período</p>
-              <p className={styles.infoValue}>
-                {new Date(trip.startDate).toLocaleDateString('pt-BR')} -{' '}
-                {new Date(trip.endDate).toLocaleDateString('pt-BR')}
-              </p>
-            </div>
-          </Card>
-
-          <Card
-            padding="sm"
-            shadow="none"
-            background="dark"
-            maxWidth="none"
-            border={false}
-            className={styles.infoCard}
-          >
-            <MapPin className={styles.infoIcon} aria-hidden="true" />
-            <div>
-              <p className={styles.infoLabel}>Ponto de Referência</p>
-              <p className={styles.infoValue}>{trip.referencePoint}</p>
-            </div>
-          </Card>
-        </div>
+        <Card
+          padding="sm"
+          shadow="none"
+          background="dark"
+          maxWidth="none"
+          border={false}
+          className={styles.infoCard}
+        >
+          <MapPin className={styles.infoIcon} aria-hidden="true" />
+          <div>
+            <p className={styles.infoLabel}>Ponto de Referência</p>
+            <p className={styles.infoValue}>{trip.referencePoint}</p>
+          </div>
+        </Card>
       </div>
 
       {/* Content Tabs */}
@@ -179,16 +172,10 @@ export default function TripDetailsPage() {
 
 const styles = {
   container: 'max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8',
-  header: 'mb-8',
-  headerTop: 'flex items-center justify-between mb-6',
-  backLink:
-    'inline-flex items-center gap-2 text-mist-gray hover:text-parchment-white transition-colors',
-  backIcon: 'w-4 h-4',
+  headerContainer: 'flex items-start justify-between',
   settingsLink:
     'inline-flex items-center gap-2 bg-slate-dark text-mist-gray px-4 py-2 rounded-lg hover:bg-slate-dark/60 hover:text-parchment-white transition-colors',
   settingsIcon: 'w-4 h-4',
-  title: 'text-3xl md:text-4xl font-bold text-parchment-white mb-3',
-  description: 'text-lg text-mist-gray mb-6',
   infoGrid: 'grid grid-cols-1 md:grid-cols-3 gap-4 mb-8',
   infoCard: 'flex items-center gap-3',
   infoIcon: 'w-5 h-5 text-royal-purple',
