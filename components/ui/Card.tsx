@@ -7,6 +7,10 @@ interface CardProps {
   maxWidth?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full' | '7xl';
   border?: boolean;
   rounded?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  /** Animation type for card entrance effect */
+  animation?: 'none' | 'fade-in' | 'slide-up' | 'scale-in' | 'slide-up-scale';
+  /** Delay before animation starts for staggered entrance effects */
+  delay?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
 export default function Card({
@@ -18,10 +22,12 @@ export default function Card({
   maxWidth = 'none',
   border = true,
   rounded = 'lg',
+  animation = 'fade-in',
+  delay = 'none',
 }: CardProps) {
   return (
     <div
-      className={`${styles.base} ${styles.padding[padding]} ${styles.shadow[shadow]} ${styles.background[background]} ${styles.maxWidth[maxWidth]} ${styles.rounded[rounded]} ${border ? styles.border : ''} ${className}`}
+      className={`${styles.base} ${styles.padding[padding]} ${styles.shadow[shadow]} ${styles.background[background]} ${styles.maxWidth[maxWidth]} ${styles.rounded[rounded]} ${border ? styles.border : ''} ${styles.animation[animation]} ${styles.delay[delay]} ${className}`}
     >
       {children}
     </div>
@@ -29,7 +35,7 @@ export default function Card({
 }
 
 const styles = {
-  base: 'w-full',
+  base: 'w-full transition-all duration-700 ease-out',
   padding: {
     sm: 'p-4',
     md: 'p-6',
@@ -66,4 +72,18 @@ const styles = {
     '2xl': 'rounded-2xl',
   },
   border: 'border border-mist-gray/20',
+  animation: {
+    none: '',
+    'fade-in': 'opacity-0 animate-[fadeIn_0.7s_ease-out_forwards]',
+    'slide-up': 'opacity-0 translate-y-4 animate-[slideUp_0.7s_ease-out_forwards]',
+    'scale-in': 'opacity-0 scale-95 animate-[scaleIn_0.7s_ease-out_forwards]',
+    'slide-up-scale': 'opacity-0 translate-y-4 scale-95 animate-[slideUpScale_0.7s_ease-out_forwards]',
+  },
+  delay: {
+    none: '',
+    sm: 'delay-100',
+    md: 'delay-200',
+    lg: 'delay-300',
+    xl: 'delay-500',
+  },
 };
