@@ -103,14 +103,6 @@ export default function TripList({ trips, loading = false, onEdit, onDelete }: T
           />
         ))}
       </div>
-
-      {/* Results Summary */}
-      <div className={styles.resultsSummary}>
-        <p className={styles.resultsText}>
-          Mostrando {sortedTrips.length} de {trips.length} viagens
-          {statusFilter !== 'all' && ` (${getStatusLabel(statusFilter)})`}
-        </p>
-      </div>
     </div>
   );
 }
@@ -134,6 +126,4 @@ const styles = {
   sortLabel: 'text-sm text-mist-gray',
   sortSelect: 'px-3 py-2 bg-slate-800 border border-slate-700 rounded-md text-parchment-white focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent',
   tripsGrid: 'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6',
-  resultsSummary: 'text-center py-4',
-  resultsText: 'text-sm text-mist-gray',
 };
