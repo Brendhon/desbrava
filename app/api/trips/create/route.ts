@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     // Parse request body
     const body = await request.json();
-    const tripData: Omit<CreateTripData, 'userId'> = body;
+    const tripData: Omit<CreateTripData, 'user'> = body;
 
     // Validate required fields
     if (

@@ -73,7 +73,7 @@ const result = await response.json();
   "success": true,
   "data": {
     "id": "abc123",
-    "userId": "user123",
+    "user": "user123",
     "name": "Paris Adventure",
     "description": "Exploring the City of Light",
     "startDate": "2024-06-01",
@@ -130,8 +130,8 @@ const response = await fetch('/api/trips/create', {
   "success": true,
   "data": {
     "id": "newTripId",
-    "userId": "user123",
-    "name": "Trip Name",
+      "user": "user123",
+  "name": "Trip Name",
     "description": "Trip Description",
     "startDate": "2024-06-01",
     "endDate": "2024-06-07",
@@ -177,8 +177,8 @@ const response = await fetch('/api/trips/abc123', {
   "success": true,
   "data": {
     "id": "abc123",
-    "userId": "user123",
-    "name": "Updated Trip Name",
+      "user": "user123",
+  "name": "Updated Trip Name",
     "description": "Updated Description",
     "startDate": "2024-06-01",
     "endDate": "2024-06-07",

@@ -18,7 +18,7 @@ export async function GET(
   try {
     // Check authentication
     const session = await auth();
-    if (!session?.user?.id) {
+    if (!session?.user?.email) {
       return NextResponse.json(
         {
           success: false,
@@ -44,7 +44,7 @@ export async function GET(
     }
 
     // Check if the trip belongs to the authenticated user
-    if (trip.userId !== session.user.id) {
+    if (trip.user !== session.user.email) {
       return NextResponse.json(
         {
           success: false,
@@ -83,7 +83,7 @@ export async function PUT(
   try {
     // Check authentication
     const session = await auth();
-    if (!session?.user?.id) {
+    if (!session?.user?.email) {
       return NextResponse.json(
         {
           success: false,
@@ -109,7 +109,7 @@ export async function PUT(
       );
     }
 
-    if (existingTrip.userId !== session.user.id) {
+    if (existingTrip.user !== session.user.email) {
       return NextResponse.json(
         {
           success: false,
@@ -177,7 +177,7 @@ export async function DELETE(
   try {
     // Check authentication
     const session = await auth();
-    if (!session?.user?.id) {
+    if (!session?.user?.email) {
       return NextResponse.json(
         {
           success: false,
@@ -203,7 +203,7 @@ export async function DELETE(
       );
     }
 
-    if (existingTrip.userId !== session.user.id) {
+    if (existingTrip.user !== session.user.email) {
       return NextResponse.json(
         {
           success: false,

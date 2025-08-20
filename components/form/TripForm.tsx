@@ -42,6 +42,7 @@ export default function TripForm({
     handleSubmit,
     formState: { errors },
     setValue,
+    watch,
   } = useForm<CreateTripFormData | TripSettingsFormData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -97,26 +98,16 @@ export default function TripForm({
       />
 
       {/* País */}
-      {isCreateMode ? (
-        <CountrySearchSelect
-          label="País"
-          placeholder="Digite para buscar um país..."
-          error={errors.country?.message}
-          register={register('country')}
-          helperText="País principal da sua viagem"
-          debounceDelay={300}
-          onValueChange={handleCountrySelect}
-        />
-      ) : (
-        <Input
-          label="País"
-          placeholder="Ex: França"
-          error={errors.country?.message}
-          register={register('country')}
-          helperText="País principal da sua viagem"
-          required
-        />
-      )}
+      <CountrySearchSelect
+        label="País"
+        placeholder="Digite para buscar um país..."
+        error={errors.country?.message}
+        register={register('country')}
+        helperText="País principal da sua viagem"
+        debounceDelay={300}
+        onValueChange={handleCountrySelect}
+        defaultValue={watch('country')}
+      />
 
       {/* Datas */}
       <div className={styles.dateGrid}>
@@ -141,17 +132,12 @@ export default function TripForm({
 
       {/* Descrição */}
       <Textarea
-        label={isCreateMode ? 'Descrição (opcional)' : 'Descrição'}
+        label={'Descrição (opcional)'}
         placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
         rows={3}
         error={errors.description?.message}
         register={register('description')}
-        helperText={
-          isCreateMode
-            ? 'Adicione detalhes sobre seus planos de viagem'
-            : 'Descreva os planos, atividades e expectativas da viagem'
-        }
-        required={!isCreateMode}
+        helperText='Adicione detalhes sobre seus planos de viagem'
       />
 
       {/* Botões */}

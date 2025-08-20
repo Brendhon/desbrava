@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useMemo, useEffect, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { useCountries } from '@/hooks/useCountries';
 import { Country } from '@/lib/types/country';
@@ -19,11 +19,12 @@ interface CountrySearchSelectProps {
   placeholder?: string;
   onValueChange?: (value: string) => void;
   debounceDelay?: number;
+  defaultValue?: string;
 }
 
 /**
  * CountrySearchSelect component that provides dynamic country search using the countries API
- * with debouncing to avoid excessive API calls
+ * with debouncing to avoid excessive API calls and support for initial/default values
  */
 const CountrySearchSelect = forwardRef<
   HTMLInputElement,
@@ -42,10 +43,14 @@ const CountrySearchSelect = forwardRef<
       placeholder = 'Digite para buscar um país...',
       onValueChange,
       debounceDelay = 400,
+      defaultValue,
       ...props
     },
     ref
   ) => {
+    // Estado interno para controlar o valor selecionado
+    const [selectedValue, setSelectedValue] = useState<string>(defaultValue || '');
+    
     const {
       countries,
       loading,
@@ -68,14 +73,37 @@ const CountrySearchSelect = forwardRef<
       }));
     }, [countries]);
 
+    // Effect para aplicar o valor inicial após carregar os países
+    useEffect(() => {
+      if (defaultValue) {
+        const initialValue = defaultValue || '';
+        setSelectedValue(initialValue);
+        
+        // Se não há países carregados ainda, fazer uma busca inicial
+        if (countries.length === 0 && initialValue.trim().length > 0) {
+          setSearchTerm(initialValue);
+        }
+      }
+    }, [defaultValue, countries.length, setSearchTerm]);
+
+    // Effect para sincronizar com mudanças externas de value
+    useEffect(() => {
+      if (defaultValue !== undefined && defaultValue !== selectedValue) {
+        setSelectedValue(defaultValue);
+      }
+    }, [defaultValue, selectedValue]);
+
     // Handle option selection and search updates
-    const handleValueChange = (value: string) => {
+    const handleValueChange = (newValue: string) => {
+      // Update internal state
+      setSelectedValue(newValue);
+      
       // Update search term for API calls
-      setSearchTerm(value);
+      setSearchTerm(newValue);
 
       // Call the original onValueChange if provided
       if (onValueChange) {
-        onValueChange(value);
+        onValueChange(newValue);
       }
     };
 
@@ -101,6 +129,7 @@ const CountrySearchSelect = forwardRef<
           options={countryOptions}
           placeholder={placeholder}
           iconPosition="left"
+          value={selectedValue}
           onValueChange={handleValueChange}
           {...props}
         />

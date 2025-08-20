@@ -45,7 +45,7 @@ import { collection, addDoc } from 'firebase/firestore';
 
 export async function createTripInFirestore(tripData: {
   title: string;
-  userId: string;
+  user: string;
 }) {
   try {
     await addDoc(collection(db, 'trips'), {
@@ -86,7 +86,7 @@ export async function createTripAction(formData: FormData) {
 
   try {
     // B. Call the service to interact with the database
-    await createTripInFirestore({ title, userId: session.user.id });
+    await createTripInFirestore({ title, user: session.user.id });
 
     // C. Revalidate the cache on success
     revalidatePath('/dashboard');
