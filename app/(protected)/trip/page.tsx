@@ -7,13 +7,13 @@ import Textarea from '@/components/form/Textarea';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import { useCountries } from '@/hooks';
-import { useTrips } from '@/hooks/useTrips';
 import { useToast } from '@/hooks/useToast';
+import { useTrips } from '@/hooks/useTrips';
 import { createTripSchema, type CreateTripFormData } from '@/lib/schemas/trip';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function CreateTripPage() {
@@ -104,8 +104,6 @@ export default function CreateTripPage() {
           Comece planejando sua próxima aventura
         </p>
       </div>
-
-
 
       {/* Form */}
       <Card
