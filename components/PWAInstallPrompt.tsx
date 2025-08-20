@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Download, X, Smartphone, Star } from 'lucide-react';
+import Button from './ui/Button';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -109,14 +110,17 @@ export function PWAInstallPrompt() {
 
       {/* Install button or iOS instructions */}
       {!isIOS ? (
-        <button 
+        <div className={styles.installButtonContainer}>
+        <Button 
+        size='sm'
           onClick={handleInstallClick} 
-          className={styles.installButton}
           aria-label="Instalar aplicativo Desbrava"
-        >
-          <Download className={styles.buttonIcon} />
-          Instalar Desbrava
-        </button>
+          variant="primary"
+          icon={Download}
+            >
+            Instalar Desbrava
+          </Button>
+        </div>
       ) : (
         <div className={styles.iosInstructions}>
           <h4 className={styles.iosTitle}>Para instalar no iOS:</h4>
@@ -146,8 +150,7 @@ const styles = {
   benefits: 'space-y-2',
   benefitItem: 'flex items-center gap-2 text-xs text-mist-gray',
   benefitIcon: 'w-3 h-3 text-royal-purple flex-shrink-0',
-  installButton: 'mx-4 mb-4 w-full bg-royal-purple hover:bg-royal-purple/90 text-parchment-white py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-royal-purple/25 active:scale-95',
-  buttonIcon: 'w-4 h-4',
+  installButtonContainer: 'flex justify-center my-4',
   iosInstructions: 'mx-4 mb-4 p-3 bg-midnight-blue/50 rounded-lg border border-royal-purple/20',
   iosTitle: 'text-parchment-white text-xs font-medium mb-2',
   iosSteps: 'list-decimal list-inside space-y-1 text-xs text-mist-gray leading-relaxed',
