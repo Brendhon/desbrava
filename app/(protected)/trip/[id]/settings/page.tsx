@@ -3,7 +3,6 @@
 import TripForm from '@/components/form/TripForm';
 import Card from '@/components/ui/Card';
 import DangerZone from '@/components/ui/DangerZone';
-import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { useCountries } from '@/hooks/useCountries';
 import { useToast } from '@/hooks/useToast';
@@ -12,6 +11,7 @@ import { type TripSettingsFormData } from '@/lib/schemas/trip';
 import { Save, Trash2 } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import TripSettingsLoading from './loading';
 
 export default function TripSettingsPage() {
   const params = useParams();
@@ -181,7 +181,7 @@ export default function TripSettingsPage() {
   const backHref = useMemo(() => `/trip/${tripId}`, [tripId]);
 
   // Show loading while fetching trip data
-  if (isLoadingTrip) return <LoadingSpinner size="lg" />;
+  if (isLoadingTrip) return <TripSettingsLoading />;
 
   // Show error state
   if (error) {

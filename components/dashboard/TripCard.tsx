@@ -177,7 +177,7 @@ export default function TripCard({ trip }: TripCardProps) {
 
 const styles = {
   card: 'hover:shadow-lg transition-shadow duration-200',
-  header: 'flex items-center justify-between mb-4',
+  header: 'flex items-center justify-between mb-4 gap-4',
   titleSection: 'flex items-center gap-3',
   title: 'text-xl font-semibold text-parchment-white',
   status: 'px-3 py-1 text-xs font-medium text-white rounded-full',
