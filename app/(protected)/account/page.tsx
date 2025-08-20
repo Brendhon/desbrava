@@ -6,6 +6,7 @@ import { Shield, Calendar, Trash2, LogOut, ExternalLink } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import DangerZone from '@/components/ui/DangerZone';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function AccountPage() {
   const { session, logout } = useAuth();
@@ -52,12 +53,13 @@ export default function AccountPage() {
   return (
     <div className={styles.container}>
       {/* Header */}
-      <div className={styles.header}>
-        <h1 className={styles.title}>Configurações da Conta</h1>
-        <p className={styles.subtitle}>
-          Gerencie suas integrações e configurações de segurança
-        </p>
-      </div>
+      <PageHeader
+        backHref="/dashboard"
+        backText="Voltar ao Dashboard"
+        backAriaLabel="Voltar ao Dashboard"
+        title="Configurações da Conta"
+        subtitle="Gerencie suas integrações e configurações de segurança"
+      />
 
       <div className={styles.content}>
         {/* Google Calendar Integration Section */}
@@ -198,9 +200,6 @@ export default function AccountPage() {
 
 const styles = {
   container: 'max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8',
-  header: 'mb-8',
-  title: 'text-3xl md:text-4xl font-bold text-parchment-white mb-3',
-  subtitle: 'text-lg text-mist-gray',
   content: 'space-y-8',
   sectionHeader: 'flex items-center gap-3 mb-6',
   sectionIcon: 'w-6 h-6 text-royal-purple',

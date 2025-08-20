@@ -14,7 +14,6 @@ interface TripFormProps {
   mode: 'create' | 'edit';
   defaultValues?: Partial<CreateTripFormData> | Partial<TripSettingsFormData>;
   onSubmit: (data: CreateTripFormData | TripSettingsFormData) => Promise<void>;
-  onCancel?: () => void;
   submitButtonText?: string;
   submitButtonIcon?: LucideIcon;
   isSubmitting?: boolean;
@@ -25,7 +24,6 @@ export default function TripForm({
   mode,
   defaultValues = {},
   onSubmit,
-  onCancel,
   submitButtonText,
   submitButtonIcon: SubmitButtonIcon,
   isSubmitting = false,
@@ -128,7 +126,7 @@ export default function TripForm({
         <DatePicker
           label="Data de Fim"
           error={errors.endDate?.message}
-          defaultValue={isCreateMode ? undefined: defaultValues.endDate}
+          defaultValue={isCreateMode ? undefined : defaultValues.endDate}
           register={register('endDate')}
           popupPosition="top"
           helperText="Quando sua viagem termina"
@@ -147,31 +145,16 @@ export default function TripForm({
       />
 
       {/* Botões */}
-      <div className={styles.buttonGroup}>
-        <Button
-          type="submit"
-          variant="primary"
-          icon={SubmitButtonIcon}
-          aria-label={isCreateMode ? "Criar viagem" : "Salvar alterações da viagem"}
-          className="flex-1"
-          disabled={isSubmitting || loading}
-        >
-          {getSubmitButtonText()}
-        </Button>
-
-        {onCancel && (
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={onCancel}
-            aria-label={isCreateMode ? "Cancelar criação" : "Cancelar edição da viagem"}
-            className="flex-1"
-            disabled={isSubmitting || loading}
-          >
-            Cancelar
-          </Button>
-        )}
-      </div>
+      <Button
+        type="submit"
+        variant="primary"
+        icon={SubmitButtonIcon}
+        aria-label={isCreateMode ? "Criar viagem" : "Salvar alterações da viagem"}
+        className={styles.button}
+        disabled={isSubmitting || loading}
+      >
+        {getSubmitButtonText()}
+      </Button>
     </form>
   );
 }
@@ -179,5 +162,5 @@ export default function TripForm({
 const styles = {
   form: 'space-y-6',
   dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
-  buttonGroup: 'flex flex-col sm:flex-row gap-4 pt-4',
+  button: 'w-full',
 };

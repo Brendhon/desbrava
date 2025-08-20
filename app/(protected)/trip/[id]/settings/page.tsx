@@ -86,7 +86,6 @@ export default function TripSettingsPage() {
           mode="edit"
           defaultValues={defaultValues}
           onSubmit={handleSubmit}
-          onCancel={handleCancel}
           submitButtonIcon={Save}
           isSubmitting={isSubmitting}
         />
