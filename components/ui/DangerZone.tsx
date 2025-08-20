@@ -1,4 +1,5 @@
 import { LucideIcon } from 'lucide-react';
+import Button from './Button';
 import Card from './Card';
 
 interface DangerZoneProps {
@@ -45,14 +46,15 @@ export default function DangerZone({
         </div>
 
         <div className={styles.dataActions}>
-          <button
+          <Button
             onClick={onAction}
             disabled={isLoading}
+            variant="danger"
             className={styles.dangerButton}
             aria-label={actionLabel}
           >
             {isLoading ? loadingText : actionLabel}
-          </button>
+          </Button>
         </div>
       </div>
     </Card>
