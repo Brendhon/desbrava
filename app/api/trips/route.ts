@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
 import { getUserTrips, searchTrips } from '@/services/firebase/trip.service';
+import {
+  requireAuth,
+  createSuccessResponse,
+  createInternalErrorResponse,
+} from '@/lib/utils';
 
 /**
  * GET /api/trips
@@ -14,19 +18,12 @@ import { getUserTrips, searchTrips } from '@/services/firebase/trip.service';
 export async function GET(request: NextRequest) {
   try {
     // Check authentication
-    const session = await auth();
-
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Unauthorized',
-          message: 'You must be logged in to access trips',
-        },
-        { status: 401 }
-      );
+    const authResult = await requireAuth();
+    if (authResult instanceof NextResponse) {
+      return authResult;
     }
 
+    const { userEmail } = authResult;
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search');
     const startDate = searchParams.get('startDate');
@@ -44,25 +41,19 @@ export async function GET(request: NextRequest) {
         country: country || undefined,
       };
 
-      results = await searchTrips(
-        session.user.email,
-        search || undefined,
-        filters
-      );
+      results = await searchTrips(userEmail, search || undefined, filters);
       total = results.length;
     }
     // Default: get all user trips
     else {
-      results = await getUserTrips(session.user.email);
+      results = await getUserTrips(userEmail);
       total = results.length;
     }
 
-    return NextResponse.json({
-      success: true,
-      data: results,
+    return createSuccessResponse(results, undefined, 200, {
       count: results.length,
       total,
-      searchTerm: search,
+      searchTerm: search || undefined,
       filters: {
         startDate,
         endDate,
@@ -70,14 +61,6 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Error fetching trips:', error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: 'Internal server error',
-        message: 'Failed to fetch trips',
-      },
-      { status: 500 }
-    );
+    return createInternalErrorResponse(error, 'fetching trips');
   }
 }

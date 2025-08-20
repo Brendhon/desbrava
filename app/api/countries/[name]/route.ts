@@ -1,6 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { Country } from '@/lib/types/country';
 import countriesData from '@/public/data/countries.json';
+import {
+  createSuccessResponse,
+  createErrorResponse,
+  createNotFoundResponse,
+  createInternalErrorResponse,
+} from '@/lib/utils';
 
 /**
  * GET /api/countries/[name]
@@ -14,13 +20,10 @@ export async function GET(
     const name = params.name;
 
     if (!name) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Invalid name format',
-          message: 'Country name is required',
-        },
-        { status: 400 }
+      return createErrorResponse(
+        'Invalid name format',
+        'Country name is required',
+        400
       );
     }
 
@@ -29,29 +32,11 @@ export async function GET(
     );
 
     if (!country) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Country not found',
-          message: `No country found with name ${name}`,
-        },
-        { status: 404 }
-      );
+      return createNotFoundResponse('Country');
     }
 
-    return NextResponse.json({
-      success: true,
-      data: country,
-    });
+    return createSuccessResponse(country);
   } catch (error) {
-    console.error('Error fetching country by name:', error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: 'Internal server error',
-        message: 'Failed to fetch country',
-      },
-      { status: 500 }
-    );
+    return createInternalErrorResponse(error, 'fetch country');
   }
 }

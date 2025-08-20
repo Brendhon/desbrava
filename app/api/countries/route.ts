@@ -1,5 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { findBestMatch, containsString } from '@/lib/utils';
+import { NextRequest } from 'next/server';
+import {
+  findBestMatch,
+  containsString,
+  createSuccessResponse,
+  createInternalErrorResponse,
+} from '@/lib/utils';
 import { Country } from '@/lib/types/country';
 import countriesData from '@/public/data/countries.json';
 
@@ -18,9 +23,7 @@ export async function GET(request: NextRequest) {
 
     // If no name provided, return all countries
     if (!name) {
-      return NextResponse.json({
-        success: true,
-        data: countriesData,
+      return createSuccessResponse(countriesData, undefined, 200, {
         count: countriesData.length,
       });
     }
@@ -51,22 +54,12 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    return NextResponse.json({
-      success: true,
-      data: results,
+    return createSuccessResponse(results, undefined, 200, {
       count: results.length,
       searchTerm: name,
       exact: exact,
     });
   } catch (error) {
-    console.error('Error searching countries:', error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: 'Internal server error',
-        message: 'Failed to search countries',
-      },
-      { status: 500 }
-    );
+    return createInternalErrorResponse(error, 'search countries');
   }
 }

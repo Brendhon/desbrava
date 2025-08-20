@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
 import {
   getTripById,
   updateTrip,
   deleteTrip,
 } from '@/services/firebase/trip.service';
 import { UpdateTripData } from '@/lib/types/trip';
+import {
+  requireAuth,
+  createSuccessResponse,
+  createErrorResponse,
+  checkResourceOwnership,
+  createNotFoundResponse,
+  createInternalErrorResponse,
+} from '@/lib/utils';
 
 /**
  * GET /api/trips/[id]
@@ -13,62 +20,32 @@ import { UpdateTripData } from '@/lib/types/trip';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
-    const session = await auth();
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Unauthorized',
-          message: 'You must be logged in to access trips',
-        },
-        { status: 401 }
-      );
+    const authResult = await requireAuth();
+    if (authResult instanceof NextResponse) {
+      return authResult;
     }
 
-    const tripId = params.id;
+    const { userEmail } = authResult;
+    const { id: tripId } = await params;
     const trip = await getTripById(tripId);
 
     if (!trip) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Not found',
-          message: 'Trip not found',
-        },
-        { status: 404 }
-      );
+      return createNotFoundResponse('Trip');
     }
 
     // Check if the trip belongs to the authenticated user
-    if (trip.user !== session.user.email) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Forbidden',
-          message: 'You can only access your own trips',
-        },
-        { status: 403 }
-      );
+    const ownershipError = checkResourceOwnership(trip.user, userEmail, 'trip');
+    if (ownershipError) {
+      return ownershipError;
     }
 
-    return NextResponse.json({
-      success: true,
-      data: trip,
-    });
+    return createSuccessResponse(trip);
   } catch (error) {
-    console.error('Error fetching trip:', error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: 'Internal server error',
-        message: 'Failed to fetch trip',
-      },
-      { status: 500 }
-    );
+    return createInternalErrorResponse(error, 'fetching trip');
   }
 }
 
@@ -78,67 +55,46 @@ export async function GET(
  */
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
-    const session = await auth();
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Unauthorized',
-          message: 'You must be logged in to update trips',
-        },
-        { status: 401 }
-      );
+    const authResult = await requireAuth();
+    if (authResult instanceof NextResponse) {
+      return authResult;
     }
 
-    const tripId = params.id;
+    const { userEmail } = authResult;
+    const { id: tripId } = await params;
 
     // Check if trip exists and belongs to user
     const existingTrip = await getTripById(tripId);
     if (!existingTrip) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Not found',
-          message: 'Trip not found',
-        },
-        { status: 404 }
-      );
+      return createNotFoundResponse('Trip');
     }
 
-    if (existingTrip.user !== session.user.email) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Forbidden',
-          message: 'You can only update your own trips',
-        },
-        { status: 403 }
-      );
+    const ownershipError = checkResourceOwnership(
+      existingTrip.user,
+      userEmail,
+      'trip'
+    );
+    if (ownershipError) {
+      return ownershipError;
     }
 
     // Parse request body
     const body = await request.json();
     const updateData: UpdateTripData = body;
 
-    // Validate required fields
-    if (
-      !updateData.name &&
-      !updateData.description &&
-      !updateData.startDate &&
-      !updateData.endDate &&
-      !updateData.country
-    ) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Bad request',
-          message: 'At least one field must be provided for update',
-        },
-        { status: 400 }
+    // Validate that at least one field is provided
+    const hasUpdates = Object.values(updateData).some(
+      (value) => value !== undefined
+    );
+    if (!hasUpdates) {
+      return createErrorResponse(
+        'Bad request',
+        'At least one field must be provided for update',
+        400
       );
     }
 
@@ -148,21 +104,9 @@ export async function PUT(
     // Get the updated trip
     const updatedTrip = await getTripById(tripId);
 
-    return NextResponse.json({
-      success: true,
-      data: updatedTrip,
-      message: 'Trip updated successfully',
-    });
+    return createSuccessResponse(updatedTrip, 'Trip updated successfully');
   } catch (error) {
-    console.error('Error updating trip:', error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: 'Internal server error',
-        message: 'Failed to update trip',
-      },
-      { status: 500 }
-    );
+    return createInternalErrorResponse(error, 'update trip');
   }
 }
 
@@ -172,64 +116,38 @@ export async function PUT(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
-    const session = await auth();
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Unauthorized',
-          message: 'You must be logged in to delete trips',
-        },
-        { status: 401 }
-      );
+    const authResult = await requireAuth();
+    if (authResult instanceof NextResponse) {
+      return authResult;
     }
 
-    const tripId = params.id;
+    const { userEmail } = authResult;
+    const { id: tripId } = await params;
 
     // Check if trip exists and belongs to user
     const existingTrip = await getTripById(tripId);
     if (!existingTrip) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Not found',
-          message: 'Trip not found',
-        },
-        { status: 404 }
-      );
+      return createNotFoundResponse('Trip');
     }
 
-    if (existingTrip.user !== session.user.email) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Forbidden',
-          message: 'You can only delete your own trips',
-        },
-        { status: 403 }
-      );
+    const ownershipError = checkResourceOwnership(
+      existingTrip.user,
+      userEmail,
+      'trip'
+    );
+    if (ownershipError) {
+      return ownershipError;
     }
 
     // Delete the trip
     await deleteTrip(tripId);
 
-    return NextResponse.json({
-      success: true,
-      message: 'Trip deleted successfully',
-    });
+    return createSuccessResponse(null, 'Trip deleted successfully');
   } catch (error) {
-    console.error('Error deleting trip:', error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: 'Internal server error',
-        message: 'Failed to delete trip',
-      },
-      { status: 500 }
-    );
+    return createInternalErrorResponse(error, 'delete trip');
   }
 }
