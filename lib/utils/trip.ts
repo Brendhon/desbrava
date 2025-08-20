@@ -98,9 +98,11 @@ export function formatTripDates(startDate: string, endDate: string): string {
  * Calculate trip duration in days
  */
 export function calculateTripDuration(
-  startDate: string,
-  endDate: string
+  startDate: string | undefined,
+  endDate: string | undefined
 ): number {
+  if (!startDate || !endDate) return 0;
+
   const start = parsePtBrToDate(startDate);
   const end = parsePtBrToDate(endDate);
 

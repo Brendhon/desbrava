@@ -5,13 +5,14 @@ import Card from '@/components/ui/Card';
 import { Calendar, Globe, Map, MapPin, Plus, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { useTrips } from '@/hooks/useTrips';
 import { useToast } from '@/hooks/useToast';
 import { Trip } from '@/lib/types/trip';
 import TripDetailsLoading from './loading';
 import { ErrorPage } from '@/components/ui';
+import { calculateTripDuration } from '@/lib/utils/trip';
 
 export default function TripDetailsPage() {
   const params = useParams();
@@ -24,6 +25,12 @@ export default function TripDetailsPage() {
   // Hooks
   const { fetchTrip, error, clearError } = useTrips();
   const { error: showErrorToast } = useToast();
+
+  // Duration
+  const duration = useMemo(
+    () => calculateTripDuration(trip?.startDate, trip?.endDate),
+    [trip?.startDate, trip?.endDate]
+  );
 
   const loadTrip = useCallback(async () => {
     // If tripId is not set, return
@@ -126,7 +133,7 @@ export default function TripDetailsPage() {
           <div>
             <p className={styles.infoLabel}>Período</p>
             <p className={styles.infoValue}>
-              {trip.startDate} - {trip.endDate}
+              {trip.startDate} - {trip.endDate} ({duration} dias)
             </p>
           </div>
         </Card>

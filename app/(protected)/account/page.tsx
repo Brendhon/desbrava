@@ -168,31 +168,6 @@ export default function AccountPage() {
             </div>
           </div>
         </Card>
-
-        {/* Logout Section */}
-        <Card
-          padding="xl"
-          shadow="lg"
-          background="dark"
-          maxWidth="none"
-          border={false}
-        >
-          <div className={styles.logoutContent}>
-            <h2 className={styles.logoutTitle}>Sair da Conta</h2>
-            <p className={styles.logoutDescription}>
-              Você será redirecionado para a página inicial
-            </p>
-            <Button
-              onClick={logout}
-              variant="danger"
-              icon={LogOut}
-              aria-label="Sair da conta"
-              className="mx-auto"
-            >
-              Sair
-            </Button>
-          </div>
-        </Card>
       </div>
     </div>
   );
