@@ -1,5 +1,6 @@
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 import { Navigation } from '@/components/navigation/Navigation';
+import ToastContainer from '@/components/ui/ToastContainer';
 
 export default function ProtectedLayout({
   children,
@@ -11,6 +12,7 @@ export default function ProtectedLayout({
       <div className={styles.container}>
         <Navigation />
         <main className={styles.main}> {children} </main>
+        <ToastContainer />
       </div>
     </ProtectedRoute>
   );

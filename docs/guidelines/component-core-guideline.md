@@ -15,7 +15,7 @@ A unified guide for creating components in the Desbrava project, covering compon
 
 1.  **Start with `useState`**: For simple state that only one component needs, `useState` is perfect.
 2.  **Lift State Up**: When multiple components need to share state, move that state to their closest common parent and pass it down via props.
-3.  **Use Context for Global State**: For app-wide state that many components need (like user session or theme), use the Context API. Use it sparingly as it can make components harder to reuse.
+3.  **Use Context for Global State**: For app-wide state that many components need (like user session), use the Context API. Use it sparingly as it can make components harder to reuse.
 
 ### Performance
 

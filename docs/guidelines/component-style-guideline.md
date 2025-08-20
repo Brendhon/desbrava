@@ -2,7 +2,7 @@
 
 ## Overview
 
-How to style components in the Desbrava project using Tailwind CSS.
+How to style components in the Desbrava project using Tailwind CSS with a consistent dark theme.
 
 ## Rules
 
@@ -10,6 +10,7 @@ How to style components in the Desbrava project using Tailwind CSS.
 
 - No inline styles
 - Only Tailwind utility classes
+- All components use the project's dark theme color palette
 
 ### 2. Make It Responsive
 
@@ -28,6 +29,7 @@ How to style components in the Desbrava project using Tailwind CSS.
 
 ## Colors
 
+The project uses a consistent dark theme color palette:
 `bg-midnight-blue`, `bg-slate-dark`, `text-parchment-white`, `text-mist-gray`, `text-royal-purple`
 
 ## How to Style
@@ -38,6 +40,7 @@ Put this at the end of your component file:
 
 ```typescript
 const styles = {
+  // Dark theme colors for consistent styling
   container: 'bg-slate-dark rounded-lg p-6 shadow-lg',
   title: 'text-parchment-white text-2xl font-bold',
   button: 'bg-royal-purple text-parchment-white px-4 py-2 rounded-md',
@@ -79,6 +82,7 @@ export function LikeButton({ liked, onClick }: LikeButtonProps) {
 }
 
 const styles = {
+  // Dark theme button with hover effects
   button:
     'flex items-center gap-2 bg-royal-purple text-parchment-white px-4 py-2 rounded-md hover:bg-royal-purple/80',
   icon: 'w-5 h-5',
@@ -92,3 +96,4 @@ const styles = {
 - [ ] Relative sizing (`w-10`, `h-16`)
 - [ ] Lucide icons only
 - [ ] Styles in `styles` object
+- [ ] Follows dark theme color palette

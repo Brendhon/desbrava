@@ -8,9 +8,10 @@ import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import { useCountries } from '@/hooks';
 import { useTrips } from '@/hooks/useTrips';
+import { useToast } from '@/hooks/useToast';
 import { createTripSchema, type CreateTripFormData } from '@/lib/schemas/trip';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { AlertCircle, CheckCircle, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -18,8 +19,7 @@ import { useForm } from 'react-hook-form';
 export default function CreateTripPage() {
   const router = useRouter();
   const { createTrip, loading, error, clearError } = useTrips();
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
+  const { success: showSuccessToast, error: showErrorToast } = useToast();
   const { getCountryByName } = useCountries();
 
   const {
@@ -47,7 +47,6 @@ export default function CreateTripPage() {
   const onSubmit = async (data: CreateTripFormData) => {
     try {
       clearError();
-      setShowError(false);
 
       // Get Trip Data
       const tripData = {
@@ -62,7 +61,10 @@ export default function CreateTripPage() {
       const newTrip = await createTrip(tripData);
 
       if (newTrip) {
-        setShowSuccess(true);
+        showSuccessToast(
+          'Viagem criada com sucesso!',
+          'Redirecionando para o dashboard...'
+        );
 
         // Reset form
         reset();
@@ -72,33 +74,24 @@ export default function CreateTripPage() {
           router.push('/dashboard');
         }, 2000);
       } else {
-        setShowError(true);
+        showErrorToast(
+          'Erro ao criar viagem',
+          'Ocorreu um erro inesperado. Tente novamente.'
+        );
       }
     } catch (error) {
       console.error('Erro ao criar viagem:', error);
-      setShowError(true);
+      showErrorToast(
+        'Erro ao criar viagem',
+        'Ocorreu um erro inesperado. Tente novamente.'
+      );
     }
   };
-
-  // Auto-hide success/error messages
-  useEffect(() => {
-    if (showSuccess) {
-      const timer = setTimeout(() => setShowSuccess(false), 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [showSuccess]);
-
-  useEffect(() => {
-    if (showError) {
-      const timer = setTimeout(() => setShowError(false), 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [showError]);
 
   // Auto-hide error when user starts typing
   useEffect(() => {
     if (error) {
-      setShowError(true);
+      // Error is now handled by the toast system
     }
   }, [error]);
 
@@ -112,41 +105,7 @@ export default function CreateTripPage() {
         </p>
       </div>
 
-      {/* Success Message */}
-      {showSuccess && (
-        <div className={styles.successMessage}>
-          <CheckCircle className={styles.successIcon} />
-          <div>
-            <h3 className={styles.successTitle}>Viagem criada com sucesso!</h3>
-            <p className={styles.successText}>
-              Redirecionando para o dashboard...
-            </p>
-          </div>
-        </div>
-      )}
 
-      {/* Error Message */}
-      {(showError || error) && (
-        <div className={styles.errorMessage}>
-          <AlertCircle className={styles.errorIcon} />
-          <div>
-            <h3 className={styles.errorTitle}>Erro ao criar viagem</h3>
-            <p className={styles.errorText}>
-              {error || 'Ocorreu um erro inesperado. Tente novamente.'}
-            </p>
-          </div>
-          <button
-            onClick={() => {
-              setShowError(false);
-              clearError();
-            }}
-            className={styles.closeButton}
-            aria-label="Fechar mensagem de erro"
-          >
-            ×
-          </button>
-        </div>
-      )}
 
       {/* Form */}
       <Card
@@ -246,16 +205,5 @@ const styles = {
   form: 'space-y-6',
   dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
   buttonGroup: 'flex flex-col sm:flex-row gap-4 pt-4',
-  successMessage:
-    'mb-6 p-4 bg-green-900/20 border border-green-500/30 rounded-lg flex items-start gap-3 text-green-400',
-  successIcon: 'w-6 h-6 text-green-500 flex-shrink-0 mt-0.5',
-  successTitle: 'text-lg font-semibold text-green-400',
-  successText: 'text-green-300',
-  errorMessage:
-    'mb-6 p-4 bg-red-900/20 border border-red-500/30 rounded-lg flex items-start gap-3 text-red-400 relative',
-  errorIcon: 'w-6 h-6 text-red-500 flex-shrink-0 mt-0.5',
-  errorTitle: 'text-lg font-semibold text-red-400',
-  errorText: 'text-red-300',
-  closeButton:
-    'absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-red-400 hover:text-red-300 transition-colors',
+
 };
