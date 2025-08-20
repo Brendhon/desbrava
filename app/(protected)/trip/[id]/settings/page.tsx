@@ -232,7 +232,7 @@ const styles = {
   buttonGroup: 'flex flex-col sm:flex-row gap-4 pt-4',
   dangerZone: 'mt-12 pt-8 border-t border-slate-dark/20',
   dangerZoneTitle: 'text-lg font-semibold text-parchment-white mb-4',
-  dangerZoneContent: '',
+  dangerZoneContent: 'bg-red-500/20 border border-red-500/70 rounded-lg p-4',
   deleteSection: 'flex items-center justify-between',
   deleteTitle: 'text-parchment-white font-medium mb-1',
   deleteDescription: 'text-sm text-mist-gray',

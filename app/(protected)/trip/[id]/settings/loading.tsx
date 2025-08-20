@@ -36,6 +36,6 @@ const styles = {
   content: 'max-w-2xl mx-auto',
   formSection: 'mb-6',
   dangerZone: 'bg-slate-dark rounded-lg shadow-lg border border-midnight-blue/20 p-6 mb-6',
-  dangerContent: 'border border-red-200 rounded-lg p-4 bg-red-50',
+  dangerContent: 'border border-red-500/70 rounded-lg p-4 bg-red-500/20',
   actions: 'flex justify-end space-x-4',
 };
