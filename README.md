@@ -1,6 +1,4 @@
-<h1 align="center">
-  Desbrava
-</h1>
+<h1 align="center">Desbrava</h1>
 
 <p align="center">
   <strong>Seu planejador de viagens pessoal, focado em uma experiência simples e intuitiva.</strong>
@@ -17,17 +15,17 @@
 - [📜 Índice](#-índice)
 - [✈️ Sobre o Projeto](#️-sobre-o-projeto)
 - [✨ Features](#-features)
-- [🚀 Melhorias Futuras](#-melhorias-futuras)
-- [🎨 Layout e Paleta de Cores](#-layout-e-paleta-de-cores)
+  - [Implementadas](#implementadas)
+  - [Planejadas](#planejadas)
 - [🚀 Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [🔐 Processo de Autenticação](#-processo-de-autenticação)
-  - [Como Funciona o Login](#como-funciona-o-login)
-  - [Fluxo de Telas](#fluxo-de-telas)
 - [👨‍💻 Como Executar](#-como-executar)
   - [Pré-requisitos](#pré-requisitos)
-  - [Configuração do Ambiente](#configuração-do-ambiente)
-  - [Configuração do Google OAuth](#configuração-do-google-oauth)
-  - [Rodando a Aplicação](#rodando-a-aplicação)
+  - [1. Configuração do Ambiente](#1-configuração-do-ambiente)
+  - [2. Configuração das Variáveis de Ambiente](#2-configuração-das-variáveis-de-ambiente)
+  - [3. Configuração do Google OAuth](#3-configuração-do-google-oauth)
+  - [4. Executando a Aplicação](#4-executando-a-aplicação)
+- [🔐 Autenticação](#-autenticação)
+- [🚀 Funcionalidades PWA](#-funcionalidades-pwa)
 - [🤝 Como Contribuir](#-como-contribuir)
 - [📝 Licença](#-licença)
 - [👥 Autor](#-autor)
@@ -36,163 +34,100 @@
 
 ## ✈️ Sobre o Projeto
 
-O **Desbrava** nasceu da ideia de simplificar o planejamento de viagens. Em vez de planilhas complexas e informações espalhadas, o Desbrava oferece uma interface centralizada, limpa e focada para que você possa organizar seus roteiros de forma intuitiva.
+O **Desbrava** simplifica o planejamento de viagens, oferecendo uma interface centralizada e intuitiva para organizar roteiros. O objetivo é permitir que o usuário crie viagens, adicione pontos de referência e construa seu itinerário com atividades manuais e sugestões inteligentes de locais próximos.
 
-O objetivo é permitir que o usuário crie uma viagem, adicione um ponto de referência e, a partir daí, construa seu itinerário dia a dia, mesclando atividades planejadas manualmente com sugestões inteligentes de locais próximos.
+Como **PWA (Progressive Web App)**, o Desbrava pode ser instalado em seu dispositivo, oferecendo funcionalidades offline e uma experiência de aplicativo nativo.
 
 ---
 
 ## ✨ Features
 
-- [x] **Autenticação Segura com Google:** Login rápido e seguro utilizando NextAuth.js.
-- [x] **Sistema de Formulários:** Componentes de input reutilizáveis com validação robusta usando React Hook Form e Zod.
-- [ ] **Criação de Viagens:** Fluxo simplificado em etapas para criar uma nova viagem, selecionando o país e as datas.
-- [ ] **Dashboard Pessoal:** Visualize todas as suas viagens (passadas, presentes e futuras) em um só lugar.
-- [ ] **Detalhes da Viagem:** Página dedicada para cada viagem, servindo como hub central do planejamento.
-- [ ] **Adição de Ponto de Referência:** Use o Google Places para definir um endereço principal (hotel, etc.) e obter coordenadas.
-- [ ] **Criação de Atividades Manuais:** Adicione qualquer tipo de atividade ao seu roteiro com um sistema de categorização (Transporte, Hospedagem, Alimentação, etc.).
-- [ ] **Sugestões de Atividades:** Com base no seu ponto de referência, receba sugestões de restaurantes, pontos turísticos e mais.
-- [ ] **Visualização em Calendário:** Veja seu roteiro em um layout de calendário interativo.
+### Implementadas
+- **Autenticação Segura com Google:** Login rápido e seguro utilizando NextAuth.js.
+- **Sistema de Formulários:** Componentes reutilizáveis com validação via React Hook Form e Zod.
+- **Progressive Web App (PWA):** Aplicação instalável com funcionalidades offline.
 
----
-
-## 🚀 Melhorias Futuras
-
-- [ ] **Paginação de Viagens:** Implementar paginação para melhorar a performance quando o usuário tiver muitas viagens.
-- [ ] **Filtros Avançados:** Adicionar mais opções de filtro como status da viagem, tipo de viagem, etc.
-- [ ] **Exportação de Roteiros:** Permitir exportar roteiros em PDF ou outros formatos.
-- [ ] **Compartilhamento:** Compartilhar roteiros com outros usuários.
-- [ ] **Notificações:** Lembretes para datas importantes e atividades planejadas.
-- [ ] **Modo Offline:** Funcionalidade básica offline para visualizar roteiros salvos.
-- [ ] **Múltiplos Idiomas:** Suporte para português e inglês.
-
----
-
-## 🎨 Layout e Paleta de Cores
-
-O design do Desbrava foi pensado para ser imersivo e confortável, utilizando um tema escuro que remete à exploração e aventura. A paleta de cores "Diário de Explorador" foi escolhida para ser moderna e funcional.
-
-| Nome Sugerido         | HEX Code  | Uso Principal                    |
-| :-------------------- | :-------- | :------------------------------- |
-| **Azul Meia-Noite**   | `#0D1B2A` | Fundo principal da aplicação.    |
-| **Ardósia Escuro**    | `#1B263B` | Fundo para cards e modais.       |
-| **Branco Pergaminho** | `#E0E1DD` | Textos principais e títulos.     |
-| **Cinza Névoa**       | `#A9B4C2` | Textos secundários e ícones.     |
-| **Roxo Real**         | `#8443A4` | Logo, destaques, botões e links. |
+### Planejadas
+- **Criação e Gerenciamento de Viagens:** Dashboard pessoal para visualizar e organizar todas as suas viagens.
+- **Planejamento de Roteiro:** Adição de pontos de referência (hotéis, etc.) e atividades manuais.
+- **Sugestões Inteligentes:** Recomendações de restaurantes e pontos turísticos com base na sua localização.
+- **Funcionalidades Avançadas:** Paginação, filtros, exportação de roteiros, compartilhamento e notificações push.
+- **Melhorias de UX/UI:** Tema claro/escuro e suporte a múltiplos idiomas.
 
 ---
 
 ## 🚀 Tecnologias Utilizadas
 
-- **Next.js:** Framework React para renderização no servidor (SSR) e uma estrutura robusta.
-- **React:** Biblioteca para construção da interface de usuário.
-- **TypeScript:** Para adicionar tipagem estática e aumentar a segurança do código.
-- **Tailwind CSS:** Framework CSS utilitário para estilização rápida e responsiva.
-- **Lucide Icons:** Biblioteca de ícones open-source e customizável.
-- **Firebase:** Utilizado como Backend as a Service (BaaS) para:
-  - **Authentication:** Gerenciamento de usuários com o provedor do Google.
-  - **Firestore:** Banco de dados NoSQL para armazenar dados de viagens e atividades.
-- **NextAuth.js:** Solução completa de autenticação para aplicações Next.js.
-- **Google Places API:** Para busca e sugestão de locais.
-- **React Hook Form:** Biblioteca para gerenciamento eficiente de formulários com validação e performance otimizada.
-- **Zod:** Biblioteca TypeScript-first para validação de schemas com inferência de tipos estática.
-- **@hookform/resolvers:** Integração oficial entre React Hook Form e bibliotecas de validação como Zod.
-
-## 🔐 Processo de Autenticação
-
-### Como Funciona o Login
-
-O sistema de autenticação do Desbrava utiliza NextAuth.js com Google OAuth para proporcionar uma experiência de login simples e segura:
-
-1. **Página Inicial**: Usuário acessa a aplicação e vê o botão "Entrar com Google"
-2. **Autenticação Google**: Ao clicar, é redirecionado para a tela de login do Google
-3. **Autorização**: Usuário autoriza o acesso aos dados básicos da conta Google
-4. **Redirecionamento**: Após login bem-sucedido, é automaticamente redirecionado para `/dashboard`
-5. **Dashboard Protegido**: A rota `/dashboard` só é acessível para usuários autenticados
-6. **Sessão Persistente**: A sessão é mantida automaticamente pelo NextAuth.js
-
-### Fluxo de Telas
-
-```
-
-Página Inicial → Login Google → Dashboard (Protegido)
-↓ ↓ ↓
-Botão "Entrar" → Autorização → Lista de Viagens
-↓ ↓ ↓
-Dashboard → Nova Viagem → Detalhes da Viagem
-↓ ↓ ↓
-Dashboard → Configurações da Conta → Logout
-↓ ↓ ↓
-Detalhes da Viagem → Configurações da Viagem → Edição
-
-```
+- **Framework:** Next.js 15
+- **Linguagem:** TypeScript
+- **UI:** React 19, Tailwind CSS, Lucide Icons
+- **Backend & Banco de Dados:** Firebase (Authentication, Firestore)
+- **Autenticação:** NextAuth.js
+- **APIs:** Google Places API
+- **Formulários:** React Hook Form com Zod para validação
+- **PWA:** Service Workers e Web App Manifest
 
 ---
 
 ## 👨‍💻 Como Executar
 
 ### Pré-requisitos
-
 - Node.js (v22 ou superior)
 - Git
 - npm
 
-### Configuração do Ambiente
+### 1. Configuração do Ambiente
 
-1.  **Clone o repositório:**
+```bash
+# Clone o repositório
+git clone git@github.com:Brendhon/desbrava.git
+cd desbrava
 
-    ```bash
-    git clone [git@github.com:Brendhon/desbrava.git](git@github.com:Brendhon/desbrava.git)
-    cd desbrava
-    ```
+# Instale as dependências
+npm install
+```
 
-2.  **Instale as dependências:**
+### 2. Configuração das Variáveis de Ambiente
 
-    ```bash
-    npm install
-    ```
+Crie um arquivo `.env.local` na raiz do projeto:
 
-3.  **Configure as variáveis de ambiente:**
-    Crie um arquivo `.env.local` na raiz e preencha com suas chaves:
+```env
+# NextAuth.js
+NEXTAUTH_SECRET=your-nextauth-secret-key
+NEXTAUTH_URL=http://localhost:3000
 
-    ```env
-    # NextAuth.js - Gerado com 'openssl rand -base64 32' no terminal
-    NEXTAUTH_SECRET=your-nextauth-secret-key
-    NEXTAUTH_URL=http://localhost:3000
+# Google OAuth
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
 
-    # NextAuth.js - Credenciais do Provedor Google
-    # Obtenha no console do Google Cloud
-    GOOGLE_CLIENT_ID=your-google-client-id
-    GOOGLE_CLIENT_SECRET=your-google-client-secret
+# Firebase
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
 
-    # Firebase - Configurações do seu projeto
-    # Obtenha no console do Firebase
-    NEXT_PUBLIC_FIREBASE_API_KEY=
-    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID=
-    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
-    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
-    NEXT_PUBLIC_FIREBASE_APP_ID=
+# Google Places API
+NEXT_PUBLIC_GOOGLE_PLACES_API_KEY=
 
-    # Google Cloud - Chave de API para o Places
-    # Habilite a "Places API" no console do Google Cloud
-    NEXT_PUBLIC_GOOGLE_PLACES_API_KEY=
-    ```
+# PWA (Opcional)
+NEXT_PUBLIC_VAPID_PUBLIC_KEY=
+VAPID_PRIVATE_KEY=
+```
 
-### Configuração do Google OAuth
-
-Para que a autenticação funcione, você precisa configurar o Google OAuth:
+### 3. Configuração do Google OAuth
 
 1. Acesse [Google Cloud Console](https://console.cloud.google.com/)
-2. Crie um novo projeto ou selecione um existente
+2. Crie um projeto ou selecione um existente
 3. Ative a API do Google+
 4. Vá para "Credenciais" > "Criar credenciais" > "ID do cliente OAuth 2.0"
-5. Configure as URIs de redirecionamento autorizadas:
+5. Configure as URIs de redirecionamento:
    - `http://localhost:3000/api/auth/callback/google` (desenvolvimento)
    - `https://seu-dominio.com/api/auth/callback/google` (produção)
 6. Copie o Client ID e Client Secret para o arquivo `.env.local`
 
-### Rodando a Aplicação
+### 4. Executando a Aplicação
 
 ```bash
 npm run dev
@@ -202,21 +137,41 @@ Acesse `http://localhost:3000` em seu navegador.
 
 ---
 
+## 🔐 Autenticação
+
+O sistema utiliza NextAuth.js com Google OAuth para login seguro:
+
+1. **Página Inicial** → Botão "Entrar com Google"
+2. **Autorização Google** → Redirecionamento para dashboard
+3. **Dashboard Protegido** → Acesso apenas para usuários autenticados
+
+---
+
+## 🚀 Funcionalidades PWA
+
+- **Instalação:** Adicione à tela inicial como aplicativo nativo
+- **Modo Offline:** Acesse suas viagens sem conexão
+- **Cache Inteligente:** Recursos armazenados localmente
+- **Experiência App-like:** Interface nativa e navegação suave
+- **Notificações Push:** Lembretes configuráveis
+
+**iOS:** Use o botão compartilhar e selecione "Adicionar à Tela Inicial"
+
+---
+
 ## 🤝 Como Contribuir
 
-Este é um projeto pessoal, mas contribuições são bem-vindas\! Se você tiver ideias ou encontrar bugs, sinta-se à vontade para:
-
-1.  Fazer um **Fork** do projeto.
-2.  Criar uma nova **Branch** (`git checkout -b feature/sua-feature`).
-3.  Fazer **Commit** de suas mudanças (`git commit -m 'feat: Minha nova feature'`).
-4.  Fazer **Push** para a Branch (`git push origin feature/sua-feature`).
-5.  Abrir um **Pull Request**.
+1. Faça um **Fork** do projeto
+2. Crie uma **Branch** (`git checkout -b feature/sua-feature`)
+3. Faça **Commit** das mudanças (`git commit -m 'feat: Minha nova feature'`)
+4. Faça **Push** para a Branch (`git push origin feature/sua-feature`)
+5. Abra um **Pull Request**
 
 ---
 
 ## 📝 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://www.google.com/search?q=LICENSE) para mais detalhes.
+Este projeto está sob a licença MIT.
 
 ---
 
