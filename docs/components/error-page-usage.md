@@ -70,17 +70,17 @@ function MyComponent() {
 
 ## Props
 
-| Prop              | Tipo      | Padrão                | Descrição                                    |
-| ----------------- | --------- | --------------------- | -------------------------------------------- |
-| `backHref`        | `string`  | -                     | URL para navegação de volta                  |
-| `backText`        | `string`  | -                     | Texto do botão de voltar                     |
-| `backAriaLabel`   | `string`  | -                     | Label ARIA para acessibilidade               |
-| `title`           | `string`  | -                     | Título principal da página de erro           |
-| `subtitle`        | `string`  | -                     | Subtítulo explicativo                        |
-| `errorMessage`    | `string`  | -                     | Mensagem de erro detalhada                   |
-| `onRetry`         | `function`| -                     | Função chamada ao clicar no botão de retry   |
-| `retryButtonText` | `string`  | `"Tentar Novamente"`  | Texto personalizado para o botão de retry   |
-| `showRetryButton` | `boolean` | `true`                | Controla se o botão de retry deve ser exibido |
+| Prop              | Tipo       | Padrão               | Descrição                                     |
+| ----------------- | ---------- | -------------------- | --------------------------------------------- |
+| `backHref`        | `string`   | -                    | URL para navegação de volta                   |
+| `backText`        | `string`   | -                    | Texto do botão de voltar                      |
+| `backAriaLabel`   | `string`   | -                    | Label ARIA para acessibilidade                |
+| `title`           | `string`   | -                    | Título principal da página de erro            |
+| `subtitle`        | `string`   | -                    | Subtítulo explicativo                         |
+| `errorMessage`    | `string`   | -                    | Mensagem de erro detalhada                    |
+| `onRetry`         | `function` | -                    | Função chamada ao clicar no botão de retry    |
+| `retryButtonText` | `string`   | `"Tentar Novamente"` | Texto personalizado para o botão de retry     |
+| `showRetryButton` | `boolean`  | `true`               | Controla se o botão de retry deve ser exibido |
 
 ## Examples
 

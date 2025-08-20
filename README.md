@@ -43,11 +43,13 @@ Como **PWA (Progressive Web App)**, o Desbrava pode ser instalado em seu disposi
 ## ✨ Features
 
 ### Implementadas
+
 - **Autenticação Segura com Google:** Login rápido e seguro utilizando NextAuth.js.
 - **Sistema de Formulários:** Componentes reutilizáveis com validação via React Hook Form e Zod.
 - **Progressive Web App (PWA):** Aplicação instalável com funcionalidades offline.
 
 ### Planejadas
+
 - **Criação e Gerenciamento de Viagens:** Dashboard pessoal para visualizar e organizar todas as suas viagens.
 - **Planejamento de Roteiro:** Adição de pontos de referência (hotéis, etc.) e atividades manuais.
 - **Sugestões Inteligentes:** Recomendações de restaurantes e pontos turísticos com base na sua localização.
@@ -72,6 +74,7 @@ Como **PWA (Progressive Web App)**, o Desbrava pode ser instalado em seu disposi
 ## 👨‍💻 Como Executar
 
 ### Pré-requisitos
+
 - Node.js (v22 ou superior)
 - Git
 - npm

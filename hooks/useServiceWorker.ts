@@ -19,7 +19,7 @@ export function useServiceWorker() {
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
-      setState(prev => ({ ...prev, isSupported: true }));
+      setState((prev) => ({ ...prev, isSupported: true }));
       registerServiceWorker();
     }
   }, []);
@@ -31,7 +31,7 @@ export function useServiceWorker() {
         updateViaCache: 'none',
       });
 
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         isRegistered: true,
         registration,
@@ -42,8 +42,11 @@ export function useServiceWorker() {
         const newWorker = registration.installing;
         if (newWorker) {
           newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              setState(prev => ({ ...prev, isUpdateAvailable: true }));
+            if (
+              newWorker.state === 'installed' &&
+              navigator.serviceWorker.controller
+            ) {
+              setState((prev) => ({ ...prev, isUpdateAvailable: true }));
             }
           });
         }
@@ -51,10 +54,9 @@ export function useServiceWorker() {
 
       // Handle controller change (new service worker activated)
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        setState(prev => ({ ...prev, isUpdateAvailable: false }));
+        setState((prev) => ({ ...prev, isUpdateAvailable: false }));
         window.location.reload();
       });
-
     } catch (error) {
       console.error('Service Worker registration failed:', error);
     }
@@ -74,7 +76,7 @@ export function useServiceWorker() {
     if (state.registration) {
       try {
         await state.registration.unregister();
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           isRegistered: false,
           registration: null,

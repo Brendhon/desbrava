@@ -164,7 +164,6 @@ export default function TripDetailsPage() {
         border={false}
         className={styles.tabContainer}
       >
-
         {/* Itinerary Tab */}
         <div className={styles.itineraryContent}>
           <div className={styles.itineraryHeader}>

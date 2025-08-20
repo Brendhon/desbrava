@@ -15,7 +15,8 @@ interface ExtendedWindow extends Window {
 }
 
 export function PWAInstallPrompt() {
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
   const [isStandalone, setIsStandalone] = useState(false);
@@ -26,16 +27,18 @@ export function PWAInstallPrompt() {
 
     // Check if iOS device
     const extendedWindow = window as ExtendedWindow;
-    setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent) && !extendedWindow.MSStream);
+    setIsIOS(
+      /iPad|iPhone|iPod/.test(navigator.userAgent) && !extendedWindow.MSStream
+    );
 
     // Check if prompt was already shown in this session
     const hasSeenPrompt = sessionStorage.getItem('pwa-prompt-shown');
-    
+
     // Listen for beforeinstallprompt event
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
-      
+
       // Only show prompt if user hasn't seen it in this session
       if (!hasSeenPrompt) {
         setShowInstallPrompt(true);
@@ -45,7 +48,10 @@ export function PWAInstallPrompt() {
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener(
+        'beforeinstallprompt',
+        handleBeforeInstallPrompt
+      );
     };
   }, []);
 
@@ -105,7 +111,8 @@ export function PWAInstallPrompt() {
       {/* Description with benefits */}
       <div className={styles.descriptionSection}>
         <p className={styles.description}>
-          Instale o Desbrava no seu dispositivo para uma experiência mais rápida e offline.
+          Instale o Desbrava no seu dispositivo para uma experiência mais rápida
+          e offline.
         </p>
         <div className={styles.benefits}>
           <div className={styles.benefitItem}>
@@ -123,7 +130,7 @@ export function PWAInstallPrompt() {
       {!isIOS ? (
         <div className={styles.installButtonContainer}>
           <Button
-            size='sm'
+            size="sm"
             onClick={handleInstallClick}
             aria-label="Instalar aplicativo Desbrava"
             variant="primary"
@@ -147,21 +154,26 @@ export function PWAInstallPrompt() {
 }
 
 const styles = {
-  container: 'fixed top-4 right-4 w-80 bg-slate-dark border border-royal-purple/30 rounded-xl shadow-2xl z-100 overflow-hidden transition-all duration-300 ease-out hover:shadow-royal-purple/20',
+  container:
+    'fixed top-4 right-4 w-80 bg-slate-dark border border-royal-purple/30 rounded-xl shadow-2xl z-100 overflow-hidden transition-all duration-300 ease-out hover:shadow-royal-purple/20',
   header: 'flex items-start justify-between p-4 pb-3',
   titleSection: 'flex items-center gap-3',
-  iconContainer: 'w-10 h-10 bg-royal-purple/20 rounded-lg flex items-center justify-center',
+  iconContainer:
+    'w-10 h-10 bg-royal-purple/20 rounded-lg flex items-center justify-center',
   icon: 'w-5 h-5 text-royal-purple',
   title: 'text-parchment-white font-semibold text-sm',
   subtitle: 'text-mist-gray text-xs',
-  closeButton: 'text-mist-gray hover:text-parchment-white transition-colors duration-200 p-1 rounded-md hover:bg-slate-dark/50',
+  closeButton:
+    'text-mist-gray hover:text-parchment-white transition-colors duration-200 p-1 rounded-md hover:bg-slate-dark/50',
   descriptionSection: 'px-4 pb-3',
   description: 'text-mist-gray text-xs leading-relaxed mb-3',
   benefits: 'space-y-2',
   benefitItem: 'flex items-center gap-2 text-xs text-mist-gray',
   benefitIcon: 'w-3 h-3 text-royal-purple flex-shrink-0',
   installButtonContainer: 'flex justify-center my-4',
-  iosInstructions: 'mx-4 mb-4 p-3 bg-midnight-blue/50 rounded-lg border border-royal-purple/20',
+  iosInstructions:
+    'mx-4 mb-4 p-3 bg-midnight-blue/50 rounded-lg border border-royal-purple/20',
   iosTitle: 'text-parchment-white text-xs font-medium mb-2',
-  iosSteps: 'list-decimal list-inside space-y-1 text-xs text-mist-gray leading-relaxed',
+  iosSteps:
+    'list-decimal list-inside space-y-1 text-xs text-mist-gray leading-relaxed',
 };

@@ -40,6 +40,7 @@ Este componente não recebe props, pois detecta automaticamente o estado da apli
 ## Estilos
 
 O componente usa as cores do tema Desbrava:
+
 - `bg-ardosia-escuro`: Fundo do prompt
 - `border-roxo-real`: Borda destacada
 - `text-branco-pergaminho`: Texto principal

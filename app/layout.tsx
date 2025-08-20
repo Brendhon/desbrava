@@ -13,7 +13,8 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Desbrava - PWA',
-  description: 'Desbrava - Seu planejador de viagens pessoal. Agora disponível como PWA para uma experiência offline e app-like!',
+  description:
+    'Desbrava - Seu planejador de viagens pessoal. Agora disponível como PWA para uma experiência offline e app-like!',
   manifest: '/manifest.json',
   authors: [
     {
@@ -21,6 +22,31 @@ export const metadata: Metadata = {
       url: 'https://www.linkedin.com/in/brendhon-moreira/',
     },
   ],
+  openGraph: {
+    title: 'Desbrava',
+    description:
+      'Desbrava - Seu planejador de viagens pessoal. Agora disponível como PWA para uma experiência offline e app-like!',
+    url: 'https://desbrava-seven.vercel.app',
+    siteName: 'Desbrava',
+    images: [
+      {
+        url: 'https://desbrava-seven.vercel.app/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Desbrava - Seu planejador de viagens pessoal. Agora disponível como PWA para uma experiência offline e app-like!',
+      },
+    ],
+    locale: 'pt_BR',
+    type: 'website',
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Desbrava',
+    description:
+      'Desbrava - Seu planejador de viagens pessoal. Agora disponível como PWA para uma experiência offline e app-like!',
+    images: ['https://desbrava-seven.vercel.app/images/og-image.png'],
+  },
   appleWebApp: {
     title: 'Desbrava',
     statusBarStyle: 'black-translucent',

@@ -17,12 +17,8 @@ O hook `useServiceWorker` gerencia o ciclo de vida do service worker da aplicaç
 import { useServiceWorker } from '@/hooks/useServiceWorker';
 
 export default function App() {
-  const { 
-    isSupported, 
-    isRegistered, 
-    isUpdateAvailable, 
-    updateServiceWorker 
-  } = useServiceWorker();
+  const { isSupported, isRegistered, isUpdateAvailable, updateServiceWorker } =
+    useServiceWorker();
 
   if (!isSupported) {
     return <p>PWA não suportada neste navegador</p>;
@@ -31,9 +27,7 @@ export default function App() {
   return (
     <div>
       {isUpdateAvailable && (
-        <button onClick={updateServiceWorker}>
-          Atualizar Aplicação
-        </button>
+        <button onClick={updateServiceWorker}>Atualizar Aplicação</button>
       )}
     </div>
   );
@@ -44,35 +38,40 @@ export default function App() {
 
 ```tsx
 interface ServiceWorkerState {
-  isSupported: boolean;        // Navegador suporta service workers
-  isRegistered: boolean;       // Service worker está registrado
-  isUpdateAvailable: boolean;  // Nova versão disponível
+  isSupported: boolean; // Navegador suporta service workers
+  isRegistered: boolean; // Service worker está registrado
+  isUpdateAvailable: boolean; // Nova versão disponível
   registration: ServiceWorkerRegistration | null; // Instância do registro
-  updateServiceWorker: () => Promise<void>;       // Função para atualizar
-  unregisterServiceWorker: () => Promise<void>;   // Função para desregistrar
+  updateServiceWorker: () => Promise<void>; // Função para atualizar
+  unregisterServiceWorker: () => Promise<void>; // Função para desregistrar
 }
 ```
 
 ## Estados
 
 ### `isSupported`
+
 - `true`: Navegador suporta service workers
 - `false`: Navegador não suporta (navegadores antigos)
 
 ### `isRegistered`
+
 - `true`: Service worker registrado com sucesso
 - `false`: Ainda não registrado ou falha no registro
 
 ### `isUpdateAvailable`
+
 - `true`: Nova versão do service worker disponível
 - `false`: Versão atual é a mais recente
 
 ## Métodos
 
 ### `updateServiceWorker()`
+
 Força a atualização do service worker. Útil quando `isUpdateAvailable` é `true`.
 
 ### `unregisterServiceWorker()`
+
 Remove o service worker da aplicação. Útil para testes ou debugging.
 
 ## Eventos Internos
@@ -84,6 +83,7 @@ Remove o service worker da aplicação. Útil para testes ou debugging.
 ## Tratamento de Erros
 
 O hook inclui tratamento de erros para:
+
 - Falha no registro
 - Falha na atualização
 - Falha no desregistro
