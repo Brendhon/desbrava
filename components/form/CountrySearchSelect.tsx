@@ -2,7 +2,7 @@
 
 import { forwardRef, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { useCountriesSearch } from '@/hooks/useCountriesSearch';
+import { useCountries } from '@/hooks/useCountries';
 import { Country } from '@/lib/types/country';
 import { SelectOption } from '@/lib/types';
 import SearchSelect from './SearchSelect';
@@ -19,6 +19,7 @@ interface CountrySearchSelectProps {
   placeholder?: string;
   onValueChange?: (value: string) => void;
   debounceDelay?: number;
+  selectedCountry?: string;
 }
 
 /**
@@ -49,7 +50,7 @@ const CountrySearchSelect = forwardRef<HTMLInputElement, CountrySearchSelectProp
       error: searchError, 
       searchTerm, 
       setSearchTerm 
-    } = useCountriesSearch('', debounceDelay);
+    } = useCountries('', debounceDelay);
 
     // Convert countries to SelectOption format with simplified labels
     const countryOptions: SelectOption[] = useMemo(() => {
@@ -67,6 +68,8 @@ const CountrySearchSelect = forwardRef<HTMLInputElement, CountrySearchSelectProp
 
     // Handle option selection and search updates
     const handleValueChange = (value: string) => {
+      const country = countries.find((country: Country) => country.country === value);
+      
       // Update search term for API calls
       setSearchTerm(value);
       

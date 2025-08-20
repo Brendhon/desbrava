@@ -1,27 +1,26 @@
 'use client';
 
+import CountrySearchSelect from '@/components/form/CountrySearchSelect';
 import DatePicker from '@/components/form/DatePicker';
 import Input from '@/components/form/Input';
-import CountrySearchSelect from '@/components/form/CountrySearchSelect';
 import Textarea from '@/components/form/Textarea';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import { createTripSchema, type CreateTripFormData } from '@/lib/schemas/trip';
+import { useCountries } from '@/hooks';
 import { useTrips } from '@/hooks/useTrips';
-import { useAuth } from '@/hooks/useAuth';
-import { Continent } from '@/lib/types/country';
+import { createTripSchema, type CreateTripFormData } from '@/lib/schemas/trip';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Plus, CheckCircle, AlertCircle } from 'lucide-react';
-import { useForm } from 'react-hook-form';
+import { AlertCircle, CheckCircle, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 export default function CreateTripPage() {
   const router = useRouter();
-  const { session } = useAuth();
   const { createTrip, loading, error, clearError } = useTrips();
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
+  const { getCountryByName } = useCountries();
 
   const {
     register,
@@ -49,24 +48,18 @@ export default function CreateTripPage() {
     try {
       clearError();
       setShowError(false);
-      
-      // Create trip using the hook
-      const newTrip = await createTrip({
+
+      // Get Trip Data
+      const tripData = {
         name: data.name,
         description: data.description || '',
         startDate: data.startDate,
         endDate: data.endDate,
-        country: { 
-          continent: Continent.Outro, 
-          id: 0, 
-          language: [], 
-          region: '', 
-          country: data.country, 
-          currency_code: null, 
-          currency_name_pt: null, 
-          iso_country: data.country 
-        },
-      });
+        country: await getCountryByName(data.country)
+      }
+
+      // Create Trip
+      const newTrip = await createTrip(tripData);
 
       if (newTrip) {
         setShowSuccess(true);

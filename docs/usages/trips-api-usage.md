@@ -27,12 +27,10 @@ Returns all trips for the authenticated user.
 - `startDate` (optional): Filter trips starting from this date
 - `endDate` (optional): Filter trips ending before this date
 - `country` (optional): Filter trips by country code
-- `page` (optional): Page number for pagination (default: 1)
-- `pageSize` (optional): Number of trips per page (default: 10)
 
 **Example Request:**
 ```typescript
-const response = await fetch('/api/trips?search=paris&page=1&pageSize=5');
+const response = await fetch('/api/trips?search=paris');
 const result = await response.json();
 ```
 
@@ -43,9 +41,6 @@ const result = await response.json();
   "data": [...],
   "count": 5,
   "total": 25,
-  "hasMore": true,
-  "page": 1,
-  "pageSize": 5,
   "searchTerm": "paris",
   "filters": {
     "startDate": null,

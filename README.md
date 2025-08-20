@@ -17,6 +17,7 @@
 - [📜 Índice](#-índice)
 - [✈️ Sobre o Projeto](#️-sobre-o-projeto)
 - [✨ Features](#-features)
+- [🚀 Melhorias Futuras](#-melhorias-futuras)
 - [🎨 Layout e Paleta de Cores](#-layout-e-paleta-de-cores)
 - [🚀 Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [🔐 Processo de Autenticação](#-processo-de-autenticação)
@@ -52,6 +53,18 @@ O objetivo é permitir que o usuário crie uma viagem, adicione um ponto de refe
 - [ ] **Criação de Atividades Manuais:** Adicione qualquer tipo de atividade ao seu roteiro com um sistema de categorização (Transporte, Hospedagem, Alimentação, etc.).
 - [ ] **Sugestões de Atividades:** Com base no seu ponto de referência, receba sugestões de restaurantes, pontos turísticos e mais.
 - [ ] **Visualização em Calendário:** Veja seu roteiro em um layout de calendário interativo.
+
+---
+
+## 🚀 Melhorias Futuras
+
+- [ ] **Paginação de Viagens:** Implementar paginação para melhorar a performance quando o usuário tiver muitas viagens.
+- [ ] **Filtros Avançados:** Adicionar mais opções de filtro como status da viagem, tipo de viagem, etc.
+- [ ] **Exportação de Roteiros:** Permitir exportar roteiros em PDF ou outros formatos.
+- [ ] **Compartilhamento:** Compartilhar roteiros com outros usuários.
+- [ ] **Notificações:** Lembretes para datas importantes e atividades planejadas.
+- [ ] **Modo Offline:** Funcionalidade básica offline para visualizar roteiros salvos.
+- [ ] **Múltiplos Idiomas:** Suporte para português e inglês.
 
 ---
 

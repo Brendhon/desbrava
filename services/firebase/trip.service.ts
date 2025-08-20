@@ -9,7 +9,6 @@ import {
   deleteDoc, 
   doc, 
   orderBy,
-  limit,
   QueryConstraint,
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
@@ -170,48 +169,5 @@ export async function deleteTrip(tripId: string): Promise<void> {
   } catch (error) {
     console.error('Error deleting trip:', error);
     throw new Error('Failed to delete trip');
-  }
-}
-
-/**
- * Get trips with pagination
- */
-export async function getTripsPaginated(
-  userEmail: string, 
-  page: number = 1, 
-  pageSize: number = 10
-): Promise<{ trips: Trip[]; total: number; hasMore: boolean }> {
-  try {
-    const tripsRef = collection(db, COLLECTION_NAME);
-    const q = query(
-      tripsRef,
-      where('user', '==', userEmail),
-      orderBy('startDate', 'desc'),
-      limit(pageSize * page)
-    );
-    
-    const querySnapshot = await getDocs(q);
-    const trips: Trip[] = [];
-    
-    querySnapshot.forEach((doc) => {
-      trips.push({
-        id: doc.id,
-        ...doc.data()
-      } as Trip);
-    });
-    
-    // Calculate pagination info
-    const startIndex = (page - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    const paginatedTrips = trips.slice(startIndex, endIndex);
-    
-    return {
-      trips: paginatedTrips,
-      total: trips.length,
-      hasMore: trips.length > endIndex
-    };
-  } catch (error) {
-    console.error('Error fetching paginated trips:', error);
-    throw new Error('Failed to fetch paginated trips');
   }
 }

@@ -3,10 +3,10 @@
 import Button from '@/components/ui/Button';
 import { useAuth } from '@/hooks/useAuth';
 import { useTrips } from '@/hooks/useTrips';
-import { TripStats, TripSearch, TripList, EmptyState } from '@/components/dashboard';
+import { TripStats, TripList, EmptyState } from '@/components/dashboard';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Trip } from '@/lib/types/trip';
 
 export default function DashboardPage() {
@@ -16,7 +16,6 @@ export default function DashboardPage() {
     loading,
     error,
     fetchTrips,
-    searchTrips,
     deleteTrip,
     clearError
   } = useTrips();

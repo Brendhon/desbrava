@@ -59,7 +59,7 @@ export default function TripCard({ trip, onEdit, onDelete }: TripCardProps) {
             {getStatusText(status)}
           </span>
         </div>
-        
+
         <div className={styles.actions}>
           {onEdit && (
             <button
@@ -82,13 +82,17 @@ export default function TripCard({ trip, onEdit, onDelete }: TripCardProps) {
         </div>
       </div>
 
-      <p className={styles.description} title={trip.description}>{trip.description || 'Sem descrição' }</p>
+      <p className={styles.description} title={trip.description}>{trip.description || 'Sem descrição'}</p>
 
       <div className={styles.details}>
         <div className={styles.detailItem}>
-          <MapPin className={styles.detailIcon} />
+          {
+            trip.country.flag
+              ? <img src={trip.country.flag} alt={trip.country.country} className={styles.detailIcon} />
+              : <MapPin className={styles.detailIcon} />
+          }
           <span className={styles.detailText}>
-            {trip.country.flag} {trip.country.country}
+            {trip.country.country}
           </span>
         </div>
 
@@ -101,8 +105,8 @@ export default function TripCard({ trip, onEdit, onDelete }: TripCardProps) {
       </div>
 
       <div className={styles.footer}>
-        <Link 
-          href={`/trip/${trip.id}`} 
+        <Link
+          href={`/trip/${trip.id}`}
           className={styles.viewButton}
           aria-label={`Ver detalhes da viagem ${trip.name}`}
         >
