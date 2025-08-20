@@ -49,8 +49,10 @@ const CountrySearchSelect = forwardRef<
     ref
   ) => {
     // Estado interno para controlar o valor selecionado
-    const [selectedValue, setSelectedValue] = useState<string>(defaultValue || '');
-    
+    const [selectedValue, setSelectedValue] = useState<string>(
+      defaultValue || ''
+    );
+
     const {
       countries,
       loading,
@@ -78,7 +80,7 @@ const CountrySearchSelect = forwardRef<
       if (defaultValue) {
         const initialValue = defaultValue || '';
         setSelectedValue(initialValue);
-        
+
         // Se não há países carregados ainda, fazer uma busca inicial
         if (countries.length === 0 && initialValue.trim().length > 0) {
           setSearchTerm(initialValue);
@@ -97,7 +99,7 @@ const CountrySearchSelect = forwardRef<
     const handleValueChange = (newValue: string) => {
       // Update internal state
       setSelectedValue(newValue);
-      
+
       // Update search term for API calls
       setSearchTerm(newValue);
 

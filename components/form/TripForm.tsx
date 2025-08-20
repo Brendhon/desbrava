@@ -137,7 +137,7 @@ export default function TripForm({
         rows={3}
         error={errors.description?.message}
         register={register('description')}
-        helperText='Adicione detalhes sobre seus planos de viagem'
+        helperText="Adicione detalhes sobre seus planos de viagem"
       />
 
       {/* Botões */}

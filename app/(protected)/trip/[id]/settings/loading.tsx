@@ -36,12 +36,6 @@ export default function TripSettingsLoading() {
         <LoadingSkeleton className={styles.dangerText} />
         <ButtonSkeleton />
       </div>
-
-      {/* Actions Skeleton */}
-      <div className={styles.actions}>
-        <ButtonSkeleton />
-        <ButtonSkeleton />
-      </div>
     </div>
   );
 }
@@ -57,8 +51,7 @@ const styles = {
   field: 'h-16 w-full',
   dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
   dangerCard:
-    'bg-slate-dark rounded-lg shadow-lg border border-red-500/30 p-8 animate-pulse mb-8',
+    'bg-slate-dark rounded-lg shadow-lg border border-red-500/30 p-8 animate-pulse',
   dangerTitle: 'h-6 w-48 mb-4',
   dangerText: 'h-4 w-full mb-6',
-  actions: 'flex justify-end gap-4',
 };
