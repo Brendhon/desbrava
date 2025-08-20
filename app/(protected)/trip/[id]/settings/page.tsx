@@ -1,24 +1,21 @@
 'use client';
 
+import TripForm from '@/components/form/TripForm';
+import { Separator } from '@/components/Separator';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import Input from '@/components/form/Input';
-import Textarea from '@/components/form/Textarea';
-import {
-  tripSettingsSchema,
-  type TripSettingsFormData,
-} from '@/lib/schemas/trip';
-import { ArrowLeft, Calendar, Globe, MapPin, Save, Trash2 } from 'lucide-react';
+import DangerZone from '@/components/ui/DangerZone';
+import { type TripSettingsFormData } from '@/lib/schemas/trip';
+import { ArrowLeft, Save, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useState } from 'react';
 
 export default function TripSettingsPage() {
   const params = useParams();
   const router = useRouter();
   const tripId = params.id;
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // TODO: Buscar dados da viagem pelo ID
   const defaultValues: TripSettingsFormData = {
@@ -30,26 +27,9 @@ export default function TripSettingsPage() {
       'Uma incrível jornada pela França, explorando Paris, Lyon e Nice.',
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-    setValue,
-  } = useForm<TripSettingsFormData>({
-    resolver: zodResolver(tripSettingsSchema),
-    defaultValues,
-  });
-
-  // Carregar dados iniciais quando o componente montar
-  useEffect(() => {
-    // TODO: Buscar dados da viagem da API
-    // Por enquanto, usando dados mockados
-    reset(defaultValues);
-  }, [reset]);
-
-  const onSubmit = async (data: TripSettingsFormData) => {
+  const handleSubmit = async (data: TripSettingsFormData) => {
     try {
+      setIsSubmitting(true);
       // TODO: Implementar atualização da viagem na API
       console.log('Atualizando viagem:', data);
 
@@ -61,7 +41,13 @@ export default function TripSettingsPage() {
     } catch (error) {
       console.error('Erro ao atualizar viagem:', error);
       // TODO: Mostrar mensagem de erro
+    } finally {
+      setIsSubmitting(false);
     }
+  };
+
+  const handleCancel = () => {
+    router.push(`/trip/${tripId}`);
   };
 
   const handleDelete = () => {
@@ -101,119 +87,30 @@ export default function TripSettingsPage() {
         border={false}
         className={styles.formContainer}
       >
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          {/* Título da Viagem */}
-          <Input
-            label="Nome da Viagem"
-            placeholder="Ex: Aventura na Europa"
-            error={errors.name?.message}
-            register={register('name')}
-            helperText="Escolha um nome descritivo para sua viagem"
-            required
-          />
+        <TripForm
+          mode="edit"
+          defaultValues={defaultValues}
+          onSubmit={handleSubmit}
+          onCancel={handleCancel}
+          submitButtonIcon={Save}
+          isSubmitting={isSubmitting}
+        />
 
-          {/* País */}
-          <Input
-            label="País"
-            placeholder="Ex: França"
-            icon={Globe}
-            error={errors.country?.message}
-            register={register('country')}
-            helperText="País principal da sua viagem"
-            required
-          />
-
-          {/* Datas */}
-          <div className={styles.dateGrid}>
-            <Input
-              label="Data de Início"
-              type="date"
-              icon={Calendar}
-              error={errors.startDate?.message}
-              register={register('startDate')}
-              helperText="Quando sua viagem começa"
-              required
-            />
-
-            <Input
-              label="Data de Fim"
-              type="date"
-              icon={Calendar}
-              error={errors.endDate?.message}
-              register={register('endDate')}
-              helperText="Quando sua viagem termina"
-              required
-            />
-          </div>
-
-          {/* Descrição */}
-          <Textarea
-            label="Descrição"
-            placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
-            rows={4}
-            error={errors.description?.message}
-            register={register('description')}
-            helperText="Descreva os planos, atividades e expectativas da viagem"
-            required
-          />
-
-          {/* Botões */}
-          <div className={styles.buttonGroup}>
-            <Button
-              type="submit"
-              variant="primary"
-              icon={Save}
-              aria-label="Salvar alterações da viagem"
-              className="flex-1"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Salvando...' : 'Salvar Alterações'}
-            </Button>
-
-            <Link
-              href={`/trip/${tripId}`}
-              aria-label="Cancelar edição da viagem"
-              className="flex-1"
-            >
-              <Button variant="ghost" className="w-full">
-                Cancelar
-              </Button>
-            </Link>
-          </div>
-        </form>
-
-        {/* Danger Zone */}
-        <div className={styles.dangerZone}>
-          <h3 className={styles.dangerZoneTitle}>Zona de Perigo</h3>
-          <Card
-            padding="sm"
-            shadow="none"
-            background="light"
-            maxWidth="none"
-            border={false}
-            className={styles.dangerZoneContent}
-          >
-            <div className={styles.deleteSection}>
-              <div>
-                <h4 className={styles.deleteTitle}>Excluir Viagem</h4>
-                <p className={styles.deleteDescription}>
-                  Esta ação não pode ser desfeita. Todos os dados da viagem
-                  serão perdidos permanentemente.
-                </p>
-              </div>
-              <Button
-                type="button"
-                onClick={handleDelete}
-                variant="danger"
-                icon={Trash2}
-                aria-label="Excluir viagem permanentemente"
-              >
-                Excluir
-              </Button>
-            </div>
-          </Card>
-        </div>
       </Card>
+
+      <br />
+
+      {/* Danger Zone */}
+      <DangerZone
+        icon={Trash2}
+        title="Zona de Perigo"
+        description="Excluir permanentemente esta viagem e todos os seus dados associados"
+        warningText="Esta ação é irreversível e excluirá todos os dados da viagem"
+        actionLabel="Excluir Viagem"
+        onAction={handleDelete}
+        isLoading={isSubmitting}
+        loadingText="Excluindo..."
+      />
     </div>
   );
 }
@@ -227,13 +124,4 @@ const styles = {
   title: 'text-3xl md:text-4xl font-bold text-parchment-white mb-3',
   subtitle: 'text-lg text-mist-gray',
   formContainer: '',
-  form: 'space-y-6',
-  dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
-  buttonGroup: 'flex flex-col sm:flex-row gap-4 pt-4',
-  dangerZone: 'mt-12 pt-8 border-t border-slate-dark/20',
-  dangerZoneTitle: 'text-lg font-semibold text-parchment-white mb-4',
-  dangerZoneContent: 'bg-red-500/20 border border-red-500/70 rounded-lg p-4',
-  deleteSection: 'flex items-center justify-between',
-  deleteTitle: 'text-parchment-white font-medium mb-1',
-  deleteDescription: 'text-sm text-mist-gray',
 };

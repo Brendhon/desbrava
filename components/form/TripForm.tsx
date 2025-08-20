@@ -64,7 +64,7 @@ export default function TripForm({
       const tripData = {
         ...createData,
         country: createData.country,
-      };  
+      };
       await onSubmit(tripData);
     } else {
       // For edit mode, pass the data as is
@@ -116,45 +116,23 @@ export default function TripForm({
 
       {/* Datas */}
       <div className={styles.dateGrid}>
-        {isCreateMode ? (
-          <>
-            <DatePicker
-              label="Data de Início"
-              error={errors.startDate?.message}
-              register={register('startDate')}
-              helperText="Quando sua viagem começa"
-              popupPosition="top"
-            />
+        <DatePicker
+          label="Data de Início"
+          error={errors.startDate?.message}
+          defaultValue={isCreateMode ? undefined : defaultValues.startDate}
+          register={register('startDate')}
+          helperText="Quando sua viagem começa"
+          popupPosition="top"
+        />
 
-            <DatePicker
-              label="Data de Fim"
-              error={errors.endDate?.message}
-              register={register('endDate')}
-              popupPosition="top"
-              helperText="Quando sua viagem termina"
-            />
-          </>
-        ) : (
-          <>
-            <Input
-              label="Data de Início"
-              type="date"
-              error={errors.startDate?.message}
-              register={register('startDate')}
-              helperText="Quando sua viagem começa"
-              required
-            />
-
-            <Input
-              label="Data de Fim"
-              type="date"
-              error={errors.endDate?.message}
-              register={register('endDate')}
-              helperText="Quando sua viagem termina"
-              required
-            />
-          </>
-        )}
+        <DatePicker
+          label="Data de Fim"
+          error={errors.endDate?.message}
+          defaultValue={isCreateMode ? undefined: defaultValues.endDate}
+          register={register('endDate')}
+          popupPosition="top"
+          helperText="Quando sua viagem termina"
+        />
       </div>
 
       {/* Descrição */}
@@ -184,7 +162,7 @@ export default function TripForm({
         {onCancel && (
           <Button
             type="button"
-            variant={isCreateMode ? "secondary" : "ghost"}
+            variant="secondary"
             onClick={onCancel}
             aria-label={isCreateMode ? "Cancelar criação" : "Cancelar edição da viagem"}
             className="flex-1"

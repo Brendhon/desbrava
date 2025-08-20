@@ -2,6 +2,7 @@
 
 import { TripList, TripStats } from '@/components/dashboard';
 import Button from '@/components/ui/Button';
+import { Separator } from '@/components/Separator';
 import { useAuth } from '@/hooks/useAuth';
 import { useTrips } from '@/hooks/useTrips';
 import { Filter, Plus } from 'lucide-react';
@@ -91,7 +92,7 @@ export default function DashboardPage() {
       <TripStats trips={trips} />
 
       {/* Separator */}
-      <hr className={styles.separator} />
+      <Separator />
 
       {/* Trips Section */}
       <TripList trips={trips} loading={loading} canShowFilters={showFilters} />
@@ -111,5 +112,4 @@ const styles = {
     'bg-red-900/20 border border-red-700 rounded-lg p-4 flex items-center justify-between',
   errorText: 'text-red-300',
   errorButton: 'text-red-300 hover:text-red-100',
-  separator: 'my-8 border-t border-gray-700',
 };

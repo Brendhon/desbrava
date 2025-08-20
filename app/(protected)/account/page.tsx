@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Shield, Calendar, Trash2, LogOut, ExternalLink } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import DangerZone from '@/components/ui/DangerZone';
 
 export default function AccountPage() {
   const { session, logout } = useAuth();
@@ -119,43 +120,16 @@ export default function AccountPage() {
         </Card>
 
         {/* Account Data Management Section */}
-        <Card
-          padding="xl"
-          shadow="lg"
-          background="dark"
-          maxWidth="none"
-          border={false}
-        >
-          <div className={styles.sectionHeader}>
-            <Trash2 className={styles.sectionIcon} aria-hidden="true" />
-            <h2 className={styles.sectionTitle}>Gerenciamento de Dados</h2>
-          </div>
-
-          <div className={styles.dataContent}>
-            <div className={styles.dataInfo}>
-              <h3 className={styles.dataTitle}>Limpar Dados da Conta</h3>
-              <p className={styles.dataDescription}>
-                Excluir permanentemente todas as suas viagens, atividades e
-                dados pessoais
-              </p>
-              <div className={styles.dataWarning}>
-                <p className={styles.warningText}>
-                  ⚠️ Esta ação é irreversível e excluirá todos os seus dados
-                </p>
-              </div>
-            </div>
-
-            <Button
-              onClick={handleClearAccountData}
-              disabled={isClearingData}
-              variant="danger"
-              icon={Trash2}
-              aria-label="Limpar todos os dados da conta"
-            >
-              {isClearingData ? 'Limpando...' : 'Limpar Dados da Conta'}
-            </Button>
-          </div>
-        </Card>
+        <DangerZone
+          icon={Trash2}
+          title="Gerenciamento de Dados"
+          description="Excluir permanentemente todas as suas viagens, atividades e dados pessoais"
+          warningText="Esta ação é irreversível e excluirá todos os seus dados"
+          actionLabel="Limpar Dados da Conta"
+          onAction={handleClearAccountData}
+          isLoading={isClearingData}
+          loadingText="Limpando..."
+        />
 
         {/* Security Section */}
         <Card
@@ -240,13 +214,6 @@ const styles = {
   statusConnected: 'inline-block text-green-400 text-sm font-medium mb-2',
   statusText: 'text-green-300 text-sm',
   integrationActions: 'flex',
-  dataContent: 'space-y-6',
-  dataInfo: 'space-y-3',
-  dataTitle: 'text-lg font-medium text-parchment-white',
-  dataDescription: 'text-mist-gray',
-  dataWarning: 'mt-4 p-4 bg-red-900/20 border border-red-500/30 rounded-lg',
-  warningText: 'text-red-300 text-sm',
-
   securityContent: 'space-y-4',
   securityItem:
     'flex items-center justify-between p-4 bg-midnight-blue rounded-lg',
