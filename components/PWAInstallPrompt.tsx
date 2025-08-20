@@ -28,11 +28,18 @@ export function PWAInstallPrompt() {
     const extendedWindow = window as ExtendedWindow;
     setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent) && !extendedWindow.MSStream);
 
+    // Check if prompt was already shown in this session
+    const hasSeenPrompt = sessionStorage.getItem('pwa-prompt-shown');
+    
     // Listen for beforeinstallprompt event
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
-      setShowInstallPrompt(true);
+      
+      // Only show prompt if user hasn't seen it in this session
+      if (!hasSeenPrompt) {
+        setShowInstallPrompt(true);
+      }
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -52,14 +59,20 @@ export function PWAInstallPrompt() {
         console.log('User accepted the install prompt');
         setShowInstallPrompt(false);
         setDeferredPrompt(null);
+        // Mark as seen in session storage
+        sessionStorage.setItem('pwa-prompt-shown', 'true');
       } else {
         console.log('User dismissed the install prompt');
+        // Mark as seen even if dismissed
+        sessionStorage.setItem('pwa-prompt-shown', 'true');
       }
     }
   };
 
   const handleDismiss = () => {
     setShowInstallPrompt(false);
+    // Mark as seen in session storage when dismissed
+    sessionStorage.setItem('pwa-prompt-shown', 'true');
   };
 
   // Don't show if already installed or if no prompt available
