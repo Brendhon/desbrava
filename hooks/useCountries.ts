@@ -75,7 +75,6 @@ export function useCountries(
         const data = await response.json();
 
         if (data.success) {
-          console.log('data.data', data.data);
           setCountries(data.data);
         } else {
           setError(data.message || 'Failed to search countries');

@@ -21,7 +21,7 @@ export default function EmptyState() {
 }
 
 const styles = {
-  emptyState: 'text-center py-16',
+  emptyState: 'text-center py-8',
   emptyIcon:
     'w-20 h-20 bg-slate-dark rounded-full flex items-center justify-center mx-auto mb-6',
   emptyIconImage: 'w-10 h-10 text-mist-gray',

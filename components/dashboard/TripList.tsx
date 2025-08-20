@@ -16,6 +16,7 @@ import { Loader2 } from 'lucide-react';
 interface TripListProps {
   trips: Trip[];
   loading?: boolean;
+  canShowFilters?: boolean;
 }
 
 // Constants
@@ -45,7 +46,11 @@ const Grid = memo(({ trips, loading }: { trips: Trip[]; loading: boolean }) => {
   );
 });
 
-export default function TripList({ trips, loading = false }: TripListProps) {
+export default function TripList({
+  trips,
+  loading = false,
+  canShowFilters = true,
+}: TripListProps) {
   // Status filter
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
 
@@ -101,14 +106,16 @@ export default function TripList({ trips, loading = false }: TripListProps) {
   return (
     <div className={styles.container}>
       {/* Filters and Controls */}
-      <TripFilter
-        statusFilter={statusFilter}
-        setStatusFilter={setStatusFilter}
-        countryFilter={countryFilter}
-        setCountryFilter={setCountryFilter}
-        getStatusCount={getStatusCount}
-        getStatusLabel={getStatusLabel}
-      />
+      {canShowFilters && (
+        <TripFilter
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
+          countryFilter={countryFilter}
+          setCountryFilter={setCountryFilter}
+          getStatusCount={getStatusCount}
+          getStatusLabel={getStatusLabel}
+        />
+      )}
 
       {/* Trips Grid */}
       <Grid trips={sortedTrips} loading={loading} />
@@ -118,12 +125,6 @@ export default function TripList({ trips, loading = false }: TripListProps) {
 
 const styles = {
   container: 'space-y-6',
-  loadingContainer: 'animate-spin mx-auto my-4 text-royal-purple',
-  emptyState: 'text-center py-16',
-  emptyIcon:
-    'w-20 h-20 bg-slate-dark rounded-full flex items-center justify-center mx-auto mb-6',
-  emptyIconImage: 'w-10 h-10 text-mist-gray',
-  emptyTitle: 'text-2xl font-bold text-parchment-white mb-3',
-  emptyDescription: 'text-mist-gray mb-8 max-w-md mx-auto',
+  loadingContainer: 'animate-spin mx-auto mt-16 text-royal-purple',
   tripsGrid: 'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6',
 };

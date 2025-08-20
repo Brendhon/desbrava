@@ -33,10 +33,7 @@ const TripFilter = memo(
     );
 
     const handleCountryFilterChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log('e.target.value', e.target.value);
-        setCountryFilter(e.target.value);
-      },
+      (e: React.ChangeEvent<HTMLInputElement>) => setCountryFilter(e.target.value),
       [setCountryFilter]
     );
 
