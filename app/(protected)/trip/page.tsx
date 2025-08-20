@@ -1,19 +1,18 @@
 'use client';
 
 import TripForm from '@/components/form/TripForm';
-import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
+import { PageHeader } from '@/components/ui/PageHeader';
 import { useCountries } from '@/hooks/useCountries';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
 import { type CreateTripFormData } from '@/lib/schemas/trip';
 import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function CreateTripPage() {
   const router = useRouter();
-  const { createTrip, loading, error, clearError } = useTrips();
+  const { createTrip, loading, clearError } = useTrips();
   const { success: showSuccessToast, error: showErrorToast } = useToast();
   const { getCountryByName } = useCountries();
 

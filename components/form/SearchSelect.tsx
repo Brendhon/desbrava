@@ -7,7 +7,7 @@ import {
   useCallback,
 } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { X } from 'lucide-react';
+import { LucideIcon, X } from 'lucide-react';
 import { useDropdown } from '../../hooks/useDropdown';
 import { useFormField } from '../../hooks/useFormField';
 import { SelectOption } from '@/lib/types';
@@ -138,7 +138,7 @@ const SearchSelect = forwardRef<HTMLInputElement, SearchSelectProps>(
         )}
 
         <InputWithIcon
-          icon={Icon as any}
+          icon={Icon as LucideIcon}
           iconPosition={iconPosition}
           size={size}
           variant={variant}

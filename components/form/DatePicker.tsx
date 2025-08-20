@@ -102,7 +102,7 @@ const DatePicker = ({
       if (isValid(date)) {
         return format(date, 'dd/MM/yyyy');
       }
-    } catch (error) {
+    } catch {
       // If parsing fails, try to parse as dd/MM/yyyy
       const parsed = parse(isoDate, 'dd/MM/yyyy', new Date());
       if (isValid(parsed)) {
@@ -119,7 +119,7 @@ const DatePicker = ({
       if (isValid(parsed)) {
         return format(parsed, 'yyyy-MM-dd');
       }
-    } catch (error) {
+    } catch {
       // If parsing fails, return empty string
     }
     return '';

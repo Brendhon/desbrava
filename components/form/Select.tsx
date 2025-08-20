@@ -1,6 +1,6 @@
 import { forwardRef, SelectHTMLAttributes, useMemo, ReactNode } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, LucideIcon } from 'lucide-react';
 import { SelectOption } from '@/lib/types';
 import { useFormStyles } from '../../hooks/useFormStyles';
 import InputWithIcon from './InputWithIcon';
@@ -74,7 +74,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
         )}
 
         <InputWithIcon
-          icon={Icon as any}
+          icon={Icon as LucideIcon}
           iconPosition={iconPosition}
           size={size}
           variant={variant}

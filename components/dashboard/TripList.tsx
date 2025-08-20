@@ -6,8 +6,7 @@ import {
   sortTripsByDate,
   searchTripsByText,
 } from '@/lib/utils/trip';
-import { memo, useCallback, useMemo, useState } from 'react';
-import LoadingSpinner from '../ui/LoadingSpinner';
+import { useCallback, useMemo, useState } from 'react';
 import EmptyState from './EmptyState';
 import TripCard from './TripCard';
 import TripFilter from './TripFilter';
@@ -29,7 +28,7 @@ const LoadingState = () => (
 );
 
 // Grid
-const Grid = memo(({ trips, loading }: { trips: Trip[]; loading: boolean }) => {
+const Grid = ({ trips, loading }: { trips: Trip[]; loading: boolean }) => {
   // Loading State
   if (loading) return <LoadingState />;
 
@@ -44,7 +43,7 @@ const Grid = memo(({ trips, loading }: { trips: Trip[]; loading: boolean }) => {
       ))}
     </div>
   );
-});
+};
 
 export default function TripList({
   trips,

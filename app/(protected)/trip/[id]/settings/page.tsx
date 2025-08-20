@@ -66,16 +66,16 @@ export default function TripSettingsPage() {
   const handleSuccess = useCallback(
     (title: string, description: string, data?: TripSettingsFormData) => {
       showSuccessToast(title, description);
-      data && setTripData(data);
+      if (data) setTripData(data);
     },
     [showSuccessToast]
   );
 
   // Handle error
   const handleError = useCallback(
-    (title: string, description: string, error?: any) => {
+    (title: string, description: string, error?: unknown) => {
       showErrorToast(title, description);
-      error && console.error(error);
+      if (error) console.error(error);
     },
     [showErrorToast]
   );
@@ -103,7 +103,10 @@ export default function TripSettingsPage() {
         };
 
         // Update trip
-        (await updateTrip(tripId, updateData))
+        const updatedTrip = await updateTrip(tripId, updateData);
+
+        // Handle success or error
+        updatedTrip
           ? handleSuccess(
               'Viagem atualizada com sucesso!',
               'As alterações foram salvas e aplicadas à sua viagem.',
