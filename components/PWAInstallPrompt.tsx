@@ -8,6 +8,11 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
 }
 
+// Extend Window interface to include MSStream property
+interface ExtendedWindow extends Window {
+  MSStream?: unknown;
+}
+
 export function PWAInstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
@@ -19,7 +24,8 @@ export function PWAInstallPrompt() {
     setIsStandalone(window.matchMedia('(display-mode: standalone)').matches);
     
     // Check if iOS device
-    setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream);
+    const extendedWindow = window as ExtendedWindow;
+    setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent) && !extendedWindow.MSStream);
 
     // Listen for beforeinstallprompt event
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -92,8 +98,8 @@ export function PWAInstallPrompt() {
           <p className="font-medium mb-2">Para instalar no iOS:</p>
           <ol className="list-decimal list-inside space-y-1 text-xs">
             <li>Toque no botão compartilhar ⎋</li>
-            <li>Selecione "Adicionar à Tela Inicial" ➕</li>
-            <li>Toque em "Adicionar"</li>
+            <li>Selecione &quot;Adicionar à Tela Inicial&quot; ➕</li>
+            <li>Toque em &quot;Adicionar&quot;</li>
           </ol>
         </div>
       )}
