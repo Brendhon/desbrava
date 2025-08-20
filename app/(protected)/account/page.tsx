@@ -199,7 +199,7 @@ export default function AccountPage() {
 }
 
 const styles = {
-  container: 'max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8',
+  container: 'max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-6',
   content: 'space-y-8',
   sectionHeader: 'flex items-center gap-3 mb-6',
   sectionIcon: 'w-6 h-6 text-royal-purple',

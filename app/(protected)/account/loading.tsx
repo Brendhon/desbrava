@@ -64,7 +64,7 @@ export default function AccountLoading() {
 }
 
 const styles = {
-  container: 'max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-8',
+  container: 'max-w-4xl mx-auto px-4 md:px-6 lg:px-8 py-6',
   header: 'mb-8',
   title: 'h-10 w-80 mb-3',
   subtitle: 'h-6 w-96',

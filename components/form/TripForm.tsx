@@ -143,7 +143,7 @@ export default function TripForm({
       <Textarea
         label={isCreateMode ? 'Descrição (opcional)' : 'Descrição'}
         placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
-        rows={isCreateMode ? 2 : 4}
+        rows={3}
         error={errors.description?.message}
         register={register('description')}
         helperText={
