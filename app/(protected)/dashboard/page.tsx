@@ -83,11 +83,6 @@ export default function DashboardPage() {
           <h2 className={styles.sectionTitle}>
             Suas Viagens
           </h2>
-          {trips.length > 0 && (
-            <p className={styles.sectionSubtitle}>
-              {trips.length} {trips.length === 1 ? 'viagem encontrada' : 'viagens encontradas'}
-            </p>
-          )}
         </div>
 
         {trips.length === 0 && !loading ? (
@@ -118,5 +113,4 @@ const styles = {
   tripsSection: 'space-y-6',
   sectionHeader: 'space-y-2',
   sectionTitle: 'text-2xl font-bold text-parchment-white',
-  sectionSubtitle: 'text-mist-gray',
 };
