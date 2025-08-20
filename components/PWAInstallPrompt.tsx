@@ -23,7 +23,7 @@ export function PWAInstallPrompt() {
   useEffect(() => {
     // Check if already installed
     setIsStandalone(window.matchMedia('(display-mode: standalone)').matches);
-    
+
     // Check if iOS device
     const extendedWindow = window as ExtendedWindow;
     setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent) && !extendedWindow.MSStream);
@@ -46,7 +46,7 @@ export function PWAInstallPrompt() {
     if (deferredPrompt) {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
-      
+
       if (outcome === 'accepted') {
         console.log('User accepted the install prompt');
         setShowInstallPrompt(false);
@@ -70,7 +70,7 @@ export function PWAInstallPrompt() {
     <div className={styles.container}>
       {/* Decorative background with gradient */}
       <div className={styles.backgroundGradient} />
-      
+
       {/* Header with icon and close button */}
       <div className={styles.header}>
         <div className={styles.titleSection}>
@@ -82,15 +82,15 @@ export function PWAInstallPrompt() {
             <p className={styles.subtitle}>Desbrava PWA</p>
           </div>
         </div>
-        <button 
-          onClick={handleDismiss} 
+        <button
+          onClick={handleDismiss}
           className={styles.closeButton}
           aria-label="Fechar prompt de instalação"
         >
           <X size={18} />
         </button>
       </div>
-      
+
       {/* Description with benefits */}
       <div className={styles.descriptionSection}>
         <p className={styles.description}>
@@ -111,13 +111,13 @@ export function PWAInstallPrompt() {
       {/* Install button or iOS instructions */}
       {!isIOS ? (
         <div className={styles.installButtonContainer}>
-        <Button 
-        size='sm'
-          onClick={handleInstallClick} 
-          aria-label="Instalar aplicativo Desbrava"
-          variant="primary"
-          icon={Download}
-            >
+          <Button
+            size='sm'
+            onClick={handleInstallClick}
+            aria-label="Instalar aplicativo Desbrava"
+            variant="primary"
+            icon={Download}
+          >
             Instalar Desbrava
           </Button>
         </div>
