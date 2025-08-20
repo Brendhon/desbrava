@@ -1,20 +1,14 @@
 'use client';
 
-import CountrySearchSelect from '@/components/form/CountrySearchSelect';
-import DatePicker from '@/components/form/DatePicker';
-import Input from '@/components/form/Input';
-import Textarea from '@/components/form/Textarea';
+import TripForm from '@/components/form/TripForm';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import { useCountries } from '@/hooks';
+import { useCountries } from '@/hooks/useCountries';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
-import { createTripSchema, type CreateTripFormData } from '@/lib/schemas/trip';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { type CreateTripFormData } from '@/lib/schemas/trip';
 import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 
 export default function CreateTripPage() {
   const router = useRouter();
@@ -22,29 +16,7 @@ export default function CreateTripPage() {
   const { success: showSuccessToast, error: showErrorToast } = useToast();
   const { getCountryByName } = useCountries();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-    setValue,
-  } = useForm<CreateTripFormData>({
-    resolver: zodResolver(createTripSchema),
-    defaultValues: {
-      name: '',
-      country: '',
-      startDate: '',
-      endDate: '',
-      description: '',
-    },
-  });
-
-  // Handle country selection from CountrySearchSelect
-  const handleCountrySelect = (countryCode: string) => {
-    setValue('country', countryCode);
-  };
-
-  const onSubmit = async (data: CreateTripFormData) => {
+  const handleSubmit = async (data: CreateTripFormData) => {
     try {
       clearError();
 
@@ -66,9 +38,6 @@ export default function CreateTripPage() {
           'Redirecionando para o dashboard...'
         );
 
-        // Reset form
-        reset();
-
         // Redirect to dashboard after 2 seconds
         setTimeout(() => {
           router.push('/dashboard');
@@ -88,12 +57,9 @@ export default function CreateTripPage() {
     }
   };
 
-  // Auto-hide error when user starts typing
-  useEffect(() => {
-    if (error) {
-      // Error is now handled by the toast system
-    }
-  }, [error]);
+  const handleCancel = () => {
+    router.back();
+  };
 
   return (
     <div className={styles.container}>
@@ -114,81 +80,13 @@ export default function CreateTripPage() {
         border={false}
         className={styles.formContainer}
       >
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          {/* Nome da Viagem */}
-          <Input
-            label="Nome da Viagem"
-            placeholder="Ex: Aventura na Europa"
-            error={errors.name?.message}
-            register={register('name')}
-            helperText="Escolha um nome descritivo para sua viagem"
-            required
-          />
-
-          {/* País */}
-          <CountrySearchSelect
-            label="País"
-            placeholder="Digite para buscar um país..."
-            error={errors.country?.message}
-            register={register('country')}
-            helperText="País principal da sua viagem"
-            debounceDelay={300}
-            onValueChange={handleCountrySelect}
-          />
-
-          {/* Datas */}
-          <div className={styles.dateGrid}>
-            <DatePicker
-              label="Data de Início"
-              error={errors.startDate?.message}
-              register={register('startDate')}
-              helperText="Quando sua viagem começa"
-              popupPosition="top"
-            />
-
-            <DatePicker
-              label="Data de Fim"
-              error={errors.endDate?.message}
-              register={register('endDate')}
-              popupPosition="top"
-              helperText="Quando sua viagem termina"
-            />
-          </div>
-
-          {/* Descrição */}
-          <Textarea
-            label="Descrição (opcional)"
-            placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
-            error={errors.description?.message}
-            register={register('description')}
-            rows={2}
-            helperText="Adicione detalhes sobre seus planos de viagem"
-          />
-
-          {/* Botões */}
-          <div className={styles.buttonGroup}>
-            <Button
-              type="submit"
-              variant="primary"
-              icon={Plus}
-              aria-label="Criar viagem"
-              className="flex-1"
-              disabled={isSubmitting || loading}
-            >
-              {isSubmitting || loading ? 'Criando...' : 'Criar Viagem'}
-            </Button>
-            <Button
-              type="button"
-              variant="secondary"
-              onClick={() => router.back()}
-              aria-label="Cancelar criação"
-              className="flex-1"
-              disabled={isSubmitting || loading}
-            >
-              Cancelar
-            </Button>
-          </div>
-        </form>
+        <TripForm
+          mode="create"
+          onSubmit={handleSubmit}
+          onCancel={handleCancel}
+          submitButtonIcon={Plus}
+          loading={loading}
+        />
       </Card>
     </div>
   );
@@ -200,8 +98,4 @@ const styles = {
   title: 'text-3xl md:text-4xl font-bold text-parchment-white mb-3',
   subtitle: 'text-lg text-mist-gray',
   formContainer: '',
-  form: 'space-y-6',
-  dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
-  buttonGroup: 'flex flex-col sm:flex-row gap-4 pt-4',
-
 };
