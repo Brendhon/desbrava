@@ -132,6 +132,6 @@ const styles = {
   detailImage: 'w-5 h-4',
   detailIcon: 'w-4 h-4 text-royal-purple',
   detailText: 'text-sm text-mist-gray',
-  footer: 'pt-4 border-t border-slate-700',
+  footer: 'pt-4 border-t border-slate-700 flex justify-center',
   viewButton: 'inline-flex items-center px-4 py-2 bg-royal-purple text-parchment-white rounded-lg hover:bg-royal-purple/90 transition-colors duration-200 text-sm font-medium',
 };
