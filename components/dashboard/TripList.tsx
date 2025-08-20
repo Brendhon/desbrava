@@ -99,7 +99,6 @@ export default function TripList({ trips, loading = false, onEdit, onDelete }: T
           <TripCard
             key={trip.id}
             trip={trip}
-            onEdit={onEdit}
             onDelete={onDelete}
           />
         ))}
