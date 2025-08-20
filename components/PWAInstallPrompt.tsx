@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Download, X, Smartphone, Star } from 'lucide-react';
+import { Download, Smartphone, Star, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import Button from './ui/Button';
 
 interface BeforeInstallPromptEvent extends Event {
@@ -43,6 +43,7 @@ export function PWAInstallPrompt() {
   }, []);
 
   const handleInstallClick = async () => {
+    console.log('deferredPrompt', deferredPrompt);
     if (deferredPrompt) {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
@@ -68,9 +69,6 @@ export function PWAInstallPrompt() {
 
   return (
     <div className={styles.container}>
-      {/* Decorative background with gradient */}
-      <div className={styles.backgroundGradient} />
-
       {/* Header with icon and close button */}
       <div className={styles.header}>
         <div className={styles.titleSection}>
@@ -136,8 +134,7 @@ export function PWAInstallPrompt() {
 }
 
 const styles = {
-  container: 'fixed top-4 right-4 w-80 bg-slate-dark border border-royal-purple/30 rounded-xl shadow-2xl z-50 overflow-hidden transition-all duration-300 ease-out hover:shadow-royal-purple/20',
-  backgroundGradient: 'absolute inset-0 bg-gradient-to-br from-royal-purple/5 to-midnight-blue/10',
+  container: 'fixed top-4 right-4 w-80 bg-slate-dark border border-royal-purple/30 rounded-xl shadow-2xl z-100 overflow-hidden transition-all duration-300 ease-out hover:shadow-royal-purple/20',
   header: 'flex items-start justify-between p-4 pb-3',
   titleSection: 'flex items-center gap-3',
   iconContainer: 'w-10 h-10 bg-royal-purple/20 rounded-lg flex items-center justify-center',
