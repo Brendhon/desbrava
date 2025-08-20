@@ -1,11 +1,16 @@
 'use client';
 
 import { Trip } from '@/lib/types/trip';
-import { filterTripsByStatus, sortTripsByDate } from '@/lib/utils/trip';
+import {
+  filterTripsByStatus,
+  sortTripsByDate,
+  searchTripsByText,
+} from '@/lib/utils/trip';
 import { memo, useCallback, useMemo, useState } from 'react';
 import LoadingSpinner from '../ui/LoadingSpinner';
 import EmptyState from './EmptyState';
 import TripCard from './TripCard';
+import TripFilter from './TripFilter';
 import { Loader2 } from 'lucide-react';
 
 interface TripListProps {
@@ -40,55 +45,26 @@ const Grid = memo(({ trips, loading }: { trips: Trip[]; loading: boolean }) => {
   );
 });
 
-const Filters = memo(
-  ({
-    statusFilter,
-    setStatusFilter,
-    getStatusCount,
-    getStatusLabel,
-  }: {
-    statusFilter: StatusFilter;
-    setStatusFilter: (status: StatusFilter) => void;
-    getStatusCount: (status: StatusFilter) => number;
-    getStatusLabel: (status: StatusFilter) => string;
-  }) => {
-    const handleStatusFilter = useCallback(
-      (status: StatusFilter) => setStatusFilter(status),
-      [setStatusFilter]
-    );
-
-    return (
-      <div className={styles.controls}>
-        <div className={styles.statusFilters}>
-          {STATUS_OPTIONS.map((status) => (
-            <button
-              key={status}
-              onClick={() => handleStatusFilter(status)}
-              className={`${styles.statusFilter} ${
-                statusFilter === status ? styles.statusFilterActive : ''
-              }`}
-            >
-              {getStatusLabel(status)}
-              <span className={styles.statusCount}>
-                ({getStatusCount(status)})
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
-    );
-  }
-);
-
 export default function TripList({ trips, loading = false }: TripListProps) {
   // Status filter
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
 
-  // Filter trips
+  // Country filter
+  const [countryFilter, setCountryFilter] = useState<string>('');
+
+  // Filter trips by country first
+  const countryFilteredTrips = useMemo(
+    () => searchTripsByText(trips, countryFilter),
+    [trips, countryFilter]
+  );
+
+  // Filter trips by status
   const filteredTrips = useMemo(
     () =>
-      statusFilter === 'all' ? trips : filterTripsByStatus(trips, statusFilter),
-    [trips, statusFilter]
+      statusFilter === 'all'
+        ? countryFilteredTrips
+        : filterTripsByStatus(countryFilteredTrips, statusFilter),
+    [countryFilteredTrips, statusFilter]
   );
 
   // Sort trips
@@ -97,13 +73,13 @@ export default function TripList({ trips, loading = false }: TripListProps) {
     [filteredTrips]
   );
 
-  // Get status count
+  // Get status count (considering country filter)
   const getStatusCount = useCallback(
     (status: StatusFilter) =>
       status === 'all'
-        ? trips.length
-        : filterTripsByStatus(trips, status).length,
-    [trips]
+        ? countryFilteredTrips.length
+        : filterTripsByStatus(countryFilteredTrips, status).length,
+    [countryFilteredTrips]
   );
 
   // Get status label
@@ -125,9 +101,11 @@ export default function TripList({ trips, loading = false }: TripListProps) {
   return (
     <div className={styles.container}>
       {/* Filters and Controls */}
-      <Filters
+      <TripFilter
         statusFilter={statusFilter}
         setStatusFilter={setStatusFilter}
+        countryFilter={countryFilter}
+        setCountryFilter={setCountryFilter}
         getStatusCount={getStatusCount}
         getStatusLabel={getStatusLabel}
       />
@@ -147,17 +125,5 @@ const styles = {
   emptyIconImage: 'w-10 h-10 text-mist-gray',
   emptyTitle: 'text-2xl font-bold text-parchment-white mb-3',
   emptyDescription: 'text-mist-gray mb-8 max-w-md mx-auto',
-  controls:
-    'flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4',
-  statusFilters: 'flex flex-wrap gap-2',
-  statusFilter:
-    'px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-slate-700 text-mist-gray hover:text-parchment-white',
-  statusFilterActive:
-    'bg-royal-purple text-parchment-white hover:bg-royal-purple/90',
-  statusCount: 'ml-1 opacity-75',
-  sortControl: 'flex items-center gap-2',
-  sortLabel: 'text-sm text-mist-gray',
-  sortSelect:
-    'px-3 py-2 bg-slate-800 border border-slate-700 rounded-md text-parchment-white focus:outline-none focus:ring-2 focus:ring-royal-purple focus:border-transparent',
   tripsGrid: 'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6',
 };

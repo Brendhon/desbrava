@@ -1,4 +1,5 @@
 import { CreateTripData, Trip } from '@/lib/types/trip';
+import { normalizeString } from './string-utils';
 
 /**
  * Validate trip data before creation
@@ -183,16 +184,17 @@ export function filterTripsByStatus(
  * Search trips by text
  */
 export function searchTripsByText(trips: Trip[], searchTerm: string): Trip[] {
-  const term = searchTerm.toLowerCase().trim();
+  const term = normalizeString(searchTerm);
 
   if (!term) return trips;
 
   return trips.filter(
     (trip) =>
-      trip.name.toLowerCase().includes(term) ||
-      trip.description.toLowerCase().includes(term) ||
-      trip.country.country.toLowerCase().includes(term) ||
-      trip.country.iso_country.toLowerCase().includes(term)
+      normalizeString(trip.name).includes(term) ||
+      normalizeString(trip.description).includes(term) ||
+      normalizeString(trip.country.country).includes(term) ||
+      normalizeString(trip.startDate).includes(term) ||
+      normalizeString(trip.endDate).includes(term)
   );
 }
 
