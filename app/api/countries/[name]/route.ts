@@ -14,10 +14,10 @@ import {
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { name: string } }
+  { params }: { params: Promise<{ name: string }> }
 ) {
   try {
-    const name = params.name;
+    const { name } = await params;
 
     if (!name) {
       return createErrorResponse(
