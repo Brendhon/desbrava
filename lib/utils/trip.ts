@@ -3,7 +3,10 @@ import { CreateTripData, Trip } from '@/lib/types/trip';
 /**
  * Validate trip data before creation
  */
-export function validateTripData(data: CreateTripData): { isValid: boolean; errors: string[] } {
+export function validateTripData(data: CreateTripData): {
+  isValid: boolean;
+  errors: string[];
+} {
   const errors: string[] = [];
 
   // Check required fields
@@ -64,7 +67,7 @@ export function validateTripData(data: CreateTripData): { isValid: boolean; erro
 
   return {
     isValid: errors.length === 0,
-    errors
+    errors,
   };
 }
 
@@ -74,32 +77,35 @@ export function validateTripData(data: CreateTripData): { isValid: boolean; erro
 export function formatTripDates(startDate: string, endDate: string): string {
   const start = parsePtBrToDate(startDate);
   const end = parsePtBrToDate(endDate);
-  
+
   const startFormatted = start.toLocaleDateString('pt-BR', {
     day: '2-digit',
     month: '2-digit',
-    year: 'numeric'
+    year: 'numeric',
   });
-  
+
   const endFormatted = end.toLocaleDateString('pt-BR', {
     day: '2-digit',
     month: '2-digit',
-    year: 'numeric'
+    year: 'numeric',
   });
-  
+
   return `${startFormatted} - ${endFormatted}`;
 }
 
 /**
  * Calculate trip duration in days
  */
-export function calculateTripDuration(startDate: string, endDate: string): number {
+export function calculateTripDuration(
+  startDate: string,
+  endDate: string
+): number {
   const start = parsePtBrToDate(startDate);
   const end = parsePtBrToDate(endDate);
-  
+
   const diffTime = Math.abs(end.getTime() - start.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  
+
   return diffDays;
 }
 
@@ -110,7 +116,7 @@ export function isTripActive(trip: Trip): boolean {
   const now = new Date();
   const start = parsePtBrToDate(trip.startDate);
   const end = parsePtBrToDate(trip.endDate);
-  
+
   return now >= start && now <= end;
 }
 
@@ -120,7 +126,7 @@ export function isTripActive(trip: Trip): boolean {
 export function isTripFuture(trip: Trip): boolean {
   const now = new Date();
   const start = parsePtBrToDate(trip.startDate);
-  
+
   return start > now;
 }
 
@@ -130,7 +136,7 @@ export function isTripFuture(trip: Trip): boolean {
 export function isTripPast(trip: Trip): boolean {
   const now = new Date();
   const end = parsePtBrToDate(trip.endDate);
-  
+
   return end < now;
 }
 
@@ -148,7 +154,10 @@ export function getTripStatus(trip: Trip): 'past' | 'active' | 'future' {
  * If order is 'asc', trips closer to now come first.
  * If order is 'desc', trips farther from now come first.
  */
-export function sortTripsByDate(trips: Trip[], order: 'asc' | 'desc' = 'asc'): Trip[] {
+export function sortTripsByDate(
+  trips: Trip[],
+  order: 'asc' | 'desc' = 'asc'
+): Trip[] {
   const now = new Date().getTime();
   return [...trips].sort((a, b) => {
     const dateA = parsePtBrToDate(a.startDate).getTime();
@@ -163,8 +172,11 @@ export function sortTripsByDate(trips: Trip[], order: 'asc' | 'desc' = 'asc'): T
 /**
  * Filter trips by status
  */
-export function filterTripsByStatus(trips: Trip[], status: 'past' | 'active' | 'future'): Trip[] {
-  return trips.filter(trip => getTripStatus(trip) === status);
+export function filterTripsByStatus(
+  trips: Trip[],
+  status: 'past' | 'active' | 'future'
+): Trip[] {
+  return trips.filter((trip) => getTripStatus(trip) === status);
 }
 
 /**
@@ -172,14 +184,15 @@ export function filterTripsByStatus(trips: Trip[], status: 'past' | 'active' | '
  */
 export function searchTripsByText(trips: Trip[], searchTerm: string): Trip[] {
   const term = searchTerm.toLowerCase().trim();
-  
+
   if (!term) return trips;
-  
-  return trips.filter(trip => 
-    trip.name.toLowerCase().includes(term) ||
-    trip.description.toLowerCase().includes(term) ||
-    trip.country.country.toLowerCase().includes(term) ||
-    trip.country.iso_country.toLowerCase().includes(term)
+
+  return trips.filter(
+    (trip) =>
+      trip.name.toLowerCase().includes(term) ||
+      trip.description.toLowerCase().includes(term) ||
+      trip.country.country.toLowerCase().includes(term) ||
+      trip.country.iso_country.toLowerCase().includes(term)
   );
 }
 

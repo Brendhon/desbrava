@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
-import { 
-  getUserTrips, 
-  searchTrips
-} from '@/services/firebase/trip.service';
+import { getUserTrips, searchTrips } from '@/services/firebase/trip.service';
 
 /**
  * GET /api/trips
@@ -18,13 +15,13 @@ export async function GET(request: NextRequest) {
   try {
     // Check authentication
     const session = await auth();
-    
+
     if (!session?.user?.email) {
       return NextResponse.json(
         {
           success: false,
           error: 'Unauthorized',
-          message: 'You must be logged in to access trips'
+          message: 'You must be logged in to access trips',
         },
         { status: 401 }
       );
@@ -44,12 +41,16 @@ export async function GET(request: NextRequest) {
       const filters = {
         startDate: startDate || undefined,
         endDate: endDate || undefined,
-        country: country || undefined
+        country: country || undefined,
       };
-      
-      results = await searchTrips(session.user.email, search || undefined, filters);
+
+      results = await searchTrips(
+        session.user.email,
+        search || undefined,
+        filters
+      );
       total = results.length;
-    } 
+    }
     // Default: get all user trips
     else {
       results = await getUserTrips(session.user.email);
@@ -65,17 +66,16 @@ export async function GET(request: NextRequest) {
       filters: {
         startDate,
         endDate,
-        country
-      }
+        country,
+      },
     });
-
   } catch (error) {
     console.error('Error fetching trips:', error);
     return NextResponse.json(
       {
         success: false,
         error: 'Internal server error',
-        message: 'Failed to fetch trips'
+        message: 'Failed to fetch trips',
       },
       { status: 500 }
     );

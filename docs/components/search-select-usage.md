@@ -14,21 +14,21 @@ A searchable select component that combines an input field with a filterable dro
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `ReactNode` | - | Label content displayed above the input |
-| `error` | `string` | - | Error message displayed below the input |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant of the input |
-| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant of the input |
-| `register` | `UseFormRegisterReturn` | - | React Hook Form register object |
-| `helperText` | `string` | - | Helper text displayed below the input |
-| `className` | `string` | `''` | Additional CSS classes |
-| `id` | `string` | - | Custom ID for the input element |
-| `options` | `SelectOption[]` | - | Array of select options |
-| `placeholder` | `string` | - | Placeholder text for the input |
-| `icon` | `React.ComponentType` | - | Optional icon component |
-| `iconPosition` | `'left' \| 'right'` | `'left'` | Position of the optional icon |
-| `onValueChange` | `(value: string) => void` | - | Callback when value changes |
+| Prop            | Type                                | Default     | Description                             |
+| --------------- | ----------------------------------- | ----------- | --------------------------------------- |
+| `label`         | `ReactNode`                         | -           | Label content displayed above the input |
+| `error`         | `string`                            | -           | Error message displayed below the input |
+| `size`          | `'sm' \| 'md' \| 'lg'`              | `'md'`      | Size variant of the input               |
+| `variant`       | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant of the input             |
+| `register`      | `UseFormRegisterReturn`             | -           | React Hook Form register object         |
+| `helperText`    | `string`                            | -           | Helper text displayed below the input   |
+| `className`     | `string`                            | `''`        | Additional CSS classes                  |
+| `id`            | `string`                            | -           | Custom ID for the input element         |
+| `options`       | `SelectOption[]`                    | -           | Array of select options                 |
+| `placeholder`   | `string`                            | -           | Placeholder text for the input          |
+| `icon`          | `React.ComponentType`               | -           | Optional icon component                 |
+| `iconPosition`  | `'left' \| 'right'`                 | `'left'`    | Position of the optional icon           |
+| `onValueChange` | `(value: string) => void`           | -           | Callback when value changes             |
 
 ## SelectOption Interface
 
@@ -57,7 +57,7 @@ const options = [
   label="Choose an option"
   options={options}
   placeholder="Type to search..."
-/>
+/>;
 ```
 
 ### With React Hook Form
@@ -79,7 +79,7 @@ const options = [
   options={options}
   placeholder="Type to search for a country..."
   register={register('country')}
-/>
+/>;
 ```
 
 ### With Complex Labels
@@ -88,23 +88,23 @@ const options = [
 import { Globe, Flag } from 'lucide-react';
 
 const options = [
-  { 
-    value: 'br', 
+  {
+    value: 'br',
     label: (
       <div className="flex items-center gap-2">
-        <Flag className="w-4 h-4" />
+        <Flag className="h-4 w-4" />
         <span>Brazil</span>
       </div>
-    )
+    ),
   },
-  { 
-    value: 'ar', 
+  {
+    value: 'ar',
     label: (
       <div className="flex items-center gap-2">
-        <Flag className="w-4 h-4" />
+        <Flag className="h-4 w-4" />
         <span>Argentina</span>
       </div>
-    )
+    ),
   },
 ];
 
@@ -113,7 +113,7 @@ const options = [
   options={options}
   placeholder="Search for a country..."
   icon={Globe}
-/>
+/>;
 ```
 
 ### With Custom Styling

@@ -25,7 +25,10 @@ interface CountrySearchSelectProps {
  * CountrySearchSelect component that provides dynamic country search using the countries API
  * with debouncing to avoid excessive API calls
  */
-const CountrySearchSelect = forwardRef<HTMLInputElement, CountrySearchSelectProps>(
+const CountrySearchSelect = forwardRef<
+  HTMLInputElement,
+  CountrySearchSelectProps
+>(
   (
     {
       label = 'País',
@@ -43,12 +46,12 @@ const CountrySearchSelect = forwardRef<HTMLInputElement, CountrySearchSelectProp
     },
     ref
   ) => {
-    const { 
-      countries, 
-      loading, 
-      error: searchError, 
-      searchTerm, 
-      setSearchTerm 
+    const {
+      countries,
+      loading,
+      error: searchError,
+      searchTerm,
+      setSearchTerm,
     } = useCountries('', debounceDelay);
 
     // Convert countries to SelectOption format with simplified labels
@@ -60,8 +63,8 @@ const CountrySearchSelect = forwardRef<HTMLInputElement, CountrySearchSelectProp
         data: {
           image: country.flag,
           desc: country.continent,
-          name: country.country
-        }
+          name: country.country,
+        },
       }));
     }, [countries]);
 
@@ -69,7 +72,7 @@ const CountrySearchSelect = forwardRef<HTMLInputElement, CountrySearchSelectProp
     const handleValueChange = (value: string) => {
       // Update search term for API calls
       setSearchTerm(value);
-      
+
       // Call the original onValueChange if provided
       if (onValueChange) {
         onValueChange(value);
@@ -77,10 +80,10 @@ const CountrySearchSelect = forwardRef<HTMLInputElement, CountrySearchSelectProp
     };
 
     // Show loading state or error in helper text
-    const displayHelperText = searchError 
-      ? `Erro na busca: ${searchError}` 
+    const displayHelperText = searchError
+      ? `Erro na busca: ${searchError}`
       : loading && searchTerm.trim().length >= 2
-        ? 'Buscando países...' 
+        ? 'Buscando países...'
         : helperText;
 
     return (
@@ -101,7 +104,6 @@ const CountrySearchSelect = forwardRef<HTMLInputElement, CountrySearchSelectProp
           onValueChange={handleValueChange}
           {...props}
         />
-      
       </div>
     );
   }

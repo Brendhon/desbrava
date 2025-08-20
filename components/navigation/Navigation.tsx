@@ -8,9 +8,7 @@ export function Navigation() {
   return (
     <nav className={styles.nav}>
       <div className={styles.container}>
-      
         <div className={styles.navContent}>
-        
           {/* Logo */}
           <Link href="/dashboard" className={styles.logo}>
             <Image
@@ -21,7 +19,7 @@ export function Navigation() {
             />
             <span className={styles.logoText}>Desbrava</span>
           </Link>
-      
+
           {/* User Menu */}
           <UserMenu />
         </div>

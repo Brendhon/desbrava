@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: 'Unauthorized',
-          message: 'You must be logged in to create trips'
+          message: 'You must be logged in to create trips',
         },
         { status: 401 }
       );
@@ -28,12 +28,17 @@ export async function POST(request: NextRequest) {
     const tripData: Omit<CreateTripData, 'userId'> = body;
 
     // Validate required fields
-    if (!tripData.name || !tripData.startDate || !tripData.endDate || !tripData.country) {
+    if (
+      !tripData.name ||
+      !tripData.startDate ||
+      !tripData.endDate ||
+      !tripData.country
+    ) {
       return NextResponse.json(
         {
           success: false,
           error: 'Bad request',
-          message: 'All fields are required: name, startDate, endDate, country'
+          message: 'All fields are required: name, startDate, endDate, country',
         },
         { status: 400 }
       );
@@ -42,13 +47,13 @@ export async function POST(request: NextRequest) {
     // Validate dates
     const startDate = parsePtBrToDate(tripData.startDate);
     const endDate = parsePtBrToDate(tripData.endDate);
-    
+
     if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
       return NextResponse.json(
         {
           success: false,
           error: 'Bad request',
-          message: 'Invalid date format'
+          message: 'Invalid date format',
         },
         { status: 400 }
       );
@@ -59,7 +64,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: 'Bad request',
-          message: 'Start date must be before end date'
+          message: 'Start date must be before end date',
         },
         { status: 400 }
       );
@@ -68,27 +73,29 @@ export async function POST(request: NextRequest) {
     // Create the trip with user ID
     const createData: CreateTripData = {
       ...tripData,
-      user: session.user.email
+      user: session.user.email,
     };
 
     const tripId = await createTrip(createData);
 
-    return NextResponse.json({
-      success: true,
-      data: {
-        id: tripId,
-        ...createData
+    return NextResponse.json(
+      {
+        success: true,
+        data: {
+          id: tripId,
+          ...createData,
+        },
+        message: 'Trip created successfully',
       },
-      message: 'Trip created successfully'
-    }, { status: 201 });
-
+      { status: 201 }
+    );
   } catch (error) {
     console.error('Error creating trip:', error);
     return NextResponse.json(
       {
         success: false,
         error: 'Internal server error',
-        message: 'Failed to create trip'
+        message: 'Failed to create trip',
       },
       { status: 500 }
     );

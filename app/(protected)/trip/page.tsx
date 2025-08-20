@@ -55,18 +55,18 @@ export default function CreateTripPage() {
         description: data.description || '',
         startDate: data.startDate,
         endDate: data.endDate,
-        country: await getCountryByName(data.country)
-      }
+        country: await getCountryByName(data.country),
+      };
 
       // Create Trip
       const newTrip = await createTrip(tripData);
 
       if (newTrip) {
         setShowSuccess(true);
-        
+
         // Reset form
         reset();
-        
+
         // Redirect to dashboard after 2 seconds
         setTimeout(() => {
           router.push('/dashboard');
@@ -74,7 +74,6 @@ export default function CreateTripPage() {
       } else {
         setShowError(true);
       }
-      
     } catch (error) {
       console.error('Erro ao criar viagem:', error);
       setShowError(true);
@@ -171,7 +170,7 @@ export default function CreateTripPage() {
 
           {/* País */}
           <CountrySearchSelect
-            label='País'
+            label="País"
             placeholder="Digite para buscar um país..."
             error={errors.country?.message}
             register={register('country')}
@@ -187,14 +186,14 @@ export default function CreateTripPage() {
               error={errors.startDate?.message}
               register={register('startDate')}
               helperText="Quando sua viagem começa"
-              popupPosition='top'
+              popupPosition="top"
             />
 
             <DatePicker
               label="Data de Fim"
               error={errors.endDate?.message}
               register={register('endDate')}
-              popupPosition='top'
+              popupPosition="top"
               helperText="Quando sua viagem termina"
             />
           </div>
@@ -247,13 +246,16 @@ const styles = {
   form: 'space-y-6',
   dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
   buttonGroup: 'flex flex-col sm:flex-row gap-4 pt-4',
-  successMessage: 'mb-6 p-4 bg-green-900/20 border border-green-500/30 rounded-lg flex items-start gap-3 text-green-400',
+  successMessage:
+    'mb-6 p-4 bg-green-900/20 border border-green-500/30 rounded-lg flex items-start gap-3 text-green-400',
   successIcon: 'w-6 h-6 text-green-500 flex-shrink-0 mt-0.5',
   successTitle: 'text-lg font-semibold text-green-400',
   successText: 'text-green-300',
-  errorMessage: 'mb-6 p-4 bg-red-900/20 border border-red-500/30 rounded-lg flex items-start gap-3 text-red-400 relative',
+  errorMessage:
+    'mb-6 p-4 bg-red-900/20 border border-red-500/30 rounded-lg flex items-start gap-3 text-red-400 relative',
   errorIcon: 'w-6 h-6 text-red-500 flex-shrink-0 mt-0.5',
   errorTitle: 'text-lg font-semibold text-red-400',
   errorText: 'text-red-300',
-  closeButton: 'absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-red-400 hover:text-red-300 transition-colors',
+  closeButton:
+    'absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-red-400 hover:text-red-300 transition-colors',
 };

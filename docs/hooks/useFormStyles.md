@@ -36,5 +36,6 @@ const MyComponent = () => {
 ## Retorno
 
 Objeto com:
+
 - `input`: Classes CSS para o input
 - `icon`: Classes CSS para o ícone (vazio se não houver ícone)

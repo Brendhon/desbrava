@@ -2,36 +2,91 @@
 
 import Card from '@/components/ui/Card';
 import { Trip } from '@/lib/types/trip';
-import { calculateTripDuration, formatTripDates, getTripStatus } from '@/lib/utils/trip';
-import { Calendar, Edit, MapPin, Trash2 } from 'lucide-react';
+import {
+  calculateTripDuration,
+  formatTripDates,
+  getTripStatus,
+} from '@/lib/utils/trip';
+import { Calendar, MapPin } from 'lucide-react';
 import Link from 'next/link';
+import { useCallback, useMemo } from 'react';
 import Button from '../ui/Button';
 
 interface TripCardProps {
   trip: Trip;
-  onEdit?: (trip: Trip) => void;
-  onDelete?: (tripId: string) => void;
 }
 
-export default function TripCard({ trip, onEdit, onDelete }: TripCardProps) {
-  const status = getTripStatus(trip);
-  const duration = calculateTripDuration(trip.startDate, trip.endDate);
-  const formattedDates = formatTripDates(trip.startDate, trip.endDate);
+// Components
+// FlagImage
+const FlagImage = ({ trip }: { trip: Trip }) => {
+  return (
+    trip.country.flag && (
+      <img
+        loading="lazy"
+        src={trip.country.flag}
+        alt={trip.country.country}
+        className={styles.detailImage}
+      />
+    )
+  );
+};
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active':
-        return 'bg-emerald-500';
-      case 'future':
-        return 'bg-blue-500';
-      case 'past':
-        return 'bg-slate-500';
-      default:
-        return 'bg-slate-500';
-    }
-  };
+// Description
+const Description = ({ trip }: { trip: Trip }) => {
+  return (
+    <p className={styles.description} title={trip.description}>
+      {trip.description || 'Sem descrição'}
+    </p>
+  );
+};
 
-  const getStatusText = (status: string) => {
+// Details
+const Details = ({
+  trip,
+  formattedDates,
+  duration,
+}: {
+  trip: Trip;
+  formattedDates: string;
+  duration: number;
+}) => {
+  return (
+    <div className={styles.details}>
+      <div className={styles.detailItem}>
+        <MapPin className={styles.detailIcon} />
+        <span className={styles.detailText}>{trip.country.country}</span>
+      </div>
+
+      <div className={styles.detailItem}>
+        <Calendar className={styles.detailIcon} />
+        <span className={styles.detailText}>
+          {formattedDates} ({duration} {duration === 1 ? 'dia' : 'dias'})
+        </span>
+      </div>
+    </div>
+  );
+};
+
+// Footer
+const Footer = ({ trip }: { trip: Trip }) => {
+  return (
+    <div className={styles.footer}>
+      <Link
+        href={`/trip/${trip.id}`}
+        aria-label={`Ver detalhes da viagem ${trip.name}`}
+      >
+        <Button variant="primary" size="sm">
+          Ver Detalhes
+        </Button>
+      </Link>
+    </div>
+  );
+};
+
+// Status
+const Status = ({ status }: { status: string }) => {
+  // Status Text
+  const getStatusText = useCallback((status: string) => {
     switch (status) {
       case 'active':
         return 'Em Andamento';
@@ -42,96 +97,95 @@ export default function TripCard({ trip, onEdit, onDelete }: TripCardProps) {
       default:
         return 'Desconhecido';
     }
-  };
+  }, []);
+
+  // Status Color
+  const getStatusColor = useCallback((status: string) => {
+    switch (status) {
+      case 'active':
+        return 'bg-emerald-500';
+      case 'future':
+        return 'bg-blue-500';
+      case 'past':
+        return 'bg-slate-500';
+      default:
+        return 'bg-slate-500';
+    }
+  }, []);
+
+  return (
+    <span className={`${styles.status} ${getStatusColor(status)}`}>
+      {getStatusText(status)}
+    </span>
+  );
+};
+
+// Header
+const Header = ({ trip, status }: { trip: Trip; status: string }) => {
+  return (
+    <div className={styles.header}>
+      <div className={styles.titleSection}>
+        <h3 className={styles.title}>{trip.name}</h3>
+        <Status status={status} />
+      </div>
+
+      <FlagImage trip={trip} />
+    </div>
+  );
+};
+
+// TripCard
+export default function TripCard({ trip }: TripCardProps) {
+  // Status
+  const status = useMemo(() => getTripStatus(trip), [trip]);
+
+  // Duration
+  const duration = useMemo(
+    () => calculateTripDuration(trip.startDate, trip.endDate),
+    [trip.startDate, trip.endDate]
+  );
+
+  // Formatted Dates
+  const formattedDates = useMemo(
+    () => formatTripDates(trip.startDate, trip.endDate),
+    [trip.startDate, trip.endDate]
+  );
 
   return (
     <Card
       padding="lg"
-      shadow="md"
+      shadow="xl"
       background="dark"
       maxWidth="none"
       border={false}
       className={styles.card}
     >
-      <div className={styles.header}>
-        <div className={styles.titleSection}>
-          <h3 className={styles.title}>{trip.name}</h3>
-          <span className={`${styles.status} ${getStatusColor(status)}`}>
-            {getStatusText(status)}
-          </span>
-        </div>
+      <Header trip={trip} status={status} />
 
-        <div className={styles.actions}>
-          {onEdit && (
-            <button
-              onClick={() => onEdit(trip)}
-              className={styles.actionButton}
-              aria-label="Editar viagem"
-            >
-              <Edit className={styles.actionIcon} />
-            </button>
-          )}
-          {onDelete && (
-            <button
-              onClick={() => onDelete(trip.id)}
-              className={styles.actionButton}
-              aria-label="Deletar viagem"
-            >
-              <Trash2 className={styles.actionIcon} />
-            </button>
-          )}
-        </div>
-      </div>
+      <Description trip={trip} />
 
-      <p className={styles.description} title={trip.description}>{trip.description || 'Sem descrição'}</p>
+      <Details
+        trip={trip}
+        formattedDates={formattedDates}
+        duration={duration}
+      />
 
-      <div className={styles.details}>
-        <div className={styles.detailItem}>
-          {
-            trip.country.flag
-              ? <img src={trip.country.flag} alt={trip.country.country} className={styles.detailImage} />
-              : <MapPin className={styles.detailIcon} />
-          }
-          <span className={styles.detailText}>
-            {trip.country.country}
-          </span>
-        </div>
-
-        <div className={styles.detailItem}>
-          <Calendar className={styles.detailIcon} />
-          <span className={styles.detailText}>
-            {formattedDates} ({duration} {duration === 1 ? 'dia' : 'dias'})
-          </span>
-        </div>
-      </div>
-
-      <div className={styles.footer}>
-        <Link
-          href={`/trip/${trip.id}`}
-          aria-label={`Ver detalhes da viagem ${trip.name}`}
-        >
-          <Button variant="primary" size="sm">
-            Ver Detalhes
-          </Button>
-        </Link>
-      </div>
+      <Footer trip={trip} />
     </Card>
   );
 }
 
 const styles = {
   card: 'hover:shadow-lg transition-shadow duration-200',
-  header: 'flex items-start justify-between mb-4',
+  header: 'flex items-center justify-between mb-4',
   titleSection: 'flex items-center gap-3',
   title: 'text-xl font-semibold text-parchment-white',
   status: 'px-3 py-1 text-xs font-medium text-white rounded-full',
-  actions: 'flex items-center gap-2',
-  actionButton: 'p-2 text-mist-gray hover:text-parchment-white transition-colors duration-200',
-  actionIcon: 'w-4 h-4',
-  description: 'text-mist-gray mb-4 line-clamp-2 text-sm text-ellipsis overflow-hidden whitespace-nowrap',
+  description:
+    'text-mist-gray mb-4 line-clamp-2 text-sm text-ellipsis overflow-hidden whitespace-nowrap',
   details: 'space-y-2 mb-4',
   detailItem: 'flex items-center gap-2',
-  detailImage: 'w-4 h-auto',
+  detailImage: 'w-6 h-auto rounded-xs',
   detailIcon: 'w-4 h-4 text-royal-purple',
   detailText: 'text-sm text-mist-gray',
   footer: 'pt-4 border-t border-slate-700 flex justify-center',

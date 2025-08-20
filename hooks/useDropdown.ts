@@ -26,39 +26,44 @@ export const useDropdown = ({ options, onOptionSelect }: UseDropdownProps) => {
     setHighlightedIndex(-1);
   }, []);
 
-  const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    if (!isOpen) return;
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (!isOpen) return;
 
-    switch (event.key) {
-      case 'ArrowDown':
-        event.preventDefault();
-        setHighlightedIndex(prev => 
-          prev < options.length - 1 ? prev + 1 : 0
-        );
-        break;
-      case 'ArrowUp':
-        event.preventDefault();
-        setHighlightedIndex(prev => 
-          prev > 0 ? prev - 1 : options.length - 1
-        );
-        break;
-      case 'Enter':
-        event.preventDefault();
-        if (highlightedIndex >= 0 && options[highlightedIndex]) {
-          onOptionSelect(options[highlightedIndex]);
+      switch (event.key) {
+        case 'ArrowDown':
+          event.preventDefault();
+          setHighlightedIndex((prev) =>
+            prev < options.length - 1 ? prev + 1 : 0
+          );
+          break;
+        case 'ArrowUp':
+          event.preventDefault();
+          setHighlightedIndex((prev) =>
+            prev > 0 ? prev - 1 : options.length - 1
+          );
+          break;
+        case 'Enter':
+          event.preventDefault();
+          if (highlightedIndex >= 0 && options[highlightedIndex]) {
+            onOptionSelect(options[highlightedIndex]);
+            closeDropdown();
+          }
+          break;
+        case 'Escape':
           closeDropdown();
-        }
-        break;
-      case 'Escape':
-        closeDropdown();
-        break;
-    }
-  }, [isOpen, options, highlightedIndex, onOptionSelect, closeDropdown]);
+          break;
+      }
+    },
+    [isOpen, options, highlightedIndex, onOptionSelect, closeDropdown]
+  );
 
   // Scroll highlighted option into view
   useEffect(() => {
     if (highlightedIndex >= 0 && dropdownRef.current) {
-      const highlightedElement = dropdownRef.current.children[highlightedIndex] as HTMLElement;
+      const highlightedElement = dropdownRef.current.children[
+        highlightedIndex
+      ] as HTMLElement;
       if (highlightedElement) {
         highlightedElement.scrollIntoView({ block: 'nearest' });
       }
@@ -68,7 +73,10 @@ export const useDropdown = ({ options, onOptionSelect }: UseDropdownProps) => {
   // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         closeDropdown();
       }
     };
@@ -89,6 +97,6 @@ export const useDropdown = ({ options, onOptionSelect }: UseDropdownProps) => {
     dropdownRef,
     openDropdown,
     closeDropdown,
-    setHighlightedIndex
+    setHighlightedIndex,
   };
 };

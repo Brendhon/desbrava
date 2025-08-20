@@ -12,26 +12,28 @@ export async function GET(
 ) {
   try {
     const name = params.name;
-    
+
     if (!name) {
       return NextResponse.json(
         {
           success: false,
           error: 'Invalid name format',
-          message: 'Country name is required'
+          message: 'Country name is required',
         },
         { status: 400 }
       );
     }
 
-    const country = (countriesData as Country[]).find(c => c.country === name);
+    const country = (countriesData as Country[]).find(
+      (c) => c.country === name
+    );
 
     if (!country) {
       return NextResponse.json(
         {
           success: false,
           error: 'Country not found',
-          message: `No country found with name ${name}`
+          message: `No country found with name ${name}`,
         },
         { status: 404 }
       );
@@ -39,16 +41,15 @@ export async function GET(
 
     return NextResponse.json({
       success: true,
-      data: country
+      data: country,
     });
-
   } catch (error) {
     console.error('Error fetching country by name:', error);
     return NextResponse.json(
       {
         success: false,
         error: 'Internal server error',
-        message: 'Failed to fetch country'
+        message: 'Failed to fetch country',
       },
       { status: 500 }
     );

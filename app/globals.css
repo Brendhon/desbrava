@@ -29,7 +29,7 @@ body {
 
 /* Form Components Base Styles */
 .form-input-base {
-  @apply w-full transition-colors duration-200 border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-midnight-blue bg-midnight-blue;
+  @apply focus:ring-offset-midnight-blue bg-midnight-blue w-full rounded-lg border transition-colors duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none;
 }
 
 /* Size Variants */
@@ -51,28 +51,28 @@ body {
 }
 
 .form-input-variant-error {
-  @apply border-red-500 text-parchment-white placeholder-mist-gray focus:ring-red-500 focus:border-red-500;
+  @apply text-parchment-white placeholder-mist-gray border-red-500 focus:border-red-500 focus:ring-red-500;
 }
 
 .form-input-variant-success {
-  @apply border-green-500 text-parchment-white placeholder-mist-gray focus:ring-green-500 focus:border-green-500;
+  @apply text-parchment-white placeholder-mist-gray border-green-500 focus:border-green-500 focus:ring-green-500;
 }
 
 /* Icon Styles */
 .form-input-icon-size-sm {
-  @apply w-4 h-4;
+  @apply h-4 w-4;
 }
 
 .form-input-icon-size-md {
-  @apply w-5 h-5;
+  @apply h-5 w-5;
 }
 
 .form-input-icon-size-lg {
-  @apply w-6 h-6;
+  @apply h-6 w-6;
 }
 
 .form-input-icon-container {
-  @apply absolute top-1/2 transform -translate-y-1/2 text-mist-gray;
+  @apply text-mist-gray absolute top-1/2 -translate-y-1/2 transform;
 }
 
 .form-input-icon-left {
@@ -85,16 +85,16 @@ body {
 
 /* Padding adjustments for icons */
 .form-input-padding-left-icon {
-  @apply pl-12 pr-4;
+  @apply pr-4 pl-12;
 }
 
 .form-input-padding-right-icon {
-  @apply pl-4 pr-12;
+  @apply pr-12 pl-4;
 }
 
 /* Label and Text Styles */
 .form-label {
-  @apply block text-sm font-medium text-parchment-white mb-2;
+  @apply text-parchment-white mb-2 block text-sm font-medium;
 }
 
 .form-error {
@@ -102,7 +102,7 @@ body {
 }
 
 .form-helper-text {
-  @apply mt-2 text-sm text-mist-gray;
+  @apply text-mist-gray mt-2 text-sm;
 }
 
 /* DatePicker Component Styles */
@@ -112,7 +112,7 @@ body {
 
 /* Calendar Popup Styles */
 .datepicker-popup {
-  @apply absolute z-50 w-auto bg-midnight-blue border border-slate-dark/20 rounded-lg shadow-lg;
+  @apply bg-midnight-blue border-slate-dark/20 absolute z-50 w-auto rounded-lg border shadow-lg;
 }
 
 /* Popup Position Variants */
@@ -125,11 +125,11 @@ body {
 }
 
 .datepicker-popup-left {
-  @apply right-full mr-1 top-1/2 -translate-y-1/2;
+  @apply top-1/2 right-full mr-1 -translate-y-1/2;
 }
 
 .datepicker-popup-right {
-  @apply left-full ml-1 top-1/2 -translate-y-1/2;
+  @apply top-1/2 left-full ml-1 -translate-y-1/2;
 }
 
 .datepicker-calendar {

@@ -85,7 +85,10 @@ import { useForm } from 'react-hook-form';
 import { Textarea } from '@/components/form';
 
 function HookFormExample() {
-  const { register, formState: { errors } } = useForm();
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
 
   return (
     <Textarea
@@ -96,8 +99,8 @@ function HookFormExample() {
         required: 'Comentário é obrigatório',
         minLength: {
           value: 10,
-          message: 'Comentário deve ter pelo menos 10 caracteres'
-        }
+          message: 'Comentário deve ter pelo menos 10 caracteres',
+        },
       })}
       rows={4}
       required
@@ -115,14 +118,18 @@ import { z } from 'zod';
 import { Textarea } from '@/components/form';
 
 const commentSchema = z.object({
-  comment: z.string()
+  comment: z
+    .string()
     .min(10, 'Comentário deve ter pelo menos 10 caracteres')
-    .max(500, 'Comentário deve ter no máximo 500 caracteres')
+    .max(500, 'Comentário deve ter no máximo 500 caracteres'),
 });
 
 function ZodFormExample() {
-  const { register, formState: { errors } } = useForm({
-    resolver: zodResolver(commentSchema)
+  const {
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(commentSchema),
   });
 
   return (
@@ -142,22 +149,26 @@ function ZodFormExample() {
 ## Estados Visuais
 
 ### Estado Normal
+
 - Borda cinza com transparência
 - Fundo escuro
 - Texto branco
 - Não redimensionável
 
 ### Estado de Foco
+
 - Anel roxo ao redor do campo
 - Borda roxa
 - Transição suave
 
 ### Estado de Erro
+
 - Borda vermelha
 - Anel vermelho no foco
 - Mensagem de erro abaixo
 
 ### Estado de Sucesso
+
 - Borda verde
 - Anel verde no foco
 
@@ -174,19 +185,13 @@ function ZodFormExample() {
 ### Classes CSS Adicionais
 
 ```tsx
-<Textarea
-  label="Campo Personalizado"
-  className="border-2 border-dashed"
-/>
+<Textarea label="Campo Personalizado" className="border-2 border-dashed" />
 ```
 
 ### Estilos Inline
 
 ```tsx
-<Textarea 
-  label="Campo com Estilo" 
-  style={{ borderWidth: '3px' }} 
-/>
+<Textarea label="Campo com Estilo" style={{ borderWidth: '3px' }} />
 ```
 
 ## Exemplos de Uso
@@ -194,11 +199,7 @@ function ZodFormExample() {
 ### Campo de Descrição Simples
 
 ```tsx
-<Textarea 
-  label="Descrição" 
-  placeholder="Digite sua descrição..." 
-  rows={4} 
-/>
+<Textarea label="Descrição" placeholder="Digite sua descrição..." rows={4} />
 ```
 
 ### Campo de Comentário com Validação

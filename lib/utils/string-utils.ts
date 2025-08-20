@@ -43,25 +43,28 @@ export function containsString(text: string, searchTerm: string): boolean {
  * @param options - Array of strings to search in
  * @returns The best matching string or null if no match found
  */
-export function findBestMatch(searchTerm: string, options: string[]): string | null {
+export function findBestMatch(
+  searchTerm: string,
+  options: string[]
+): string | null {
   const normalizedSearchTerm = normalizeString(searchTerm);
-  
+
   // First, try to find exact matches
-  const exactMatch = options.find(option => 
-    normalizeString(option) === normalizedSearchTerm
+  const exactMatch = options.find(
+    (option) => normalizeString(option) === normalizedSearchTerm
   );
   if (exactMatch) return exactMatch;
-  
+
   // Then, try to find partial matches
-  const partialMatch = options.find(option => 
+  const partialMatch = options.find((option) =>
     normalizeString(option).includes(normalizedSearchTerm)
   );
   if (partialMatch) return partialMatch;
-  
+
   // Finally, try to find matches that start with the search term
-  const startsWithMatch = options.find(option => 
+  const startsWithMatch = options.find((option) =>
     normalizeString(option).startsWith(normalizedSearchTerm)
   );
-  
+
   return startsWithMatch || null;
 }

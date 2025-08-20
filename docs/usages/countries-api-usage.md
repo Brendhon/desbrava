@@ -22,19 +22,21 @@ Search for countries by name with support for partial matches and accent normali
 
 #### Query Parameters
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `name` | string | No | - | Country name to search for |
-| `exact` | boolean | No | false | Whether to search for exact matches only |
+| Parameter | Type    | Required | Default | Description                              |
+| --------- | ------- | -------- | ------- | ---------------------------------------- |
+| `name`    | string  | No       | -       | Country name to search for               |
+| `exact`   | boolean | No       | false   | Whether to search for exact matches only |
 
 #### Examples
 
 ##### Get all countries
+
 ```bash
 GET /api/countries
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -44,11 +46,13 @@ GET /api/countries
 ```
 
 ##### Search by country name (partial match)
+
 ```bash
 GET /api/countries?name=brazil
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -72,11 +76,13 @@ GET /api/countries?name=brazil
 ```
 
 ##### Search by country name (exact match)
+
 ```bash
 GET /api/countries?name=Brasil&exact=true
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -100,6 +106,7 @@ GET /api/countries?name=Brasil&exact=true
 ```
 
 ##### Search with accents (normalized)
+
 ```bash
 GET /api/countries?name=brasil
 ```
@@ -114,18 +121,20 @@ Retrieve a specific country by its unique ID.
 
 #### Path Parameters
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | number | Yes | Unique country identifier |
+| Parameter | Type   | Required | Description               |
+| --------- | ------ | -------- | ------------------------- |
+| `id`      | number | Yes      | Unique country identifier |
 
 #### Examples
 
 ##### Get country by ID
+
 ```bash
 GET /api/countries/28
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -149,15 +158,15 @@ GET /api/countries/28
 
 ```typescript
 interface Country {
-  continent: string;           // Continent name
-  flag: string | null;         // URL to country flag image
-  id: number;                  // Unique identifier
-  language: string[];          // Array of official languages
-  region: string;              // Geographic region
-  country: string;             // Country name
+  continent: string; // Continent name
+  flag: string | null; // URL to country flag image
+  id: number; // Unique identifier
+  language: string[]; // Array of official languages
+  region: string; // Geographic region
+  country: string; // Country name
   currency_code: string | null; // ISO currency code
   currency_name_pt: string | null; // Currency name in Portuguese
-  iso_country: string;         // ISO country code
+  iso_country: string; // ISO country code
 }
 ```
 
@@ -199,11 +208,11 @@ The API uses a three-tier search strategy:
 
 ### Common Error Codes
 
-| Status | Error | Description |
-|--------|-------|-------------|
-| 400 | Invalid ID format | Country ID must be a number |
-| 404 | Country not found | No country found with the specified ID |
-| 500 | Internal server error | Server-side error occurred |
+| Status | Error                 | Description                            |
+| ------ | --------------------- | -------------------------------------- |
+| 400    | Invalid ID format     | Country ID must be a number            |
+| 404    | Country not found     | No country found with the specified ID |
+| 500    | Internal server error | Server-side error occurred             |
 
 ### Example Error Response
 
@@ -222,9 +231,11 @@ The API uses a three-tier search strategy:
 ```typescript
 // Search for countries
 const searchCountries = async (name: string) => {
-  const response = await fetch(`/api/countries?name=${encodeURIComponent(name)}`);
+  const response = await fetch(
+    `/api/countries?name=${encodeURIComponent(name)}`
+  );
   const data = await response.json();
-  
+
   if (data.success) {
     return data.data;
   } else {
@@ -236,7 +247,7 @@ const searchCountries = async (name: string) => {
 const getCountryById = async (id: number) => {
   const response = await fetch(`/api/countries/${id}`);
   const data = await response.json();
-  
+
   if (data.success) {
     return data.data;
   } else {
@@ -248,7 +259,7 @@ const getCountryById = async (id: number) => {
 try {
   const countries = await searchCountries('brazil');
   console.log('Found countries:', countries);
-  
+
   const country = await getCountryById(28);
   console.log('Country details:', country);
 } catch (error) {
@@ -322,10 +333,10 @@ const CountrySearch = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search countries..."
       />
-      
+
       {loading && <p>Searching...</p>}
       {error && <p className="error">{error}</p>}
-      
+
       <ul>
         {countries.map(country => (
           <li key={country.id}>

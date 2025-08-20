@@ -41,8 +41,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     ref
   ) => {
     // Memoized select ID to prevent recreation on every render
-    const selectId = useMemo(() => 
-      id || `select-${Math.random().toString(36).substr(2, 9)}`, 
+    const selectId = useMemo(
+      () => id || `select-${Math.random().toString(36).substr(2, 9)}`,
       [id]
     );
 
@@ -53,7 +53,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
       hasIcon: !!Icon,
       iconPosition,
       className: `${className} form-select-base`,
-      error
+      error,
     });
 
     // Memoized dropdown icon styles
@@ -61,7 +61,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
       return [
         'form-select-dropdown-icon',
         `form-select-dropdown-icon-${size}`,
-        'pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-mist-gray'
+        'pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-mist-gray',
       ].join(' ');
     }, [size]);
 
@@ -93,7 +93,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
                 {placeholder}
               </option>
             )}
-            
+
             {options.map((option) => (
               <option
                 key={option.value}
@@ -106,10 +106,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           </select>
 
           {/* Dropdown indicator icon (always on the right) */}
-          <ChevronDown
-            className={dropdownIconStyles}
-            aria-hidden="true"
-          />
+          <ChevronDown className={dropdownIconStyles} aria-hidden="true" />
         </InputWithIcon>
 
         {error && (

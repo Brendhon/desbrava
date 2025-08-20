@@ -25,7 +25,7 @@ O componente `Input` é um componente reutilizável para campos de formulário q
 | `className`    | `string`                            | -           | Classes CSS adicionais                                     |
 | `id`           | `string`                            | -           | ID personalizado (gerado automaticamente se não fornecido) |
 | `icon`         | `LucideIcon`                        | -           | Ícone a ser exibido (opcional)                             |
-| `iconPosition` | `'left' \| 'right'`                 | `'left'`    | Posição do ícone (quando `icon` é fornecido)              |
+| `iconPosition` | `'left' \| 'right'`                 | `'left'`    | Posição do ícone (quando `icon` é fornecido)               |
 
 ## Tamanhos
 
@@ -90,13 +90,7 @@ O componente `Input` é um componente reutilizável para campos de formulário q
 import { Input } from '@/components/form';
 
 function BasicForm() {
-  return (
-    <Input
-      label="Nome"
-      placeholder="Digite seu nome"
-      required
-    />
-  );
+  return <Input label="Nome" placeholder="Digite seu nome" required />;
 }
 ```
 
@@ -108,12 +102,7 @@ import { Mail } from 'lucide-react';
 
 function IconForm() {
   return (
-    <Input
-      label="Email"
-      placeholder="seu@email.com"
-      icon={Mail}
-      required
-    />
+    <Input label="Email" placeholder="seu@email.com" icon={Mail} required />
   );
 }
 ```
@@ -127,7 +116,10 @@ import { useForm } from 'react-hook-form';
 import { Input } from '@/components/form';
 
 function HookFormExample() {
-  const { register, formState: { errors } } = useForm();
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
 
   return (
     <Input
@@ -139,8 +131,8 @@ function HookFormExample() {
         required: 'Email é obrigatório',
         pattern: {
           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-          message: 'Email inválido'
-        }
+          message: 'Email inválido',
+        },
       })}
       required
     />
@@ -156,7 +148,10 @@ import { Input } from '@/components/form';
 import { Mail } from 'lucide-react';
 
 function HookFormIconExample() {
-  const { register, formState: { errors } } = useForm();
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
 
   return (
     <Input
@@ -169,8 +164,8 @@ function HookFormIconExample() {
         required: 'Email é obrigatório',
         pattern: {
           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-          message: 'Email inválido'
-        }
+          message: 'Email inválido',
+        },
       })}
       required
     />
@@ -188,14 +183,15 @@ import { Input } from '@/components/form';
 import { Mail } from 'lucide-react';
 
 const emailSchema = z.object({
-  email: z.string()
-    .min(1, 'Email é obrigatório')
-    .email('Email inválido')
+  email: z.string().min(1, 'Email é obrigatório').email('Email inválido'),
 });
 
 function ZodFormExample() {
-  const { register, formState: { errors } } = useForm({
-    resolver: zodResolver(emailSchema)
+  const {
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(emailSchema),
   });
 
   return (
@@ -216,22 +212,26 @@ function ZodFormExample() {
 ## Estados Visuais
 
 ### Estado Normal
+
 - Borda cinza com transparência
 - Fundo escuro
 - Texto branco
 - Ícone em cor neutra (quando aplicável)
 
 ### Estado de Foco
+
 - Anel roxo ao redor do campo
 - Borda roxa
 - Transição suave
 
 ### Estado de Erro
+
 - Borda vermelha
 - Anel vermelho no foco
 - Mensagem de erro abaixo
 
 ### Estado de Sucesso
+
 - Borda verde
 - Anel verde no foco
 
@@ -249,19 +249,13 @@ function ZodFormExample() {
 ### Classes CSS Adicionais
 
 ```tsx
-<Input
-  label="Campo Personalizado"
-  className="border-2 border-dashed"
-/>
+<Input label="Campo Personalizado" className="border-2 border-dashed" />
 ```
 
 ### Estilos Inline
 
 ```tsx
-<Input 
-  label="Campo com Estilo" 
-  style={{ borderWidth: '3px' }} 
-/>
+<Input label="Campo com Estilo" style={{ borderWidth: '3px' }} />
 ```
 
 ## Exemplos de Uso
@@ -269,11 +263,7 @@ function ZodFormExample() {
 ### Campo de Texto Simples
 
 ```tsx
-<Input 
-  label="Nome Completo" 
-  placeholder="Digite seu nome completo" 
-  required 
-/>
+<Input label="Nome Completo" placeholder="Digite seu nome completo" required />
 ```
 
 ### Campo de Email com Validação e Ícone
@@ -307,12 +297,12 @@ function ZodFormExample() {
 ### Campo de Data com Ícone
 
 ```tsx
-<Input 
-  label="Data de Nascimento" 
-  type="date" 
+<Input
+  label="Data de Nascimento"
+  type="date"
   icon={Calendar}
   helperText="Data no formato DD/MM/AAAA"
-  required 
+  required
 />
 ```
 

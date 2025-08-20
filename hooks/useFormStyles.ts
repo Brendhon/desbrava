@@ -15,7 +15,7 @@ export const useFormStyles = ({
   hasIcon,
   iconPosition,
   className = '',
-  error
+  error,
 }: UseFormStylesProps) => {
   const inputStyles = useMemo(() => {
     return [
@@ -32,16 +32,16 @@ export const useFormStyles = ({
 
   const iconStyles = useMemo(() => {
     if (!hasIcon) return '';
-    
+
     return [
       'form-input-icon-container',
       `form-input-icon-${size}`,
-      `form-input-icon-${iconPosition}`
+      `form-input-icon-${iconPosition}`,
     ].join(' ');
   }, [hasIcon, size, iconPosition]);
 
   return {
     input: inputStyles,
-    icon: iconStyles
+    icon: iconStyles,
   };
 };

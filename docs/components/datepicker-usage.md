@@ -16,6 +16,7 @@ A custom date picker component built with `react-day-picker` that supports Brazi
 ## Installation
 
 The component uses these dependencies:
+
 - `react-day-picker` - Calendar functionality with custom CSS variables
 - `date-fns` - Date manipulation and formatting
 - `lucide-react` - Icons
@@ -41,35 +42,38 @@ const MyComponent = () => {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | - | Label displayed above the input |
-| `error` | `string` | - | Error message to display |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant of the input |
-| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant of the input |
-| `register` | `UseFormRegisterReturn` | - | React Hook Form register object |
-| `helperText` | `string` | - | Helper text displayed below the input |
-| `className` | `string` | `''` | Additional CSS classes |
-| `id` | `string` | - | Input ID (auto-generated if not provided) |
-| `placeholder` | `string` | `'dd/MM/aaaa'` | Placeholder text |
-| `value` | `string` | - | Controlled value |
-| `onChange` | `(value: string) => void` | - | Change handler |
-| `disabled` | `boolean` | `false` | Whether the input is disabled |
-| `popupPosition` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'bottom'` | Position of the calendar popup relative to the input |
+| Prop            | Type                                     | Default        | Description                                          |
+| --------------- | ---------------------------------------- | -------------- | ---------------------------------------------------- |
+| `label`         | `string`                                 | -              | Label displayed above the input                      |
+| `error`         | `string`                                 | -              | Error message to display                             |
+| `size`          | `'sm' \| 'md' \| 'lg'`                   | `'md'`         | Size variant of the input                            |
+| `variant`       | `'default' \| 'error' \| 'success'`      | `'default'`    | Visual variant of the input                          |
+| `register`      | `UseFormRegisterReturn`                  | -              | React Hook Form register object                      |
+| `helperText`    | `string`                                 | -              | Helper text displayed below the input                |
+| `className`     | `string`                                 | `''`           | Additional CSS classes                               |
+| `id`            | `string`                                 | -              | Input ID (auto-generated if not provided)            |
+| `placeholder`   | `string`                                 | `'dd/MM/aaaa'` | Placeholder text                                     |
+| `value`         | `string`                                 | -              | Controlled value                                     |
+| `onChange`      | `(value: string) => void`                | -              | Change handler                                       |
+| `disabled`      | `boolean`                                | `false`        | Whether the input is disabled                        |
+| `popupPosition` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'bottom'`     | Position of the calendar popup relative to the input |
 
 ## Size Variants
 
 ### Small (`sm`)
+
 ```tsx
 <DatePicker size="sm" label="Data Pequena" />
 ```
 
 ### Medium (`md`) - Default
+
 ```tsx
 <DatePicker size="md" label="Data Média" />
 ```
 
 ### Large (`lg`)
+
 ```tsx
 <DatePicker size="lg" label="Data Grande" />
 ```
@@ -77,23 +81,22 @@ const MyComponent = () => {
 ## Variants
 
 ### Default
+
 ```tsx
 <DatePicker variant="default" label="Data Padrão" />
 ```
 
 ### Error
+
 ```tsx
-<DatePicker 
-  variant="error" 
-  label="Data com Erro"
-  error="Data inválida"
-/>
+<DatePicker variant="error" label="Data com Erro" error="Data inválida" />
 ```
 
 ### Success
+
 ```tsx
-<DatePicker 
-  variant="success" 
+<DatePicker
+  variant="success"
   label="Data com Sucesso"
   helperText="Data confirmada"
 />
@@ -104,27 +107,35 @@ const MyComponent = () => {
 The `popupPosition` prop controls where the calendar popup appears relative to the input field. This is useful for optimizing space usage in different layouts.
 
 ### Bottom (Default)
+
 ```tsx
 <DatePicker popupPosition="bottom" label="Data com Popup Abaixo" />
 ```
+
 The popup appears below the input field.
 
 ### Top
+
 ```tsx
 <DatePicker popupPosition="top" label="Data com Popup Acima" />
 ```
+
 The popup appears above the input field. Useful when there's limited space below.
 
 ### Left
+
 ```tsx
 <DatePicker popupPosition="left" label="Data com Popup à Esquerda" />
 ```
+
 The popup appears to the left of the input field. Useful for right-aligned forms.
 
 ### Right
+
 ```tsx
 <DatePicker popupPosition="right" label="Data com Popup à Direita" />
 ```
+
 The popup appears to the right of the input field. Useful for left-aligned forms.
 
 **Note**: The component automatically adjusts positioning to ensure the popup remains visible within the viewport.
@@ -161,7 +172,7 @@ const [selectedDate, setSelectedDate] = useState<string>('');
   value={selectedDate}
   onChange={setSelectedDate}
   placeholder="dd/MM/aaaa"
-/>
+/>;
 ```
 
 ## Accessibility
@@ -177,12 +188,14 @@ const [selectedDate, setSelectedDate] = useState<string>('');
 The component uses a hybrid approach combining:
 
 ### Form Base Classes
+
 - `.form-input-base` - Base input styles
 - `.form-input-size-*` - Size variants (sm, md, lg)
 - `.form-input-variant-*` - Visual variants (default, error, success)
 - `.form-input-padding-right-icon` - Padding for right icon
 
 ### DayPicker CSS Variables
+
 The calendar styling is controlled through CSS variables defined in `app/globals.css`:
 
 ```css
@@ -198,6 +211,7 @@ The calendar styling is controlled through CSS variables defined in `app/globals
 ```
 
 ### Container Classes
+
 - `.datepicker-container` - Main container
 - `.datepicker-popup` - Calendar popup wrapper
 - `.datepicker-calendar` - Calendar container
@@ -213,14 +227,14 @@ You can customize the appearance by:
 
 ### CSS Variables Reference
 
-| Variable | Description | Default Value |
-|----------|-------------|---------------|
-| `--rdp-accent-color` | Primary accent color | `#8443a4` |
-| `--rdp-background-color` | Calendar background | `#0d1b2a` |
-| `--rdp-color` | Text color | `#e0e1dd` |
-| `--rdp-today-color` | Today's date color | `#8443a4` |
-| `--rdp-selected-color` | Selected date text | `#ffffff` |
-| `--rdp-selected-background-color` | Selected date background | `#8443a4` |
+| Variable                          | Description              | Default Value |
+| --------------------------------- | ------------------------ | ------------- |
+| `--rdp-accent-color`              | Primary accent color     | `#8443a4`     |
+| `--rdp-background-color`          | Calendar background      | `#0d1b2a`     |
+| `--rdp-color`                     | Text color               | `#e0e1dd`     |
+| `--rdp-today-color`               | Today's date color       | `#8443a4`     |
+| `--rdp-selected-color`            | Selected date text       | `#ffffff`     |
+| `--rdp-selected-background-color` | Selected date background | `#8443a4`     |
 
 ## Examples
 

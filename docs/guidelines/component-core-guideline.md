@@ -82,15 +82,18 @@ export function TripDetails({ trip }) {
 
   // 5. Use useCallback for event handlers passed to child components
   const handleToggleMap = useCallback(() => {
-    setShowMap(prev => !prev);
+    setShowMap((prev) => !prev);
   }, []);
 
   // 6. Use useMemo for expensive calculations or object creation
-  const tripLocation = useMemo(() => ({
-    lat: trip.location.lat,
-    lng: trip.location.lng,
-    zoom: 12
-  }), [trip.location.lat, trip.location.lng]);
+  const tripLocation = useMemo(
+    () => ({
+      lat: trip.location.lat,
+      lng: trip.location.lng,
+      zoom: 12,
+    }),
+    [trip.location.lat, trip.location.lng]
+  );
 
   return (
     <div>

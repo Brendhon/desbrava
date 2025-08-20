@@ -65,7 +65,7 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
             {session.user.image ? (
               <Image
                 width={32}
-                height={32} 
+                height={32}
                 src={session.user.image}
                 alt={`Foto de ${session.user.name || 'Usuário'}`}
                 className={styles.avatarImage}

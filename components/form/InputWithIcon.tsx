@@ -21,7 +21,7 @@ const InputWithIcon = ({
   error,
   className = '',
   children,
-  iconAction
+  iconAction,
 }: InputWithIconProps) => {
   const styles = useFormStyles({
     size,
@@ -29,7 +29,7 @@ const InputWithIcon = ({
     hasIcon: !!Icon,
     iconPosition,
     className,
-    error
+    error,
   });
 
   return (
@@ -41,7 +41,7 @@ const InputWithIcon = ({
           onClick={iconAction}
         />
       )}
-      
+
       {children}
 
       {Icon && iconPosition === 'right' && (

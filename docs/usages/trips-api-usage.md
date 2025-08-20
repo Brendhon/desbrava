@@ -23,18 +23,21 @@ All endpoints require authentication. The API automatically checks for a valid s
 Returns all trips for the authenticated user.
 
 **Query Parameters:**
+
 - `search` (optional): Search term for trip name, description, or country
 - `startDate` (optional): Filter trips starting from this date
 - `endDate` (optional): Filter trips ending before this date
 - `country` (optional): Filter trips by country code
 
 **Example Request:**
+
 ```typescript
 const response = await fetch('/api/trips?search=paris');
 const result = await response.json();
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -57,12 +60,14 @@ const result = await response.json();
 Returns a specific trip by ID.
 
 **Example Request:**
+
 ```typescript
 const response = await fetch('/api/trips/abc123');
 const result = await response.json();
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -91,6 +96,7 @@ const result = await response.json();
 Creates a new trip for the authenticated user.
 
 **Request Body:**
+
 ```typescript
 {
   "name": "Trip Name",
@@ -106,6 +112,7 @@ Creates a new trip for the authenticated user.
 ```
 
 **Example Request:**
+
 ```typescript
 const response = await fetch('/api/trips/create', {
   method: 'POST',
@@ -117,6 +124,7 @@ const response = await fetch('/api/trips/create', {
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -142,6 +150,7 @@ const response = await fetch('/api/trips/create', {
 Updates an existing trip.
 
 **Request Body:**
+
 ```typescript
 {
   "name": "Updated Trip Name",
@@ -150,6 +159,7 @@ Updates an existing trip.
 ```
 
 **Example Request:**
+
 ```typescript
 const response = await fetch('/api/trips/abc123', {
   method: 'PUT',
@@ -161,6 +171,7 @@ const response = await fetch('/api/trips/abc123', {
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -186,6 +197,7 @@ const response = await fetch('/api/trips/abc123', {
 Deletes a specific trip.
 
 **Example Request:**
+
 ```typescript
 const response = await fetch('/api/trips/abc123', {
   method: 'DELETE',
@@ -193,6 +205,7 @@ const response = await fetch('/api/trips/abc123', {
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -213,6 +226,7 @@ All endpoints return consistent error responses:
 ```
 
 **Common HTTP Status Codes:**
+
 - `200` - Success
 - `201` - Created (for POST requests)
 - `400` - Bad Request (validation errors)
@@ -229,12 +243,12 @@ The project provides a custom hook for easy integration:
 import { useTrips } from '@/hooks/useTrips';
 
 function TripComponent() {
-  const { 
-    trips, 
-    loading, 
-    error, 
-    fetchTrips, 
-    createTrip 
+  const {
+    trips,
+    loading,
+    error,
+    fetchTrips,
+    createTrip
   } = useTrips();
 
   useEffect(() => {
@@ -249,7 +263,7 @@ function TripComponent() {
       endDate: "2024-06-07",
       country: { code: "FR", country: "France", flag: "🇫🇷" }
     });
-    
+
     if (newTrip) {
       console.log('Trip created:', newTrip);
     }
@@ -281,6 +295,7 @@ The API includes comprehensive validation:
 ## Firebase Integration
 
 The API automatically:
+
 - Creates timestamps (`createdAt`, `updatedAt`)
 - Associates trips with authenticated users
 - Handles Firebase errors gracefully

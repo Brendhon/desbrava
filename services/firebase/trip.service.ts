@@ -1,13 +1,13 @@
-import { 
-  collection, 
-  query, 
-  where, 
-  getDocs, 
-  getDoc, 
-  addDoc, 
-  updateDoc, 
-  deleteDoc, 
-  doc, 
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  getDoc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
   orderBy,
   QueryConstraint,
 } from 'firebase/firestore';
@@ -27,17 +27,17 @@ export async function getUserTrips(userEmail: string): Promise<Trip[]> {
       where('user', '==', userEmail),
       orderBy('startDate', 'desc')
     );
-    
+
     const querySnapshot = await getDocs(q);
     const trips: Trip[] = [];
-    
+
     querySnapshot.forEach((doc) => {
       trips.push({
         id: doc.id,
-        ...doc.data()
+        ...doc.data(),
       } as Trip);
     });
-    
+
     return trips;
   } catch (error) {
     console.error('Error fetching user trips:', error);
@@ -52,14 +52,14 @@ export async function getTripById(tripId: string): Promise<Trip | null> {
   try {
     const tripRef = doc(db, COLLECTION_NAME, tripId);
     const tripSnap = await getDoc(tripRef);
-    
+
     if (tripSnap.exists()) {
       return {
         id: tripSnap.id,
-        ...tripSnap.data()
+        ...tripSnap.data(),
       } as Trip;
     }
-    
+
     return null;
   } catch (error) {
     console.error('Error fetching trip:', error);
@@ -71,8 +71,8 @@ export async function getTripById(tripId: string): Promise<Trip | null> {
  * Search trips by various criteria
  */
 export async function searchTrips(
-  userEmail: string, 
-  searchTerm?: string, 
+  userEmail: string,
+  searchTerm?: string,
   filters?: {
     startDate?: string;
     endDate?: string;
@@ -81,43 +81,42 @@ export async function searchTrips(
 ): Promise<Trip[]> {
   try {
     const tripsRef = collection(db, COLLECTION_NAME);
-    const constraints: QueryConstraint[] = [
-      where('user', '==', userEmail)
-    ];
-    
+    const constraints: QueryConstraint[] = [where('user', '==', userEmail)];
+
     // Add filters if provided
     if (filters?.startDate) {
       constraints.push(where('startDate', '>=', filters.startDate));
     }
-    
+
     if (filters?.endDate) {
       constraints.push(where('endDate', '<=', filters.endDate));
     }
-    
+
     if (filters?.country) {
       constraints.push(where('country.code', '==', filters.country));
     }
-    
+
     const q = query(tripsRef, ...constraints, orderBy('startDate', 'desc'));
     const querySnapshot = await getDocs(q);
-    
+
     let trips: Trip[] = [];
     querySnapshot.forEach((doc) => {
       trips.push({
         id: doc.id,
-        ...doc.data()
+        ...doc.data(),
       } as Trip);
     });
-    
+
     // Filter by search term if provided
     if (searchTerm) {
-      trips = trips.filter(trip => 
-        trip.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        trip.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        trip.country.country.toLowerCase().includes(searchTerm.toLowerCase())
+      trips = trips.filter(
+        (trip) =>
+          trip.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          trip.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          trip.country.country.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-    
+
     return trips;
   } catch (error) {
     console.error('Error searching trips:', error);
@@ -133,9 +132,9 @@ export async function createTrip(tripData: Omit<Trip, 'id'>): Promise<string> {
     const docRef = await addDoc(collection(db, COLLECTION_NAME), {
       ...tripData,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     });
-    
+
     return docRef.id;
   } catch (error) {
     console.error('Error creating trip:', error);
@@ -146,12 +145,15 @@ export async function createTrip(tripData: Omit<Trip, 'id'>): Promise<string> {
 /**
  * Update an existing trip
  */
-export async function updateTrip(tripId: string, updates: Partial<Trip>): Promise<void> {
+export async function updateTrip(
+  tripId: string,
+  updates: Partial<Trip>
+): Promise<void> {
   try {
     const tripRef = doc(db, COLLECTION_NAME, tripId);
     await updateDoc(tripRef, {
       ...updates,
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Error updating trip:', error);

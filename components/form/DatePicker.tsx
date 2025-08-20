@@ -63,8 +63,8 @@ const DatePicker = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Memoized input ID to prevent recreation on every render
-  const inputId = useMemo(() => 
-    id || `datepicker-${Math.random().toString(36).substr(2, 9)}`, 
+  const inputId = useMemo(
+    () => id || `datepicker-${Math.random().toString(36).substr(2, 9)}`,
     [id]
   );
 
@@ -76,17 +76,17 @@ const DatePicker = ({
     hasIcon: true,
     iconPosition: 'right',
     className: `${className} cursor-pointer`,
-    error
+    error,
   });
 
   // Memoized formatters
-  const formatCaption = useCallback((month: Date) => 
-    format(month, 'MMMM yyyy', { locale: ptBR }), 
+  const formatCaption = useCallback(
+    (month: Date) => format(month, 'MMMM yyyy', { locale: ptBR }),
     []
   );
 
-  const formatInputDate = useCallback((date: Date): string => 
-    format(date, 'dd/MM/yyyy'), 
+  const formatInputDate = useCallback(
+    (date: Date): string => format(date, 'dd/MM/yyyy'),
     []
   );
 
@@ -128,7 +128,7 @@ const DatePicker = ({
   // Memoized popup position styles
   const popupStyles = useMemo(() => {
     const baseStyles = ['datepicker-popup'];
-    
+
     switch (popupPosition) {
       case 'top':
         baseStyles.push('datepicker-popup-top');
@@ -144,52 +144,61 @@ const DatePicker = ({
         baseStyles.push('datepicker-popup-bottom');
         break;
     }
-    
+
     return baseStyles.join(' ');
   }, [popupPosition]);
 
   // Update input when date is selected
-  const handleDateSelect = useCallback((date: Date | undefined) => {
-    if (date) {
-      const formattedDate = formatInputDate(date);
-      setInputValue(formattedDate);
-      setSelectedDate(date);
-      
-      // Use the hook for form integration
-      handleChange(formattedDate);
-      
-      // Call external callback if provided (convert to ISO format for compatibility)
-      onValueChange?.(convertBrazilianToISO(formattedDate));
-      
-      setIsOpen(false);
-    }
-  }, [handleChange, formatInputDate, onValueChange, convertBrazilianToISO]);
+  const handleDateSelect = useCallback(
+    (date: Date | undefined) => {
+      if (date) {
+        const formattedDate = formatInputDate(date);
+        setInputValue(formattedDate);
+        setSelectedDate(date);
+
+        // Use the hook for form integration
+        handleChange(formattedDate);
+
+        // Call external callback if provided (convert to ISO format for compatibility)
+        onValueChange?.(convertBrazilianToISO(formattedDate));
+
+        setIsOpen(false);
+      }
+    },
+    [handleChange, formatInputDate, onValueChange, convertBrazilianToISO]
+  );
 
   // Update input when input is typed
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setInputValue(newValue);
-    
-    // Validate format and update selected date
-    if (newValue.length === 10) {
-      const parsedDate = parseInputDate(newValue);
-      if (parsedDate) {
-        setSelectedDate(parsedDate);
-        handleChange(newValue);
-        onValueChange?.(convertBrazilianToISO(newValue));
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value;
+      setInputValue(newValue);
+
+      // Validate format and update selected date
+      if (newValue.length === 10) {
+        const parsedDate = parseInputDate(newValue);
+        if (parsedDate) {
+          setSelectedDate(parsedDate);
+          handleChange(newValue);
+          onValueChange?.(convertBrazilianToISO(newValue));
+        }
       }
-    }
-    
-    // Always trigger change for React Hook Form
-    handleChange(newValue);
-  }, [handleChange, parseInputDate, onValueChange, convertBrazilianToISO]);
+
+      // Always trigger change for React Hook Form
+      handleChange(newValue);
+    },
+    [handleChange, parseInputDate, onValueChange, convertBrazilianToISO]
+  );
 
   // Handle input blur for React Hook Form
-  const handleInputBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
-    if (register?.onBlur) {
-      register.onBlur(e);
-    }
-  }, [register]);
+  const handleInputBlur = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      if (register?.onBlur) {
+        register.onBlur(e);
+      }
+    },
+    [register]
+  );
 
   // Handle input focus to open calendar
   const handleInputFocus = useCallback(() => {
@@ -204,20 +213,26 @@ const DatePicker = ({
   }, [disabled, isOpen]);
 
   // Memoized default month for DayPicker
-  const defaultMonth = useMemo(() => 
-    selectedDate ? new Date(selectedDate) : new Date(), 
+  const defaultMonth = useMemo(
+    () => (selectedDate ? new Date(selectedDate) : new Date()),
     [selectedDate]
   );
 
   // Memoized formatters object for DayPicker
-  const formatters = useMemo(() => ({
-    formatCaption
-  }), [formatCaption]);
+  const formatters = useMemo(
+    () => ({
+      formatCaption,
+    }),
+    [formatCaption]
+  );
 
   // Close popup when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -231,7 +246,7 @@ const DatePicker = ({
     if (defaultValue) {
       let date: Date | undefined;
       let formattedValue: string;
-      
+
       if (typeof defaultValue === 'string') {
         // Try to parse as ISO format first, then as Brazilian format
         const isoConverted = convertISOToBrazilian(defaultValue);
@@ -246,14 +261,20 @@ const DatePicker = ({
         date = defaultValue;
         formattedValue = formatInputDate(defaultValue);
       }
-      
+
       if (date) {
         setSelectedDate(date);
         setInputValue(formattedValue);
         handleChange(formattedValue);
       }
     }
-  }, [defaultValue, parseInputDate, formatInputDate, handleChange, convertISOToBrazilian]);
+  }, [
+    defaultValue,
+    parseInputDate,
+    formatInputDate,
+    handleChange,
+    convertISOToBrazilian,
+  ]);
 
   return (
     <div className="datepicker-container" ref={containerRef}>
@@ -285,7 +306,6 @@ const DatePicker = ({
           disabled={disabled}
           name={register?.name}
         />
-    
       </InputWithIcon>
 
       {isOpen && (
@@ -297,9 +317,9 @@ const DatePicker = ({
               onSelect={handleDateSelect}
               formatters={formatters}
               locale={ptBR}
-              lang='pt-BR'
+              lang="pt-BR"
               defaultMonth={defaultMonth}
-              timeZone='America/Sao_Paulo'
+              timeZone="America/Sao_Paulo"
               showOutsideDays={true}
               fixedWeeks={true}
             />
@@ -313,9 +333,7 @@ const DatePicker = ({
         </p>
       )}
 
-      {helperText && !error && (
-        <p className="form-helper-text">{helperText}</p>
-      )}
+      {helperText && !error && <p className="form-helper-text">{helperText}</p>}
     </div>
   );
 };

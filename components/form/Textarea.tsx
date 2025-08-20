@@ -29,8 +29,8 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref
   ) => {
-    const textareaId = useMemo(() => 
-      id || `textarea-${Math.random().toString(36).substr(2, 9)}`, 
+    const textareaId = useMemo(
+      () => id || `textarea-${Math.random().toString(36).substr(2, 9)}`,
       [id]
     );
 
@@ -40,7 +40,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       hasIcon: false,
       iconPosition: 'left',
       className,
-      error
+      error,
     });
 
     return (

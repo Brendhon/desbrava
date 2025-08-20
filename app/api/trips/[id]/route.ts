@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
-import { 
-  getTripById, 
-  updateTrip, 
-  deleteTrip 
+import {
+  getTripById,
+  updateTrip,
+  deleteTrip,
 } from '@/services/firebase/trip.service';
 import { UpdateTripData } from '@/lib/types/trip';
 
@@ -23,7 +23,7 @@ export async function GET(
         {
           success: false,
           error: 'Unauthorized',
-          message: 'You must be logged in to access trips'
+          message: 'You must be logged in to access trips',
         },
         { status: 401 }
       );
@@ -37,7 +37,7 @@ export async function GET(
         {
           success: false,
           error: 'Not found',
-          message: 'Trip not found'
+          message: 'Trip not found',
         },
         { status: 404 }
       );
@@ -49,7 +49,7 @@ export async function GET(
         {
           success: false,
           error: 'Forbidden',
-          message: 'You can only access your own trips'
+          message: 'You can only access your own trips',
         },
         { status: 403 }
       );
@@ -57,16 +57,15 @@ export async function GET(
 
     return NextResponse.json({
       success: true,
-      data: trip
+      data: trip,
     });
-
   } catch (error) {
     console.error('Error fetching trip:', error);
     return NextResponse.json(
       {
         success: false,
         error: 'Internal server error',
-        message: 'Failed to fetch trip'
+        message: 'Failed to fetch trip',
       },
       { status: 500 }
     );
@@ -89,14 +88,14 @@ export async function PUT(
         {
           success: false,
           error: 'Unauthorized',
-          message: 'You must be logged in to update trips'
+          message: 'You must be logged in to update trips',
         },
         { status: 401 }
       );
     }
 
     const tripId = params.id;
-    
+
     // Check if trip exists and belongs to user
     const existingTrip = await getTripById(tripId);
     if (!existingTrip) {
@@ -104,7 +103,7 @@ export async function PUT(
         {
           success: false,
           error: 'Not found',
-          message: 'Trip not found'
+          message: 'Trip not found',
         },
         { status: 404 }
       );
@@ -115,7 +114,7 @@ export async function PUT(
         {
           success: false,
           error: 'Forbidden',
-          message: 'You can only update your own trips'
+          message: 'You can only update your own trips',
         },
         { status: 403 }
       );
@@ -126,12 +125,18 @@ export async function PUT(
     const updateData: UpdateTripData = body;
 
     // Validate required fields
-    if (!updateData.name && !updateData.description && !updateData.startDate && !updateData.endDate && !updateData.country) {
+    if (
+      !updateData.name &&
+      !updateData.description &&
+      !updateData.startDate &&
+      !updateData.endDate &&
+      !updateData.country
+    ) {
       return NextResponse.json(
         {
           success: false,
           error: 'Bad request',
-          message: 'At least one field must be provided for update'
+          message: 'At least one field must be provided for update',
         },
         { status: 400 }
       );
@@ -146,16 +151,15 @@ export async function PUT(
     return NextResponse.json({
       success: true,
       data: updatedTrip,
-      message: 'Trip updated successfully'
+      message: 'Trip updated successfully',
     });
-
   } catch (error) {
     console.error('Error updating trip:', error);
     return NextResponse.json(
       {
         success: false,
         error: 'Internal server error',
-        message: 'Failed to update trip'
+        message: 'Failed to update trip',
       },
       { status: 500 }
     );
@@ -178,14 +182,14 @@ export async function DELETE(
         {
           success: false,
           error: 'Unauthorized',
-          message: 'You must be logged in to delete trips'
+          message: 'You must be logged in to delete trips',
         },
         { status: 401 }
       );
     }
 
     const tripId = params.id;
-    
+
     // Check if trip exists and belongs to user
     const existingTrip = await getTripById(tripId);
     if (!existingTrip) {
@@ -193,7 +197,7 @@ export async function DELETE(
         {
           success: false,
           error: 'Not found',
-          message: 'Trip not found'
+          message: 'Trip not found',
         },
         { status: 404 }
       );
@@ -204,7 +208,7 @@ export async function DELETE(
         {
           success: false,
           error: 'Forbidden',
-          message: 'You can only delete your own trips'
+          message: 'You can only delete your own trips',
         },
         { status: 403 }
       );
@@ -215,16 +219,15 @@ export async function DELETE(
 
     return NextResponse.json({
       success: true,
-      message: 'Trip deleted successfully'
+      message: 'Trip deleted successfully',
     });
-
   } catch (error) {
     console.error('Error deleting trip:', error);
     return NextResponse.json(
       {
         success: false,
         error: 'Internal server error',
-        message: 'Failed to delete trip'
+        message: 'Failed to delete trip',
       },
       { status: 500 }
     );

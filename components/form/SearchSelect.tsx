@@ -1,4 +1,11 @@
-import { forwardRef, InputHTMLAttributes, useMemo, useState, useRef, useCallback } from 'react';
+import {
+  forwardRef,
+  InputHTMLAttributes,
+  useMemo,
+  useState,
+  useRef,
+  useCallback,
+} from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { X } from 'lucide-react';
 import { useDropdown } from '../../hooks/useDropdown';
@@ -50,8 +57,8 @@ const SearchSelect = forwardRef<HTMLInputElement, SearchSelectProps>(
     const inputRef = useRef<HTMLInputElement>(null);
 
     // Memoized search select ID to prevent recreation on every render
-    const searchSelectId = useMemo(() =>
-      id || `search-select-${Math.random().toString(36).substr(2, 9)}`,
+    const searchSelectId = useMemo(
+      () => id || `search-select-${Math.random().toString(36).substr(2, 9)}`,
       [id]
     );
 
@@ -59,36 +66,56 @@ const SearchSelect = forwardRef<HTMLInputElement, SearchSelectProps>(
     const filteredOptions = useMemo(() => {
       if (!searchValue.trim()) return options;
 
-      return options.filter(option => {
-        const labelText = typeof option.label === 'string'
-          ? option.label
-          : option.label?.toString() || '';
-        return normalizeString(labelText).includes(normalizeString(searchValue));
+      return options.filter((option) => {
+        const labelText =
+          typeof option.label === 'string'
+            ? option.label
+            : option.label?.toString() || '';
+        return normalizeString(labelText).includes(
+          normalizeString(searchValue)
+        );
       });
     }, [options, searchValue]);
 
     // Use custom hooks
-    const { handleChange, handleInputChange } = useFormField({ register, onValueChange });
-
-    const handleOptionSelect = useCallback((option: SelectOption) => {
-      setSelectedValue(option.value);
-      setSearchValue(typeof option.label === 'string' ? option.label : option.value);
-      handleChange(option.value);
-      closeDropdown();
-    }, [handleChange]);
-
-    const { isOpen, highlightedIndex, dropdownRef, openDropdown, closeDropdown } = useDropdown({
-      options: filteredOptions,
-      onOptionSelect: handleOptionSelect
+    const { handleChange, handleInputChange } = useFormField({
+      register,
+      onValueChange,
     });
 
-    const handleInputChangeWrapper = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      setSearchValue(value);
-      setSelectedValue('');
-      openDropdown();
-      handleInputChange(e);
-    }, [openDropdown]);
+    const handleOptionSelect = useCallback(
+      (option: SelectOption) => {
+        setSelectedValue(option.value);
+        setSearchValue(
+          typeof option.label === 'string' ? option.label : option.value
+        );
+        handleChange(option.value);
+        closeDropdown();
+      },
+      [handleChange]
+    );
+
+    const {
+      isOpen,
+      highlightedIndex,
+      dropdownRef,
+      openDropdown,
+      closeDropdown,
+    } = useDropdown({
+      options: filteredOptions,
+      onOptionSelect: handleOptionSelect,
+    });
+
+    const handleInputChangeWrapper = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setSearchValue(value);
+        setSelectedValue('');
+        openDropdown();
+        handleInputChange(e);
+      },
+      [openDropdown]
+    );
 
     const handleInputFocus = useCallback(() => {
       openDropdown();
@@ -147,10 +174,10 @@ const SearchSelect = forwardRef<HTMLInputElement, SearchSelectProps>(
             <button
               type="button"
               onClick={handleClearSearch}
-              className="absolute right-8 top-1/2 -translate-y-1/2 p-1 text-mist-gray hover:text-mist-gray/70 transition-colors"
+              className="text-mist-gray hover:text-mist-gray/70 absolute top-1/2 right-8 -translate-y-1/2 p-1 transition-colors"
               aria-label="Limpar busca"
             >
-              <X className="w-4 h-4" />
+              <X className="h-4 w-4" />
             </button>
           )}
         </InputWithIcon>

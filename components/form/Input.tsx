@@ -35,8 +35,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     // Memoized input ID to prevent recreation on every render
-    const inputId = useMemo(() => 
-      id || `input-${Math.random().toString(36).slice(2, 11)}`, 
+    const inputId = useMemo(
+      () => id || `input-${Math.random().toString(36).slice(2, 11)}`,
       [id]
     );
 

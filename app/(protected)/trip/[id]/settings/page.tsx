@@ -4,7 +4,10 @@ import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import Input from '@/components/form/Input';
 import Textarea from '@/components/form/Textarea';
-import { tripSettingsSchema, type TripSettingsFormData } from '@/lib/schemas/trip';
+import {
+  tripSettingsSchema,
+  type TripSettingsFormData,
+} from '@/lib/schemas/trip';
 import { ArrowLeft, Calendar, Globe, MapPin, Save, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
@@ -49,13 +52,12 @@ export default function TripSettingsPage() {
     try {
       // TODO: Implementar atualização da viagem na API
       console.log('Atualizando viagem:', data);
-      
+
       // Simular delay da API
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // TODO: Mostrar mensagem de sucesso
       console.log('Viagem atualizada com sucesso!');
-      
     } catch (error) {
       console.error('Erro ao atualizar viagem:', error);
       // TODO: Mostrar mensagem de erro

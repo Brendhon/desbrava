@@ -30,16 +30,18 @@ export function useCountries(
   const getCountryByName = async (name: string) => {
     const response = await fetch(`/api/countries/${name}`);
     const data = await response.json();
-    return data.data || {
-      continent: Continent.Outro,
-      id: 0,
-      language: [],
-      region: '',
-      country: name,
-      currency_code: '',
-      currency_name_pt: '',
-      iso_country: '',
-    }
+    return (
+      data.data || {
+        continent: Continent.Outro,
+        id: 0,
+        language: [],
+        region: '',
+        country: name,
+        currency_code: '',
+        currency_name_pt: '',
+        iso_country: '',
+      }
+    );
   };
 
   // Debounce the search term to avoid excessive API calls
@@ -48,7 +50,10 @@ export function useCountries(
   useEffect(() => {
     const searchCountries = async () => {
       // Don't search for very short terms or empty terms
-      if (!debouncedSearchTerm.trim() || debouncedSearchTerm.trim().length < 2) {
+      if (
+        !debouncedSearchTerm.trim() ||
+        debouncedSearchTerm.trim().length < 2
+      ) {
         setCountries([]);
         setError(null);
         setLoading(false);
@@ -62,7 +67,7 @@ export function useCountries(
         const response = await fetch(
           `/api/countries?name=${encodeURIComponent(debouncedSearchTerm)}`
         );
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -77,7 +82,8 @@ export function useCountries(
           setCountries([]);
         }
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Failed to search countries';
+        const errorMessage =
+          err instanceof Error ? err.message : 'Failed to search countries';
         setError(errorMessage);
         setCountries([]);
       } finally {

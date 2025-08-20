@@ -14,20 +14,20 @@ A customizable select component built on the same foundation as the Input compon
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `ReactNode` | - | Label content displayed above the select (can be string or React component) |
-| `error` | `string` | - | Error message displayed below the select |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant of the select |
-| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant of the select |
-| `register` | `UseFormRegisterReturn` | - | React Hook Form register object |
-| `helperText` | `string` | - | Helper text displayed below the select |
-| `className` | `string` | `''` | Additional CSS classes |
-| `id` | `string` | - | Custom ID for the select element |
-| `options` | `SelectOption[]` | - | Array of select options |
-| `placeholder` | `string` | - | Placeholder text for the select |
-| `icon` | `React.ComponentType` | - | Optional icon component |
-| `iconPosition` | `'left' \| 'right'` | `'left'` | Position of the optional icon |
+| Prop           | Type                                | Default     | Description                                                                 |
+| -------------- | ----------------------------------- | ----------- | --------------------------------------------------------------------------- |
+| `label`        | `ReactNode`                         | -           | Label content displayed above the select (can be string or React component) |
+| `error`        | `string`                            | -           | Error message displayed below the select                                    |
+| `size`         | `'sm' \| 'md' \| 'lg'`              | `'md'`      | Size variant of the select                                                  |
+| `variant`      | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant of the select                                                |
+| `register`     | `UseFormRegisterReturn`             | -           | React Hook Form register object                                             |
+| `helperText`   | `string`                            | -           | Helper text displayed below the select                                      |
+| `className`    | `string`                            | `''`        | Additional CSS classes                                                      |
+| `id`           | `string`                            | -           | Custom ID for the select element                                            |
+| `options`      | `SelectOption[]`                    | -           | Array of select options                                                     |
+| `placeholder`  | `string`                            | -           | Placeholder text for the select                                             |
+| `icon`         | `React.ComponentType`               | -           | Optional icon component                                                     |
+| `iconPosition` | `'left' \| 'right'`                 | `'left'`    | Position of the optional icon                                               |
 
 ## SelectOption Interface
 
@@ -56,7 +56,7 @@ const options = [
   label="Choose an option"
   options={options}
   placeholder="Select an option"
-/>
+/>;
 ```
 
 ### With React Component Label
@@ -67,14 +67,14 @@ import { Globe, Info } from 'lucide-react';
 <Select
   label={
     <div className="flex items-center gap-2">
-      <Globe className="w-4 h-4" />
+      <Globe className="h-4 w-4" />
       <span>Country</span>
-      <Info className="w-4 h-4 text-gray-400" />
+      <Info className="h-4 w-4 text-gray-400" />
     </div>
   }
   options={options}
   placeholder="Select a country"
-/>
+/>;
 ```
 
 ### With React Hook Form
@@ -96,7 +96,7 @@ const options = [
   options={options}
   placeholder="Select a country"
   register={register('country')}
-/>
+/>;
 ```
 
 ### With Icon and Error State
@@ -112,7 +112,7 @@ import Select from '@/components/form/Select';
   iconPosition="left"
   error="Please select a country"
   variant="error"
-/>
+/>;
 ```
 
 ### Different Sizes
@@ -140,10 +140,7 @@ const options = [
   { value: 'pending', label: 'Pending' },
 ];
 
-<Select
-  label="Status"
-  options={options}
-/>
+<Select label="Status" options={options} />;
 ```
 
 ## CSS Classes
