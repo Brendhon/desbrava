@@ -51,8 +51,6 @@ const TripFilter = memo(
           size="md"
           helperText="🔎 Pesquise suas viagens por qualquer dado: nome, país, descrição, datas e mais! Use palavras-chave para encontrar rapidamente a viagem desejada. ✈️🌍"
         />
-
-        <br />
         
         {/* Status Filters */}
         <div className={styles.statusFilters}>
@@ -81,7 +79,7 @@ export default TripFilter;
 
 const styles = {
   container: 'space-y-4',
-  statusFilters: 'flex flex-wrap gap-2',
+  statusFilters: 'flex flex-wrap gap-2 pt-8',
   statusFilter:
     'px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-slate-700 text-mist-gray hover:text-parchment-white bg-midnight-blue',
   statusFilterActive:
