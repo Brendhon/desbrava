@@ -41,7 +41,9 @@ const toastReducer = (state: ToastState, action: ToastAction): ToastState => {
   }
 };
 
-export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const ToastProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [state, dispatch] = useReducer(toastReducer, { toasts: [] });
 
   const addToast = (options: ToastOptions) => {

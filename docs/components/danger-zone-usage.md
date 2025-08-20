@@ -17,21 +17,21 @@ import { Trash2 } from 'lucide-react';
   onAction={handleDelete}
   isLoading={false}
   loadingText="Excluindo..."
-/>
+/>;
 ```
 
 ## Props
 
-| Prop | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| `icon` | `LucideIcon` | Yes | - | Icon to display in the section header |
-| `title` | `string` | Yes | - | Main title of the danger zone section |
-| `description` | `string` | Yes | - | Description of what the action will do |
-| `warningText` | `string` | Yes | - | Warning message about the action being irreversible |
-| `actionLabel` | `string` | Yes | - | Text for the action button |
-| `onAction` | `() => void` | Yes | - | Function to call when the action button is clicked |
-| `isLoading` | `boolean` | No | `false` | Whether the action is currently being processed |
-| `loadingText` | `string` | No | `"Processando..."` | Text to show when loading |
+| Prop          | Type         | Required | Default            | Description                                         |
+| ------------- | ------------ | -------- | ------------------ | --------------------------------------------------- |
+| `icon`        | `LucideIcon` | Yes      | -                  | Icon to display in the section header               |
+| `title`       | `string`     | Yes      | -                  | Main title of the danger zone section               |
+| `description` | `string`     | Yes      | -                  | Description of what the action will do              |
+| `warningText` | `string`     | Yes      | -                  | Warning message about the action being irreversible |
+| `actionLabel` | `string`     | Yes      | -                  | Text for the action button                          |
+| `onAction`    | `() => void` | Yes      | -                  | Function to call when the action button is clicked  |
+| `isLoading`   | `boolean`    | No       | `false`            | Whether the action is currently being processed     |
+| `loadingText` | `string`     | No       | `"Processando..."` | Text to show when loading                           |
 
 ## Features
 
@@ -44,6 +44,7 @@ import { Trash2 } from 'lucide-react';
 ## Examples
 
 ### Basic Usage
+
 ```tsx
 <DangerZone
   icon={Trash2}
@@ -56,6 +57,7 @@ import { Trash2 } from 'lucide-react';
 ```
 
 ### With Loading State
+
 ```tsx
 <DangerZone
   icon={Trash2}
@@ -72,6 +74,7 @@ import { Trash2 } from 'lucide-react';
 ## Styling
 
 The component uses Tailwind CSS classes and follows the project's design system:
+
 - Dark background with proper shadows
 - Red accent colors for danger actions
 - Consistent spacing and typography

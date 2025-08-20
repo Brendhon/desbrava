@@ -27,14 +27,17 @@ Create a `loading.tsx` file in your route directory:
 
 ```tsx
 // app/dashboard/loading.tsx
-import { StatsGridSkeleton, TripCardSkeleton } from '@/components/ui/loading-skeleton';
+import {
+  StatsGridSkeleton,
+  TripCardSkeleton,
+} from '@/components/ui/loading-skeleton';
 
 export default function DashboardLoading() {
   return (
     <div className="container mx-auto px-4 py-8">
       <StatsGridSkeleton />
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 6 }).map((_, index) => (
           <TripCardSkeleton key={index} />
         ))}
@@ -69,7 +72,10 @@ export default function Dashboard() {
 Create custom loading states using the base components:
 
 ```tsx
-import { LoadingSkeleton, CardSkeleton } from '@/components/ui/loading-skeleton';
+import {
+  LoadingSkeleton,
+  CardSkeleton,
+} from '@/components/ui/loading-skeleton';
 
 export function CustomLoading() {
   return (
@@ -101,18 +107,21 @@ All loading components use the project's dark theme color palette:
 ## Examples
 
 ### Dashboard Loading
+
 ```tsx
 <StatsGridSkeleton />
 <TripCardSkeleton />
 ```
 
 ### Form Loading
+
 ```tsx
 <FormSectionSkeleton />
 <ButtonSkeleton />
 ```
 
 ### List Loading
+
 ```tsx
 <div className="grid gap-4">
   {Array.from({ length: 5 }).map((_, index) => (

@@ -2,14 +2,7 @@
 
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import {
-  Calendar,
-  Globe,
-  Map,
-  MapPin,
-  Plus,
-  Settings,
-} from 'lucide-react';
+import { Calendar, Globe, Map, MapPin, Plus, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { PageHeader } from '@/components/ui/PageHeader';

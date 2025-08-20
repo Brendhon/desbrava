@@ -173,7 +173,7 @@ const { success, error, info } = useToast();
 
 const handleDelete = async (id) => {
   info('Deleting...', 'Please wait while we process your request');
-  
+
   try {
     await deleteItem(id);
     success('Item Deleted', 'The item has been removed successfully');

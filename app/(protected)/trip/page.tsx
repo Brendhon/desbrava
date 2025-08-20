@@ -58,10 +58,6 @@ export default function CreateTripPage() {
     }
   };
 
-  const handleCancel = () => {
-    router.back();
-  };
-
   return (
     <div className={styles.container}>
       {/* Header */}

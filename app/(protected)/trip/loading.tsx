@@ -1,4 +1,7 @@
-import { ButtonSkeleton, LoadingSkeleton } from '@/components/ui/loading-skeleton';
+import {
+  ButtonSkeleton,
+  LoadingSkeleton,
+} from '@/components/ui/loading-skeleton';
 
 export default function TripCreationLoading() {
   return (
@@ -15,15 +18,15 @@ export default function TripCreationLoading() {
           {/* Form Fields */}
           <LoadingSkeleton className={styles.field} />
           <LoadingSkeleton className={styles.field} />
-          
+
           {/* Date Grid */}
           <div className={styles.dateGrid}>
             <LoadingSkeleton className={styles.field} />
             <LoadingSkeleton className={styles.field} />
           </div>
-          
+
           <LoadingSkeleton className={styles.field} />
-          
+
           {/* Buttons */}
           <div className={styles.buttonGroup}>
             <ButtonSkeleton />

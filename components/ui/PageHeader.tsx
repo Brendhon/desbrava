@@ -34,7 +34,8 @@ export function PageHeader({
 
 const styles = {
   header: 'space-y-4 mb-4',
-  backLink: 'inline-flex items-center gap-2 text-sm text-mist-gray hover:text-parchment-white transition-colors',
+  backLink:
+    'inline-flex items-center gap-2 text-sm text-mist-gray hover:text-parchment-white transition-colors',
   backIcon: 'h-4 w-4',
   title: 'text-2xl md:text-3xl font-bold text-parchment-white mb-2',
   subtitle: 'text-lg text-mist-gray',

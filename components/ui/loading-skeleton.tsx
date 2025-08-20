@@ -5,13 +5,20 @@ interface LoadingSkeletonProps {
   count?: number;
 }
 
-export function LoadingSkeleton({ className, count = 1 }: LoadingSkeletonProps) {
+export function LoadingSkeleton({
+  className,
+  count = 1,
+}: LoadingSkeletonProps) {
   return (
     <div className={cn(styles.skeleton, className)}>
       {Array.from({ length: count }).map((_, index) => (
         <div
           key={index}
-          className={cn(styles.text, styles.mb2, index === count - 1 && styles.mb0)}
+          className={cn(
+            styles.text,
+            styles.mb2,
+            index === count - 1 && styles.mb0
+          )}
         />
       ))}
     </div>
@@ -44,15 +51,11 @@ export function TripCardSkeleton() {
 }
 
 export function ButtonSkeleton() {
-  return (
-    <div className={cn(styles.button, styles.w32)} />
-  );
+  return <div className={cn(styles.button, styles.w32)} />;
 }
 
 export function InputSkeleton() {
-  return (
-    <div className={styles.input} />
-  );
+  return <div className={styles.input} />;
 }
 
 export function StatsGridSkeleton() {
@@ -120,7 +123,8 @@ const styles = {
 
   // Component styles
   card: 'bg-slate-dark rounded-lg shadow-lg border border-midnight-blue/20 p-10 animate-pulse', // Increased padding from p-6 to p-10
-  tripCard: 'bg-slate-dark rounded-lg shadow-lg border border-midnight-blue/20 p-8 animate-pulse', // Increased padding from p-4 to p-8
+  tripCard:
+    'bg-slate-dark rounded-lg shadow-lg border border-midnight-blue/20 p-8 animate-pulse', // Increased padding from p-4 to p-8
   button: 'h-14 bg-royal-purple/20 rounded-md', // Increased height from h-10 to h-14
   input: 'h-14 bg-mist-gray/20 rounded-md w-full animate-pulse', // Increased height from h-10 to h-14
 

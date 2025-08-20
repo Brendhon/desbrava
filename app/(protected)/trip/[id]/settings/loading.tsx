@@ -1,4 +1,7 @@
-import { ButtonSkeleton, LoadingSkeleton } from '@/components/ui/loading-skeleton';
+import {
+  ButtonSkeleton,
+  LoadingSkeleton,
+} from '@/components/ui/loading-skeleton';
 
 export default function TripSettingsLoading() {
   return (
@@ -16,13 +19,13 @@ export default function TripSettingsLoading() {
           {/* Form Fields */}
           <LoadingSkeleton className={styles.field} />
           <LoadingSkeleton className={styles.field} />
-          
+
           {/* Date Grid */}
           <div className={styles.dateGrid}>
             <LoadingSkeleton className={styles.field} />
             <LoadingSkeleton className={styles.field} />
           </div>
-          
+
           <LoadingSkeleton className={styles.field} />
         </div>
       </div>
@@ -53,7 +56,8 @@ const styles = {
   form: 'space-y-6',
   field: 'h-16 w-full',
   dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
-  dangerCard: 'bg-slate-dark rounded-lg shadow-lg border border-red-500/30 p-8 animate-pulse mb-8',
+  dangerCard:
+    'bg-slate-dark rounded-lg shadow-lg border border-red-500/30 p-8 animate-pulse mb-8',
   dangerTitle: 'h-6 w-48 mb-4',
   dangerText: 'h-4 w-full mb-6',
   actions: 'flex justify-end gap-4',

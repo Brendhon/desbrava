@@ -1,4 +1,7 @@
-import { ButtonSkeleton, LoadingSkeleton } from '@/components/ui/loading-skeleton';
+import {
+  ButtonSkeleton,
+  LoadingSkeleton,
+} from '@/components/ui/loading-skeleton';
 
 export default function TripDetailsLoading() {
   return (
@@ -22,7 +25,7 @@ export default function TripDetailsLoading() {
             <LoadingSkeleton className={styles.infoValue} />
           </div>
         </div>
-        
+
         <div className={styles.infoCard}>
           <div className={styles.infoIcon} />
           <div className={styles.infoContent}>
@@ -30,7 +33,7 @@ export default function TripDetailsLoading() {
             <LoadingSkeleton className={styles.infoValue} />
           </div>
         </div>
-        
+
         <div className={styles.infoCard}>
           <div className={styles.infoIcon} />
           <div className={styles.infoContent}>
@@ -58,7 +61,8 @@ const styles = {
   title: 'h-10 w-80 mb-3',
   description: 'h-6 w-96',
   infoGrid: 'grid grid-cols-1 md:grid-cols-3 gap-6 mb-8',
-  infoCard: 'bg-slate-dark rounded-lg border border-midnight-blue/20 p-6 flex items-center gap-4 animate-pulse',
+  infoCard:
+    'bg-slate-dark rounded-lg border border-midnight-blue/20 p-6 flex items-center gap-4 animate-pulse',
   infoIcon: 'w-8 h-8 bg-royal-purple/20 rounded-full',
   infoContent: 'space-y-2',
   infoLabel: 'h-4 w-20',

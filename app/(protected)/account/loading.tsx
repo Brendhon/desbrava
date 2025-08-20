@@ -1,4 +1,7 @@
-import { ButtonSkeleton, LoadingSkeleton } from '@/components/ui/loading-skeleton';
+import {
+  ButtonSkeleton,
+  LoadingSkeleton,
+} from '@/components/ui/loading-skeleton';
 
 export default function AccountLoading() {
   return (

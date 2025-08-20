@@ -1,15 +1,13 @@
 'use client';
 
 import TripForm from '@/components/form/TripForm';
-import { Separator } from '@/components/Separator';
-import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import DangerZone from '@/components/ui/DangerZone';
+import { PageHeader } from '@/components/ui/PageHeader';
 import { type TripSettingsFormData } from '@/lib/schemas/trip';
 import { Save, Trash2 } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { useState } from 'react';
 
 export default function TripSettingsPage() {
   const params = useParams();
@@ -44,10 +42,6 @@ export default function TripSettingsPage() {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleCancel = () => {
-    router.push(`/trip/${tripId}`);
   };
 
   const handleDelete = () => {
@@ -89,7 +83,6 @@ export default function TripSettingsPage() {
           submitButtonIcon={Save}
           isSubmitting={isSubmitting}
         />
-
       </Card>
 
       <br />

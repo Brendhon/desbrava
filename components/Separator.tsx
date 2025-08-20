@@ -3,10 +3,11 @@ interface SeparatorProps {
   variant?: 'default' | 'thin' | 'thick';
 }
 
-export function Separator({ className = '', variant = 'default' }: SeparatorProps) {
-  return (
-    <hr className={`${styles.base} ${styles[variant]} ${className}`} />
-  );
+export function Separator({
+  className = '',
+  variant = 'default',
+}: SeparatorProps) {
+  return <hr className={`${styles.base} ${styles[variant]} ${className}`} />;
 }
 
 const styles = {

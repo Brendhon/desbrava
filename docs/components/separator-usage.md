@@ -22,20 +22,21 @@ import { Separator } from '@/components/Separator';
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `variant` | `'default' \| 'thin' \| 'thick'` | `'default'` | Predefined spacing and border styles |
+| Prop        | Type                             | Default     | Description                          |
+| ----------- | -------------------------------- | ----------- | ------------------------------------ |
+| `className` | `string`                         | `''`        | Additional CSS classes to apply      |
+| `variant`   | `'default' \| 'thin' \| 'thick'` | `'default'` | Predefined spacing and border styles |
 
 ## Variants
 
 - **default**: `my-8 border-mist-gray/40` - Standard spacing (32px) with medium gray border
-- **thin**: `my-4 border-mist-gray/40` - Reduced spacing (16px) with lighter gray border  
+- **thin**: `my-4 border-mist-gray/40` - Reduced spacing (16px) with lighter gray border
 - **thick**: `my-12 border-mist-gray/40` - Increased spacing (48px) with darker gray border
 
 ## Examples
 
 ### Basic Usage
+
 ```tsx
 <div>
   <h2>Section Title</h2>
@@ -47,11 +48,9 @@ import { Separator } from '@/components/Separator';
 ```
 
 ### With Custom Styling
+
 ```tsx
-<Separator 
-  variant="thin" 
-  className="border-dashed border-blue-400" 
-/>
+<Separator variant="thin" className="border-dashed border-blue-400" />
 ```
 
 ## Notes

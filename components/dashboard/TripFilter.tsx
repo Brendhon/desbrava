@@ -33,7 +33,8 @@ const TripFilter = memo(
     );
 
     const handleCountryFilterChange = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => setCountryFilter(e.target.value),
+      (e: React.ChangeEvent<HTMLInputElement>) =>
+        setCountryFilter(e.target.value),
       [setCountryFilter]
     );
 
@@ -51,15 +52,16 @@ const TripFilter = memo(
           size="md"
           helperText="🔎 Pesquise suas viagens por qualquer dado: nome, país, descrição, datas e mais! Use palavras-chave para encontrar rapidamente a viagem desejada. ✈️🌍"
         />
-        
+
         {/* Status Filters */}
         <div className={styles.statusFilters}>
           {STATUS_OPTIONS.map((status) => (
             <button
               key={status}
               onClick={() => handleStatusFilter(status)}
-              className={`${styles.statusFilter} ${statusFilter === status ? styles.statusFilterActive : ''
-                }`}
+              className={`${styles.statusFilter} ${
+                statusFilter === status ? styles.statusFilterActive : ''
+              }`}
             >
               {getStatusLabel(status)}
               <span className={styles.statusCount}>

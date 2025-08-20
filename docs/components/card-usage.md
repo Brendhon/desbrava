@@ -11,7 +11,7 @@ import Card from '@/components/ui/Card';
 <Card>
   <h2>Card Content</h2>
   <p>This is a simple card with default styling.</p>
-</Card>
+</Card>;
 ```
 
 ## Animation Options
@@ -19,6 +19,7 @@ import Card from '@/components/ui/Card';
 The Card component supports several entrance animation types:
 
 ### Fade In (Default)
+
 ```tsx
 <Card animation="fade-in">
   <p>Card appears with a smooth fade-in effect</p>
@@ -26,6 +27,7 @@ The Card component supports several entrance animation types:
 ```
 
 ### Slide Up
+
 ```tsx
 <Card animation="slide-up">
   <p>Card slides up from below with fade-in</p>
@@ -33,6 +35,7 @@ The Card component supports several entrance animation types:
 ```
 
 ### Scale In
+
 ```tsx
 <Card animation="scale-in">
   <p>Card scales in from 95% to 100% with fade-in</p>
@@ -40,6 +43,7 @@ The Card component supports several entrance animation types:
 ```
 
 ### Slide Up + Scale
+
 ```tsx
 <Card animation="slide-up-scale">
   <p>Card combines slide-up and scale effects</p>
@@ -47,6 +51,7 @@ The Card component supports several entrance animation types:
 ```
 
 ### No Animation
+
 ```tsx
 <Card animation="none">
   <p>Card appears without animation</p>
@@ -62,19 +67,19 @@ Use delay props to create staggered entrance effects:
   <Card animation="slide-up" delay="none">
     <p>First card - no delay</p>
   </Card>
-  
+
   <Card animation="slide-up" delay="sm">
     <p>Second card - 100ms delay</p>
   </Card>
-  
+
   <Card animation="slide-up" delay="md">
     <p>Third card - 200ms delay</p>
   </Card>
-  
+
   <Card animation="slide-up" delay="lg">
     <p>Fourth card - 300ms delay</p>
   </Card>
-  
+
   <Card animation="slide-up" delay="xl">
     <p>Fifth card - 500ms delay</p>
   </Card>
@@ -93,9 +98,9 @@ Use delay props to create staggered entrance effects:
   rounded="xl"
   animation="slide-up-scale"
   delay="md"
-  className="hover:shadow-2xl transition-shadow duration-300"
+  className="transition-shadow duration-300 hover:shadow-2xl"
 >
-  <h2 className="text-2xl font-bold mb-4">Featured Content</h2>
+  <h2 className="mb-4 text-2xl font-bold">Featured Content</h2>
   <p className="text-mist-gray">
     This card demonstrates all available props with enhanced hover effects.
   </p>

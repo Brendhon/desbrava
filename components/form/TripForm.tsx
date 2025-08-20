@@ -5,7 +5,12 @@ import DatePicker from '@/components/form/DatePicker';
 import Input from '@/components/form/Input';
 import Textarea from '@/components/form/Textarea';
 import Button from '@/components/ui/Button';
-import { createTripSchema, tripSettingsSchema, type CreateTripFormData, type TripSettingsFormData } from '@/lib/schemas/trip';
+import {
+  createTripSchema,
+  tripSettingsSchema,
+  type CreateTripFormData,
+  type TripSettingsFormData,
+} from '@/lib/schemas/trip';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LucideIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -29,7 +34,6 @@ export default function TripForm({
   isSubmitting = false,
   loading = false,
 }: TripFormProps) {
-
   const isCreateMode = mode === 'create';
   const schema = isCreateMode ? createTripSchema : tripSettingsSchema;
 
@@ -55,7 +59,9 @@ export default function TripForm({
     setValue('country', countryCode);
   };
 
-  const handleFormSubmit = async (data: CreateTripFormData | TripSettingsFormData) => {
+  const handleFormSubmit = async (
+    data: CreateTripFormData | TripSettingsFormData
+  ) => {
     if (isCreateMode) {
       // For create mode, we need to get the full country data
       const createData = data as CreateTripFormData;
@@ -135,12 +141,16 @@ export default function TripForm({
 
       {/* Descrição */}
       <Textarea
-        label={isCreateMode ? "Descrição (opcional)" : "Descrição"}
+        label={isCreateMode ? 'Descrição (opcional)' : 'Descrição'}
         placeholder="Conte um pouco sobre o que você planeja fazer nesta viagem..."
         rows={isCreateMode ? 2 : 4}
         error={errors.description?.message}
         register={register('description')}
-        helperText={isCreateMode ? "Adicione detalhes sobre seus planos de viagem" : "Descreva os planos, atividades e expectativas da viagem"}
+        helperText={
+          isCreateMode
+            ? 'Adicione detalhes sobre seus planos de viagem'
+            : 'Descreva os planos, atividades e expectativas da viagem'
+        }
         required={!isCreateMode}
       />
 
@@ -149,7 +159,9 @@ export default function TripForm({
         type="submit"
         variant="primary"
         icon={SubmitButtonIcon}
-        aria-label={isCreateMode ? "Criar viagem" : "Salvar alterações da viagem"}
+        aria-label={
+          isCreateMode ? 'Criar viagem' : 'Salvar alterações da viagem'
+        }
         className={styles.button}
         disabled={isSubmitting || loading}
       >

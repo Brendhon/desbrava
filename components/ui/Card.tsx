@@ -75,9 +75,11 @@ const styles = {
   animation: {
     none: '',
     'fade-in': 'opacity-0 animate-[fadeIn_0.7s_ease-out_forwards]',
-    'slide-up': 'opacity-0 translate-y-4 animate-[slideUp_0.7s_ease-out_forwards]',
+    'slide-up':
+      'opacity-0 translate-y-4 animate-[slideUp_0.7s_ease-out_forwards]',
     'scale-in': 'opacity-0 scale-95 animate-[scaleIn_0.7s_ease-out_forwards]',
-    'slide-up-scale': 'opacity-0 translate-y-4 scale-95 animate-[slideUpScale_0.7s_ease-out_forwards]',
+    'slide-up-scale':
+      'opacity-0 translate-y-4 scale-95 animate-[slideUpScale_0.7s_ease-out_forwards]',
   },
   delay: {
     none: '',
