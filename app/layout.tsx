@@ -12,7 +12,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Desbrava - PWA',
+  title: 'Desbrava',
   description:
     'Desbrava - Seu planejador de viagens pessoal. Agora disponível como PWA para uma experiência offline e app-like!',
   manifest: '/manifest.json',
