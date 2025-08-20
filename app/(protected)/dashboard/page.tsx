@@ -90,6 +90,9 @@ export default function DashboardPage() {
       {/* Stats Section */}
       <TripStats trips={trips} />
 
+      {/* Separator */}
+      <hr className={styles.separator} />
+
       {/* Trips Section */}
       <TripList trips={trips} loading={loading} canShowFilters={showFilters} />
     </div>
@@ -99,7 +102,7 @@ export default function DashboardPage() {
 const styles = {
   container: 'max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 space-y-8',
   header:
-    'flex gap-4 flex-col lg:flex-row justify-center items-center lg:items-start lg:justify-between',
+    'flex gap-4 flex-col lg:flex-row justify-center items-center lg:justify-between',
   title: 'text-3xl md:text-4xl font-bold text-parchment-white',
   subtitle: 'text-lg text-mist-gray',
   headerActions: 'flex flex-col sm:flex-row gap-3 pt-4',
@@ -108,4 +111,5 @@ const styles = {
     'bg-red-900/20 border border-red-700 rounded-lg p-4 flex items-center justify-between',
   errorText: 'text-red-300',
   errorButton: 'text-red-300 hover:text-red-100',
+  separator: 'my-8 border-t border-gray-700',
 };

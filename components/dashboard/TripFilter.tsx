@@ -2,7 +2,7 @@
 
 import { memo, useCallback, useState } from 'react';
 import { Input } from '@/components/form';
-import { Search } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import Card from '../ui/Card';
 
 // Constants
@@ -38,7 +38,7 @@ const TripFilter = memo(
     );
 
     return (
-      <Card padding="sm" background="dark" maxWidth="none" border={false}>
+      <Card padding="md" background="dark" maxWidth="none" border={false}>
         {/* Status Filters */}
         <div className={styles.statusFilters}>
           {STATUS_OPTIONS.map((status) => (
@@ -64,6 +64,9 @@ const TripFilter = memo(
           label="Buscar viagens"
           placeholder="Busque por qualquer informação da viagem (nome, país, descrição, datas, etc.)"
           value={countryFilter}
+          icon={countryFilter ? X : undefined}
+          iconPosition="right"
+          iconAction={() => (countryFilter ? setCountryFilter('') : null)}
           onChange={handleCountryFilterChange}
           size="md"
           helperText="🔎 Pesquise suas viagens por qualquer dado: nome, país, descrição, datas e mais! Use palavras-chave para encontrar rapidamente a viagem desejada. ✈️🌍"

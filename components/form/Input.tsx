@@ -15,6 +15,7 @@ interface InputProps
   id?: string;
   icon?: LucideIcon;
   iconPosition?: 'left' | 'right';
+  iconAction?: () => void | null;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -30,6 +31,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       id,
       icon: Icon,
       iconPosition = 'left',
+      iconAction,
       ...props
     },
     ref
@@ -55,6 +57,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           variant={variant}
           error={error}
           className={className}
+          iconAction={iconAction}
         >
           <input
             id={inputId}
