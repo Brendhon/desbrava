@@ -112,7 +112,7 @@ export default function TripStats({ trips }: TripStatsProps) {
 }
 
 const styles = {
-  statsGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
+  statsGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6 mb-0',
   statCard: 'flex items-center gap-4',
   statIcon:
     'w-12 h-12 bg-royal-purple rounded-lg flex items-center justify-center',

@@ -50,8 +50,7 @@ const styles = {
   form: 'space-y-6',
   field: 'h-16 w-full',
   dateGrid: 'grid grid-cols-1 md:grid-cols-2 gap-6',
-  dangerCard:
-    'bg-slate-dark rounded-lg shadow-lg border border-red-500/30 p-8 animate-pulse',
+  dangerCard: 'bg-slate-dark rounded-lg shadow-lg p-8 animate-pulse',
   dangerTitle: 'h-6 w-48 mb-4',
   dangerText: 'h-4 w-full mb-6',
 };
