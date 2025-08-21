@@ -20,6 +20,7 @@ export function PWAInstallPrompt() {
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
   const [isStandalone, setIsStandalone] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
     // Check if already installed
@@ -56,7 +57,6 @@ export function PWAInstallPrompt() {
   }, []);
 
   const handleInstallClick = async () => {
-    console.log('deferredPrompt', deferredPrompt);
     if (deferredPrompt) {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
@@ -79,10 +79,11 @@ export function PWAInstallPrompt() {
     setShowInstallPrompt(false);
     // Mark as seen in session storage when dismissed
     sessionStorage.setItem('pwa-prompt-shown', 'true');
+    setIsDismissed(true);
   };
 
   // Don't show if already installed or if no prompt available
-  if (isStandalone || !showInstallPrompt) {
+  if (isStandalone || !showInstallPrompt || isDismissed) {
     return null;
   }
 
