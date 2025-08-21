@@ -11,16 +11,13 @@ import EmptyState from './EmptyState';
 import TripCard from './TripCard';
 import TripFilter from './TripFilter';
 import { Loader2 } from 'lucide-react';
+import { StatusFilter } from '@/lib/types/trip';
 
 interface TripListProps {
   trips: Trip[];
   loading?: boolean;
   canShowFilters?: boolean;
 }
-
-// Constants
-const STATUS_OPTIONS = ['all', 'past', 'active', 'future'] as const;
-type StatusFilter = (typeof STATUS_OPTIONS)[number];
 
 // Components
 const LoadingState = () => (

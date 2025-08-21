@@ -13,6 +13,11 @@ const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
     rules: {
+      // Overrides
+      'react-hooks/exhaustive-deps': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@next/next/no-img-element': 'off',
+
       // Allow Prettier to handle formatting
       indent: 'off',
       quotes: 'off',

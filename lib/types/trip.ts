@@ -28,3 +28,6 @@ export interface UpdateTripData {
   endDate?: string;
   country?: Country;
 }
+
+export const STATUS_OPTIONS = ['all', 'past', 'active', 'future'] as const;
+export type StatusFilter = (typeof STATUS_OPTIONS)[number];

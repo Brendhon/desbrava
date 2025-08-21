@@ -8,13 +8,32 @@ import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
 import { Trip } from '@/lib/types/trip';
 import { calculateTripDuration } from '@/lib/utils/trip';
-import { Calendar, DollarSign, Globe, LanguagesIcon, LucideIcon, Map, MapIcon, Plus, Settings, TimerIcon } from 'lucide-react';
+import {
+  Calendar,
+  DollarSign,
+  Globe,
+  LanguagesIcon,
+  LucideIcon,
+  Map,
+  MapIcon,
+  Plus,
+  Settings,
+  TimerIcon,
+} from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import TripDetailsLoading from './loading';
 
-const TripInfoCard = ({ Icon, label, children }: { Icon: LucideIcon; label: string; children: ReactNode }) => {
+const TripInfoCard = ({
+  Icon,
+  label,
+  children,
+}: {
+  Icon: LucideIcon;
+  label: string;
+  children: ReactNode;
+}) => {
   return (
     <Card
       padding="sm"
@@ -148,7 +167,6 @@ export default function TripDetailsPage() {
         <TripInfoCard Icon={TimerIcon} label="Duração">
           {duration} dias
         </TripInfoCard>
-
       </div>
 
       {/* Content Tabs */}

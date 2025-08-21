@@ -1,13 +1,10 @@
 'use client';
 
 import { Input } from '@/components/form';
+import { StatusFilter, STATUS_OPTIONS } from '@/lib/types/trip';
 import { X } from 'lucide-react';
 import { memo, useCallback } from 'react';
 import Card from '../ui/Card';
-
-// Constants
-const STATUS_OPTIONS = ['all', 'past', 'active', 'future'] as const;
-type StatusFilter = (typeof STATUS_OPTIONS)[number];
 
 interface TripFilterProps {
   statusFilter: StatusFilter;

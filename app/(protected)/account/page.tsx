@@ -1,12 +1,12 @@
 'use client';
 
-import { useAuth } from '@/hooks/useAuth';
-import { useState } from 'react';
-import { Shield, Calendar, Trash2, LogOut, ExternalLink } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import DangerZone from '@/components/ui/DangerZone';
 import { PageHeader } from '@/components/ui/PageHeader';
+import { useAuth } from '@/hooks/useAuth';
+import { Calendar, ExternalLink, Shield, Trash2 } from 'lucide-react';
+import { useState } from 'react';
 
 export default function AccountPage() {
   const { session, logout } = useAuth();

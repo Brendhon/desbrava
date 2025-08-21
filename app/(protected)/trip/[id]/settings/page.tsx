@@ -107,16 +107,18 @@ export default function TripSettingsPage() {
         const updatedTrip = await updateTrip(tripId, updateData);
 
         // Handle success or error
-        updatedTrip
-          ? handleSuccess(
-              'Viagem atualizada com sucesso!',
-              'As alterações foram salvas e aplicadas à sua viagem.',
-              data
-            )
-          : handleError(
-              'Erro ao atualizar viagem',
-              'Ocorreu um erro ao salvar as alterações. Tente novamente.'
-            );
+        if (updatedTrip) {
+          handleSuccess(
+            'Viagem atualizada com sucesso!',
+            'As alterações foram salvas e aplicadas à sua viagem.',
+            data
+          );
+        } else {
+          handleError(
+            'Erro ao atualizar viagem',
+            'Ocorreu um erro ao salvar as alterações. Tente novamente.'
+          );
+        }
       } catch (error) {
         handleError(
           'Erro ao atualizar viagem',
