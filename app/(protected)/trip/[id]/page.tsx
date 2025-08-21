@@ -8,7 +8,7 @@ import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
 import { Trip } from '@/lib/types/trip';
 import { calculateTripDuration } from '@/lib/utils/trip';
-import { Calendar, DollarSign, Globe, LucideIcon, Map, MapIcon, Plus, Settings, TimerIcon } from 'lucide-react';
+import { Calendar, DollarSign, Globe, LanguagesIcon, LucideIcon, Map, MapIcon, Plus, Settings, TimerIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
@@ -133,7 +133,7 @@ export default function TripDetailsPage() {
           {trip.country.continent || 'Não especificado'}
         </TripInfoCard>
 
-        <TripInfoCard Icon={Globe} label="Idioma">
+        <TripInfoCard Icon={LanguagesIcon} label="Idioma">
           {trip.country.language?.join(', ') || 'Não especificado'}
         </TripInfoCard>
 
