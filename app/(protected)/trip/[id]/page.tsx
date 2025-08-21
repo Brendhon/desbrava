@@ -151,11 +151,11 @@ export default function TripDetailsPage() {
           {trip.country.continent || 'Não especificado'}
         </TripInfoCard>
 
-        <TripInfoCard Icon={LanguagesIcon} label="Idioma">
+        <TripInfoCard Icon={LanguagesIcon} label="Idioma (local)">
           {trip.country.language?.join(', ') || 'Não especificado'}
         </TripInfoCard>
 
-        <TripInfoCard Icon={DollarSign} label="Moeda (Local)">
+        <TripInfoCard Icon={DollarSign} label="Moeda (local)">
           {trip.country.currency_name_pt || 'Não especificado'}
         </TripInfoCard>
 
