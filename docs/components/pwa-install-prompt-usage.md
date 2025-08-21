@@ -14,7 +14,7 @@ O componente `PWAInstallPrompt` é responsável por detectar quando o usuário p
 ## Uso
 
 ```tsx
-import { PWAInstallPrompt } from '@/components/PWAInstallPrompt';
+import { PWAInstallPrompt } from '@/components/pwa';
 
 export default function Layout({ children }) {
   return (

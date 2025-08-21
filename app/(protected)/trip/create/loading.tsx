@@ -1,7 +1,4 @@
-import {
-  ButtonSkeleton,
-  LoadingSkeleton,
-} from '@/components/ui/loading-skeleton';
+import { ButtonSkeleton, LoadingSkeleton } from '@/components/loading';
 
 export default function TripCreationLoading() {
   return (

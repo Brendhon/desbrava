@@ -5,7 +5,7 @@ A reusable component for displaying dangerous actions that require user confirma
 ## Usage
 
 ```tsx
-import DangerZone from '@/components/ui/DangerZone';
+import { DangerZone } from '@/components/settings';
 import { Trash2 } from 'lucide-react';
 
 <DangerZone

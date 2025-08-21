@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
-import { CheckCircle, AlertCircle, AlertTriangle, Info, X } from 'lucide-react';
-import { Toast as ToastType } from '@/types/toast';
 import { useToastContext } from '@/context/ToastContext';
+import { Toast as ToastType } from '@/types/toast';
+import { AlertCircle, AlertTriangle, CheckCircle, Info, X } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface ToastProps {
   toast: ToastType;
 }
 
-const Toast: React.FC<ToastProps> = ({ toast }) => {
+const Toast = ({ toast }: ToastProps) => {
   const { removeToast } = useToastContext();
   const [isVisible, setIsVisible] = useState(false);
 

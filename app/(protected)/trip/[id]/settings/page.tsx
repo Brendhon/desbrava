@@ -1,14 +1,14 @@
 'use client';
 
-import TripForm from '@/components/form/TripForm';
-import Card from '@/components/ui/Card';
-import DangerZone from '@/components/ui/DangerZone';
-import { PageHeader } from '@/components/ui/PageHeader';
-import { ErrorPage } from '@/components/ui';
+import { ErrorPage } from '@/components/error';
+import { TripForm } from '@/components/form';
+import { PageHeader } from '@/components/layout';
+import { DangerZone } from '@/components/settings';
+import { Card } from '@/components/ui';
 import { useCountries } from '@/hooks/useCountries';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
-import { type TripSettingsFormData } from '@/lib/schemas/trip';
+import { TripSettingsFormData } from '@/lib/schemas/trip';
 import { Save, Trash2 } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';

@@ -9,7 +9,7 @@ interface PageHeaderProps {
   subtitle?: string;
 }
 
-export function PageHeader({
+export default function PageHeader({
   backHref,
   backText,
   backAriaLabel,

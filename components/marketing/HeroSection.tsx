@@ -1,5 +1,5 @@
-import Card from './Card';
-import GoogleLoginButton from '../auth/GoogleLoginButton';
+import { Card } from '@/components/ui';
+import { GoogleLoginButton } from '@/components/auth';
 
 interface HeroSectionProps {
   onGoogleLogin: () => void;

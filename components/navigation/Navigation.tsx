@@ -1,10 +1,10 @@
 'use client';
 
+import { UserMenu } from '@/components/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import UserMenu from './UserMenu';
 
-export function Navigation() {
+export default function Navigation() {
   return (
     <nav className={styles.nav}>
       <div className={styles.container}>

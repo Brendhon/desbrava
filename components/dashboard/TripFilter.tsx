@@ -1,10 +1,10 @@
 'use client';
 
 import { Input } from '@/components/form';
-import { StatusFilter, STATUS_OPTIONS } from '@/lib/types/trip';
+import { Card } from '@/components/ui';
+import { STATUS_OPTIONS, StatusFilter } from '@/lib/types/trip';
 import { X } from 'lucide-react';
 import { memo, useCallback } from 'react';
-import Card from '../ui/Card';
 
 interface TripFilterProps {
   statusFilter: StatusFilter;

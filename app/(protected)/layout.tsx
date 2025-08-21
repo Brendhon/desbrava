@@ -1,6 +1,6 @@
-import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
-import { Navigation } from '@/components/navigation/Navigation';
-import ToastContainer from '@/components/ui/ToastContainer';
+import { ProtectedRoute } from '@/components/auth';
+import { Navigation } from '@/components/navigation';
+import { ToastContainer } from '@/components/ui';
 
 export default function ProtectedLayout({
   children,

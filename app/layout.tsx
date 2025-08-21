@@ -1,5 +1,5 @@
-import { SessionProvider } from '@/components/providers/SessionProvider';
-import { PWAInstallPrompt } from '@/components/PWAInstallPrompt';
+import { SessionProvider } from '@/components/providers';
+import { PWAInstallPrompt } from '@/components/pwa';
 import { ToastProvider } from '@/context/ToastContext';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';

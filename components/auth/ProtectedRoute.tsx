@@ -1,14 +1,17 @@
 'use client';
 
+import { LoadingSpinner } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
-import LoadingSpinner from '../ui/LoadingSpinner';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
   fallback?: React.ReactNode;
 }
 
-export function ProtectedRoute({ children, fallback }: ProtectedRouteProps) {
+export default function ProtectedRoute({
+  children,
+  fallback,
+}: ProtectedRouteProps) {
   // Get auth state from hook
   const { isLoading, isAuthenticated, redirectIfNotAuthenticated } = useAuth();
 

@@ -5,7 +5,7 @@ A reusable horizontal separator component that provides consistent visual separa
 ## Usage
 
 ```tsx
-import { Separator } from '@/components/Separator';
+import { Separator } from '@/components/layout';
 
 // Default separator (matches dashboard style)
 <Separator />

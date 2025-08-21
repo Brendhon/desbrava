@@ -1,7 +1,7 @@
+import { InputWithIcon } from '@/components/form';
 import { LucideIcon } from 'lucide-react';
 import { forwardRef, InputHTMLAttributes, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import InputWithIcon from './InputWithIcon';
 
 interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {

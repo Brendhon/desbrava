@@ -1,6 +1,6 @@
+import { useFormStyles } from '@/hooks/useFormStyles';
 import { forwardRef, TextareaHTMLAttributes, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { useFormStyles } from '../../hooks/useFormStyles';
 
 interface TextareaProps
   extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {

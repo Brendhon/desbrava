@@ -1,6 +1,6 @@
 'use client';
 
-import Card from '@/components/ui/Card';
+import { Card } from '@/components/ui';
 import { Trip } from '@/lib/types/trip';
 import { parsePtBrToDate } from '@/lib/utils/trip';
 import { Calendar, LucideIcon, MapPin } from 'lucide-react';

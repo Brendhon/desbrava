@@ -1,10 +1,9 @@
 'use client';
 
+import { Input, Textarea } from '@/components/form';
 import CountrySearchSelect from '@/components/form/CountrySearchSelect';
 import DatePicker from '@/components/form/DatePicker';
-import Input from '@/components/form/Input';
-import Textarea from '@/components/form/Textarea';
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui';
 import {
   createTripSchema,
   tripSettingsSchema,

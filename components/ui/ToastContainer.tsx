@@ -1,10 +1,9 @@
 'use client';
 
-import React from 'react';
+import { Toast } from '@/components/ui';
 import { useToastContext } from '@/context/ToastContext';
-import Toast from './Toast';
 
-const ToastContainer: React.FC = () => {
+const ToastContainer = () => {
   const { state } = useToastContext();
 
   if (state.toasts.length === 0) {

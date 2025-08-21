@@ -1,19 +1,18 @@
+import { Dropdown, InputWithIcon } from '@/components/form';
+import { useDropdown } from '@/hooks/useDropdown';
+import { useFormField } from '@/hooks/useFormField';
+import { SelectOption } from '@/lib/types';
+import { normalizeString } from '@/lib/utils/string-utils';
+import { LucideIcon, X } from 'lucide-react';
 import {
   forwardRef,
   InputHTMLAttributes,
-  useMemo,
-  useState,
-  useRef,
   useCallback,
+  useMemo,
+  useRef,
+  useState,
 } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { LucideIcon, X } from 'lucide-react';
-import { useDropdown } from '../../hooks/useDropdown';
-import { useFormField } from '../../hooks/useFormField';
-import { SelectOption } from '@/lib/types';
-import InputWithIcon from './InputWithIcon';
-import Dropdown from './Dropdown';
-import { normalizeString } from '@/lib/utils/string-utils';
 
 interface SearchSelectProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {

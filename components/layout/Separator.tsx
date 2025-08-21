@@ -3,7 +3,7 @@ interface SeparatorProps {
   variant?: 'default' | 'thin' | 'thick';
 }
 
-export function Separator({
+export default function Separator({
   className = '',
   variant = 'default',
 }: SeparatorProps) {

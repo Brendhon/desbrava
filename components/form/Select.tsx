@@ -1,9 +1,9 @@
-import { forwardRef, SelectHTMLAttributes, useMemo, ReactNode } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
-import { ChevronDown, LucideIcon } from 'lucide-react';
+import { InputWithIcon } from '@/components/form';
+import { useFormStyles } from '@/hooks/useFormStyles';
 import { SelectOption } from '@/lib/types';
-import { useFormStyles } from '../../hooks/useFormStyles';
-import InputWithIcon from './InputWithIcon';
+import { ChevronDown, LucideIcon } from 'lucide-react';
+import { forwardRef, ReactNode, SelectHTMLAttributes, useMemo } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface SelectProps
   extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'> {

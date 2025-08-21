@@ -1,6 +1,6 @@
 'use client';
 
-import Card from '@/components/ui/Card';
+import { Button, Card } from '@/components/ui';
 import { Trip } from '@/lib/types/trip';
 import {
   calculateTripDuration,
@@ -10,7 +10,6 @@ import {
 import { Calendar, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { useCallback, useMemo } from 'react';
-import Button from '../ui/Button';
 
 interface TripCardProps {
   trip: Trip;

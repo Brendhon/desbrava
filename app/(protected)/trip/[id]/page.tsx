@@ -1,9 +1,8 @@
 'use client';
 
-import { ErrorPage } from '@/components/ui';
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { ErrorPage } from '@/components/error';
+import { PageHeader } from '@/components/layout';
+import { Button, Card } from '@/components/ui';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
 import { Trip } from '@/lib/types/trip';

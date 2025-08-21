@@ -2,7 +2,7 @@
 
 import { Download, Smartphone, Star, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import Button from './ui/Button';
+import { Button } from '@/components/ui';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -14,7 +14,7 @@ interface ExtendedWindow extends Window {
   MSStream?: unknown;
 }
 
-export function PWAInstallPrompt() {
+export default function PWAInstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);

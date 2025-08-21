@@ -1,9 +1,8 @@
 'use client';
 
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
-import DangerZone from '@/components/ui/DangerZone';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHeader } from '@/components/layout';
+import { DangerZone } from '@/components/settings';
+import { Button, Card } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
 import { Calendar, ExternalLink, Shield, Trash2 } from 'lucide-react';
 import { useState } from 'react';

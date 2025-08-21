@@ -18,7 +18,7 @@ The `ErrorPage` component provides a consistent and reusable way to display erro
 ### Basic Usage
 
 ```tsx
-import ErrorPage from '@/components/ui/ErrorPage';
+import { ErrorPage } from '@/components/error';
 
 function MyComponent() {
   const handleRetry = () => {

@@ -1,6 +1,6 @@
 'use client';
 
-import HeroSection from '@/components/ui/HeroSection';
+import { HeroSection } from '@/components/marketing';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';

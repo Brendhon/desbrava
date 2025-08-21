@@ -1,17 +1,14 @@
 'use client';
 
-import { Trip } from '@/lib/types/trip';
+import { EmptyState, TripCard, TripFilter } from '@/components/dashboard';
+import { StatusFilter, Trip } from '@/lib/types/trip';
 import {
   filterTripsByStatus,
-  sortTripsByDate,
   searchTripsByText,
+  sortTripsByDate,
 } from '@/lib/utils/trip';
-import { useCallback, useMemo, useState } from 'react';
-import EmptyState from './EmptyState';
-import TripCard from './TripCard';
-import TripFilter from './TripFilter';
 import { Loader2 } from 'lucide-react';
-import { StatusFilter } from '@/lib/types/trip';
+import { useCallback, useMemo, useState } from 'react';
 
 interface TripListProps {
   trips: Trip[];

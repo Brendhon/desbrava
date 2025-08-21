@@ -1,6 +1,5 @@
 import { LucideIcon } from 'lucide-react';
-import Button from './Button';
-import Card from './Card';
+import { Button, Card } from '@/components/ui';
 
 interface DangerZoneProps {
   icon: LucideIcon;

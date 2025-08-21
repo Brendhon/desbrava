@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import { useFormStyles } from '@/hooks/useFormStyles';
 import { LucideIcon } from 'lucide-react';
-import { useFormStyles } from '../../hooks/useFormStyles';
+import { ReactNode } from 'react';
 
 interface InputWithIconProps {
   icon?: LucideIcon;

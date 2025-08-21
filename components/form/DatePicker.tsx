@@ -1,14 +1,14 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { DayPicker } from 'react-day-picker';
-import { format, parse, isValid } from 'date-fns';
+import { InputWithIcon } from '@/components/form';
+import { useFormField } from '@/hooks/useFormField';
+import { useFormStyles } from '@/hooks/useFormStyles';
+import { format, isValid, parse } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Calendar, X } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { DayPicker } from 'react-day-picker';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { useFormStyles } from '../../hooks/useFormStyles';
-import { useFormField } from '../../hooks/useFormField';
-import InputWithIcon from './InputWithIcon';
 
 interface DatePickerProps {
   /** Label text displayed above the input */

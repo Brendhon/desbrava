@@ -1,8 +1,8 @@
 'use client';
 
 import { TripList, TripStats } from '@/components/dashboard';
-import Button from '@/components/ui/Button';
-import { Separator } from '@/components/Separator';
+import { Separator } from '@/components/layout';
+import { Button } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
 import { useTrips } from '@/hooks/useTrips';
 import { Filter, Plus } from 'lucide-react';

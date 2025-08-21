@@ -1,7 +1,7 @@
 'use client';
 
-import Card from '@/components/ui/Card';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHeader } from '@/components/layout';
+import { Card } from '@/components/ui';
 
 interface ErrorPageProps {
   backHref: string;

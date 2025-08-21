@@ -1,12 +1,12 @@
 'use client';
 
-import TripForm from '@/components/form/TripForm';
-import Card from '@/components/ui/Card';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { TripForm } from '@/components/form';
+import { PageHeader } from '@/components/layout';
+import { Card } from '@/components/ui';
 import { useCountries } from '@/hooks/useCountries';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
-import { type CreateTripFormData } from '@/lib/schemas/trip';
+import { CreateTripFormData } from '@/lib/schemas/trip';
 import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
