@@ -51,7 +51,7 @@ const Actions = ({
         {showFilters ? 'Ocultar Filtros' : 'Mostrar Filtros'}
       </Button>
 
-      <Link href="/trip" aria-label="Criar nova viagem">
+      <Link href="/trip/create" aria-label="Criar nova viagem">
         <Button variant="primary" icon={Plus}>
           Nova Viagem
         </Button>
