@@ -2,27 +2,14 @@
 // Handles finding places near a specific location
 
 import {
+  NearbySearchOptions,
   PLACE_TYPES,
   PlaceNearbySearchRequest,
   PlaceNearbySearchResponse,
-  PlacesApiError,
-  PlaceType,
+  PlacesApiConfig,
+  PlacesApiError
 } from '@/lib/types';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
-
-export interface NearbySearchOptions {
-  latitude: number;
-  longitude: number;
-  radius: number;
-  types: PlaceType[];
-  maxResults?: number;
-  rankByDistance?: boolean;
-  config?: {
-    baseUrl?: string;
-    apiKey?: string;
-    timeout?: number;
-  };
-}
 
 /**
  * Search for places near a specific location
@@ -87,7 +74,7 @@ export async function findNearbyHotels(
   longitude: number,
   radius: number = 5000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceNearbySearchResponse> {
   return searchNearbyPlaces({
     latitude,
@@ -107,7 +94,7 @@ export async function findNearbyRestaurants(
   longitude: number,
   radius: number = 3000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceNearbySearchResponse> {
   return searchNearbyPlaces({
     latitude,
@@ -132,7 +119,7 @@ export async function findNearbyAttractions(
   longitude: number,
   radius: number = 10000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceNearbySearchResponse> {
   return searchNearbyPlaces({
     latitude,
@@ -160,7 +147,7 @@ export async function findNearbyTransportation(
   longitude: number,
   radius: number = 5000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceNearbySearchResponse> {
   return searchNearbyPlaces({
     latitude,
@@ -185,7 +172,7 @@ export async function findAllNearbyPlaces(
   longitude: number,
   radius: number = 5000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceNearbySearchResponse> {
   return searchNearbyPlaces({
     latitude,

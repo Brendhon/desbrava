@@ -90,11 +90,7 @@ export interface PlaceDetailsResponse {
 export interface PlaceDetailsOptions {
   placeId: string;
   fields?: string[];
-  config?: {
-    baseUrl?: string;
-    apiKey?: string;
-    timeout?: number;
-  };
+  config?: PlacesApiConfig;
 }
 
 export class PlacesApiError extends Error {

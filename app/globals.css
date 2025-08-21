@@ -197,3 +197,16 @@ body {
   background: var(--mist-color);
   border-radius: 5px;
 }
+
+/* Hide default input time icon */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* Hide select arrow icon */
+select {
+  -webkit-appearance: none; /* For Chrome, Safari, and newer Edge */
+  -moz-appearance: none;    /* For Firefox */
+  appearance: none;         /* Standard property */
+  background: none;         /* Remove any default background image that might include the arrow */
+}

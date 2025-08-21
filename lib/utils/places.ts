@@ -244,3 +244,49 @@ export const EXTENDED_FIELDS = [
   'places.businessStatus',
   'places.editorialSummary',
 ];
+
+export const RESTAURANT_FIELDS = [
+  'places.displayName',
+  'places.formattedAddress',
+  'places.location',
+  'places.rating',
+  'places.userRatingCount',
+  'places.currentOpeningHours',
+  'places.photos',
+  'places.websiteUri',
+  'places.types',
+  'places.priceLevel',
+  'places.priceRange',
+  'places.businessStatus',
+];
+
+export const ATTRACTION_FIELDS = [
+  'places.displayName',
+  'places.formattedAddress',
+  'places.location',
+  'places.rating',
+  'places.userRatingCount',
+  'places.currentOpeningHours',
+  'places.photos',
+  'places.websiteUri',
+  'places.types',
+  'places.priceLevel',
+  'places.priceRange',
+  'places.businessStatus',
+  'places.editorialSummary',
+];
+
+export const HOTEL_FIELDS = [
+  'places.displayName',
+  'places.formattedAddress',
+  'places.location',
+  'places.rating',
+  'places.userRatingCount',
+  'places.currentOpeningHours',
+  'places.photos',
+  'places.websiteUri',
+  'places.types',
+  'places.priceLevel',
+  'places.priceRange',
+  'places.businessStatus',
+];

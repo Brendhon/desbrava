@@ -10,7 +10,7 @@ A unified guide for creating components in the Desbrava project, covering compon
 
 1.  **Default to Server Components**: They are the foundation. Use them for fetching data and for any UI that is not interactive. This improves performance by reducing client-side JavaScript.
 2.  **Use Client Components for Interactivity**: Add `'use client'` at the top of a file when you need to use hooks (`useState`, `useEffect`) or event handlers (`onClick`). Keep them small and import them into Server Components.
-3.  **Keep Loading States Synchronized**: When modifying a `page.tsx` component, always update the corresponding `loading.tsx` to maintain structural consistency. The loading state should reflect the same layout and component hierarchy as the actual page to prevent layout shifts and provide a seamless user experience.
+3.  **Synchronize Loading States**: Whenever you change a `page.tsx`, update its `loading.tsx` to match the same structure and layout. This prevents layout shifts and ensures a smooth user experience. Use components from `components/loading/loading-skeleton.tsx` to quickly build consistent loading states.
 
 ### State Management
 

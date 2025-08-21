@@ -3,26 +3,13 @@
 
 import {
   PLACE_TYPES,
+  PlacesApiConfig,
   PlacesApiError,
   PlaceTextSearchRequest,
   PlaceTextSearchResponse,
-  PlaceType,
+  TextSearchOptions
 } from '@/lib/types';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
-
-export interface TextSearchOptions {
-  query: string;
-  latitude?: number;
-  longitude?: number;
-  radius?: number;
-  types?: PlaceType[];
-  maxResults?: number;
-  config?: {
-    baseUrl?: string;
-    apiKey?: string;
-    timeout?: number;
-  };
-}
 
 /**
  * Search for places using text queries
@@ -100,7 +87,7 @@ export async function searchHotelsByText(
   longitude?: number,
   radius: number = 10000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
     query,
@@ -122,7 +109,7 @@ export async function searchRestaurantsByText(
   longitude?: number,
   radius: number = 5000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
     query,
@@ -149,7 +136,7 @@ export async function searchAttractionsByText(
   longitude?: number,
   radius: number = 10000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
     query,
@@ -179,7 +166,7 @@ export async function searchTransportationByText(
   longitude?: number,
   radius: number = 10000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
     query,
@@ -206,7 +193,7 @@ export async function searchAnyPlaceByText(
   longitude?: number,
   radius: number = 10000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
     query,

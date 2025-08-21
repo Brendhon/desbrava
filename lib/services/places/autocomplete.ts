@@ -6,6 +6,7 @@ import {
   PLACE_TYPES,
   PlaceAutocompleteRequest,
   PlaceAutocompleteResponse,
+  PlacesApiConfig,
 } from '@/lib/types';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
 import { PlacesApiError } from '@/lib/types';
@@ -89,7 +90,7 @@ export async function getPlaceSuggestions(
 export async function getDestinationSuggestions(
   input: string,
   maxResults: number = 10,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceAutocompleteResponse> {
   return getPlaceSuggestions({
     input,
@@ -108,7 +109,7 @@ export async function getHotelSuggestions(
   longitude?: number,
   radius: number = 50000,
   maxResults: number = 10,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceAutocompleteResponse> {
   return getPlaceSuggestions({
     input,
@@ -130,7 +131,7 @@ export async function getRestaurantSuggestions(
   longitude?: number,
   radius: number = 5000,
   maxResults: number = 10,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceAutocompleteResponse> {
   return getPlaceSuggestions({
     input,
@@ -152,7 +153,7 @@ export async function getTouristAttractionSuggestions(
   longitude?: number,
   radius: number = 10000,
   maxResults: number = 10,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceAutocompleteResponse> {
   return getPlaceSuggestions({
     input,

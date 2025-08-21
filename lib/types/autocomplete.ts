@@ -1,4 +1,4 @@
-import { PlaceType } from './places';
+import { PlacesApiConfig, PlaceType } from './places';
 
 export interface AutocompleteOptions {
   input: string;
@@ -8,9 +8,5 @@ export interface AutocompleteOptions {
   types?: PlaceType[];
   maxResults?: number;
   sessionToken?: string;
-  config?: {
-    baseUrl?: string;
-    apiKey?: string;
-    timeout?: number;
-  };
+  config?: PlacesApiConfig;
 }

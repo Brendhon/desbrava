@@ -2,12 +2,13 @@
 // Handles retrieving detailed information about specific places
 
 import {
+  PlacesApiConfig,
   PlaceDetailsOptions,
   PlaceDetailsRequest,
   PlaceDetailsResponse,
   PlacesApiError,
 } from '@/lib/types';
-import { DEFAULT_FIELDS, EXTENDED_FIELDS } from '@/lib/utils';
+import { ATTRACTION_FIELDS, DEFAULT_FIELDS, EXTENDED_FIELDS, HOTEL_FIELDS, RESTAURANT_FIELDS } from '@/lib/utils';
 import { createFieldMask, makePlacesRequest } from './base';
 
 /**
@@ -56,7 +57,7 @@ export async function getPlaceDetails(
  */
 export async function getBasicPlaceDetails(
   placeId: string,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse> {
   return getPlaceDetails({
     placeId,
@@ -70,7 +71,7 @@ export async function getBasicPlaceDetails(
  */
 export async function getExtendedPlaceDetails(
   placeId: string,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse> {
   return getPlaceDetails({
     placeId,
@@ -84,27 +85,9 @@ export async function getExtendedPlaceDetails(
  */
 export async function getHotelDetails(
   placeId: string,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse> {
-  const hotelFields = [
-    'places.displayName',
-    'places.formattedAddress',
-    'places.location',
-    'places.rating',
-    'places.userRatingCount',
-    'places.currentOpeningHours',
-    'places.photos',
-    'places.websiteUri',
-    'places.types',
-    'places.priceLevel',
-    'places.businessStatus',
-  ];
-
-  return getPlaceDetails({
-    placeId,
-    fields: hotelFields,
-    config,
-  });
+  return getPlaceDetails({ placeId, fields: HOTEL_FIELDS, config });
 }
 
 /**
@@ -112,27 +95,9 @@ export async function getHotelDetails(
  */
 export async function getRestaurantDetails(
   placeId: string,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse> {
-  const restaurantFields = [
-    'places.displayName',
-    'places.formattedAddress',
-    'places.location',
-    'places.rating',
-    'places.userRatingCount',
-    'places.currentOpeningHours',
-    'places.photos',
-    'places.websiteUri',
-    'places.types',
-    'places.priceLevel',
-    'places.businessStatus',
-  ];
-
-  return getPlaceDetails({
-    placeId,
-    fields: restaurantFields,
-    config,
-  });
+  return getPlaceDetails({ placeId, fields: RESTAURANT_FIELDS, config });
 }
 
 /**
@@ -140,27 +105,9 @@ export async function getRestaurantDetails(
  */
 export async function getAttractionDetails(
   placeId: string,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse> {
-  const attractionFields = [
-    'places.displayName',
-    'places.formattedAddress',
-    'places.location',
-    'places.rating',
-    'places.userRatingCount',
-    'places.currentOpeningHours',
-    'places.photos',
-    'places.websiteUri',
-    'places.types',
-    'places.businessStatus',
-    'places.editorialSummary',
-  ];
-
-  return getPlaceDetails({
-    placeId,
-    fields: attractionFields,
-    config,
-  });
+  return getPlaceDetails({ placeId, fields: ATTRACTION_FIELDS, config });
 }
 
 /**
@@ -168,7 +115,7 @@ export async function getAttractionDetails(
  */
 export async function getMultiplePlaceDetails(
   placeIds: string[],
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
+  config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse[]> {
   if (!placeIds || placeIds.length === 0) {
     throw new Error('At least one place ID is required');

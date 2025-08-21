@@ -23,7 +23,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import TripDetailsLoading from './loading';
-import { DashboardRoutes, TripRoutes } from '@/lib/types';
+import { DashboardRoutes, TripRoutes, ActivityRoutes } from '@/lib/types';
 
 const TripInfoCard = ({
   Icon,
@@ -181,14 +181,16 @@ export default function TripDetailsPage() {
         <div className={styles.itineraryContent}>
           <div className={styles.itineraryHeader}>
             <h3 className={styles.itineraryTitle}>Seu Itinerário</h3>
-            <Button
-              variant="primary"
-              icon={Plus}
-              aria-label="Adicionar nova atividade"
-              size="sm"
-            >
-              Adicionar Atividade
-            </Button>
+            <Link href={ActivityRoutes.create(tripId)}>
+              <Button
+                variant="primary"
+                icon={Plus}
+                aria-label="Adicionar nova atividade"
+                size="sm"
+              >
+                Adicionar Atividade
+              </Button>
+            </Link>
           </div>
 
           {/* Empty State */}
