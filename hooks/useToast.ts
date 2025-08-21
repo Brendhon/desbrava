@@ -1,5 +1,4 @@
 import { useToastContext } from '@/context/ToastContext';
-import { ToastOptions } from '@/types/toast';
 
 export const useToast = () => {
   const { addToast, removeToast, clearToasts } = useToastContext();

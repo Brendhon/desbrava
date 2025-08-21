@@ -1,7 +1,7 @@
 'use client';
 
 import { useToastContext } from '@/context/ToastContext';
-import { Toast as ToastType } from '@/types/toast';
+import { Toast as ToastType } from '@/lib/types';
 import { AlertCircle, AlertTriangle, CheckCircle, Info, X } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 

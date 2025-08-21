@@ -1,7 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
-import { Toast, ToastOptions } from '@/types/toast';
+import { Toast, ToastOptions } from '@/lib/types';
+import React, { createContext, ReactNode, useContext, useReducer } from 'react';
 
 interface ToastState {
   toasts: Toast[];
