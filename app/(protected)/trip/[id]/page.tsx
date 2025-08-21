@@ -1,18 +1,37 @@
 'use client';
 
+import { ErrorPage } from '@/components/ui';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import { Calendar, Globe, Map, MapPin, Plus, Settings } from 'lucide-react';
+import { PageHeader } from '@/components/ui/PageHeader';
+import { useToast } from '@/hooks/useToast';
+import { useTrips } from '@/hooks/useTrips';
+import { Trip } from '@/lib/types/trip';
+import { calculateTripDuration } from '@/lib/utils/trip';
+import { Calendar, DollarSign, Globe, LucideIcon, Map, MapIcon, Plus, Settings, TimerIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { PageHeader } from '@/components/ui/PageHeader';
-import { useTrips } from '@/hooks/useTrips';
-import { useToast } from '@/hooks/useToast';
-import { Trip } from '@/lib/types/trip';
+import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import TripDetailsLoading from './loading';
-import { ErrorPage } from '@/components/ui';
-import { calculateTripDuration } from '@/lib/utils/trip';
+
+const TripInfoCard = ({ Icon, label, children }: { Icon: LucideIcon; label: string; children: ReactNode }) => {
+  return (
+    <Card
+      padding="sm"
+      shadow="none"
+      background="dark"
+      maxWidth="none"
+      border={false}
+      className={styles.infoCard}
+    >
+      <Icon className={styles.infoIcon} aria-hidden="true" />
+      <div>
+        <p className={styles.infoLabel}>{label}</p>
+        <p className={styles.infoValue}>{children}</p>
+      </div>
+    </Card>
+  );
+};
 
 export default function TripDetailsPage() {
   const params = useParams();
@@ -106,54 +125,30 @@ export default function TripDetailsPage() {
 
       {/* Trip Info Cards */}
       <div className={styles.infoGrid}>
-        <Card
-          padding="sm"
-          shadow="none"
-          background="dark"
-          maxWidth="none"
-          border={false}
-          className={styles.infoCard}
-        >
-          <Globe className={styles.infoIcon} aria-hidden="true" />
-          <div>
-            <p className={styles.infoLabel}>País</p>
-            <p className={styles.infoValue}>{trip.country.country}</p>
-          </div>
-        </Card>
+        <TripInfoCard Icon={Globe} label="País">
+          {trip.country.country}
+        </TripInfoCard>
 
-        <Card
-          padding="sm"
-          shadow="none"
-          background="dark"
-          maxWidth="none"
-          border={false}
-          className={styles.infoCard}
-        >
-          <Calendar className={styles.infoIcon} aria-hidden="true" />
-          <div>
-            <p className={styles.infoLabel}>Período</p>
-            <p className={styles.infoValue}>
-              {trip.startDate} - {trip.endDate} ({duration} dias)
-            </p>
-          </div>
-        </Card>
+        <TripInfoCard Icon={MapIcon} label="Continente">
+          {trip.country.continent || 'Não especificado'}
+        </TripInfoCard>
 
-        <Card
-          padding="sm"
-          shadow="none"
-          background="dark"
-          maxWidth="none"
-          border={false}
-          className={styles.infoCard}
-        >
-          <MapPin className={styles.infoIcon} aria-hidden="true" />
-          <div>
-            <p className={styles.infoLabel}>Ponto de Referência</p>
-            <p className={styles.infoValue}>
-              {trip.description || 'Não especificado'}
-            </p>
-          </div>
-        </Card>
+        <TripInfoCard Icon={Globe} label="Idioma">
+          {trip.country.language?.join(', ') || 'Não especificado'}
+        </TripInfoCard>
+
+        <TripInfoCard Icon={DollarSign} label="Moeda (Local)">
+          {trip.country.currency_name_pt || 'Não especificado'}
+        </TripInfoCard>
+
+        <TripInfoCard Icon={Calendar} label="Período">
+          {trip.startDate} - {trip.endDate}
+        </TripInfoCard>
+
+        <TripInfoCard Icon={TimerIcon} label="Duração">
+          {duration} dias
+        </TripInfoCard>
+
       </div>
 
       {/* Content Tabs */}

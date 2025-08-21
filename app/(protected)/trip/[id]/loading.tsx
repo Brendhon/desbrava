@@ -43,6 +43,33 @@ export default function TripDetailsLoading() {
         </div>
       </div>
 
+      {/* Trip Info Cards Skeleton */}
+      <div className={styles.infoGrid}>
+        <div className={styles.infoCard}>
+          <div className={styles.infoIcon} />
+          <div className={styles.infoContent}>
+            <LoadingSkeleton className={styles.infoLabel} />
+            <LoadingSkeleton className={styles.infoValue} />
+          </div>
+        </div>
+
+        <div className={styles.infoCard}>
+          <div className={styles.infoIcon} />
+          <div className={styles.infoContent}>
+            <LoadingSkeleton className={styles.infoLabel} />
+            <LoadingSkeleton className={styles.infoValue} />
+          </div>
+        </div>
+
+        <div className={styles.infoCard}>
+          <div className={styles.infoIcon} />
+          <div className={styles.infoContent}>
+            <LoadingSkeleton className={styles.infoLabel} />
+            <LoadingSkeleton className={styles.infoValue} />
+          </div>
+        </div>
+      </div>
+
       {/* Content Area Skeleton */}
       <div className={styles.card}>
         <LoadingSkeleton className={styles.content} />
