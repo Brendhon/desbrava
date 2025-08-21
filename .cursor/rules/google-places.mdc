@@ -1,0 +1,5 @@
+---
+alwaysApply: false
+description: Google Places API usage guidelines
+---
+@docs/guidelines/google-places-api.md
