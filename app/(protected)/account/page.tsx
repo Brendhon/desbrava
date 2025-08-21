@@ -4,6 +4,7 @@ import { PageHeader } from '@/components/layout';
 import { DangerZone } from '@/components/settings';
 import { Button, Card } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
+import { DashboardRoutes } from '@/lib/types';
 import { Calendar, ExternalLink, Shield, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -53,7 +54,7 @@ export default function AccountPage() {
     <div className={styles.container}>
       {/* Header */}
       <PageHeader
-        backHref="/dashboard"
+        backHref={DashboardRoutes.dashboard()}
         backText="Voltar ao Dashboard"
         backAriaLabel="Voltar ao Dashboard"
         title="Configurações da Conta"

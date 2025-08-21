@@ -5,6 +5,7 @@ import { Separator } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
 import { useTrips } from '@/hooks/useTrips';
+import { TripRoutes } from '@/lib/types';
 import { Filter, Plus } from 'lucide-react';
 import { Session } from 'next-auth';
 import Link from 'next/link';
@@ -51,7 +52,7 @@ const Actions = ({
         {showFilters ? 'Ocultar Filtros' : 'Mostrar Filtros'}
       </Button>
 
-      <Link href="/trip/create" aria-label="Criar nova viagem">
+      <Link href={TripRoutes.create()} aria-label="Criar nova viagem">
         <Button variant="primary" icon={Plus}>
           Nova Viagem
         </Button>

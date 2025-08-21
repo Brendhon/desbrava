@@ -89,7 +89,7 @@ export async function createTripAction(formData: FormData) {
     await createTripInFirestore({ title, user: session.user.id });
 
     // C. Revalidate the cache on success
-    revalidatePath('/dashboard');
+    revalidatePath(DashboardRoutes.dashboard());
     return { success: true };
   } catch (error) {
     // D. Return a user-friendly error
@@ -108,6 +108,7 @@ This form calls the Server Action and handles the response.
 
 import { useState } from 'react';
 import { createTripAction } from '@/app/trips/actions';
+import { DashboardRoutes } from '@/lib/types';
 
 export function CreateTripForm() {
   const [error, setError] = useState<string | null>(null);

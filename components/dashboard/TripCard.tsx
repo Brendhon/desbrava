@@ -1,6 +1,7 @@
 'use client';
 
 import { Button, Card } from '@/components/ui';
+import { TripRoutes } from '@/lib/types';
 import { Trip } from '@/lib/types/trip';
 import {
   calculateTripDuration,
@@ -71,7 +72,7 @@ const Footer = ({ trip }: { trip: Trip }) => {
   return (
     <div className={styles.footer}>
       <Link
-        href={`/trip/${trip.id}`}
+        href={TripRoutes.details(trip.id)}
         aria-label={`Ver detalhes da viagem ${trip.name}`}
       >
         <Button variant="primary" size="sm">

@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui';
+import { AccountRoutes } from '@/lib/types';
 import { ChevronDown, LogOut, Settings, User } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
@@ -117,7 +118,7 @@ export default function UserMenu({ className = '' }: UserMenuProps) {
           <div className={styles.dropdownDivider} />
 
           <Link
-            href="/account"
+            href={AccountRoutes.account()}
             className={styles.dropdownLink}
             onClick={() => setIsOpen(false)}
             aria-label="Configurações da conta"

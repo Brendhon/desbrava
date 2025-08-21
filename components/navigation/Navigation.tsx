@@ -1,6 +1,7 @@
 'use client';
 
 import { UserMenu } from '@/components/navigation';
+import { DashboardRoutes } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -10,7 +11,7 @@ export default function Navigation() {
       <div className={styles.container}>
         <div className={styles.navContent}>
           {/* Logo */}
-          <Link href="/dashboard" className={styles.logo}>
+          <Link href={DashboardRoutes.dashboard()} className={styles.logo}>
             <Image
               src="/images/logo.png"
               alt="Desbrava"

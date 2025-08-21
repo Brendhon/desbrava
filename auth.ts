@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
+import { DashboardRoutes, HomeRoutes } from './lib/types';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -9,14 +10,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   pages: {
-    signIn: '/',
+    signIn: HomeRoutes.home(),
   },
   callbacks: {
     async redirect({ url, baseUrl }) {
       // Redireciona para dashboard após login bem-sucedido
-      if (url.startsWith(baseUrl)) return `${baseUrl}/dashboard`;
+      if (url.startsWith(baseUrl))
+        return `${baseUrl}${DashboardRoutes.dashboard()}`;
       // Permite redirecionamentos externos (Google OAuth)
-      else if (url.startsWith('/')) return `${baseUrl}${url}`;
+      else if (url.startsWith(HomeRoutes.home())) return `${baseUrl}${url}`;
       return baseUrl;
     },
   },

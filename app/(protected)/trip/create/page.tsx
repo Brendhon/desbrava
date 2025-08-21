@@ -7,6 +7,7 @@ import { useCountries } from '@/hooks/useCountries';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
 import { CreateTripFormData } from '@/lib/schemas/trip';
+import { DashboardRoutes } from '@/lib/types';
 import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
@@ -40,7 +41,7 @@ export default function CreateTripPage() {
 
         // Redirect to dashboard after 2 seconds
         setTimeout(() => {
-          router.push('/dashboard');
+          router.push(DashboardRoutes.dashboard());
         }, 2000);
       } else {
         showErrorToast(
@@ -61,7 +62,7 @@ export default function CreateTripPage() {
     <div className={styles.container}>
       {/* Header */}
       <PageHeader
-        backHref="/dashboard"
+        backHref={DashboardRoutes.dashboard()}
         backText="Voltar ao Dashboard"
         backAriaLabel="Voltar ao Dashboard"
         title="Criar Nova Viagem"

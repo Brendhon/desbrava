@@ -23,6 +23,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import TripDetailsLoading from './loading';
+import { DashboardRoutes, TripRoutes } from '@/lib/types';
 
 const TripInfoCard = ({
   Icon,
@@ -104,7 +105,7 @@ export default function TripDetailsPage() {
   if (error) {
     return (
       <ErrorPage
-        backHref="/dashboard"
+        backHref={DashboardRoutes.dashboard()}
         backText="Voltar ao Dashboard"
         backAriaLabel="Voltar ao Dashboard"
         title="Erro ao Carregar Viagem"
@@ -124,7 +125,7 @@ export default function TripDetailsPage() {
       <div className={styles.headerContainer}>
         {/* Header */}
         <PageHeader
-          backHref="/dashboard"
+          backHref={DashboardRoutes.dashboard()}
           backText="Voltar ao Dashboard"
           backAriaLabel="Voltar ao Dashboard"
           title={trip.name}
@@ -132,7 +133,7 @@ export default function TripDetailsPage() {
         />
 
         <Link
-          href={`/trip/${tripId}/settings`}
+          href={TripRoutes.settings(tripId)}
           className={styles.settingsLink}
           aria-label="Configurações da viagem"
         >

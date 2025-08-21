@@ -8,6 +8,7 @@ import { Card } from '@/components/ui';
 import { useCountries } from '@/hooks/useCountries';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
+import { DashboardRoutes, TripRoutes } from '@/lib/types';
 import { TripSettingsFormData } from '@/lib/schemas/trip';
 import { Save, Trash2 } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
@@ -162,7 +163,7 @@ export default function TripSettingsPage() {
         );
 
         // Redirect to dashboard after 2 seconds
-        setTimeout(() => router.push('/dashboard'), 2000);
+        setTimeout(() => router.push(DashboardRoutes.dashboard()), 2000);
       } else {
         handleError(
           'Erro ao excluir viagem',
@@ -181,7 +182,7 @@ export default function TripSettingsPage() {
   }, [tripId, deleteTrip, clearError, handleSuccess, handleError, router]);
 
   // Memoize back href to prevent unnecessary re-renders
-  const backHref = useMemo(() => `/trip/${tripId}`, [tripId]);
+  const backHref = useMemo(() => TripRoutes.details(tripId), [tripId]);
 
   // Show loading while fetching trip data
   if (isLoadingTrip) return <TripSettingsLoading />;
