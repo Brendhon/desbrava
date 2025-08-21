@@ -12,7 +12,7 @@ Este guia explica como configurar e manter a funcionalidade PWA (Progressive Web
 - Controla notificações push
 - Atualiza recursos automaticamente
 
-### 2. Manifest (`public/manifest.json`)
+### 2. Manifest (`app/manifest.json`)
 
 - Configuração da aplicação PWA
 - Metadados para instalação
@@ -114,7 +114,7 @@ npm run dev
 
 ### Atualizar Manifest
 
-1. Modifique `public/manifest.json`
+1. Modifique `app/manifest.json`
 2. Verifique metadados
 3. Teste instalação
 4. Deploy para produção
@@ -135,7 +135,7 @@ npm run dev
 
 ### Manifest Não Carrega
 
-- Confirme rota `/manifest.json`
+- Confirme rota `app/manifest.json`
 - Verifique metadados no layout
 - Teste com DevTools
 

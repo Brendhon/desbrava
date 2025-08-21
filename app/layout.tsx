@@ -15,7 +15,6 @@ export const metadata: Metadata = {
   title: 'Desbrava',
   description:
     'Desbrava - Seu planejador de viagens pessoal. Agora disponível como PWA para uma experiência offline e app-like!',
-  manifest: '/manifest.json',
   authors: [
     {
       name: 'Brendhon Moreira',
@@ -52,12 +51,13 @@ export const metadata: Metadata = {
     statusBarStyle: 'black-translucent',
     capable: true,
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
