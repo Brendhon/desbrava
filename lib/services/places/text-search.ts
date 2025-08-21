@@ -6,13 +6,9 @@ import {
   PlacesApiError,
   PlaceTextSearchRequest,
   PlaceTextSearchResponse,
-  PlaceType
+  PlaceType,
 } from '@/lib/types';
-import {
-  makePlacesRequest,
-  validateLocation,
-  validateRadius
-} from './base';
+import { makePlacesRequest, validateLocation, validateRadius } from './base';
 
 export interface TextSearchOptions {
   query: string;
@@ -31,8 +27,18 @@ export interface TextSearchOptions {
 /**
  * Search for places using text queries
  */
-export async function searchPlacesByText(options: TextSearchOptions): Promise<PlaceTextSearchResponse> {
-  const { query, latitude, longitude, radius = 10000, types, maxResults = 20, config } = options;
+export async function searchPlacesByText(
+  options: TextSearchOptions
+): Promise<PlaceTextSearchResponse> {
+  const {
+    query,
+    latitude,
+    longitude,
+    radius = 10000,
+    types,
+    maxResults = 20,
+    config,
+  } = options;
 
   if (!query || query.trim().length === 0) {
     throw new Error('Search query is required');
@@ -51,12 +57,12 @@ export async function searchPlacesByText(options: TextSearchOptions): Promise<Pl
   if (latitude !== undefined && longitude !== undefined) {
     validateLocation(latitude, longitude);
     validateRadius(radius);
-    
+
     request.locationBias = {
       circle: {
         center: { latitude, longitude },
-        radius
-      }
+        radius,
+      },
     };
   }
 
@@ -71,7 +77,7 @@ export async function searchPlacesByText(options: TextSearchOptions): Promise<Pl
       config,
       {
         method: 'POST',
-        body: JSON.stringify(request)
+        body: JSON.stringify(request),
       }
     );
   } catch (error) {
@@ -94,7 +100,7 @@ export async function searchHotelsByText(
   longitude?: number,
   radius: number = 10000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
     query,
@@ -103,7 +109,7 @@ export async function searchHotelsByText(
     radius,
     types: [PLACE_TYPES.LODGING],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -116,7 +122,7 @@ export async function searchRestaurantsByText(
   longitude?: number,
   radius: number = 5000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
     query,
@@ -127,10 +133,10 @@ export async function searchRestaurantsByText(
       PLACE_TYPES.RESTAURANT,
       PLACE_TYPES.CAFE,
       PLACE_TYPES.BAR,
-      PLACE_TYPES.BAKERY
+      PLACE_TYPES.BAKERY,
     ],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -143,7 +149,7 @@ export async function searchAttractionsByText(
   longitude?: number,
   radius: number = 10000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
     query,
@@ -157,10 +163,10 @@ export async function searchAttractionsByText(
       PLACE_TYPES.PARK,
       PLACE_TYPES.AMUSEMENT_PARK,
       PLACE_TYPES.AQUARIUM,
-      PLACE_TYPES.ZOO
+      PLACE_TYPES.ZOO,
     ],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -173,7 +179,7 @@ export async function searchTransportationByText(
   longitude?: number,
   radius: number = 10000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
     query,
@@ -184,10 +190,10 @@ export async function searchTransportationByText(
       PLACE_TYPES.AIRPORT,
       PLACE_TYPES.TRAIN_STATION,
       PLACE_TYPES.BUS_STATION,
-      PLACE_TYPES.SUBWAY_STATION
+      PLACE_TYPES.SUBWAY_STATION,
     ],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -200,7 +206,7 @@ export async function searchAnyPlaceByText(
   longitude?: number,
   radius: number = 10000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
     query,
@@ -208,6 +214,6 @@ export async function searchAnyPlaceByText(
     longitude,
     radius,
     maxResults,
-    config
+    config,
   });
 }

@@ -6,13 +6,9 @@ import {
   PlaceNearbySearchRequest,
   PlaceNearbySearchResponse,
   PlacesApiError,
-  PlaceType
+  PlaceType,
 } from '@/lib/types';
-import {
-  makePlacesRequest,
-  validateLocation,
-  validateRadius
-} from './base';
+import { makePlacesRequest, validateLocation, validateRadius } from './base';
 
 export interface NearbySearchOptions {
   latitude: number;
@@ -31,8 +27,18 @@ export interface NearbySearchOptions {
 /**
  * Search for places near a specific location
  */
-export async function searchNearbyPlaces(options: NearbySearchOptions): Promise<PlaceNearbySearchResponse> {
-  const { latitude, longitude, radius, types, maxResults = 20, rankByDistance = false, config } = options;
+export async function searchNearbyPlaces(
+  options: NearbySearchOptions
+): Promise<PlaceNearbySearchResponse> {
+  const {
+    latitude,
+    longitude,
+    radius,
+    types,
+    maxResults = 20,
+    rankByDistance = false,
+    config,
+  } = options;
 
   validateLocation(latitude, longitude);
   validateRadius(radius);
@@ -47,10 +53,10 @@ export async function searchNearbyPlaces(options: NearbySearchOptions): Promise<
     locationRestriction: {
       circle: {
         center: { latitude, longitude },
-        radius
-      }
+        radius,
+      },
     },
-    rankPreference: rankByDistance ? 'DISTANCE' : 'RELEVANCE'
+    rankPreference: rankByDistance ? 'DISTANCE' : 'RELEVANCE',
   };
 
   try {
@@ -59,7 +65,7 @@ export async function searchNearbyPlaces(options: NearbySearchOptions): Promise<
       config,
       {
         method: 'POST',
-        body: JSON.stringify(request)
+        body: JSON.stringify(request),
       }
     );
   } catch (error) {
@@ -81,7 +87,7 @@ export async function findNearbyHotels(
   longitude: number,
   radius: number = 5000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceNearbySearchResponse> {
   return searchNearbyPlaces({
     latitude,
@@ -89,7 +95,7 @@ export async function findNearbyHotels(
     radius,
     types: [PLACE_TYPES.LODGING],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -101,7 +107,7 @@ export async function findNearbyRestaurants(
   longitude: number,
   radius: number = 3000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceNearbySearchResponse> {
   return searchNearbyPlaces({
     latitude,
@@ -111,10 +117,10 @@ export async function findNearbyRestaurants(
       PLACE_TYPES.RESTAURANT,
       PLACE_TYPES.CAFE,
       PLACE_TYPES.BAR,
-      PLACE_TYPES.BAKERY
+      PLACE_TYPES.BAKERY,
     ],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -126,7 +132,7 @@ export async function findNearbyAttractions(
   longitude: number,
   radius: number = 10000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceNearbySearchResponse> {
   return searchNearbyPlaces({
     latitude,
@@ -139,10 +145,10 @@ export async function findNearbyAttractions(
       PLACE_TYPES.PARK,
       PLACE_TYPES.AMUSEMENT_PARK,
       PLACE_TYPES.AQUARIUM,
-      PLACE_TYPES.ZOO
+      PLACE_TYPES.ZOO,
     ],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -154,7 +160,7 @@ export async function findNearbyTransportation(
   longitude: number,
   radius: number = 5000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceNearbySearchResponse> {
   return searchNearbyPlaces({
     latitude,
@@ -164,10 +170,10 @@ export async function findNearbyTransportation(
       PLACE_TYPES.AIRPORT,
       PLACE_TYPES.TRAIN_STATION,
       PLACE_TYPES.BUS_STATION,
-      PLACE_TYPES.SUBWAY_STATION
+      PLACE_TYPES.SUBWAY_STATION,
     ],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -179,7 +185,7 @@ export async function findAllNearbyPlaces(
   longitude: number,
   radius: number = 5000,
   maxResults: number = 20,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceNearbySearchResponse> {
   return searchNearbyPlaces({
     latitude,
@@ -189,9 +195,9 @@ export async function findAllNearbyPlaces(
       PLACE_TYPES.LODGING,
       PLACE_TYPES.RESTAURANT,
       PLACE_TYPES.TOURIST_ATTRACTION,
-      PLACE_TYPES.PARK
+      PLACE_TYPES.PARK,
     ],
     maxResults,
-    config
+    config,
   });
 }

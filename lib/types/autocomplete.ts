@@ -1,4 +1,4 @@
-import { PlaceType } from "./places";
+import { PlaceType } from './places';
 
 export interface AutocompleteOptions {
   input: string;

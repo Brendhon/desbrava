@@ -114,7 +114,6 @@ export interface PlacesApiConfig {
   timeout?: number;
 }
 
-
 export interface Place {
   id: string;
   displayName: PlaceDisplayName;
@@ -126,7 +125,12 @@ export interface Place {
   photos?: PlacePhoto[];
   websiteUri?: string;
   types: string[];
-  priceLevel?: 'FREE' | 'INEXPENSIVE' | 'MODERATE' | 'EXPENSIVE' | 'VERY_EXPENSIVE';
+  priceLevel?:
+    | 'FREE'
+    | 'INEXPENSIVE'
+    | 'MODERATE'
+    | 'EXPENSIVE'
+    | 'VERY_EXPENSIVE';
   businessStatus?: 'OPERATIONAL' | 'CLOSED_TEMPORARILY' | 'CLOSED_PERMANENTLY';
 }
 
@@ -171,14 +175,14 @@ export const PLACE_TYPES = {
   LODGING: 'lodging',
   CAMPGROUND: 'campground',
   RV_PARK: 'rv_park',
-  
+
   // Food & Beverage
   RESTAURANT: 'restaurant',
   CAFE: 'cafe',
   BAR: 'bar',
   BAKERY: 'bakery',
   MEAL_TAKEAWAY: 'meal_takeaway',
-  
+
   // Tourist Attractions
   TOURIST_ATTRACTION: 'tourist_attraction',
   MUSEUM: 'museum',
@@ -187,17 +191,17 @@ export const PLACE_TYPES = {
   AQUARIUM: 'aquarium',
   ZOO: 'zoo',
   PARK: 'park',
-  
+
   // Transportation
   AIRPORT: 'airport',
   TRAIN_STATION: 'train_station',
   BUS_STATION: 'bus_station',
   SUBWAY_STATION: 'subway_station',
-  
+
   // Cities and Regions
   CITIES: '(cities)',
   REGIONS: '(regions)',
-  COUNTRIES: '(countries)'
+  COUNTRIES: '(countries)',
 } as const;
 
-export type PlaceType = typeof PLACE_TYPES[keyof typeof PLACE_TYPES];
+export type PlaceType = (typeof PLACE_TYPES)[keyof typeof PLACE_TYPES];

@@ -5,20 +5,27 @@ import {
   AutocompleteOptions,
   PLACE_TYPES,
   PlaceAutocompleteRequest,
-  PlaceAutocompleteResponse
+  PlaceAutocompleteResponse,
 } from '@/lib/types';
-import {
-  makePlacesRequest,
-  validateLocation,
-  validateRadius
-} from './base';
+import { makePlacesRequest, validateLocation, validateRadius } from './base';
 import { PlacesApiError } from '@/lib/types';
 
 /**
  * Get place suggestions for autocomplete
  */
-export async function getPlaceSuggestions(options: AutocompleteOptions): Promise<PlaceAutocompleteResponse> {
-  const { input, latitude, longitude, radius = 50000, types, maxResults = 20, sessionToken, config } = options;
+export async function getPlaceSuggestions(
+  options: AutocompleteOptions
+): Promise<PlaceAutocompleteResponse> {
+  const {
+    input,
+    latitude,
+    longitude,
+    radius = 50000,
+    types,
+    maxResults = 20,
+    sessionToken,
+    config,
+  } = options;
 
   if (!input || input.trim().length === 0) {
     throw new Error('Input text is required');
@@ -37,12 +44,12 @@ export async function getPlaceSuggestions(options: AutocompleteOptions): Promise
   if (latitude !== undefined && longitude !== undefined) {
     validateLocation(latitude, longitude);
     validateRadius(radius);
-    
+
     request.locationBias = {
       circle: {
         center: { latitude, longitude },
-        radius
-      }
+        radius,
+      },
     };
   }
 
@@ -62,7 +69,7 @@ export async function getPlaceSuggestions(options: AutocompleteOptions): Promise
       config,
       {
         method: 'POST',
-        body: JSON.stringify(request)
+        body: JSON.stringify(request),
       }
     );
   } catch (error) {
@@ -80,15 +87,15 @@ export async function getPlaceSuggestions(options: AutocompleteOptions): Promise
  * Get destination suggestions (cities, countries, regions)
  */
 export async function getDestinationSuggestions(
-  input: string, 
+  input: string,
   maxResults: number = 10,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceAutocompleteResponse> {
   return getPlaceSuggestions({
     input,
     types: [PLACE_TYPES.CITIES, PLACE_TYPES.REGIONS, PLACE_TYPES.COUNTRIES],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -101,7 +108,7 @@ export async function getHotelSuggestions(
   longitude?: number,
   radius: number = 50000,
   maxResults: number = 10,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceAutocompleteResponse> {
   return getPlaceSuggestions({
     input,
@@ -110,7 +117,7 @@ export async function getHotelSuggestions(
     radius,
     types: [PLACE_TYPES.LODGING],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -123,7 +130,7 @@ export async function getRestaurantSuggestions(
   longitude?: number,
   radius: number = 5000,
   maxResults: number = 10,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceAutocompleteResponse> {
   return getPlaceSuggestions({
     input,
@@ -132,7 +139,7 @@ export async function getRestaurantSuggestions(
     radius,
     types: [PLACE_TYPES.RESTAURANT, PLACE_TYPES.CAFE, PLACE_TYPES.BAR],
     maxResults,
-    config
+    config,
   });
 }
 
@@ -145,7 +152,7 @@ export async function getTouristAttractionSuggestions(
   longitude?: number,
   radius: number = 10000,
   maxResults: number = 10,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceAutocompleteResponse> {
   return getPlaceSuggestions({
     input,
@@ -156,10 +163,10 @@ export async function getTouristAttractionSuggestions(
       PLACE_TYPES.TOURIST_ATTRACTION,
       PLACE_TYPES.MUSEUM,
       PLACE_TYPES.PARK,
-      PLACE_TYPES.AMUSEMENT_PARK
+      PLACE_TYPES.AMUSEMENT_PARK,
     ],
     maxResults,
-    config
+    config,
   });
 }
 

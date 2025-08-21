@@ -2,21 +2,20 @@
 // Handles retrieving detailed information about specific places
 
 import {
-  PlaceDetailsOptions, 
+  PlaceDetailsOptions,
   PlaceDetailsRequest,
-  PlaceDetailsResponse, 
-  PlacesApiError
+  PlaceDetailsResponse,
+  PlacesApiError,
 } from '@/lib/types';
 import { DEFAULT_FIELDS, EXTENDED_FIELDS } from '@/lib/utils';
-import {
-  createFieldMask,
-  makePlacesRequest
-} from './base';
+import { createFieldMask, makePlacesRequest } from './base';
 
 /**
  * Get detailed information about a specific place
  */
-export async function getPlaceDetails(options: PlaceDetailsOptions): Promise<PlaceDetailsResponse> {
+export async function getPlaceDetails(
+  options: PlaceDetailsOptions
+): Promise<PlaceDetailsResponse> {
   const { placeId, fields, config } = options;
 
   if (!placeId || placeId.trim().length === 0) {
@@ -25,7 +24,7 @@ export async function getPlaceDetails(options: PlaceDetailsOptions): Promise<Pla
 
   const request: PlaceDetailsRequest = {
     placeId: placeId.trim(),
-    fields: fields || DEFAULT_FIELDS
+    fields: fields || DEFAULT_FIELDS,
   };
 
   try {
@@ -35,8 +34,8 @@ export async function getPlaceDetails(options: PlaceDetailsOptions): Promise<Pla
       {
         method: 'GET',
         headers: {
-          'X-Goog-FieldMask': createFieldMask(request.fields!)
-        }
+          'X-Goog-FieldMask': createFieldMask(request.fields!),
+        },
       }
     );
 
@@ -57,12 +56,12 @@ export async function getPlaceDetails(options: PlaceDetailsOptions): Promise<Pla
  */
 export async function getBasicPlaceDetails(
   placeId: string,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceDetailsResponse> {
   return getPlaceDetails({
     placeId,
     fields: DEFAULT_FIELDS,
-    config
+    config,
   });
 }
 
@@ -71,12 +70,12 @@ export async function getBasicPlaceDetails(
  */
 export async function getExtendedPlaceDetails(
   placeId: string,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceDetailsResponse> {
   return getPlaceDetails({
     placeId,
     fields: EXTENDED_FIELDS,
-    config
+    config,
   });
 }
 
@@ -85,7 +84,7 @@ export async function getExtendedPlaceDetails(
  */
 export async function getHotelDetails(
   placeId: string,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceDetailsResponse> {
   const hotelFields = [
     'places.displayName',
@@ -98,13 +97,13 @@ export async function getHotelDetails(
     'places.websiteUri',
     'places.types',
     'places.priceLevel',
-    'places.businessStatus'
+    'places.businessStatus',
   ];
 
   return getPlaceDetails({
     placeId,
     fields: hotelFields,
-    config
+    config,
   });
 }
 
@@ -113,7 +112,7 @@ export async function getHotelDetails(
  */
 export async function getRestaurantDetails(
   placeId: string,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceDetailsResponse> {
   const restaurantFields = [
     'places.displayName',
@@ -126,13 +125,13 @@ export async function getRestaurantDetails(
     'places.websiteUri',
     'places.types',
     'places.priceLevel',
-    'places.businessStatus'
+    'places.businessStatus',
   ];
 
   return getPlaceDetails({
     placeId,
     fields: restaurantFields,
-    config
+    config,
   });
 }
 
@@ -141,7 +140,7 @@ export async function getRestaurantDetails(
  */
 export async function getAttractionDetails(
   placeId: string,
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceDetailsResponse> {
   const attractionFields = [
     'places.displayName',
@@ -154,13 +153,13 @@ export async function getAttractionDetails(
     'places.websiteUri',
     'places.types',
     'places.businessStatus',
-    'places.editorialSummary'
+    'places.editorialSummary',
   ];
 
   return getPlaceDetails({
     placeId,
     fields: attractionFields,
-    config
+    config,
   });
 }
 
@@ -169,7 +168,7 @@ export async function getAttractionDetails(
  */
 export async function getMultiplePlaceDetails(
   placeIds: string[],
-  config?: { baseUrl?: string; apiKey?: string; timeout?: number; }
+  config?: { baseUrl?: string; apiKey?: string; timeout?: number }
 ): Promise<PlaceDetailsResponse[]> {
   if (!placeIds || placeIds.length === 0) {
     throw new Error('At least one place ID is required');
@@ -179,7 +178,7 @@ export async function getMultiplePlaceDetails(
     throw new Error('Cannot fetch more than 10 places at once');
   }
 
-  const promises = placeIds.map(placeId => 
+  const promises = placeIds.map((placeId) =>
     getBasicPlaceDetails(placeId, config)
   );
 

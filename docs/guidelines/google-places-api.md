@@ -8,12 +8,12 @@ Import the necessary functions from `@/lib/services`:
 
 ```typescript
 // Import specific functions
-import { 
+import {
   getDestinationSuggestions,
   findNearbyHotels,
   searchRestaurantsByText,
   getPlaceDetails,
-  generateSessionToken
+  generateSessionToken,
 } from '@/lib/services';
 
 // Or import the entire module
@@ -50,14 +50,14 @@ const nearbyRestaurants = await findNearbyRestaurants(
 );
 
 // Find nearby tourist attractions
-const attractions = await findNearbyAttractions(
-  -22.9068,
-  -43.1729,
-  10000
-);
+const attractions = await findNearbyAttractions(-22.9068, -43.1729, 10000);
 
 // Search for restaurants by a text query
-const restaurants = await searchRestaurantsByText('italian pizza', -22.9068, -43.1729);
+const restaurants = await searchRestaurantsByText(
+  'italian pizza',
+  -22.9068,
+  -43.1729
+);
 
 // Search for hotels by a text query
 const hotels = await searchHotelsByText(
@@ -90,7 +90,7 @@ const hotelDetails = await getHotelDetails('place_id_here');
 const multipleDetails = await getMultiplePlaceDetails([
   'place_id_1',
   'place_id_2',
-  'place_id_3'
+  'place_id_3',
 ]);
 ```
 
@@ -139,9 +139,9 @@ export function DestinationSearch() {
         }}
         placeholder="Enter a destination..."
       />
-      
+
       {loading && <div>Searching...</div>}
-      
+
       <ul>
         {suggestions.map((suggestion, index) => (
           <li key={index}>
@@ -162,13 +162,13 @@ import { findNearbyHotels } from '@/lib/services';
 export async function findHotelsNearDestination(lat: number, lng: number) {
   try {
     const hotels = await findNearbyHotels(lat, lng, 5000, 20);
-    
-    return hotels.places.map(hotel => ({
+
+    return hotels.places.map((hotel) => ({
       id: hotel.id,
       name: hotel.displayName.text,
       address: hotel.formattedAddress,
       rating: hotel.rating,
-      location: hotel.location
+      location: hotel.location,
     }));
   } catch (error) {
     console.error('Error fetching hotels:', error);
@@ -182,13 +182,13 @@ export async function findHotelsNearDestination(lat: number, lng: number) {
 Helper functions are available to format data, calculate distances, and sort results.
 
 ```typescript
-import { 
+import {
   formatPlaceName,
   formatPlaceAddress,
   formatPlaceRating,
   getPrimaryPlaceType,
   calculateDistance,
-  sortPlacesByDistance
+  sortPlacesByDistance,
 } from '@/lib/utils';
 
 // Format place name
@@ -222,7 +222,7 @@ try {
 } catch (error) {
   if (error instanceof PlacesApiError) {
     console.error(`API Error: ${error.message} (Status: ${error.status})`);
-    
+
     if (error.status === 429) {
       // Rate limit exceeded
       console.log('Too many requests. Please wait a moment.');
@@ -247,12 +247,12 @@ const sessionToken = generateSessionToken();
 
 const suggestions1 = await getPlaceSuggestions({
   input: 'Rio',
-  sessionToken
+  sessionToken,
 });
 
 const suggestions2 = await getPlaceSuggestions({
   input: 'Rio de',
-  sessionToken
+  sessionToken,
 });
 ```
 
@@ -267,7 +267,7 @@ async function getCachedPlaceDetails(placeId: string) {
   if (cache.has(placeId)) {
     return cache.get(placeId);
   }
-  
+
   const details = await getPlaceDetails(placeId);
   cache.set(placeId, details);
   return details;
@@ -285,7 +285,7 @@ import { getDestinationSuggestions } from '@/lib/services';
 
 const config = {
   timeout: 15000, // 15 seconds
-  baseUrl: 'https://places.googleapis.com/v1' // Custom URL
+  baseUrl: 'https://places.googleapis.com/v1', // Custom URL
 };
 
 const results = await getDestinationSuggestions('Rio', 10, config);

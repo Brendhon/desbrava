@@ -1,7 +1,7 @@
 // Base utilities for Google Places API
 // This module provides common functionality and configuration
 
-import { PlacesApiConfig, PlacesApiError } from "@/lib/types";
+import { PlacesApiConfig, PlacesApiError } from '@/lib/types';
 
 const GOOGLE_PLACES_API_BASE = 'https://places.googleapis.com/v1';
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
@@ -9,7 +9,6 @@ const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
 if (!API_KEY) {
   throw new Error('NEXT_PUBLIC_GOOGLE_PLACES_API_KEY is not configured');
 }
-
 
 /**
  * Make a request to the Google Places API
@@ -22,9 +21,9 @@ export async function makePlacesRequest<T>(
   const baseUrl = config.baseUrl || GOOGLE_PLACES_API_BASE;
   const apiKey = config.apiKey || API_KEY!;
   const timeout = config.timeout || 10000;
-  
+
   const url = `${baseUrl}${endpoint}`;
-  
+
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeout);
 
@@ -53,15 +52,15 @@ export async function makePlacesRequest<T>(
     return await response.json();
   } catch (error) {
     clearTimeout(timeoutId);
-    
+
     if (error instanceof PlacesApiError) {
       throw error;
     }
-    
+
     if (error instanceof Error && error.name === 'AbortError') {
       throw new PlacesApiError('Request timeout', 408);
     }
-    
+
     throw new PlacesApiError(
       error instanceof Error ? error.message : 'Unknown error',
       500
