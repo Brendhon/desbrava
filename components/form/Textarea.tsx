@@ -30,11 +30,11 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     ref
   ) => {
     const textareaId = useMemo(
-      () => id || `textarea-${Math.random().toString(36).substr(2, 9)}`,
+      () => id || `textarea-${Math.random().toString(36).slice(2, 11)}`,
       [id]
     );
 
-    const styles = useFormStyles({
+    const inputStyles = useFormStyles({
       size,
       variant,
       hasIcon: false,
@@ -44,9 +44,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     });
 
     return (
-      <div className="w-full">
+      <div className={styles.container}>
         {label && (
-          <label htmlFor={textareaId} className="form-label">
+          <label htmlFor={textareaId} className={styles.label}>
             {label}
           </label>
         )}
@@ -54,19 +54,19 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           id={textareaId}
           ref={register ? register.ref : ref}
-          className={styles.input}
+          className={inputStyles.input}
           {...register}
           {...props}
         />
 
         {error && (
-          <p className="form-error" role="alert">
+          <p className={styles.error} role="alert">
             {error}
           </p>
         )}
 
         {helperText && !error && (
-          <p className="form-helper-text">{helperText}</p>
+          <p className={styles.helperText}>{helperText}</p>
         )}
       </div>
     );
@@ -76,3 +76,10 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 Textarea.displayName = 'Textarea';
 
 export default Textarea;
+
+const styles = {
+  container: 'w-full',
+  label: 'form-label',
+  helperText: 'form-helper-text',
+  error: 'form-error',
+}

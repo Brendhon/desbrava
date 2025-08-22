@@ -1,6 +1,6 @@
 'use client';
 
-import { Input, Select } from '@/components/form';
+import { Input } from '@/components/form';
 import { Card } from '@/components/ui';
 import { ActivityTypeKey } from '@/lib/types/activity';
 import { Calendar, Clock, TimerIcon } from 'lucide-react';

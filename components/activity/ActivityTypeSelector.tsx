@@ -3,7 +3,6 @@
 import { Button, Card } from '@/components/ui';
 import { ACTIVITY_TYPE_INFO, ACTIVITY_TYPE_OPTIONS, type ActivityTypeKey } from '@/lib/types/activity';
 import { useState } from 'react';
-import { ArrowRightIcon } from 'lucide-react';
 
 interface ActivityTypeSelectorProps {
   selectedType: ActivityTypeKey | '';

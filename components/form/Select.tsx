@@ -1,7 +1,7 @@
 import { InputWithIcon } from '@/components/form';
 import { useFormStyles } from '@/hooks/useFormStyles';
 import { SelectOption } from '@/lib/types';
-import { ChevronDown, LucideIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import { forwardRef, ReactNode, SelectHTMLAttributes, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
@@ -47,7 +47,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     );
 
     // Use custom hook for styles
-    const styles = useFormStyles({
+    const inputStyles = useFormStyles({
       size,
       variant,
       hasIcon: !!Icon,
@@ -56,19 +56,10 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
       error,
     });
 
-    // Memoized dropdown icon styles
-    const dropdownIconStyles = useMemo(() => {
-      return [
-        'form-select-dropdown-icon',
-        `form-select-dropdown-icon-${size}`,
-        'pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-mist-gray',
-      ].join(' ');
-    }, [size]);
-
     return (
-      <div className="w-full">
+      <div className={styles.container}>
         {label && (
-          <label htmlFor={selectId} className="form-label">
+          <label htmlFor={selectId} className={styles.label}>
             {label}
           </label>
         )}
@@ -84,7 +75,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           <select
             id={selectId}
             ref={register ? register.ref : ref}
-            className={styles.input}
+            className={inputStyles.input}
             {...register}
             {...props}
           >
@@ -104,19 +95,16 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
               </option>
             ))}
           </select>
-
-          {/* Dropdown indicator icon (always on the right) */}
-          <ChevronDown className={dropdownIconStyles} aria-hidden="true" />
         </InputWithIcon>
 
         {error && (
-          <p className="form-error" role="alert">
+          <p className={styles.error} role="alert">
             {error}
           </p>
         )}
 
         {helperText && !error && (
-          <p className="form-helper-text">{helperText}</p>
+          <p className={styles.helperText}>{helperText}</p>
         )}
       </div>
     );
@@ -126,3 +114,10 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
 Select.displayName = 'Select';
 
 export default Select;
+
+const styles = {
+  container: 'w-full',
+  label: 'form-label',
+  helperText: 'form-helper-text',
+  error: 'form-error',
+};

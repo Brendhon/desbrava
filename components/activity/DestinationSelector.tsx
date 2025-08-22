@@ -1,10 +1,10 @@
 'use client';
 
-import { Input, Select } from '@/components/form';
+import { Input } from '@/components/form';
 import { Card } from '@/components/ui';
 import { ActivityTypeKey } from '@/lib/types/activity';
 import { Place } from '@/lib/types/places';
-import { Search, MapPin, ArrowRight } from 'lucide-react';
+import { ArrowRight, MapPin, Search } from 'lucide-react';
 import { useState } from 'react';
 
 export interface DestinationData {

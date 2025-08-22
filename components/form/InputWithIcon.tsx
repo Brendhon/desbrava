@@ -1,4 +1,5 @@
 import { useFormStyles } from '@/hooks/useFormStyles';
+import { cn } from '@/lib/utils';
 import { LucideIcon } from 'lucide-react';
 import { ReactNode } from 'react';
 
@@ -36,7 +37,7 @@ const InputWithIcon = ({
     <div className="relative">
       {Icon && iconPosition === 'left' && (
         <Icon
-          className={`${styles.icon} ${!iconAction ? 'pointer-events-none' : 'cursor-pointer'}`}
+          className={cn(styles.icon, !iconAction ? 'pointer-events-none' : 'cursor-pointer')}
           aria-hidden="true"
           onClick={iconAction}
         />
@@ -46,7 +47,7 @@ const InputWithIcon = ({
 
       {Icon && iconPosition === 'right' && (
         <Icon
-          className={`${styles.icon} ${!iconAction ? 'pointer-events-none' : 'cursor-pointer'}`}
+          className={cn(styles.icon, !iconAction ? 'pointer-events-none' : 'cursor-pointer')}
           aria-hidden="true"
           onClick={iconAction}
         />
