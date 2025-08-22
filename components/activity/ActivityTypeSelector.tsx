@@ -1,8 +1,9 @@
 'use client';
 
-import { Card } from '@/components/ui';
-import { ACTIVITY_TYPE_OPTIONS, type ActivityTypeKey } from '@/lib/types/activity';
+import { Button, Card } from '@/components/ui';
+import { ACTIVITY_TYPE_INFO, ACTIVITY_TYPE_OPTIONS, type ActivityTypeKey } from '@/lib/types/activity';
 import { useState } from 'react';
+import { ArrowRightIcon } from 'lucide-react';
 
 interface ActivityTypeSelectorProps {
   selectedType: ActivityTypeKey | '';
@@ -47,16 +48,16 @@ export default function ActivityTypeSelector({
             <Card
               key={option.value}
               shadow="none"
-              background="dark"
+              background="blue"
               maxWidth="none"
               border={true}
               className={`
                 p-6 cursor-pointer transition-all duration-200 transform
                 ${isSelected 
-                  ? 'border-royal-purple bg-royal-purple/10 scale-105' 
+                  ? 'border-royal-purple bg-royal-purple/10 scale-103' 
                   : 'border-slate-dark/30 hover:border-royal-purple/50 hover:bg-slate-dark/50'
                 }
-                ${isHovered ? 'scale-102' : ''}
+                ${isHovered ? 'scale-101' : ''}
               `}
               onClick={() => handleTypeSelect(option.value)}
               onMouseEnter={() => setHoveredType(option.value)}
@@ -67,11 +68,7 @@ export default function ActivityTypeSelector({
                 <h3 className="text-lg font-semibold text-parchment-white">
                   {option.label.split(' ').slice(1).join(' ')}
                 </h3>
-                {isSelected && (
-                  <div className="w-6 h-6 bg-royal-purple rounded-full mx-auto flex items-center justify-center">
-                    <div className="w-2 h-2 bg-parchment-white rounded-full" />
-                  </div>
-                )}
+                <p className="text-mist-gray text-sm">{ACTIVITY_TYPE_INFO[option.value]}</p>
               </div>
             </Card>
           );
@@ -79,20 +76,15 @@ export default function ActivityTypeSelector({
       </div>
 
       <div className="flex justify-center pt-6">
-        <button
-          type="button"
+        <Button
+          variant="primary"
+          iconPosition="right"
           onClick={handleNext}
+          className="w-full md:w-auto"
           disabled={!selectedType}
-          className={`
-            px-8 py-3 rounded-lg font-medium transition-all duration-200
-            ${selectedType
-              ? 'bg-royal-purple text-parchment-white hover:bg-royal-purple/90 hover:scale-105'
-              : 'bg-slate-dark/50 text-mist-gray cursor-not-allowed'
-            }
-          `}
         >
           Continuar
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -165,52 +165,6 @@ export default function CreateActivityPage() {
     }
   };
 
-  const renderCurrentStep = () => {
-    switch (currentStep) {
-      case 0:
-        return (
-          <ActivityTypeSelector
-            selectedType={selectedType}
-            onTypeSelect={handleTypeSelect}
-            onNext={handleTypeNext}
-          />
-        );
-
-      case 1:
-        return (
-          <DestinationSelector
-            activityType={selectedType as ActivityTypeKey}
-            onNext={handleDestinationNext}
-            onBack={handleDestinationBack}
-          />
-        );
-
-      case 2:
-        return (
-          <PeriodSelector
-            activityType={selectedType as ActivityTypeKey}
-            destinations={destinations}
-            onNext={handlePeriodNext}
-            onBack={handlePeriodBack}
-          />
-        );
-
-      case 3:
-        return (
-          <ActivitySummary
-            activityType={selectedType as ActivityTypeKey}
-            destinations={destinations}
-            periodData={periodData}
-            onBack={handleSummaryBack}
-            onSubmit={handleSubmit}
-          />
-        );
-
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className={styles.container}>
       {/* Header */}
@@ -230,18 +184,6 @@ export default function CreateActivityPage() {
         className={styles.steps}
       />
 
-      {/* Cancel Button (only on first step) */}
-      {currentStep === 0 && (
-        <div className={styles.cancelContainer}>
-          <button
-            type="button"
-            onClick={handleCancel}
-            className={styles.cancelButton}
-          >
-            Cancelar
-          </button>
-        </div>
-      )}
     </div>
   );
 }

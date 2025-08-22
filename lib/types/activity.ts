@@ -67,7 +67,7 @@ export type ActivityTypeKey = typeof ActivityTypeKeys[number];
  */
 export const ACTIVITY_TYPE_OPTIONS: { value: ActivityTypeKey; label: string }[] = [
   { value: 'accommodation', label: '🏨 Acomodação' },
-  { value: 'transportation', label: '🚗 Transporte' },
+  { value: 'transportation', label: '✈️ Transporte' },
   { value: 'food', label: '🍽️ Alimentação' },
   { value: 'leisure', label: '🎯 Lazer' },
   { value: 'other', label: '📝 Outro' },
@@ -77,11 +77,11 @@ export const ACTIVITY_TYPE_OPTIONS: { value: ActivityTypeKey; label: string }[] 
  * Enum with descriptions and examples for each ActivityType.
  */
 export const ACTIVITY_TYPE_INFO: Record<ActivityTypeKey, string> = {
-  accommodation: 'Acomodação: Inclui hotéis, hostels, guesthouses, e qualquer tipo de acomodação.',
-  transportation: 'Transporte: Inclui voos, trens, ônibus, aluguel de carros, e transferências.',
-  food: 'Alimentação: Inclui restaurantes, cafés, padarias, supermercados, e qualquer tipo de alimentação.',
-  leisure: 'Lazer: Inclui atrações turísticas, entretenimento (cinema, teatro, concertos), sites culturais (museus, galerias), natureza (parques, trilhas), esportes (partidas, atividades), bem-estar (spas, academias), e compras (shoppings, mercados).',
-  other: 'Outro: Qualquer atividade que não se encaixa nas categorias acima.',
+  accommodation: 'Inclui hotéis, hostels, guesthouses, e qualquer tipo de acomodação.',
+  transportation: 'Inclui voos, trens, ônibus, aluguel de carros, e transferências.',
+  food: 'Inclui restaurantes, cafés, padarias, supermercados, e qualquer tipo de alimentação.',
+  leisure: 'Inclui atrações, entretenimento, cultura, natureza, esportes, bem-estar e compras.',
+  other: 'Qualquer atividade que não se encaixa nas categorias acima.',
 }
 
 export type ActivityStatus = 

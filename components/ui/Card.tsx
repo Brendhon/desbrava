@@ -1,9 +1,10 @@
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
   padding?: 'sm' | 'md' | 'lg' | 'xl';
   shadow?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-  background?: 'dark' | 'light';
+  background?: 'dark' | 'light' | 'gray' | 'blue';
   maxWidth?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full' | '7xl';
   border?: boolean;
   rounded?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
@@ -24,9 +25,11 @@ export default function Card({
   rounded = 'lg',
   animation = 'fade-in',
   delay = 'none',
+  ...props
 }: CardProps) {
   return (
     <div
+      {...props}
       className={`${styles.base} ${styles.padding[padding]} ${styles.shadow[shadow]} ${styles.background[background]} ${styles.maxWidth[maxWidth]} ${styles.rounded[rounded]} ${border ? styles.border : ''} ${styles.animation[animation]} ${styles.delay[delay]} ${className}`}
     >
       {children}
@@ -53,6 +56,8 @@ const styles = {
   background: {
     dark: 'bg-slate-dark',
     light: 'bg-parchment-white',
+    gray: 'bg-mist-gray',
+    blue: 'bg-midnight-blue'
   },
   maxWidth: {
     none: '',
