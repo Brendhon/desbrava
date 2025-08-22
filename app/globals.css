@@ -181,7 +181,8 @@ body {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
+  height: 2px;
 }
 
 ::-webkit-scrollbar-track {

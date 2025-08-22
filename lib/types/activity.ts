@@ -7,9 +7,8 @@ export interface Activity {
   name: string;
   description?: string;
   type: ActivityTypeKey;
-  startPlace?: Place;
-  endPlace?: Place;
-  place?: Place;
+  place: Place;
+  destination?: Place;
   date: string;
   startTime?: string;
   endTime?: string;
@@ -31,48 +30,14 @@ export interface CreateActivityData {
   name: string;
   description?: string;
   type: ActivityTypeKey;
-  placeId?: string;
-  customPlace?: {
-    name: string;
-    address?: string;
-    coordinates?: {
-      latitude: number;
-      longitude: number;
-    };
-  };
+  place: Place;
+  destination?: Place;
   date: string;
   startTime?: string;
   endTime?: string;
   duration?: number;
   notes?: string;
   priority: ActivityPriority;
-  cost?: {
-    amount: number;
-    currency: string;
-  };
-  tags?: string[];
-}
-
-export interface UpdateActivityData {
-  name?: string;
-  description?: string;
-  type?: ActivityTypeKey;
-  placeId?: string;
-  customPlace?: {
-    name: string;
-    address?: string;
-    coordinates?: {
-      latitude: number;
-      longitude: number;
-    };
-  };
-  date?: string;
-  startTime?: string;
-  endTime?: string;
-  duration?: number;
-  notes?: string;
-  status?: ActivityStatus;
-  priority?: ActivityPriority;
   cost?: {
     amount: number;
     currency: string;
