@@ -133,7 +133,7 @@ export default function PeriodSelector({
 
         {/* Summary for transportation */}
         {isTransportation &&
-          destinations.origin &&
+          destinations.place &&
           destinations.destination && (
             <Card
               shadow="none"
@@ -154,7 +154,7 @@ export default function PeriodSelector({
                 <div className="flex justify-between">
                   <span className="text-mist-gray">De:</span>
                   <span className="text-parchment-white">
-                    {destinations.origin.displayName.text}
+                    {destinations.place.displayName.text}
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -176,7 +176,7 @@ export default function PeriodSelector({
           )}
 
         {/* Summary for other activities */}
-        {!isTransportation && destinations.destination && (
+        {!isTransportation && destinations.place && (
           <Card
             shadow="none"
             background="dark"
@@ -198,7 +198,7 @@ export default function PeriodSelector({
               <div className="flex justify-between">
                 <span className="text-mist-gray">Local:</span>
                 <span className="text-parchment-white">
-                  {destinations.destination.displayName.text}
+                  {destinations.place.displayName.text}
                 </span>
               </div>
               {periodData.date && (

@@ -96,6 +96,14 @@ export const ACTIVITY_TYPE_INFO: Record<ActivityTypeKey, string> = {
   other: 'Qualquer atividade que não se encaixa nas categorias acima.',
 };
 
+export const ACTIVITY_PLACE_PLACEHOLDERS: Record<ActivityTypeKey, string> = {
+  accommodation: 'Digite para buscar hotéis, hostels, guesthouses, etc.',
+  transportation: 'Digite para buscar voos, trens, ônibus, aluguel de carros, etc.',
+  food: 'Digite para buscar restaurantes, cafés, padarias, supermercados, etc.',
+  leisure: 'Digite para buscar atrações, entretenimento, cultura, natureza, esportes, bem-estar, compras, etc.',
+  other: 'Digite para buscar qualquer atividade que não se encaixa nas outras categorias.',
+};
+
 export type ActivityStatus =
   | 'planned'
   | 'confirmed'

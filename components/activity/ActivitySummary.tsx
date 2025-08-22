@@ -110,11 +110,11 @@ export default function ActivitySummary({
                 <div>
                   <p className="text-mist-gray text-sm">Ponto de Partida</p>
                   <p className="text-parchment-white font-medium">
-                    {destinations.origin?.displayName.text}
+                    {destinations.place?.displayName.text}
                   </p>
-                  {destinations.origin?.formattedAddress && (
+                  {destinations.place?.formattedAddress && (
                     <p className="text-mist-gray text-xs">
-                      {destinations.origin.formattedAddress}
+                      {destinations.place.formattedAddress}
                     </p>
                   )}
                 </div>
@@ -150,11 +150,11 @@ export default function ActivitySummary({
               </div>
               <div>
                 <p className="text-parchment-white font-medium">
-                  {destinations.destination?.displayName.text}
+                  {destinations.place?.displayName.text}
                 </p>
-                {destinations.destination?.formattedAddress && (
+                {destinations.place?.formattedAddress && (
                   <p className="text-mist-gray text-sm">
-                    {destinations.destination.formattedAddress}
+                    {destinations.place.formattedAddress}
                   </p>
                 )}
               </div>
