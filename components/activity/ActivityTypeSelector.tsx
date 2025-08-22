@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Card } from '@/components/ui';
+import { Card } from '@/components/ui';
 import {
   ACTIVITY_TYPE_INFO,
   ACTIVITY_TYPE_OPTIONS,
