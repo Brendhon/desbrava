@@ -3,19 +3,21 @@
 import { Input, Select } from '@/components/form';
 import { Card } from '@/components/ui';
 import { ActivityTypeKey } from '@/lib/types/activity';
-import { Place } from '@/lib/types/places';
 import { Calendar, Clock, TimerIcon } from 'lucide-react';
 import { useState } from 'react';
 
+import { DestinationData } from './DestinationSelector';
+
+export interface PeriodData {
+  date: string;
+  startTime: string;
+  endTime: string;
+}
+
 interface PeriodSelectorProps {
   activityType: ActivityTypeKey;
-  destinations: { origin?: Place; destination?: Place };
-  onNext: (periodData: {
-    date: string;
-    startTime?: string;
-    endTime?: string;
-    duration?: number;
-  }) => void;
+  destinations: DestinationData;
+  onNext: (periodData: PeriodData) => void;
   onBack: () => void;
 }
 
@@ -25,11 +27,10 @@ export default function PeriodSelector({
   onNext,
   onBack,
 }: PeriodSelectorProps) {
-  const [periodData, setPeriodData] = useState({
+  const [periodData, setPeriodData] = useState<PeriodData>({
     date: '',
     startTime: '',
     endTime: '',
-    duration: '',
   });
 
   const isTransportation = activityType === 'transportation';
@@ -43,16 +44,15 @@ export default function PeriodSelector({
     if (periodData.date) {
       onNext({
         date: periodData.date,
-        startTime: periodData.startTime || undefined,
-        endTime: periodData.endTime || undefined,
-        duration: periodData.duration ? parseInt(periodData.duration) : undefined,
+        startTime: periodData.startTime,
+        endTime: periodData.endTime,
       });
     }
   };
 
   const canProceed = periodData.date && (
     isTransportation || 
-    (needsTimeRange && (periodData.startTime || periodData.duration))
+    (needsTimeRange && (periodData.startTime || periodData.endTime))
   );
 
   return (
@@ -128,19 +128,6 @@ export default function PeriodSelector({
               />
             </div>
 
-            <div className="mt-4">
-              <Input
-                label="Duração (minutos) - opcional"
-                type="number"
-                placeholder="120"
-                min="0"
-                value={periodData.duration}
-                onChange={(e) => handleInputChange('duration', e.target.value)}
-              />
-              <p className="text-xs text-mist-gray mt-1">
-                Deixe em branco se você já definiu horário de início e fim
-              </p>
-            </div>
           </Card>
         )}
 
@@ -164,11 +151,11 @@ export default function PeriodSelector({
               </div>
               <div className="flex justify-between">
                 <span className="text-mist-gray">De:</span>
-                <span className="text-parchment-white">{destinations.origin.name}</span>
+                <span className="text-parchment-white">{destinations.origin.displayName.text}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-mist-gray">Para:</span>
-                <span className="text-parchment-white">{destinations.destination.name}</span>
+                <span className="text-parchment-white">{destinations.destination.displayName.text}</span>
               </div>
               {periodData.date && (
                 <div className="flex justify-between">
@@ -202,7 +189,7 @@ export default function PeriodSelector({
               </div>
               <div className="flex justify-between">
                 <span className="text-mist-gray">Local:</span>
-                <span className="text-parchment-white">{destinations.destination.name}</span>
+                <span className="text-parchment-white">{destinations.destination.displayName.text}</span>
               </div>
               {periodData.date && (
                 <div className="flex justify-between">

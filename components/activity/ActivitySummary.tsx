@@ -2,18 +2,14 @@
 
 import { Card } from '@/components/ui';
 import { ActivityTypeKey } from '@/lib/types/activity';
-import { Place } from '@/lib/types/places';
-import { CheckCircle, MapPin, Calendar, Clock, TimerIcon } from 'lucide-react';
+import { Calendar, CheckCircle, Clock, MapPin } from 'lucide-react';
+import { DestinationData } from './DestinationSelector';
+import { PeriodData } from './PeriodSelector';
 
 interface ActivitySummaryProps {
   activityType: ActivityTypeKey;
-  destinations: { origin?: Place; destination?: Place };
-  periodData: {
-    date: string;
-    startTime?: string;
-    endTime?: string;
-    duration?: number;
-  };
+  destinations: DestinationData;
+  periodData: PeriodData;
   onBack: () => void;
   onSubmit: () => void;
   isSubmitting?: boolean;
@@ -205,18 +201,6 @@ export default function ActivitySummary({
                   <p className="text-mist-gray text-sm">Horário de Fim</p>
                   <p className="text-parchment-white font-medium">
                     {formatTime(periodData.endTime)}
-                  </p>
-                </div>
-              </div>
-            )}
-            
-            {needsTimeRange && periodData.duration && (
-              <div className="flex items-center gap-3">
-                <TimerIcon className="w-5 h-5 text-mist-gray" />
-                <div>
-                  <p className="text-mist-gray text-sm">Duração</p>
-                  <p className="text-parchment-white font-medium">
-                    {periodData.duration} minutos
                   </p>
                 </div>
               </div>

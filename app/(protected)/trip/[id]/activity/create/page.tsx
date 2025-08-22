@@ -8,10 +8,11 @@ import DestinationSelector from '@/components/activity/DestinationSelector';
 import PeriodSelector from '@/components/activity/PeriodSelector';
 import ActivitySummary from '@/components/activity/ActivitySummary';
 import { ActivityTypeKey } from '@/lib/types/activity';
-import { Place } from '@/lib/types/places';
+import { DestinationData } from '@/components/activity/DestinationSelector';
+import { PeriodData } from '@/components/activity/PeriodSelector';
 import { TripRoutes } from '@/lib/types/route';
 import { useParams, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState } from 'react'; 
 
 export default function CreateActivityPage() {
   const params = useParams();
@@ -23,20 +24,11 @@ export default function CreateActivityPage() {
 
   // Form data
   const [selectedType, setSelectedType] = useState<ActivityTypeKey | ''>('');
-  const [destinations, setDestinations] = useState<{
-    origin?: Place;
-    destination?: Place;
-  }>({});
-  const [periodData, setPeriodData] = useState<{
-    date: string;
-    startTime?: string;
-    endTime?: string;
-    duration?: number;
-  }>({
+  const [destinations, setDestinations] = useState<DestinationData>({});
+  const [periodData, setPeriodData] = useState<PeriodData>({
     date: '',
     startTime: '',
-    endTime: '',
-    duration: undefined,
+    endTime: ''
   });
 
 
@@ -50,7 +42,7 @@ export default function CreateActivityPage() {
     updateStepsStatus(1);
   };
 
-  const handleDestinationNext = (destData: { origin?: Place; destination?: Place }) => {
+  const handleDestinationNext = (destData: DestinationData) => {
     setDestinations(destData);
     setCurrentStep(2);
     updateStepsStatus(2);
@@ -61,12 +53,7 @@ export default function CreateActivityPage() {
     updateStepsStatus(0);
   };
 
-  const handlePeriodNext = (period: {
-    date: string;
-    startTime?: string;
-    endTime?: string;
-    duration?: number;
-  }) => {
+  const handlePeriodNext = (period: PeriodData) => {
     setPeriodData(period);
     setCurrentStep(3);
     updateStepsStatus(3);
@@ -91,10 +78,6 @@ export default function CreateActivityPage() {
     });
 
     // For now, just redirect back
-    router.push(TripRoutes.details(tripId));
-  };
-
-  const handleCancel = () => {
     router.push(TripRoutes.details(tripId));
   };
 

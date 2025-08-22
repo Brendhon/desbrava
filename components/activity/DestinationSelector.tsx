@@ -7,9 +7,14 @@ import { Place } from '@/lib/types/places';
 import { Search, MapPin, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
+export interface DestinationData {
+  origin?: Place;
+  destination?: Place;
+}
+
 interface DestinationSelectorProps {
   activityType: ActivityTypeKey;
-  onNext: (destinations: { origin?: Place; destination?: Place }) => void;
+  onNext: (destinations: DestinationData) => void;
   onBack: () => void;
 }
 
@@ -18,10 +23,7 @@ export default function DestinationSelector({
   onNext,
   onBack,
 }: DestinationSelectorProps) {
-  const [destinations, setDestinations] = useState<{
-    origin?: Place;
-    destination?: Place;
-  }>({});
+  const [destinations, setDestinations] = useState<DestinationData>({});
 
   const [searchOrigin, setSearchOrigin] = useState('');
   const [searchDestination, setSearchDestination] = useState('');
