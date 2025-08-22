@@ -31,9 +31,15 @@ export const useFormField = ({
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      handleChange(e.target.value);
+      // Call custom onValueChange if provided
+      onValueChange?.(e.target.value);
+
+      // Update React Hook Form if register is provided
+      if (register?.onChange) {
+        register.onChange(e);
+      }
     },
-    [handleChange]
+    [onValueChange, register]
   );
 
   return {

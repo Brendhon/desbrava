@@ -1,15 +1,12 @@
 'use client';
 
+import ActivitySummary from '@/components/activity/ActivitySummary';
+import ActivityTypeSelector, { ActivityTypeData } from '@/components/activity/ActivityTypeSelector';
+import DestinationSelector, { DestinationData } from '@/components/activity/DestinationSelector';
+import PeriodSelector, { PeriodData } from '@/components/activity/PeriodSelector';
 import { PageHeader } from '@/components/layout';
 import { Steps } from '@/components/steps';
 import { Step } from '@/lib/types';
-import ActivityTypeSelector from '@/components/activity/ActivityTypeSelector';
-import DestinationSelector from '@/components/activity/DestinationSelector';
-import PeriodSelector from '@/components/activity/PeriodSelector';
-import ActivitySummary from '@/components/activity/ActivitySummary';
-import { ActivityTypeKey } from '@/lib/types/activity';
-import { DestinationData } from '@/components/activity/DestinationSelector';
-import { PeriodData } from '@/components/activity/PeriodSelector';
 import { TripRoutes } from '@/lib/types/route';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -23,20 +20,19 @@ export default function CreateActivityPage() {
   const [currentStep, setCurrentStep] = useState(0);
 
   // Form data
-  const [selectedType, setSelectedType] = useState<ActivityTypeKey | ''>('');
+  const [typeData, setTypeData] = useState<ActivityTypeData>({
+    type: 'accommodation',
+    subType: ''
+  });
   const [destinations, setDestinations] = useState<DestinationData>({});
   const [periodData, setPeriodData] = useState<PeriodData>({
     date: '',
     startTime: '',
     endTime: '',
   });
-
-  // Step handlers
-  const handleTypeSelect = (type: ActivityTypeKey) => {
-    setSelectedType(type);
-  };
-
-  const handleTypeNext = () => {
+  
+  const handleTypeNext = (typeData: ActivityTypeData) => {
+    setTypeData(typeData);
     setCurrentStep(1);
     updateStepsStatus(1);
   };
@@ -71,7 +67,7 @@ export default function CreateActivityPage() {
   const handleSubmit = async () => {
     // TODO: Implement form submission
     console.log('Submitting activity:', {
-      type: selectedType,
+      type: typeData,
       destinations,
       periodData,
     });
@@ -88,8 +84,7 @@ export default function CreateActivityPage() {
       status: 'current',
       children: (
         <ActivityTypeSelector
-          selectedType={selectedType}
-          onTypeSelect={handleTypeSelect}
+          typeData={typeData}
           onNext={handleTypeNext}
         />
       ),
@@ -100,7 +95,7 @@ export default function CreateActivityPage() {
       status: 'pending',
       children: (
         <DestinationSelector
-          activityType={selectedType as ActivityTypeKey}
+          activityType={typeData}
           onNext={handleDestinationNext}
           onBack={handleDestinationBack}
         />
@@ -112,7 +107,7 @@ export default function CreateActivityPage() {
       status: 'pending',
       children: (
         <PeriodSelector
-          activityType={selectedType as ActivityTypeKey}
+          activityType={typeData}
           destinations={destinations}
           onNext={handlePeriodNext}
           onBack={handlePeriodBack}
@@ -125,7 +120,7 @@ export default function CreateActivityPage() {
       status: 'pending',
       children: (
         <ActivitySummary
-          activityType={selectedType as ActivityTypeKey}
+          activityType={typeData}
           destinations={destinations}
           periodData={periodData}
           onBack={handleSummaryBack}
@@ -175,7 +170,6 @@ export default function CreateActivityPage() {
     </div>
   );
 }
-
 const styles = {
   container: 'max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 space-y-6',
   stepsCard: 'p-6',
@@ -185,3 +179,4 @@ const styles = {
   cancelButton:
     'px-6 py-3 text-mist-gray hover:text-parchment-white transition-colors duration-200',
 };
+

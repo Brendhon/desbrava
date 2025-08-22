@@ -1,13 +1,13 @@
 'use client';
 
 import { Card } from '@/components/ui';
-import { ActivityTypeKey } from '@/lib/types/activity';
 import { Calendar, CheckCircle, Clock, MapPin } from 'lucide-react';
 import { DestinationData } from './DestinationSelector';
 import { PeriodData } from './PeriodSelector';
+import { ActivityTypeData } from './ActivityTypeSelector';
 
 interface ActivitySummaryProps {
-  activityType: ActivityTypeKey;
+  activityType: ActivityTypeData;
   destinations: DestinationData;
   periodData: PeriodData;
   onBack: () => void;
@@ -23,7 +23,7 @@ export default function ActivitySummary({
   onSubmit,
   isSubmitting = false,
 }: ActivitySummaryProps) {
-  const isTransportation = activityType === 'transportation';
+  const isTransportation = activityType.type === 'transportation';
   const needsTimeRange = !isTransportation;
 
   const formatDate = (dateString: string) => {
@@ -68,19 +68,19 @@ export default function ActivitySummary({
 
           <div className="flex items-center gap-3">
             <div className="text-3xl">
-              {activityType === 'accommodation' && '🏨'}
-              {activityType === 'transportation' && '🚗'}
-              {activityType === 'food' && '🍽️'}
-              {activityType === 'leisure' && '🎯'}
-              {activityType === 'other' && '📝'}
+              {activityType.type === 'accommodation' && '🏨'}
+              {activityType.type === 'transportation' && '🚗'}
+              {activityType.type === 'food' && '🍽️'}
+              {activityType.type === 'leisure' && '🎯'}
+              {activityType.type === 'other' && '📝'}
             </div>
             <div>
               <p className="text-parchment-white font-medium capitalize">
-                {activityType === 'accommodation' && 'Acomodação'}
-                {activityType === 'transportation' && 'Transporte'}
-                {activityType === 'food' && 'Alimentação'}
-                {activityType === 'leisure' && 'Lazer'}
-                {activityType === 'other' && 'Outro'}
+                {activityType.type === 'accommodation' && 'Acomodação'}
+                {activityType.type === 'transportation' && 'Transporte'}
+                {activityType.type === 'food' && 'Alimentação'}
+                {activityType.type === 'leisure' && 'Lazer'}
+                {activityType.type === 'other' && 'Outro'}
               </p>
             </div>
           </div>

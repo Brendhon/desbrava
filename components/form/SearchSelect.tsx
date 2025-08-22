@@ -8,7 +8,7 @@ import { InputHTMLAttributes, useCallback, useMemo, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface SearchSelectProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'onSelect'> {
   label?: React.ReactNode;
   error?: string;
   size?: 'sm' | 'md' | 'lg';
@@ -20,6 +20,7 @@ interface SearchSelectProps
   options: SelectOption[];
   placeholder?: string;
   icon?: LucideIcon;
+  onSelect?: (value: string) => void;
   onValueChange?: (value: string) => void;
 }
 
@@ -35,6 +36,7 @@ export default function SearchSelect({
   options,
   placeholder,
   icon,
+  onSelect,
   onValueChange,
 }: SearchSelectProps) {
   // State
@@ -73,6 +75,7 @@ export default function SearchSelect({
         typeof option.label === 'string' ? option.label : option.value
       );
       handleChange(option.value);
+      onSelect?.(option.value);
       closeDropdown();
     },
     [handleChange]
@@ -100,7 +103,8 @@ export default function SearchSelect({
     setSelectedValue('');
     closeDropdown();
     handleChange('');
-  }, [closeDropdown, handleChange]);
+    onSelect?.('');
+  }, [closeDropdown, handleChange, onSelect]);
 
   return (
     <div className={styles.container}>

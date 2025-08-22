@@ -74,12 +74,13 @@ export type ActivityTypeKey = (typeof ActivityTypeKeys)[number];
 export const ACTIVITY_TYPE_OPTIONS: {
   value: ActivityTypeKey;
   label: string;
+  icon: string;
 }[] = [
-  { value: 'accommodation', label: '🏨 Acomodação' },
-  { value: 'transportation', label: '✈️ Transporte' },
-  { value: 'food', label: '🍽️ Alimentação' },
-  { value: 'leisure', label: '🎯 Lazer' },
-  { value: 'other', label: '📝 Outro' },
+  { value: 'accommodation', label: 'Acomodação', icon: '🏨' },
+  { value: 'transportation', label: 'Transporte', icon: '✈️' },
+  { value: 'food', label: 'Alimentação', icon: '🍽️' },
+  { value: 'leisure', label: 'Lazer', icon: '🎯' },
+  { value: 'other', label: 'Outro', icon: '📝' },
 ];
 
 /**

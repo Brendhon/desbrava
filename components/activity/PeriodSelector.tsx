@@ -2,10 +2,10 @@
 
 import { Input } from '@/components/form';
 import { Card } from '@/components/ui';
-import { ActivityTypeKey } from '@/lib/types/activity';
 import { Calendar, Clock, TimerIcon } from 'lucide-react';
 import { useState } from 'react';
 
+import { ActivityTypeData } from './ActivityTypeSelector';
 import { DestinationData } from './DestinationSelector';
 
 export interface PeriodData {
@@ -15,7 +15,7 @@ export interface PeriodData {
 }
 
 interface PeriodSelectorProps {
-  activityType: ActivityTypeKey;
+  activityType: ActivityTypeData;
   destinations: DestinationData;
   onNext: (periodData: PeriodData) => void;
   onBack: () => void;
@@ -33,7 +33,7 @@ export default function PeriodSelector({
     endTime: '',
   });
 
-  const isTransportation = activityType === 'transportation';
+  const isTransportation = activityType.type === 'transportation';
   const needsTimeRange = !isTransportation;
 
   const handleInputChange = (field: string, value: string) => {
@@ -192,7 +192,7 @@ export default function PeriodSelector({
               <div className="flex justify-between">
                 <span className="text-mist-gray">Tipo:</span>
                 <span className="text-parchment-white capitalize">
-                  {activityType}
+                  {activityType.type}
                 </span>
               </div>
               <div className="flex justify-between">
