@@ -1,17 +1,10 @@
-import { Dropdown, InputWithIcon } from '@/components/form';
+import { Dropdown, Input } from '@/components/form';
 import { useDropdown } from '@/hooks/useDropdown';
 import { useFormField } from '@/hooks/useFormField';
 import { SelectOption } from '@/lib/types';
 import { normalizeString } from '@/lib/utils/string-utils';
 import { LucideIcon, X } from 'lucide-react';
-import {
-  forwardRef,
-  InputHTMLAttributes,
-  useCallback,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { InputHTMLAttributes, useCallback, useMemo, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface SearchSelectProps
@@ -26,187 +19,150 @@ interface SearchSelectProps
   id?: string;
   options: SelectOption[];
   placeholder?: string;
-  icon?: React.ComponentType<{ className?: string }>;
-  iconPosition?: 'left' | 'right';
+  icon?: LucideIcon;
   onValueChange?: (value: string) => void;
 }
 
-const SearchSelect = forwardRef<HTMLInputElement, SearchSelectProps>(
-  (
-    {
-      label,
-      error,
-      size = 'md',
-      variant = 'default',
-      register,
-      helperText,
-      className = '',
-      id,
-      options,
-      placeholder,
-      icon: Icon,
-      iconPosition = 'left',
-      onValueChange,
-      ...props
-    },
-    ref
-  ) => {
-    const [searchValue, setSearchValue] = useState('');
-    const [selectedValue, setSelectedValue] = useState('');
-    const inputRef = useRef<HTMLInputElement>(null);
+export default function SearchSelect(
+  {
+    label,
+    error,
+    size = 'md',
+    variant = 'default',
+    register,
+    helperText,
+    className = '',
+    id,
+    options,
+    placeholder,
+    icon,
+    onValueChange,
+  }: SearchSelectProps
+) {
+  // State
+  const [searchValue, setSearchValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState('');
 
-    // Memoized search select ID to prevent recreation on every render
-    const searchSelectId = useMemo(
-      () => id || `search-select-${Math.random().toString(36).substr(2, 9)}`,
-      [id]
-    );
+  // Memoized
+  const searchSelectId = useMemo(
+    () => id || `search-select-${Math.random().toString(36).slice(2, 11)}`,
+    [id]
+  );
 
-    // Memoized filtered options based on search value
-    const filteredOptions = useMemo(() => {
-      if (!searchValue.trim()) return options;
+  // Memoized filtered options based on search value
+  const filteredOptions = useMemo(() => {
+    if (!searchValue.trim()) return options;
 
-      return options.filter((option) => {
-        const labelText =
-          typeof option.label === 'string'
-            ? option.label
-            : option.label?.toString() || '';
-        return normalizeString(labelText).includes(
-          normalizeString(searchValue)
-        );
-      });
-    }, [options, searchValue]);
-
-    // Use custom hooks
-    const { handleChange, handleInputChange } = useFormField({
-      register,
-      onValueChange,
+    return options.filter((option) => {
+      const labelText =
+        typeof option.label === 'string'
+          ? option.label
+          : option.label?.toString() || '';
+      return normalizeString(labelText).includes(
+        normalizeString(searchValue)
+      );
     });
+  }, [options, searchValue]);
 
-    const handleOptionSelect = useCallback(
-      (option: SelectOption) => {
-        setSelectedValue(option.value);
-        setSearchValue(
-          typeof option.label === 'string' ? option.label : option.value
-        );
-        handleChange(option.value);
-        closeDropdown();
-      },
-      [handleChange]
-    );
+  // Use custom hooks
+  const { handleChange, handleInputChange } = useFormField({
+    register,
+    onValueChange,
+  });
 
-    const {
-      isOpen,
-      highlightedIndex,
-      dropdownRef,
-      openDropdown,
-      closeDropdown,
-    } = useDropdown({
-      options: filteredOptions,
-      onOptionSelect: handleOptionSelect,
-    });
-
-    const handleInputChangeWrapper = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setSearchValue(value);
-        setSelectedValue('');
-        openDropdown();
-        handleInputChange(e);
-      },
-      [openDropdown]
-    );
-
-    const handleInputFocus = useCallback(() => {
-      openDropdown();
-    }, [openDropdown]);
-
-    const handleClearSearch = useCallback(() => {
-      setSearchValue('');
-      setSelectedValue('');
+  const handleOptionSelect = useCallback(
+    (option: SelectOption) => {
+      setSelectedValue(option.value);
+      setSearchValue(
+        typeof option.label === 'string' ? option.label : option.value
+      );
+      handleChange(option.value);
       closeDropdown();
-      handleChange('');
-      inputRef.current?.focus();
-    }, [closeDropdown, handleChange]);
+    },
+    [handleChange]
+  );
 
-    return (
-      <div className="w-full">
-        {label && (
-          <label htmlFor={searchSelectId} className="form-label">
-            {label}
-          </label>
-        )}
+  const {
+    isOpen,
+    highlightedIndex,
+    dropdownRef,
+    openDropdown,
+    closeDropdown,
+  } = useDropdown({
+    options: filteredOptions,
+    onOptionSelect: handleOptionSelect,
+  });
 
-        <InputWithIcon
-          icon={Icon as LucideIcon}
-          iconPosition={iconPosition}
-          size={size}
-          variant={variant}
-          error={error}
-          className={className}
-        >
-          <input
-            id={searchSelectId}
-            ref={(node) => {
-              // Handle both refs
-              if (typeof ref === 'function') {
-                ref(node);
-              } else if (ref) {
-                ref.current = node;
-              }
-              inputRef.current = node;
-              if (register?.ref) {
-                register.ref(node);
-              }
-            }}
-            className="form-input-base form-input-size-md form-input-variant-default w-full"
-            value={searchValue}
-            onChange={handleInputChangeWrapper}
-            onFocus={handleInputFocus}
-            placeholder={placeholder}
-            autoComplete="off"
-            name={register?.name}
-            {...props}
-          />
+  const handleInputChangeWrapper = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setSearchValue(value);
+      setSelectedValue('');
+      openDropdown();
+      handleInputChange(e);
+    },
+    [openDropdown]
+  );
 
-          {/* Clear button */}
-          {searchValue && (
-            <button
-              type="button"
-              onClick={handleClearSearch}
-              className="text-mist-gray hover:text-mist-gray/70 absolute top-1/2 right-8 -translate-y-1/2 p-1 transition-colors"
-              aria-label="Limpar busca"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          )}
-        </InputWithIcon>
+  const handleClearSearch = useCallback(() => {
+    setSearchValue('');
+    setSelectedValue('');
+    closeDropdown();
+    handleChange('');
+  }, [closeDropdown, handleChange]);
 
-        {/* Dropdown */}
-        <div className="relative">
-          <Dropdown
-            ref={dropdownRef}
-            isOpen={isOpen}
-            options={filteredOptions}
-            highlightedIndex={highlightedIndex}
-            selectedValue={selectedValue}
-            onOptionSelect={handleOptionSelect}
-          />
-        </div>
+  return (
+    <div className={styles.container}>
+      {label && (
+        <label htmlFor={searchSelectId} className={styles.label}>
+          {label}
+        </label>
+      )}
 
-        {error && (
-          <p className="form-error" role="alert">
-            {error}
-          </p>
-        )}
+      <Input
+        id={searchSelectId}
+        size={size}
+        variant={variant}
+        register={register}
+        placeholder={placeholder}
+        autoComplete="off"
+        name={register?.name}
+        onChange={handleInputChangeWrapper}
+        error={error}
+        className={className}
+        icon={searchValue ? X : icon}
+        iconPosition="right"
+        iconAction={handleClearSearch}
+      />
 
-        {helperText && !error && (
-          <p className="form-helper-text">{helperText}</p>
-        )}
+      {/* Dropdown */}
+      <div className="relative">
+        <Dropdown
+          ref={dropdownRef}
+          isOpen={isOpen}
+          options={filteredOptions}
+          highlightedIndex={highlightedIndex}
+          selectedValue={selectedValue}
+          onOptionSelect={handleOptionSelect}
+        />
       </div>
-    );
-  }
-);
 
-SearchSelect.displayName = 'SearchSelect';
+      {error && (
+        <p className={styles.error} role="alert">
+          {error}
+        </p>
+      )}
 
-export default SearchSelect;
+      {helperText && !error && (
+        <p className={styles.helperText}>{helperText}</p>
+      )}
+    </div>
+  );
+}
+
+const styles = {
+  container: 'w-full',
+  label: 'form-label',
+  helperText: 'form-helper-text',
+  error: 'form-error',
+};
