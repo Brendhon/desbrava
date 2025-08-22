@@ -1,14 +1,16 @@
 import { PlaceInfo } from '@/components/activity/destination';
-import { Input } from '@/components/form';
-import { Place } from '@/lib/types/places';
+import { PlaceSearchSelect } from '@/components/form';
+import { ActivityTypeKey } from '@/lib/types/activity';
+import { getPlaceTypesByCategory, Place } from '@/lib/types/places';
 import { cn } from '@/lib/utils';
-import { MapPin, Search } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 interface PlaceSelectorProps {
   title: string;
   searchLabel: string;
   searchPlaceholder: string;
   searchValue: string;
+  activityType: ActivityTypeKey;
   onSearchChange: (value: string) => void;
   isSearching: boolean;
   selectedPlace?: Place;
@@ -20,6 +22,7 @@ export default function PlaceSelector({
   searchLabel,
   searchPlaceholder,
   searchValue,
+  activityType,
   onSearchChange,
   isSearching,
   selectedPlace,
@@ -33,12 +36,13 @@ export default function PlaceSelector({
       </h3>
 
       <div className={styles.searchContainer}>
-        <Input
+        <PlaceSearchSelect
           label={searchLabel}
           placeholder={searchPlaceholder}
-          icon={Search}
-          value={searchValue}
-          onChange={(e) => onSearchChange(e.target.value)}
+          helperText="Digite para buscar um local..."
+          onValueChange={onSearchChange}
+          defaultValue={searchValue}
+          placeTypes={getPlaceTypesByCategory(activityType)}
         />
         {isSearching && (
           <div className={styles.loadingContainer}>
@@ -57,7 +61,7 @@ const styles = {
   container: 'px-8 w-full',
   border: 'border-r-0 border-mist-gray/50 lg:border-r',
   title: 'text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold',
-  icon: 'text-royal-purple h-5 w-5',
+  icon: 'text-royal-gray h-5 w-5',
   searchContainer: 'space-y-3',
   loadingContainer: 'text-mist-gray flex items-center gap-2 text-sm',
   spinner: 'border-mist-gray h-4 w-4 animate-spin rounded-full border-2 border-t-transparent',

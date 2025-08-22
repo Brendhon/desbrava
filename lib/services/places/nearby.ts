@@ -36,7 +36,6 @@ export async function searchNearbyPlaces(
 
   const request: PlaceNearbySearchRequest = {
     includedTypes: types,
-    maxResultCount: Math.min(maxResults, 20), // API limit is 20
     locationRestriction: {
       circle: {
         center: { latitude, longitude },

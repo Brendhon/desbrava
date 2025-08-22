@@ -58,6 +58,7 @@ export default function DestinationSelector({
           searchLabel={needsMultiple ? "Buscar local de origem" : 'Buscar local'}
           searchPlaceholder={ACTIVITY_PLACE_PLACEHOLDERS[activityType]}
           searchValue={searchOrigin}
+          activityType={activityType}
           onSearchChange={setSearchOrigin}
           isSearching={isSearchingOrigin}
           selectedPlace={destinations.place}
@@ -70,6 +71,7 @@ export default function DestinationSelector({
             searchLabel="Buscar local de destino"
             searchPlaceholder="Digite para buscar cidades, aeroportos, estações..."
             searchValue={searchDestination}
+            activityType={activityType}
             onSearchChange={setSearchDestination}
             isSearching={isSearchingDestination}
             selectedPlace={destinations.destination}

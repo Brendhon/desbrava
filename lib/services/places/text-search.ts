@@ -36,8 +36,7 @@ export async function searchPlacesByText(
   }
 
   const request: PlaceTextSearchRequest = {
-    textQuery: query.trim(),
-    maxResultCount: Math.min(maxResults, 20), // API limit is 20
+    textQuery: query.trim()
   };
 
   // Add location bias if coordinates are provided

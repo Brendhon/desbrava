@@ -3,6 +3,7 @@
 
 import {
   AutocompleteOptions,
+  getPlaceTypesByCategory,
   PLACE_TYPES,
   PlaceAutocompleteRequest,
   PlaceAutocompleteResponse,
@@ -10,6 +11,7 @@ import {
 } from '@/lib/types';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
 import { PlacesApiError } from '@/lib/types';
+import { get } from 'http';
 
 /**
  * Get place suggestions for autocomplete
@@ -38,7 +40,6 @@ export async function getPlaceSuggestions(
 
   const request: PlaceAutocompleteRequest = {
     input: input.trim(),
-    maxResultCount: Math.min(maxResults, 20), // API limit is 20
   };
 
   // Add location bias if coordinates are provided
@@ -52,11 +53,6 @@ export async function getPlaceSuggestions(
         radius,
       },
     };
-  }
-
-  // Add type filtering if specified
-  if (types && types.length > 0) {
-    request.includedPrimaryTypes = types;
   }
 
   // Add session token if provided
@@ -94,7 +90,7 @@ export async function getDestinationSuggestions(
 ): Promise<PlaceAutocompleteResponse> {
   return getPlaceSuggestions({
     input,
-    types: [PLACE_TYPES.CITIES, PLACE_TYPES.REGIONS, PLACE_TYPES.COUNTRIES],
+    types: getPlaceTypesByCategory('transportation'),
     maxResults,
     config,
   });
@@ -116,7 +112,7 @@ export async function getHotelSuggestions(
     latitude,
     longitude,
     radius,
-    types: [PLACE_TYPES.LODGING],
+    types: getPlaceTypesByCategory('accommodation'),
     maxResults,
     config,
   });
@@ -138,7 +134,7 @@ export async function getRestaurantSuggestions(
     latitude,
     longitude,
     radius,
-    types: [PLACE_TYPES.RESTAURANT, PLACE_TYPES.CAFE, PLACE_TYPES.BAR],
+    types: getPlaceTypesByCategory('food'),
     maxResults,
     config,
   });
@@ -160,12 +156,7 @@ export async function getTouristAttractionSuggestions(
     latitude,
     longitude,
     radius,
-    types: [
-      PLACE_TYPES.TOURIST_ATTRACTION,
-      PLACE_TYPES.MUSEUM,
-      PLACE_TYPES.PARK,
-      PLACE_TYPES.AMUSEMENT_PARK,
-    ],
+    types: getPlaceTypesByCategory('leisure'),
     maxResults,
     config,
   });
@@ -175,5 +166,5 @@ export async function getTouristAttractionSuggestions(
  * Generate a session token for grouping related requests
  */
 export function generateSessionToken(): string {
-  return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  return `session_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
 }
