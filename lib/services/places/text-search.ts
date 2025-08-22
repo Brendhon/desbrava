@@ -7,7 +7,7 @@ import {
   PlacesApiError,
   PlaceTextSearchRequest,
   PlaceTextSearchResponse,
-  TextSearchOptions
+  TextSearchOptions,
 } from '@/lib/types';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
 

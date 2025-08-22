@@ -1,7 +1,11 @@
 'use client';
 
 import { Button, Card } from '@/components/ui';
-import { ACTIVITY_TYPE_INFO, ACTIVITY_TYPE_OPTIONS, type ActivityTypeKey } from '@/lib/types/activity';
+import {
+  ACTIVITY_TYPE_INFO,
+  ACTIVITY_TYPE_OPTIONS,
+  type ActivityTypeKey,
+} from '@/lib/types/activity';
 import { useState } from 'react';
 
 interface ActivityTypeSelectorProps {
@@ -30,7 +34,7 @@ export default function ActivityTypeSelector({
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-parchment-white mb-2">
+        <h2 className="text-parchment-white mb-2 text-2xl font-bold">
           Que tipo de atividade você quer criar?
         </h2>
         <p className="text-mist-gray">
@@ -38,7 +42,7 @@ export default function ActivityTypeSelector({
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {ACTIVITY_TYPE_OPTIONS.map((option) => {
           const isSelected = selectedType === option.value;
           const isHovered = hoveredType === option.value;
@@ -50,24 +54,23 @@ export default function ActivityTypeSelector({
               background="blue"
               maxWidth="none"
               border={true}
-              className={`
-                p-6 cursor-pointer transition-all duration-200 transform
-                ${isSelected 
-                  ? 'border-royal-purple bg-royal-purple/10 scale-103' 
+              className={`transform cursor-pointer p-6 transition-all duration-200 ${
+                isSelected
+                  ? 'border-royal-purple bg-royal-purple/10 scale-103'
                   : 'border-slate-dark/30 hover:border-royal-purple/50 hover:bg-slate-dark/50'
-                }
-                ${isHovered ? 'scale-101' : ''}
-              `}
+              } ${isHovered ? 'scale-101' : ''} `}
               onClick={() => handleTypeSelect(option.value)}
               onMouseEnter={() => setHoveredType(option.value)}
               onMouseLeave={() => setHoveredType(null)}
             >
-              <div className="text-center space-y-3">
+              <div className="space-y-3 text-center">
                 <div className="text-4xl">{option.label.split(' ')[0]}</div>
-                <h3 className="text-lg font-semibold text-parchment-white">
+                <h3 className="text-parchment-white text-lg font-semibold">
                   {option.label.split(' ').slice(1).join(' ')}
                 </h3>
-                <p className="text-mist-gray text-sm">{ACTIVITY_TYPE_INFO[option.value]}</p>
+                <p className="text-mist-gray text-sm">
+                  {ACTIVITY_TYPE_INFO[option.value]}
+                </p>
               </div>
             </Card>
           );

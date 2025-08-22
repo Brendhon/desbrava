@@ -12,7 +12,7 @@ import { DestinationData } from '@/components/activity/DestinationSelector';
 import { PeriodData } from '@/components/activity/PeriodSelector';
 import { TripRoutes } from '@/lib/types/route';
 import { useParams, useRouter } from 'next/navigation';
-import { useState } from 'react'; 
+import { useState } from 'react';
 
 export default function CreateActivityPage() {
   const params = useParams();
@@ -28,9 +28,8 @@ export default function CreateActivityPage() {
   const [periodData, setPeriodData] = useState<PeriodData>({
     date: '',
     startTime: '',
-    endTime: ''
+    endTime: '',
   });
-
 
   // Step handlers
   const handleTypeSelect = (type: ActivityTypeKey) => {
@@ -87,47 +86,54 @@ export default function CreateActivityPage() {
       title: 'Tipo',
       description: 'Selecione o tipo',
       status: 'current',
-      children: <ActivityTypeSelector
-        selectedType={selectedType}
-        onTypeSelect={handleTypeSelect}
-        onNext={handleTypeNext}
-      />
+      children: (
+        <ActivityTypeSelector
+          selectedType={selectedType}
+          onTypeSelect={handleTypeSelect}
+          onNext={handleTypeNext}
+        />
+      ),
     },
     {
       title: 'Destino',
       description: 'Defina o local ou rota',
       status: 'pending',
-      children: <DestinationSelector
-        activityType={selectedType as ActivityTypeKey}
-        onNext={handleDestinationNext}
-        onBack={handleDestinationBack}
-      />
+      children: (
+        <DestinationSelector
+          activityType={selectedType as ActivityTypeKey}
+          onNext={handleDestinationNext}
+          onBack={handleDestinationBack}
+        />
+      ),
     },
     {
       title: 'Período',
       description: 'Data e horário',
       status: 'pending',
-      children: <PeriodSelector
-        activityType={selectedType as ActivityTypeKey}
-        destinations={destinations}
-        onNext={handlePeriodNext}
-        onBack={handlePeriodBack}
-      />
+      children: (
+        <PeriodSelector
+          activityType={selectedType as ActivityTypeKey}
+          destinations={destinations}
+          onNext={handlePeriodNext}
+          onBack={handlePeriodBack}
+        />
+      ),
     },
     {
       title: 'Resumo',
       description: 'Revise e confirme',
       status: 'pending',
-      children: <ActivitySummary
-        activityType={selectedType as ActivityTypeKey}
-        destinations={destinations}
-        periodData={periodData}
-        onBack={handleSummaryBack}
-        onSubmit={handleSubmit}
-      />
+      children: (
+        <ActivitySummary
+          activityType={selectedType as ActivityTypeKey}
+          destinations={destinations}
+          periodData={periodData}
+          onBack={handleSummaryBack}
+          onSubmit={handleSubmit}
+        />
+      ),
     },
   ];
-
 
   const updateStepsStatus = (currentStepIndex: number) => {
     steps.forEach((step, index) => {
@@ -166,7 +172,6 @@ export default function CreateActivityPage() {
         onStepClick={handleStepClick}
         className={styles.steps}
       />
-
     </div>
   );
 }
@@ -177,5 +182,6 @@ const styles = {
   steps: 'overflow-x-auto',
   contentCard: 'p-8',
   cancelContainer: 'flex justify-center pt-4',
-  cancelButton: 'px-6 py-3 text-mist-gray hover:text-parchment-white transition-colors duration-200',
+  cancelButton:
+    'px-6 py-3 text-mist-gray hover:text-parchment-white transition-colors duration-200',
 };

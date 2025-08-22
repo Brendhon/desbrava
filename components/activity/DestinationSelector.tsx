@@ -35,11 +35,11 @@ export default function DestinationSelector({
   const needsSingleDestination = !needsMultipleDestinations;
 
   const handleOriginSelect = (place: Place) => {
-    setDestinations(prev => ({ ...prev, origin: place }));
+    setDestinations((prev) => ({ ...prev, origin: place }));
   };
 
   const handleDestinationSelect = (place: Place) => {
-    setDestinations(prev => ({ ...prev, destination: place }));
+    setDestinations((prev) => ({ ...prev, destination: place }));
   };
 
   const handleNext = () => {
@@ -61,14 +61,15 @@ export default function DestinationSelector({
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-parchment-white mb-2">
-          {needsMultipleDestinations ? 'De onde para onde?' : 'Onde será a atividade?'}
+        <h2 className="text-parchment-white mb-2 text-2xl font-bold">
+          {needsMultipleDestinations
+            ? 'De onde para onde?'
+            : 'Onde será a atividade?'}
         </h2>
         <p className="text-mist-gray">
-          {needsMultipleDestinations 
+          {needsMultipleDestinations
             ? 'Defina o ponto de partida e destino da sua viagem'
-            : 'Selecione o local onde acontecerá a atividade'
-          }
+            : 'Selecione o local onde acontecerá a atividade'}
         </p>
       </div>
 
@@ -82,11 +83,11 @@ export default function DestinationSelector({
             border={false}
             className="p-6"
           >
-            <h3 className="text-lg font-semibold text-parchment-white mb-4 flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-royal-purple" />
+            <h3 className="text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold">
+              <MapPin className="text-royal-purple h-5 w-5" />
               Ponto de Partida
             </h3>
-            
+
             <div className="space-y-3">
               <Input
                 label="Buscar local de origem"
@@ -96,14 +97,14 @@ export default function DestinationSelector({
                 onChange={(e) => setSearchOrigin(e.target.value)}
               />
               {isSearchingOrigin && (
-                <div className="flex items-center gap-2 text-mist-gray text-sm">
-                  <div className="w-4 h-4 border-2 border-mist-gray border-t-transparent rounded-full animate-spin" />
+                <div className="text-mist-gray flex items-center gap-2 text-sm">
+                  <div className="border-mist-gray h-4 w-4 animate-spin rounded-full border-2 border-t-transparent" />
                   Buscando...
                 </div>
               )}
-              
+
               {destinations.origin && (
-                <div className="p-3 bg-royal-purple/20 border border-royal-purple/30 rounded-lg">
+                <div className="bg-royal-purple/20 border-royal-purple/30 rounded-lg border p-3">
                   <p className="text-parchment-white font-medium">
                     {destinations.origin.displayName.text}
                   </p>
@@ -126,31 +127,34 @@ export default function DestinationSelector({
           border={false}
           className="p-6"
         >
-          <h3 className="text-lg font-semibold text-parchment-white mb-4 flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-royal-purple" />
+          <h3 className="text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold">
+            <MapPin className="text-royal-purple h-5 w-5" />
             {needsMultipleDestinations ? 'Destino' : 'Local da Atividade'}
           </h3>
-          
+
           <div className="space-y-3">
             <Input
-              label={needsMultipleDestinations ? "Buscar destino" : "Buscar local"}
-              placeholder={needsMultipleDestinations 
-                ? "Digite para buscar cidades, aeroportos, estações..."
-                : "Digite para buscar restaurantes, hotéis, atrações..."
+              label={
+                needsMultipleDestinations ? 'Buscar destino' : 'Buscar local'
+              }
+              placeholder={
+                needsMultipleDestinations
+                  ? 'Digite para buscar cidades, aeroportos, estações...'
+                  : 'Digite para buscar restaurantes, hotéis, atrações...'
               }
               icon={Search}
               value={searchDestination}
               onChange={(e) => setSearchDestination(e.target.value)}
             />
             {isSearchingDestination && (
-              <div className="flex items-center gap-2 text-mist-gray text-sm">
-                <div className="w-4 h-4 border-2 border-mist-gray border-t-transparent rounded-full animate-spin" />
+              <div className="text-mist-gray flex items-center gap-2 text-sm">
+                <div className="border-mist-gray h-4 w-4 animate-spin rounded-full border-2 border-t-transparent" />
                 Buscando...
               </div>
             )}
-            
+
             {destinations.destination && (
-              <div className="p-3 bg-royal-purple/20 border border-royal-purple/30 rounded-lg">
+              <div className="bg-royal-purple/20 border-royal-purple/30 rounded-lg border p-3">
                 <p className="text-parchment-white font-medium">
                   {destinations.destination.displayName.text}
                 </p>
@@ -165,41 +169,43 @@ export default function DestinationSelector({
         </Card>
 
         {/* Visual representation for transportation */}
-        {needsMultipleDestinations && destinations.origin && destinations.destination && (
-          <Card
-            shadow="none"
-            background="dark"
-            maxWidth="none"
-            border={false}
-            className="p-6"
-          >
-            <div className="flex items-center justify-between">
-              <div className="text-center flex-1">
-                <div className="w-12 h-12 bg-royal-purple/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <MapPin className="w-6 h-6 text-royal-purple" />
+        {needsMultipleDestinations &&
+          destinations.origin &&
+          destinations.destination && (
+            <Card
+              shadow="none"
+              background="dark"
+              maxWidth="none"
+              border={false}
+              className="p-6"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex-1 text-center">
+                  <div className="bg-royal-purple/20 mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full">
+                    <MapPin className="text-royal-purple h-6 w-6" />
+                  </div>
+                  <p className="text-mist-gray text-sm">Origem</p>
+                  <p className="text-parchment-white font-medium">
+                    {destinations.origin.displayName.text}
+                  </p>
                 </div>
-                <p className="text-sm text-mist-gray">Origem</p>
-                <p className="text-parchment-white font-medium">
-                  {destinations.origin.displayName.text}
-                </p>
-              </div>
-              
-              <div className="flex-1 flex justify-center">
-                <ArrowRight className="w-8 h-8 text-royal-purple" />
-              </div>
-              
-              <div className="text-center flex-1">
-                <div className="w-12 h-12 bg-royal-purple/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <MapPin className="w-6 h-6 text-royal-purple" />
+
+                <div className="flex flex-1 justify-center">
+                  <ArrowRight className="text-royal-purple h-8 w-8" />
                 </div>
-                <p className="text-sm text-mist-gray">Destino</p>
-                <p className="text-parchment-white font-medium">
-                  {destinations.destination.displayName.text}
-                </p>
+
+                <div className="flex-1 text-center">
+                  <div className="bg-royal-purple/20 mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full">
+                    <MapPin className="text-royal-purple h-6 w-6" />
+                  </div>
+                  <p className="text-mist-gray text-sm">Destino</p>
+                  <p className="text-parchment-white font-medium">
+                    {destinations.destination.displayName.text}
+                  </p>
+                </div>
               </div>
-            </div>
-          </Card>
-        )}
+            </Card>
+          )}
       </div>
 
       {/* Navigation */}
@@ -207,22 +213,20 @@ export default function DestinationSelector({
         <button
           type="button"
           onClick={onBack}
-          className="px-6 py-3 text-mist-gray hover:text-parchment-white transition-colors duration-200"
+          className="text-mist-gray hover:text-parchment-white px-6 py-3 transition-colors duration-200"
         >
           Voltar
         </button>
-        
+
         <button
           type="button"
           onClick={handleNext}
           disabled={!canProceed}
-          className={`
-            px-8 py-3 rounded-lg font-medium transition-all duration-200
-            ${canProceed
+          className={`rounded-lg px-8 py-3 font-medium transition-all duration-200 ${
+            canProceed
               ? 'bg-royal-purple text-parchment-white hover:bg-royal-purple/90 hover:scale-105'
               : 'bg-slate-dark/50 text-mist-gray cursor-not-allowed'
-            }
-          `}
+          } `}
         >
           Continuar
         </button>

@@ -14,9 +14,12 @@ export default function Steps({
   className = '',
 }: StepsProps) {
   // Handle step click
-  const handleStepClick = useCallback((stepIndex: number) => {
-    if (onStepClick && stepIndex <= currentStep) onStepClick(stepIndex);
-  }, [onStepClick, currentStep]);
+  const handleStepClick = useCallback(
+    (stepIndex: number) => {
+      if (onStepClick && stepIndex <= currentStep) onStepClick(stepIndex);
+    },
+    [onStepClick, currentStep]
+  );
 
   // Render
   return (
@@ -46,9 +49,7 @@ export default function Steps({
       </Card>
 
       {/* Step Content - Current Step */}
-      <StepContent>
-        {steps[currentStep].children}
-      </StepContent>
+      <StepContent>{steps[currentStep].children}</StepContent>
     </div>
   );
 }
@@ -57,4 +58,3 @@ const styles = {
   container: 'flex flex-col gap-6',
   steps: 'flex',
 };
-

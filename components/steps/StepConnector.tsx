@@ -10,7 +10,12 @@ interface StepConnectorProps {
   invisible?: boolean;
 }
 
-const StepConnector = ({ isCompleted, index, steps, invisible = false }: StepConnectorProps) => {
+const StepConnector = ({
+  isCompleted,
+  index,
+  steps,
+  invisible = false,
+}: StepConnectorProps) => {
   // Connector classes
   const connectorClasses = (isCompleted: boolean) => {
     return cn(

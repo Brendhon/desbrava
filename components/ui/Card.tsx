@@ -57,7 +57,7 @@ const styles = {
     dark: 'bg-slate-dark',
     light: 'bg-parchment-white',
     gray: 'bg-mist-gray',
-    blue: 'bg-midnight-blue'
+    blue: 'bg-midnight-blue',
   },
   maxWidth: {
     none: '',

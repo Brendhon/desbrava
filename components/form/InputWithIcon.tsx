@@ -37,7 +37,10 @@ const InputWithIcon = ({
     <div className="relative">
       {Icon && iconPosition === 'left' && (
         <Icon
-          className={cn(styles.icon, !iconAction ? 'pointer-events-none' : 'cursor-pointer')}
+          className={cn(
+            styles.icon,
+            !iconAction ? 'pointer-events-none' : 'cursor-pointer'
+          )}
           aria-hidden="true"
           onClick={iconAction}
         />
@@ -47,7 +50,10 @@ const InputWithIcon = ({
 
       {Icon && iconPosition === 'right' && (
         <Icon
-          className={cn(styles.icon, !iconAction ? 'pointer-events-none' : 'cursor-pointer')}
+          className={cn(
+            styles.icon,
+            !iconAction ? 'pointer-events-none' : 'cursor-pointer'
+          )}
           aria-hidden="true"
           onClick={iconAction}
         />

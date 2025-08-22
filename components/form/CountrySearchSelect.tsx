@@ -4,7 +4,7 @@ import { SearchSelect } from '@/components/form';
 import { useCountries } from '@/hooks/useCountries';
 import { SelectOption } from '@/lib/types';
 import { Country } from '@/lib/types/country';
-import { forwardRef, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface CountrySearchSelectProps {
@@ -26,12 +26,8 @@ interface CountrySearchSelectProps {
  * CountrySearchSelect component that provides dynamic country search using the countries API
  * with debouncing to avoid excessive API calls and support for initial/default values
  */
-const CountrySearchSelect = forwardRef<
-  HTMLInputElement,
-  CountrySearchSelectProps
->(
-  (
-    {
+export default function CountrySearchSelect(  
+  {
       label = 'País',
       error,
       size = 'md',
@@ -45,14 +41,14 @@ const CountrySearchSelect = forwardRef<
       debounceDelay = 400,
       defaultValue,
       ...props
-    },
-    ref
-  ) => {
-    // Estado interno para controlar o valor selecionado
+      }: CountrySearchSelectProps
+  ) {
+    // Internal state for selected value
     const [selectedValue, setSelectedValue] = useState<string>(
       defaultValue || ''
     );
 
+    // Countries API
     const {
       countries,
       loading,
@@ -61,12 +57,11 @@ const CountrySearchSelect = forwardRef<
       setSearchTerm,
     } = useCountries('', debounceDelay);
 
-    // Convert countries to SelectOption format with simplified labels
+    // Convert countries to SelectOption format with simplified labels for better compatibility
     const countryOptions: SelectOption[] = useMemo(() => {
       return countries.map((country: Country) => ({
         value: country.country,
-        label: country.country, // Simplified label for better compatibility
-        // Store additional data for display purposes
+        label: country.country,
         data: {
           image: country.flag,
           desc: country.continent,
@@ -75,20 +70,20 @@ const CountrySearchSelect = forwardRef<
       }));
     }, [countries]);
 
-    // Effect para aplicar o valor inicial após carregar os países
+    // Effect to apply the initial value after loading the countries
     useEffect(() => {
       if (defaultValue) {
         const initialValue = defaultValue || '';
         setSelectedValue(initialValue);
 
-        // Se não há países carregados ainda, fazer uma busca inicial
+        // If no countries are loaded yet, make an initial search
         if (countries.length === 0 && initialValue.trim().length > 0) {
           setSearchTerm(initialValue);
         }
       }
     }, [defaultValue, countries.length, setSearchTerm]);
 
-    // Effect para sincronizar com mudanças externas de value
+    // Effect to synchronize with external changes in value
     useEffect(() => {
       if (defaultValue !== undefined && defaultValue !== selectedValue) {
         setSelectedValue(defaultValue);
@@ -97,19 +92,19 @@ const CountrySearchSelect = forwardRef<
 
     // Handle option selection and search updates
     const handleValueChange = (newValue: string) => {
-      // Update internal state
+      // Update internal state with the new value
       setSelectedValue(newValue);
 
-      // Update search term for API calls
+      // Update search term for API calls to the countries API
       setSearchTerm(newValue);
 
-      // Call the original onValueChange if provided
+      // Call the original onValueChange if provided to the parent component
       if (onValueChange) {
         onValueChange(newValue);
       }
     };
 
-    // Show loading state or error in helper text
+    // Show loading state or error in helper text if there is an error
     const displayHelperText = searchError
       ? `Erro na busca: ${searchError}`
       : loading && searchTerm.trim().length >= 2
@@ -118,8 +113,7 @@ const CountrySearchSelect = forwardRef<
 
     return (
       <div className="w-full">
-        <SearchSelect
-          ref={ref}
+        <SearchSelect 
           label={label}
           error={error}
           size={size}
@@ -130,7 +124,6 @@ const CountrySearchSelect = forwardRef<
           id={id}
           options={countryOptions}
           placeholder={placeholder}
-          iconPosition="left"
           value={selectedValue}
           onValueChange={handleValueChange}
           {...props}
@@ -138,8 +131,3 @@ const CountrySearchSelect = forwardRef<
       </div>
     );
   }
-);
-
-CountrySearchSelect.displayName = 'CountrySearchSelect';
-
-export default CountrySearchSelect;

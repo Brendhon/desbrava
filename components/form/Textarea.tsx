@@ -82,4 +82,4 @@ const styles = {
   label: 'form-label',
   helperText: 'form-helper-text',
   error: 'form-error',
-}
+};

@@ -9,14 +9,19 @@ interface StepInfoProps {
   isCurrent: boolean;
 }
 
-const StepInfo = ({ title, description, isCompleted, isCurrent }: StepInfoProps) => {
+const StepInfo = ({
+  title,
+  description,
+  isCompleted,
+  isCurrent,
+}: StepInfoProps) => {
   // Step info classes
   const stepInfoClasses = (isCompleted: boolean, isCurrent: boolean) => {
     return cn(
       styles.stepTitle,
       isCompleted ? styles.stepTitleCompleted : '',
       isCurrent ? styles.stepTitleCurrent : '',
-      !isCompleted && !isCurrent ? styles.stepTitlePending : '',
+      !isCompleted && !isCurrent ? styles.stepTitlePending : ''
     );
   };
 
@@ -26,14 +31,18 @@ const StepInfo = ({ title, description, isCompleted, isCurrent }: StepInfoProps)
       styles.stepDescription,
       isCompleted ? styles.stepDescriptionCompleted : '',
       isCurrent ? styles.stepDescriptionCurrent : '',
-      !isCompleted && !isCurrent ? styles.stepDescriptionPending : '',
+      !isCompleted && !isCurrent ? styles.stepDescriptionPending : ''
     );
   };
 
   return (
     <div className={styles.stepInfo}>
       <h3 className={stepInfoClasses(isCompleted, isCurrent)}>{title}</h3>
-      {description && <p className={stepDescriptionClasses(isCompleted, isCurrent)}>{description}</p>}
+      {description && (
+        <p className={stepDescriptionClasses(isCompleted, isCurrent)}>
+          {description}
+        </p>
+      )}
     </div>
   );
 };
@@ -44,7 +53,8 @@ const styles = {
   stepTitleCompleted: 'text-royal-purple',
   stepTitleCurrent: 'text-parchment-white',
   stepTitlePending: 'text-mist-gray',
-  stepDescription: 'text-xs mt-1 transition-colors duration-300 leading-tight line-clamp-1',
+  stepDescription:
+    'text-xs mt-1 transition-colors duration-300 leading-tight line-clamp-1',
   stepDescriptionCompleted: 'text-royal-purple/80',
   stepDescriptionCurrent: 'text-parchment-white',
   stepDescriptionPending: 'text-mist-gray/80',

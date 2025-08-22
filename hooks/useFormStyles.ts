@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { useMemo } from 'react';
-  
+
 interface UseFormStylesProps {
   size: 'sm' | 'md' | 'lg';
   variant: 'default' | 'error' | 'success';
@@ -25,7 +25,7 @@ export const useFormStyles = ({
       `form-input-variant-${variant}`,
       hasIcon && `form-input-padding-${iconPosition}-icon`,
       error && 'form-input-variant-error',
-      className,
+      className
     );
   }, [size, variant, hasIcon, iconPosition, error, className]);
 
@@ -35,7 +35,7 @@ export const useFormStyles = ({
     return cn(
       'form-input-icon-container',
       `form-input-icon-${size}`,
-      `form-input-icon-${iconPosition}`,
+      `form-input-icon-${iconPosition}`
     );
   }, [hasIcon, size, iconPosition]);
 

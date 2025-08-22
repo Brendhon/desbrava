@@ -23,22 +23,20 @@ interface SearchSelectProps
   onValueChange?: (value: string) => void;
 }
 
-export default function SearchSelect(
-  {
-    label,
-    error,
-    size = 'md',
-    variant = 'default',
-    register,
-    helperText,
-    className = '',
-    id,
-    options,
-    placeholder,
-    icon,
-    onValueChange,
-  }: SearchSelectProps
-) {
+export default function SearchSelect({
+  label,
+  error,
+  size = 'md',
+  variant = 'default',
+  register,
+  helperText,
+  className = '',
+  id,
+  options,
+  placeholder,
+  icon,
+  onValueChange,
+}: SearchSelectProps) {
   // State
   const [searchValue, setSearchValue] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
@@ -58,9 +56,7 @@ export default function SearchSelect(
         typeof option.label === 'string'
           ? option.label
           : option.label?.toString() || '';
-      return normalizeString(labelText).includes(
-        normalizeString(searchValue)
-      );
+      return normalizeString(labelText).includes(normalizeString(searchValue));
     });
   }, [options, searchValue]);
 
@@ -82,16 +78,11 @@ export default function SearchSelect(
     [handleChange]
   );
 
-  const {
-    isOpen,
-    highlightedIndex,
-    dropdownRef,
-    openDropdown,
-    closeDropdown,
-  } = useDropdown({
-    options: filteredOptions,
-    onOptionSelect: handleOptionSelect,
-  });
+  const { isOpen, highlightedIndex, dropdownRef, openDropdown, closeDropdown } =
+    useDropdown({
+      options: filteredOptions,
+      onOptionSelect: handleOptionSelect,
+    });
 
   const handleInputChangeWrapper = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

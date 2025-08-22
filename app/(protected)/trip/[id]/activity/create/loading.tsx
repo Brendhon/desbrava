@@ -1,10 +1,10 @@
 import { Card } from '@/components/ui';
-import { 
-  LoadingSkeleton, 
-  CardSkeleton, 
-  FormSectionSkeleton, 
-  InputSkeleton, 
-  ButtonSkeleton 
+import {
+  LoadingSkeleton,
+  CardSkeleton,
+  FormSectionSkeleton,
+  InputSkeleton,
+  ButtonSkeleton,
 } from '@/components/loading/loading-skeleton';
 
 export default function CreateActivityLoading() {
@@ -15,8 +15,8 @@ export default function CreateActivityLoading() {
         <div className={styles.headerSkeleton}>
           <div className={styles.backButtonSkeleton}></div>
           <div className={styles.titleSkeleton}>
-            <LoadingSkeleton count={1} className="w-48 h-8" />
-            <LoadingSkeleton count={1} className="w-64 h-5" />
+            <LoadingSkeleton count={1} className="h-8 w-48" />
+            <LoadingSkeleton count={1} className="h-5 w-64" />
           </div>
         </div>
       </div>
@@ -34,21 +34,21 @@ export default function CreateActivityLoading() {
               border={false}
               className={styles.section}
             >
-              <LoadingSkeleton count={1} className="w-32 h-6 mb-4" />
-              
+              <LoadingSkeleton count={1} className="mb-4 h-6 w-32" />
+
               <div className={styles.fieldGroup}>
-                <LoadingSkeleton count={1} className="w-24 h-4 mb-2" />
+                <LoadingSkeleton count={1} className="mb-2 h-4 w-24" />
                 <InputSkeleton />
               </div>
 
               <div className={styles.fieldGroup}>
-                <LoadingSkeleton count={1} className="w-32 h-4 mb-2" />
+                <LoadingSkeleton count={1} className="mb-2 h-4 w-32" />
                 <InputSkeleton />
               </div>
 
               <div className={styles.fieldGroup}>
-                <LoadingSkeleton count={1} className="w-28 h-4 mb-2" />
-                <div className="h-24 bg-mist-gray/20 rounded-md animate-pulse" />
+                <LoadingSkeleton count={1} className="mb-2 h-4 w-28" />
+                <div className="bg-mist-gray/20 h-24 animate-pulse rounded-md" />
               </div>
             </Card>
 
@@ -60,27 +60,27 @@ export default function CreateActivityLoading() {
               border={false}
               className={styles.section}
             >
-              <LoadingSkeleton count={1} className="w-32 h-6 mb-4" />
-              
+              <LoadingSkeleton count={1} className="mb-4 h-6 w-32" />
+
               <div className={styles.fieldGroup}>
-                <LoadingSkeleton count={1} className="w-16 h-4 mb-2" />
+                <LoadingSkeleton count={1} className="mb-2 h-4 w-16" />
                 <InputSkeleton />
               </div>
 
               <div className={styles.timeGrid}>
                 <div className={styles.fieldGroup}>
-                  <LoadingSkeleton count={1} className="w-32 h-4 mb-2" />
+                  <LoadingSkeleton count={1} className="mb-2 h-4 w-32" />
                   <InputSkeleton />
                 </div>
 
                 <div className={styles.fieldGroup}>
-                  <LoadingSkeleton count={1} className="w-28 h-4 mb-2" />
+                  <LoadingSkeleton count={1} className="mb-2 h-4 w-28" />
                   <InputSkeleton />
                 </div>
               </div>
 
               <div className={styles.fieldGroup}>
-                <LoadingSkeleton count={1} className="w-36 h-4 mb-2" />
+                <LoadingSkeleton count={1} className="mb-2 h-4 w-36" />
                 <InputSkeleton />
               </div>
             </Card>
@@ -93,15 +93,15 @@ export default function CreateActivityLoading() {
               border={false}
               className={styles.section}
             >
-              <LoadingSkeleton count={1} className="w-32 h-6 mb-4" />
-              
+              <LoadingSkeleton count={1} className="mb-4 h-6 w-32" />
+
               <div className={styles.fieldGroup}>
-                <LoadingSkeleton count={1} className="w-24 h-4 mb-2" />
+                <LoadingSkeleton count={1} className="mb-2 h-4 w-24" />
                 <InputSkeleton />
               </div>
 
               <div className={styles.fieldGroup}>
-                <LoadingSkeleton count={1} className="w-16 h-4 mb-2" />
+                <LoadingSkeleton count={1} className="mb-2 h-4 w-16" />
                 <InputSkeleton />
               </div>
             </Card>
@@ -117,14 +117,14 @@ export default function CreateActivityLoading() {
               border={false}
               className={styles.section}
             >
-              <LoadingSkeleton count={1} className="w-32 h-6 mb-4" />
-              
+              <LoadingSkeleton count={1} className="mb-4 h-6 w-32" />
+
               <div className={styles.fieldGroup}>
-                <LoadingSkeleton count={1} className="w-48 h-6" />
+                <LoadingSkeleton count={1} className="h-6 w-48" />
               </div>
 
               <div className={styles.fieldGroup}>
-                <LoadingSkeleton count={1} className="w-24 h-4 mb-2" />
+                <LoadingSkeleton count={1} className="mb-2 h-4 w-24" />
                 <InputSkeleton />
               </div>
             </Card>
@@ -137,16 +137,16 @@ export default function CreateActivityLoading() {
               border={false}
               className={styles.section}
             >
-              <LoadingSkeleton count={1} className="w-20 h-6 mb-4" />
-              
+              <LoadingSkeleton count={1} className="mb-4 h-6 w-20" />
+
               <div className={styles.costGrid}>
                 <div className={styles.fieldGroup}>
-                  <LoadingSkeleton count={1} className="w-20 h-4 mb-2" />
+                  <LoadingSkeleton count={1} className="mb-2 h-4 w-20" />
                   <InputSkeleton />
                 </div>
 
                 <div className={styles.fieldGroup}>
-                  <LoadingSkeleton count={1} className="w-24 h-4 mb-2" />
+                  <LoadingSkeleton count={1} className="mb-2 h-4 w-24" />
                   <InputSkeleton />
                 </div>
               </div>
@@ -160,11 +160,11 @@ export default function CreateActivityLoading() {
               border={false}
               className={styles.section}
             >
-              <LoadingSkeleton count={1} className="w-32 h-6 mb-4" />
-              
+              <LoadingSkeleton count={1} className="mb-4 h-6 w-32" />
+
               <div className={styles.fieldGroup}>
-                <LoadingSkeleton count={1} className="w-40 h-4 mb-2" />
-                <div className="h-24 bg-mist-gray/20 rounded-md animate-pulse" />
+                <LoadingSkeleton count={1} className="mb-2 h-4 w-40" />
+                <div className="bg-mist-gray/20 h-24 animate-pulse rounded-md" />
               </div>
             </Card>
           </div>

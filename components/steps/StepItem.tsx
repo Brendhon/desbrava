@@ -16,7 +16,15 @@ interface StepItemProps {
   className?: string;
 }
 
-const StepItem = ({ isCurrent, isCompleted, isClickable, handleStepClick, index, steps, className }: StepItemProps) => {
+const StepItem = ({
+  isCurrent,
+  isCompleted,
+  isClickable,
+  handleStepClick,
+  index,
+  steps,
+  className,
+}: StepItemProps) => {
   // Step wrapper classes
   const stepClasses = (isCurrent: boolean) => {
     return cn(
@@ -48,11 +56,7 @@ const StepItem = ({ isCurrent, isCompleted, isClickable, handleStepClick, index,
         </div>
 
         {/* Step Connector */}
-        <StepConnector
-          isCompleted={isCompleted}
-          index={index}
-          steps={steps}
-        />
+        <StepConnector isCompleted={isCompleted} index={index} steps={steps} />
       </div>
     </div>
   );

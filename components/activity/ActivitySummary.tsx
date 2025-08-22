@@ -42,10 +42,10 @@ export default function ActivitySummary({
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <div className="w-20 h-20 bg-royal-purple/20 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle className="w-10 h-10 text-royal-purple" />
+        <div className="bg-royal-purple/20 mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full">
+          <CheckCircle className="text-royal-purple h-10 w-10" />
         </div>
-        <h2 className="text-2xl font-bold text-parchment-white mb-2">
+        <h2 className="text-parchment-white mb-2 text-2xl font-bold">
           Resumo da Atividade
         </h2>
         <p className="text-mist-gray">
@@ -62,10 +62,10 @@ export default function ActivitySummary({
           border={false}
           className="p-6"
         >
-          <h3 className="text-lg font-semibold text-parchment-white mb-4">
+          <h3 className="text-parchment-white mb-4 text-lg font-semibold">
             Tipo de Atividade
           </h3>
-          
+
           <div className="flex items-center gap-3">
             <div className="text-3xl">
               {activityType === 'accommodation' && '🏨'}
@@ -94,16 +94,18 @@ export default function ActivitySummary({
           border={false}
           className="p-6"
         >
-          <h3 className="text-lg font-semibold text-parchment-white mb-4 flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-royal-purple" />
+          <h3 className="text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold">
+            <MapPin className="text-royal-purple h-5 w-5" />
             {isTransportation ? 'Rota da Viagem' : 'Local da Atividade'}
           </h3>
-          
+
           {isTransportation ? (
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-royal-purple/20 rounded-full flex items-center justify-center">
-                  <span className="text-royal-purple text-sm font-medium">1</span>
+                <div className="bg-royal-purple/20 flex h-8 w-8 items-center justify-center rounded-full">
+                  <span className="text-royal-purple text-sm font-medium">
+                    1
+                  </span>
                 </div>
                 <div>
                   <p className="text-mist-gray text-sm">Ponto de Partida</p>
@@ -117,14 +119,16 @@ export default function ActivitySummary({
                   )}
                 </div>
               </div>
-              
+
               <div className="flex justify-center">
-                <div className="w-0.5 h-8 bg-royal-purple/30" />
+                <div className="bg-royal-purple/30 h-8 w-0.5" />
               </div>
-              
+
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-royal-purple/20 rounded-full flex items-center justify-center">
-                  <span className="text-royal-purple text-sm font-medium">2</span>
+                <div className="bg-royal-purple/20 flex h-8 w-8 items-center justify-center rounded-full">
+                  <span className="text-royal-purple text-sm font-medium">
+                    2
+                  </span>
                 </div>
                 <div>
                   <p className="text-mist-gray text-sm">Destino</p>
@@ -141,8 +145,8 @@ export default function ActivitySummary({
             </div>
           ) : (
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-royal-purple/20 rounded-full flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-royal-purple" />
+              <div className="bg-royal-purple/20 flex h-8 w-8 items-center justify-center rounded-full">
+                <MapPin className="text-royal-purple h-4 w-4" />
               </div>
               <div>
                 <p className="text-parchment-white font-medium">
@@ -166,14 +170,14 @@ export default function ActivitySummary({
           border={false}
           className="p-6"
         >
-          <h3 className="text-lg font-semibold text-parchment-white mb-4 flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-royal-purple" />
+          <h3 className="text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold">
+            <Calendar className="text-royal-purple h-5 w-5" />
             Data e Horário
           </h3>
-          
+
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <Calendar className="w-5 h-5 text-mist-gray" />
+              <Calendar className="text-mist-gray h-5 w-5" />
               <div>
                 <p className="text-mist-gray text-sm">Data</p>
                 <p className="text-parchment-white font-medium">
@@ -181,10 +185,10 @@ export default function ActivitySummary({
                 </p>
               </div>
             </div>
-            
+
             {needsTimeRange && periodData.startTime && (
               <div className="flex items-center gap-3">
-                <Clock className="w-5 h-5 text-mist-gray" />
+                <Clock className="text-mist-gray h-5 w-5" />
                 <div>
                   <p className="text-mist-gray text-sm">Horário de Início</p>
                   <p className="text-parchment-white font-medium">
@@ -193,10 +197,10 @@ export default function ActivitySummary({
                 </div>
               </div>
             )}
-            
+
             {needsTimeRange && periodData.endTime && (
               <div className="flex items-center gap-3">
-                <Clock className="w-5 h-5 text-mist-gray" />
+                <Clock className="text-mist-gray h-5 w-5" />
                 <div>
                   <p className="text-mist-gray text-sm">Horário de Fim</p>
                   <p className="text-parchment-white font-medium">
@@ -215,22 +219,20 @@ export default function ActivitySummary({
           type="button"
           onClick={onBack}
           disabled={isSubmitting}
-          className="px-6 py-3 text-mist-gray hover:text-parchment-white transition-colors duration-200 disabled:opacity-50"
+          className="text-mist-gray hover:text-parchment-white px-6 py-3 transition-colors duration-200 disabled:opacity-50"
         >
           Voltar
         </button>
-        
+
         <button
           type="button"
           onClick={onSubmit}
           disabled={isSubmitting}
-          className={`
-            px-8 py-3 rounded-lg font-medium transition-all duration-200
-            ${isSubmitting
+          className={`rounded-lg px-8 py-3 font-medium transition-all duration-200 ${
+            isSubmitting
               ? 'bg-slate-dark/50 text-mist-gray cursor-not-allowed'
               : 'bg-royal-purple text-parchment-white hover:bg-royal-purple/90 hover:scale-105'
-            }
-          `}
+          } `}
         >
           {isSubmitting ? 'Criando...' : 'Criar Atividade'}
         </button>

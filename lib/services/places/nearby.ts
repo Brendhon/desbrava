@@ -7,7 +7,7 @@ import {
   PlaceNearbySearchRequest,
   PlaceNearbySearchResponse,
   PlacesApiConfig,
-  PlacesApiError
+  PlacesApiError,
 } from '@/lib/types';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
 

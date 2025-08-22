@@ -57,15 +57,24 @@ export enum ActivityType {
   OTHER = 'Outro', // Any activity not covered by the above
 }
 
-export const ActivityTypeKeys = ['accommodation', 'transportation', 'food', 'leisure', 'other'] as const;
+export const ActivityTypeKeys = [
+  'accommodation',
+  'transportation',
+  'food',
+  'leisure',
+  'other',
+] as const;
 
-export type ActivityTypeKey = typeof ActivityTypeKeys[number];
+export type ActivityTypeKey = (typeof ActivityTypeKeys)[number];
 
 /**
  * Options for activity types, as an array for use in select components.
  * Each option includes a value (ActivityTypeKey) and a label.
  */
-export const ACTIVITY_TYPE_OPTIONS: { value: ActivityTypeKey; label: string }[] = [
+export const ACTIVITY_TYPE_OPTIONS: {
+  value: ActivityTypeKey;
+  label: string;
+}[] = [
   { value: 'accommodation', label: '🏨 Acomodação' },
   { value: 'transportation', label: '✈️ Transporte' },
   { value: 'food', label: '🍽️ Alimentação' },
@@ -77,26 +86,24 @@ export const ACTIVITY_TYPE_OPTIONS: { value: ActivityTypeKey; label: string }[] 
  * Enum with descriptions and examples for each ActivityType.
  */
 export const ACTIVITY_TYPE_INFO: Record<ActivityTypeKey, string> = {
-  accommodation: 'Inclui hotéis, hostels, guesthouses, e qualquer tipo de acomodação.',
-  transportation: 'Inclui voos, trens, ônibus, aluguel de carros, e transferências.',
+  accommodation:
+    'Inclui hotéis, hostels, guesthouses, e qualquer tipo de acomodação.',
+  transportation:
+    'Inclui voos, trens, ônibus, aluguel de carros, e transferências.',
   food: 'Inclui restaurantes, cafés, padarias, supermercados, e qualquer tipo de alimentação.',
-  leisure: 'Inclui atrações, entretenimento, cultura, natureza, esportes, bem-estar e compras.',
+  leisure:
+    'Inclui atrações, entretenimento, cultura, natureza, esportes, bem-estar e compras.',
   other: 'Qualquer atividade que não se encaixa nas categorias acima.',
-}
+};
 
-export type ActivityStatus = 
+export type ActivityStatus =
   | 'planned'
   | 'confirmed'
   | 'in_progress'
   | 'completed'
   | 'cancelled';
 
-export type ActivityPriority = 
-  | 'low'
-  | 'medium'
-  | 'high'
-  | 'critical';
-
+export type ActivityPriority = 'low' | 'medium' | 'high' | 'critical';
 
 // Status options for the form
 export const ACTIVITY_STATUS_OPTIONS: SelectOption[] = [

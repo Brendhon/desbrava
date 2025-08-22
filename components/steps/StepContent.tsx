@@ -9,12 +9,7 @@ interface StepContentProps {
 
 const StepContent = ({ children }: StepContentProps) => {
   return (
-    <Card
-      shadow="none"
-      background="dark"
-      maxWidth="none"
-      border={false}
-    >
+    <Card shadow="none" background="dark" maxWidth="none" border={false}>
       {children}
     </Card>
   );

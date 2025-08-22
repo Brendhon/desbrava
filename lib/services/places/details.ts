@@ -8,7 +8,13 @@ import {
   PlaceDetailsResponse,
   PlacesApiError,
 } from '@/lib/types';
-import { ATTRACTION_FIELDS, DEFAULT_FIELDS, EXTENDED_FIELDS, HOTEL_FIELDS, RESTAURANT_FIELDS } from '@/lib/utils';
+import {
+  ATTRACTION_FIELDS,
+  DEFAULT_FIELDS,
+  EXTENDED_FIELDS,
+  HOTEL_FIELDS,
+  RESTAURANT_FIELDS,
+} from '@/lib/utils';
 import { createFieldMask, makePlacesRequest } from './base';
 
 /**

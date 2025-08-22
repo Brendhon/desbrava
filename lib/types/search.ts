@@ -1,4 +1,4 @@
-import { PlaceType, PlacesApiConfig } from "./places";
+import { PlaceType, PlacesApiConfig } from './places';
 
 export interface TextSearchOptions {
   query: string;
@@ -17,5 +17,5 @@ export interface NearbySearchOptions {
   types: PlaceType[];
   maxResults?: number;
   rankByDistance?: boolean;
-  config?: PlacesApiConfig
+  config?: PlacesApiConfig;
 }
