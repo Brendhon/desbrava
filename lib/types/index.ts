@@ -6,5 +6,6 @@ export * from './form';
 export * from './places';
 export * from './route';
 export * from './search';
+export * from './steps';
 export * from './toast';
 export * from './trip';
