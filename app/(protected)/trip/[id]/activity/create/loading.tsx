@@ -1,4 +1,7 @@
-import { LoadingSkeleton, CardSkeleton } from '@/components/loading/loading-skeleton';
+import {
+  LoadingSkeleton,
+  CardSkeleton,
+} from '@/components/loading/loading-skeleton';
 
 export default function CreateActivityLoading() {
   return (
@@ -6,7 +9,7 @@ export default function CreateActivityLoading() {
       {/* Header Skeleton */}
       <div className={styles.header}>
         <div className={styles.backButton}>
-          <LoadingSkeleton count={1}  className={styles.loadingSkeleton} />
+          <LoadingSkeleton count={1} className={styles.loadingSkeleton} />
         </div>
         <div className={styles.headerContent}>
           <LoadingSkeleton count={1} className={styles.loadingSkeleton} />
