@@ -4,3 +4,4 @@ export { default as StepInfo } from './StepInfo';
 export { default as StepConnector } from './StepConnector';
 export { default as StepItem } from './StepItem';
 export { default as StepContent } from './StepContent';
+export { default as NavigationButtons } from './NavigationButtons';

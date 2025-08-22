@@ -11,13 +11,13 @@ interface StepButtonProps {
   handleStepClick: (stepIndex: number) => void;
 }
 
-const StepButton = ({
+export default function StepButton({
   index,
   isCompleted,
   isCurrent,
   isClickable,
   handleStepClick,
-}: StepButtonProps) => {
+}: StepButtonProps) {
   const buttonClasses = (
     isCompleted: boolean,
     isCurrent: boolean,
@@ -45,7 +45,7 @@ const StepButton = ({
       )}
     </button>
   );
-};
+}
 
 const styles = {
   stepButton:
@@ -61,4 +61,3 @@ const styles = {
   stepNumber: 'text-sm font-semibold',
 };
 
-export default StepButton;

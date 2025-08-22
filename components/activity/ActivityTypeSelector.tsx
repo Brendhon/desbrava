@@ -7,6 +7,7 @@ import {
   type ActivityTypeKey,
 } from '@/lib/types/activity';
 import { useState } from 'react';
+import { NavigationButtons } from '../steps';
 
 interface ActivityTypeSelectorProps {
   selectedType: ActivityTypeKey | '';
@@ -77,17 +78,12 @@ export default function ActivityTypeSelector({
         })}
       </div>
 
-      <div className="flex justify-center pt-6">
-        <Button
-          variant="primary"
-          iconPosition="right"
-          onClick={handleNext}
-          className="w-full md:w-auto"
-          disabled={!selectedType}
-        >
-          Continuar
-        </Button>
-      </div>
+      <NavigationButtons
+        onBack={() => {}}
+        onNext={handleNext}
+        canProceed={!!selectedType}
+        canGoBack={false}
+      />
     </div>
   );
 }
