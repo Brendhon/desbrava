@@ -76,8 +76,6 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
       }
     }
 
-
-
     setLoading(true);
     setError(null);
 

@@ -169,12 +169,8 @@ export interface PlaceAuthorAttribution {
 
 // ACCOMMODATION - Places for staying overnight
 export const ACCOMMODATION_TYPES = {
-  LODGING: 'lodging',
   HOTEL: 'hotel',
-  RESORT: 'resort',
   MOTEL: 'motel',
-  CAMPGROUND: 'campground',
-  RV_PARK: 'rv_park',
   HOSTEL: 'hostel',
   GUEST_HOUSE: 'guest_house',
   BED_AND_BREAKFAST: 'bed_and_breakfast',

@@ -4,14 +4,12 @@
 import {
   AutocompleteOptions,
   getPlaceTypesByCategory,
-  PLACE_TYPES,
   PlaceAutocompleteRequest,
   PlaceAutocompleteResponse,
   PlacesApiConfig,
+  PlacesApiError
 } from '@/lib/types';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
-import { PlacesApiError } from '@/lib/types';
-import { get } from 'http';
 
 /**
  * Get place suggestions for autocomplete
@@ -25,7 +23,6 @@ export async function getPlaceSuggestions(
     longitude,
     radius = 50000,
     types,
-    maxResults = 20,
     sessionToken,
     config,
   } = options;
@@ -58,6 +55,10 @@ export async function getPlaceSuggestions(
   // Add session token if provided
   if (sessionToken) {
     request.sessionToken = sessionToken;
+  }
+
+  if (types) {
+    request.includedPrimaryTypes = types;
   }
 
   try {

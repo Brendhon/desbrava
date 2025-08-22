@@ -10,6 +10,7 @@ import {
   PlacesApiError,
 } from '@/lib/types';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
+import { ACCOMMODATION_TYPES, getPlaceTypesByCategory } from '@/lib/types/places';
 
 /**
  * Search for places near a specific location
@@ -22,7 +23,6 @@ export async function searchNearbyPlaces(
     longitude,
     radius,
     types,
-    maxResults = 20,
     rankByDistance = false,
     config,
   } = options;
@@ -79,7 +79,7 @@ export async function findNearbyHotels(
     latitude,
     longitude,
     radius,
-    types: [PLACE_TYPES.LODGING],
+    types: getPlaceTypesByCategory('accommodation'),
     maxResults,
     config,
   });
@@ -99,12 +99,7 @@ export async function findNearbyRestaurants(
     latitude,
     longitude,
     radius,
-    types: [
-      PLACE_TYPES.RESTAURANT,
-      PLACE_TYPES.CAFE,
-      PLACE_TYPES.BAR,
-      PLACE_TYPES.BAKERY,
-    ],
+    types: getPlaceTypesByCategory('food'),
     maxResults,
     config,
   });
@@ -124,15 +119,7 @@ export async function findNearbyAttractions(
     latitude,
     longitude,
     radius,
-    types: [
-      PLACE_TYPES.TOURIST_ATTRACTION,
-      PLACE_TYPES.MUSEUM,
-      PLACE_TYPES.ART_GALLERY,
-      PLACE_TYPES.PARK,
-      PLACE_TYPES.AMUSEMENT_PARK,
-      PLACE_TYPES.AQUARIUM,
-      PLACE_TYPES.ZOO,
-    ],
+    types: getPlaceTypesByCategory('leisure'),
     maxResults,
     config,
   });
@@ -152,12 +139,7 @@ export async function findNearbyTransportation(
     latitude,
     longitude,
     radius,
-    types: [
-      PLACE_TYPES.AIRPORT,
-      PLACE_TYPES.TRAIN_STATION,
-      PLACE_TYPES.BUS_STATION,
-      PLACE_TYPES.SUBWAY_STATION,
-    ],
+    types: getPlaceTypesByCategory('transportation'),
     maxResults,
     config,
   });
@@ -177,12 +159,7 @@ export async function findAllNearbyPlaces(
     latitude,
     longitude,
     radius,
-    types: [
-      PLACE_TYPES.LODGING,
-      PLACE_TYPES.RESTAURANT,
-      PLACE_TYPES.TOURIST_ATTRACTION,
-      PLACE_TYPES.PARK,
-    ],
+    types: getPlaceTypesByCategory('other'),
     maxResults,
     config,
   });

@@ -2,13 +2,13 @@
 // Handles searching places by text queries
 
 import {
-  PLACE_TYPES,
   PlacesApiConfig,
   PlacesApiError,
   PlaceTextSearchRequest,
   PlaceTextSearchResponse,
-  TextSearchOptions,
+  TextSearchOptions
 } from '@/lib/types';
+import { getPlaceTypesByCategory } from '@/lib/types/places';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
 
 /**
@@ -23,7 +23,6 @@ export async function searchPlacesByText(
     longitude,
     radius = 10000,
     types,
-    maxResults = 20,
     config,
   } = options;
 
@@ -85,7 +84,6 @@ export async function searchHotelsByText(
   latitude?: number,
   longitude?: number,
   radius: number = 10000,
-  maxResults: number = 20,
   config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
@@ -93,8 +91,7 @@ export async function searchHotelsByText(
     latitude,
     longitude,
     radius,
-    types: [PLACE_TYPES.LODGING],
-    maxResults,
+    types: getPlaceTypesByCategory('accommodation'),
     config,
   });
 }
@@ -107,7 +104,6 @@ export async function searchRestaurantsByText(
   latitude?: number,
   longitude?: number,
   radius: number = 5000,
-  maxResults: number = 20,
   config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
@@ -115,13 +111,7 @@ export async function searchRestaurantsByText(
     latitude,
     longitude,
     radius,
-    types: [
-      PLACE_TYPES.RESTAURANT,
-      PLACE_TYPES.CAFE,
-      PLACE_TYPES.BAR,
-      PLACE_TYPES.BAKERY,
-    ],
-    maxResults,
+    types: getPlaceTypesByCategory('food'),
     config,
   });
 }
@@ -133,8 +123,7 @@ export async function searchAttractionsByText(
   query: string,
   latitude?: number,
   longitude?: number,
-  radius: number = 10000,
-  maxResults: number = 20,
+  radius: number = 10000, 
   config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
@@ -142,16 +131,7 @@ export async function searchAttractionsByText(
     latitude,
     longitude,
     radius,
-    types: [
-      PLACE_TYPES.TOURIST_ATTRACTION,
-      PLACE_TYPES.MUSEUM,
-      PLACE_TYPES.ART_GALLERY,
-      PLACE_TYPES.PARK,
-      PLACE_TYPES.AMUSEMENT_PARK,
-      PLACE_TYPES.AQUARIUM,
-      PLACE_TYPES.ZOO,
-    ],
-    maxResults,
+    types: getPlaceTypesByCategory('leisure'),
     config,
   });
 }
@@ -164,7 +144,6 @@ export async function searchTransportationByText(
   latitude?: number,
   longitude?: number,
   radius: number = 10000,
-  maxResults: number = 20,
   config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
@@ -172,13 +151,7 @@ export async function searchTransportationByText(
     latitude,
     longitude,
     radius,
-    types: [
-      PLACE_TYPES.AIRPORT,
-      PLACE_TYPES.TRAIN_STATION,
-      PLACE_TYPES.BUS_STATION,
-      PLACE_TYPES.SUBWAY_STATION,
-    ],
-    maxResults,
+    types: getPlaceTypesByCategory('transportation'),
     config,
   });
 }
@@ -191,7 +164,6 @@ export async function searchAnyPlaceByText(
   latitude?: number,
   longitude?: number,
   radius: number = 10000,
-  maxResults: number = 20,
   config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({
@@ -199,7 +171,6 @@ export async function searchAnyPlaceByText(
     latitude,
     longitude,
     radius,
-    maxResults,
     config,
   });
 }
