@@ -1,29 +1,32 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import { Step } from '@/lib/types';
+import { cn } from '@/lib/utils';
 
 interface StepConnectorProps {
   isCompleted: boolean;
   index: number;
   steps: Step[];
+  invisible?: boolean;
 }
 
-const StepConnector = ({ isCompleted, index, steps }: StepConnectorProps) => {
+const StepConnector = ({ isCompleted, index, steps, invisible = false }: StepConnectorProps) => {
   // Connector classes
   const connectorClasses = (isCompleted: boolean) => {
     return cn(
       styles.connector,
       isCompleted ? styles.connectorCompleted : styles.connectorPending,
+      (index === steps.length - 1 || invisible) && styles.invisible
     );
   };
 
-  return index < steps.length - 1 && <div className={connectorClasses(isCompleted)} />;
+  return <div className={connectorClasses(isCompleted)} />;
 };
 
 const styles = {
-  connector: 'h-0.5 transition-colors duration-300 flex-1 hidden md:block mx-auto',
+  connector: 'h-0.5 transition-colors w-1/3 duration-300 hidden md:block',
   connectorCompleted: 'bg-royal-purple',
+  invisible: 'invisible',
   connectorPending: 'bg-mist-gray/30',
 };
 

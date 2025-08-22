@@ -5,6 +5,7 @@ import { StepsProps } from '@/lib/types';
 import { useCallback } from 'react';
 import StepContent from './StepContent';
 import StepItem from './StepItem';
+import StepConnector from './StepConnector';
 
 export default function Steps({
   steps,
@@ -21,6 +22,15 @@ export default function Steps({
   return (
     <div className={styles.container}>
       <Card border={false} className={styles.steps}>
+        {/* Step Connector - Invisible */}
+        <StepConnector
+          isCompleted={false}
+          index={-1}
+          steps={steps}
+          invisible={true}
+        />
+
+        {/* Steps */}
         {steps.map((_, index) => (
           <StepItem
             key={index}
@@ -35,7 +45,7 @@ export default function Steps({
         ))}
       </Card>
 
-      {/* Step Content */}
+      {/* Step Content - Current Step */}
       <StepContent>
         {steps[currentStep].children}
       </StepContent>

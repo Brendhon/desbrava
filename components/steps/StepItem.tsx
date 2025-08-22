@@ -1,10 +1,10 @@
 'use client';
 
+import { Step } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import StepButton from './StepButton';
-import StepInfo from './StepInfo';
 import StepConnector from './StepConnector';
-import { Step } from '@/lib/types';
+import StepInfo from './StepInfo';
 
 interface StepItemProps {
   isCurrent: boolean;
@@ -18,17 +18,17 @@ interface StepItemProps {
 
 const StepItem = ({ isCurrent, isCompleted, isClickable, handleStepClick, index, steps, className }: StepItemProps) => {
   // Step wrapper classes
-  const stepWrapperClasses = (isCurrent: boolean) => {
+  const stepClasses = (isCurrent: boolean) => {
     return cn(
-      styles.stepWrapper,
-      isCurrent ? styles.stepWrapperCurrent : styles.stepWrapperNotCurrent,
+      styles.step,
+      isCurrent ? styles.stepWrapperCurrent : styles.stepWrapperNotCurrent
     );
   };
 
   return (
-    <div key={index} className={styles.step}>
+    <div key={index} className={stepClasses(isCurrent)}>
       <div className={cn(styles.stepContainer, className)}>
-        <div className={stepWrapperClasses(isCurrent)}>
+        <div className={styles.stepWrapper}>
           {/* Step Circle */}
           <StepButton
             index={index}
