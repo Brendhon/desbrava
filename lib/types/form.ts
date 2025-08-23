@@ -1,5 +1,6 @@
 import { LucideIcon } from 'lucide-react';
 import { ReactNode } from 'react';
+import { ActivityTypeKey } from './activity';
 import { PlaceType } from './places';
 
 // Interface for select options
@@ -125,4 +126,15 @@ export interface PlaceSearchSelectProps
   longitude?: number;
   radius?: number;
   maxResults?: number;
+}
+
+// Base interface for subtype search select components
+export interface SubTypeSearchSelectProps
+  extends BaseFieldProps,
+    FormRegisterProps,
+    IdProps,
+    PlaceholderProps {
+  activityType?: ActivityTypeKey;
+  defaultValue?: string;
+  onSelect?: (option: SelectOption) => void;
 }

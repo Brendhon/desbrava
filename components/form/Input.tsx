@@ -1,5 +1,4 @@
 import { Field } from '@/components/form';
-import { InputHTMLAttributes } from 'react';
 import { InputProps } from '@/lib/types';
 
 export default function Input({

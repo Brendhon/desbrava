@@ -1,25 +1,9 @@
 'use client';
 
 import { SearchSelect, SearchSelectRef } from '@/components/form/selects';
-import { SelectOption } from '@/lib/types';
-import { ActivityTypeKey } from '@/lib/types/activity';
-import { useEffect, useRef, useState } from 'react';
 import { usePlaceTypes } from '@/hooks/usePlaceTypes';
-
-interface SubTypeSearchSelectProps {
-  label?: string;
-  error?: string;
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'default' | 'outline' | 'ghost';
-  helperText?: string;
-  className?: string;
-  id?: string;
-  placeholder?: string;
-  register?: any;
-  defaultValue?: string;
-  activityType: ActivityTypeKey | undefined;
-  onSelect?: (option: SelectOption) => void;
-}
+import { SelectOption, SubTypeSearchSelectProps } from '@/lib/types';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * SubTypeSearchSelect component that provides dynamic subtype search for activity types
