@@ -1,6 +1,7 @@
 'use client';
 
 import { Card } from '@/components/ui';
+import { usePlaceTypes } from '@/hooks/usePlaceTypes';
 import {
   ACTIVITY_TYPE_INFO,
   ACTIVITY_TYPE_OPTIONS,
@@ -8,22 +9,9 @@ import {
 } from '@/lib/types/activity';
 import { SelectOption } from '@/lib/types/form';
 import { cn } from '@/lib/utils';
-import placeTypesData from '@/public/data/place_types.json';
 import { useState } from 'react';
 import { SearchSelect } from '../form';
 import { NavigationButtons } from '../steps';
-
-const defaultSelectedOption = { label: '', value: '' };
-
-const findSubType = (type: ActivityTypeKey | undefined, subType: string | undefined) => {
-  if (!type || !subType) return defaultSelectedOption;
-  return placeTypesData[type].find((option) => option.value === subType) || defaultSelectedOption;
-};
-
-const findType = (type: ActivityTypeKey | undefined) => {
-  if (!type) return [];
-  return placeTypesData[type] || [];
-};
 
 export interface ActivityTypeData {
   type: ActivityTypeKey;
@@ -40,25 +28,25 @@ export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeS
   const [selectedType, setSelectedType] = useState<ActivityTypeKey | null>(typeData?.type || null);
   const [selectedSubType, setSelectedSubType] = useState<string | null>(typeData?.subType || null);
 
+  // Hooks
+  const { getPlaceOptionsByType, getSubtypesByType } = usePlaceTypes();
+
   // Options for the sub type select
-  const [subTypeOptions, setSubTypeOptions] = useState<SelectOption[]>(findType(typeData?.type));
-  const [selectedOption, setSelectedOption] = useState<SelectOption>(findSubType(typeData?.type, typeData?.subType));
+  const [subTypeOptions, setSubTypeOptions] = useState<SelectOption[]>(getPlaceOptionsByType(typeData?.type));
+  const [selectedOption, setSelectedOption] = useState<SelectOption>(getSubtypesByType(typeData?.type, typeData?.subType));
 
   // Handle type select
   const handleTypeSelect = (type: ActivityTypeKey) => {
     setSelectedType(type);
     setSelectedSubType(null);
-    setSelectedOption(defaultSelectedOption);
-    setSubTypeOptions(findType(type));
+    setSelectedOption(getSubtypesByType(type));
+    setSubTypeOptions(getPlaceOptionsByType(type));
   };
 
   // Handle next button click
   const handleNext = () => {
     if (selectedType) {
-      onNext({
-        type: selectedType as ActivityTypeKey,
-        subType: selectedOption?.value || '',
-      });
+      onNext({ type: selectedType as ActivityTypeKey, subType: selectedOption?.value || '' });
     }
   };
 

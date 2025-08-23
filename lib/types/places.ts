@@ -1,6 +1,7 @@
 // Google Places API Types for Desbrava Project
 
 import { ActivityTypeKey } from "./activity";
+import { SelectOption } from "./form";
 
 export interface PlaceLocation {
   latitude: number;
@@ -326,3 +327,11 @@ export const getPlaceTypesByCategory = (category: ActivityTypeKey): PlaceType[] 
       return Object.values(PLACE_TYPES);
   }
 };
+
+export interface PlaceTypeOptions {
+  accommodation:  SelectOption[];
+  transportation: SelectOption[];
+  food:           SelectOption[];
+  leisure:        SelectOption[];
+  other:          SelectOption[];
+}
