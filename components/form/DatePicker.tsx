@@ -1,7 +1,7 @@
 'use client';
 
 import { Input } from '@/components/form';
-import { useFormStyles } from '@/hooks/useFormStyles';
+import { DatePickerProps } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { generateRandomId } from '@/lib/utils/string-utils';
 import { parseDateToPtBr, parsePtBrToDate } from '@/lib/utils/trip';
@@ -9,7 +9,6 @@ import { ptBR } from 'date-fns/locale';
 import { Calendar, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DayPicker, Matcher } from 'react-day-picker';
-import { DatePickerProps } from '@/lib/types';
 
 export default function DatePicker({
   label,
@@ -37,16 +36,6 @@ export default function DatePicker({
 
   // Memoized input ID to prevent recreation on every render
   const inputId = useMemo(() => id || generateRandomId('datepicker'), [id]);
-
-  // Use custom styles
-  const inputStyles = useFormStyles({
-    size,
-    variant: error ? 'error' : variant,
-    hasIcon: true,
-    iconPosition: 'right',
-    className,
-    error,
-  });
 
   // Memoized popup position styles
   const popupStyles = useMemo(() => cn(styles.popup, `datepicker-popup-${popupPosition}`), [popupPosition]);
@@ -119,7 +108,6 @@ export default function DatePicker({
         label={label}
         value={value}
         placeholder={placeholder}
-        className={inputStyles.input}
         helperText={helperText}
         disabled={true}
         name={register?.name}

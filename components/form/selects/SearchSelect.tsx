@@ -19,6 +19,7 @@ export default function SearchSelect({
   onInputChange,
   onSelect,
   register,
+  position = 'bottom',
 }: SearchSelectProps) {
   // Local state for input value
   const [inputValue, setInputValue] = useState('');
@@ -165,6 +166,7 @@ export default function SearchSelect({
         <div className="relative">
           <Dropdown
             isOpen={isDropdownOpen}
+            position={position}
             options={filteredOptions}
             highlightedIndex={highlightedIndex}
             selectedValue={selectedValue}

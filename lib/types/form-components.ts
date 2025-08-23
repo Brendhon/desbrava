@@ -68,6 +68,7 @@ export interface SearchSelectProps extends BaseFieldProps, FormRegisterProps, Id
   options: SelectOption[];
   defaultValue?: SelectOption;
   icon?: LucideIcon;
+  position?: 'top' | 'bottom';
   onInputChange?: (value: string) => void;
   onSelect?: (value: SelectOption) => void;
   [key: string]: any; // Allow additional HTML input attributes
