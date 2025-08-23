@@ -3,16 +3,14 @@
 import { SearchSelect } from '@/components/form';
 import { usePlaces } from '@/hooks/usePlaces';
 import { SelectOption } from '@/lib/types';
-import { Place, PlaceType, PLACE_TYPES, getPlaceTypesByCategory } from '@/lib/types/places';
+import { Place, PlaceType, getPlaceTypesByCategory } from '@/lib/types/places';
 import { useEffect, useMemo, useState } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface PlaceSearchSelectProps {
   label?: React.ReactNode;
   error?: string;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'default' | 'error' | 'success';
-  register?: UseFormRegisterReturn;
   helperText?: string;
   className?: string;
   id?: string;
@@ -36,7 +34,6 @@ export default function PlaceSearchSelect({
   error,
   size = 'md',
   variant = 'default',
-  register,
   helperText = 'Local da sua viagem',
   className = '',
   id,
@@ -108,16 +105,16 @@ export default function PlaceSearchSelect({
   }, [defaultValue, selectedValue]);
 
   // Handle option selection and search updates
-  const handleValueChange = (newValue: string) => {
+  const handleValueChange = (newValue: SelectOption) => {
     // Update internal state with the new value
-    setSelectedValue(newValue);
+    setSelectedValue(newValue.value);
 
     // Update search term for API calls to the places API
-    setSearchTerm(newValue);
+    setSearchTerm(newValue.value);
 
     // Call the original onValueChange if provided to the parent component
     if (onValueChange) {
-      onValueChange(newValue);
+      onValueChange(newValue.value);
     }
   };
 
@@ -135,14 +132,13 @@ export default function PlaceSearchSelect({
         error={error}
         size={size}
         variant={variant}
-        register={register}
         helperText={displayHelperText}
         className={className}
         id={id}
         options={placeOptions}
         placeholder={placeholder}
         value={selectedValue}
-        onValueChange={handleValueChange}
+        onSelect={handleValueChange}
         {...props}
       />
     </div>

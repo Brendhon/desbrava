@@ -5,14 +5,12 @@ import { useCountries } from '@/hooks/useCountries';
 import { SelectOption } from '@/lib/types';
 import { Country } from '@/lib/types/country';
 import { useEffect, useMemo, useState } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface CountrySearchSelectProps {
   label?: React.ReactNode;
   error?: string;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'default' | 'error' | 'success';
-  register?: UseFormRegisterReturn;
   helperText?: string;
   className?: string;
   id?: string;
@@ -31,7 +29,6 @@ export default function CountrySearchSelect({
   error,
   size = 'md',
   variant = 'default',
-  register,
   helperText = 'País principal da sua viagem',
   className = '',
   id,
@@ -89,16 +86,16 @@ export default function CountrySearchSelect({
   }, [defaultValue, selectedValue]);
 
   // Handle option selection and search updates
-  const handleValueChange = (newValue: string) => {
+  const handleValueChange = (newValue: SelectOption) => {
     // Update internal state with the new value
-    setSelectedValue(newValue);
+    setSelectedValue(newValue.value);
 
     // Update search term for API calls to the countries API
-    setSearchTerm(newValue);
+    setSearchTerm(newValue.value);
 
     // Call the original onValueChange if provided to the parent component
     if (onValueChange) {
-      onValueChange(newValue);
+      onValueChange(newValue.value);
     }
   };
 
@@ -116,14 +113,13 @@ export default function CountrySearchSelect({
         error={error}
         size={size}
         variant={variant}
-        register={register}
         helperText={displayHelperText}
         className={className}
         id={id}
         options={countryOptions}
         placeholder={placeholder}
         value={selectedValue}
-        onValueChange={handleValueChange}
+        onSelect={handleValueChange}
         {...props}
       />
     </div>

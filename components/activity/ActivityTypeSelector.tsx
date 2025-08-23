@@ -6,14 +6,24 @@ import {
   ACTIVITY_TYPE_OPTIONS,
   type ActivityTypeKey,
 } from '@/lib/types/activity';
+import { SelectOption } from '@/lib/types/form';
 import placeTypesData from '@/public/data/place_types.json';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { SearchSelect } from '../form';
 import { NavigationButtons } from '../steps';
-import { SelectOption } from '@/lib/types/form';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { activityTypeSelectorSchema, type ActivityTypeSelectorFormData } from '@/lib/schemas/activity';
+import { cn } from '@/lib/utils';
+
+const defaultSelectedOption = { label: '', value: '' };
+
+const findSubType = (type: ActivityTypeKey | undefined, subType: string | undefined) => {
+  if (!type || !subType) return defaultSelectedOption;
+  return placeTypesData[type].find((option) => option.value === subType) || defaultSelectedOption;
+};
+
+const findType = (type: ActivityTypeKey | undefined) => {
+  if (!type) return [];
+  return placeTypesData[type] || [];
+};
 
 export interface ActivityTypeData {
   type: ActivityTypeKey;
@@ -25,77 +35,53 @@ interface ActivityTypeSelectorProps {
   onNext: (data: ActivityTypeData) => void;
 }
 
-export default function ActivityTypeSelector({
-  typeData,
-  onNext,
-}: ActivityTypeSelectorProps) {
-  const [hoveredType, setHoveredType] = useState<ActivityTypeKey | null>(null);
-  const [subTypeOptions, setSubTypeOptions] = useState<SelectOption[]>(
-    typeData?.type ? placeTypesData[typeData.type] : []
-  );
+export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeSelectorProps) {
+  // Selected type and sub type
+  const [selectedType, setSelectedType] = useState<ActivityTypeKey | null>(typeData?.type || null);
+  const [selectedSubType, setSelectedSubType] = useState<string | null>(typeData?.subType || null);
 
-  const {
-    register,
-    setValue,
-    watch,
-  } = useForm<ActivityTypeSelectorFormData>({
-    resolver: zodResolver(activityTypeSelectorSchema),
-    defaultValues: {
-      activityType: typeData?.type || '',
-      subType: typeData?.subType || '',
-    },
-    mode: 'onChange',
-  });
+  // Options for the sub type select
+  const [subTypeOptions, setSubTypeOptions] = useState<SelectOption[]>(findType(typeData?.type));
+  const [selectedOption, setSelectedOption] = useState<SelectOption>(findSubType(typeData?.type, typeData?.subType));
 
-  const watchedActivityType = watch('activityType');
-  const watchedSubType = watch('subType');
-
-  useEffect(() => {
-    console.log('watchedActivityType', watchedActivityType);
-    setSubTypeOptions(watchedActivityType ? placeTypesData[watchedActivityType as ActivityTypeKey] : []);
-  }, [watchedActivityType]);
-
+  // Handle type select
   const handleTypeSelect = (type: ActivityTypeKey) => {
-    setValue('activityType', type);
-    setValue('subType', '');
-    setSubTypeOptions(type ? placeTypesData[type] : []);
+    setSelectedType(type);
+    setSelectedSubType(null);
+    setSelectedOption(defaultSelectedOption);
+    setSubTypeOptions(findType(type));
   };
 
-  const handleFormSubmit = (data: ActivityTypeData) => {
-    onNext(data);
-  };
-
+  // Handle next button click
   const handleNext = () => {
-    if (watchedActivityType) {
-      const data: ActivityTypeData = {
-        type: watchedActivityType as ActivityTypeKey,
-        subType: watchedSubType || '',
-      };
-      handleFormSubmit(data);
+    if (selectedType) {
+      onNext({
+        type: selectedType as ActivityTypeKey,
+        subType: selectedOption?.value || '',
+      });
     }
   };
 
-  const handleSubTypeChange = (value: string) => {
-    const subTypeOption = subTypeOptions.find((option) => option.value === value);
-    setValue('subType', subTypeOption?.label as string || '');
-    console.log('value', value);
+  // Handle sub type change
+  const handleSubTypeChange = (option: SelectOption) => {
+    setSelectedSubType(option.value);
+    setSelectedOption(option);
   };
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-parchment-white mb-2 text-2xl font-bold">
+    <div className={styles.container}>
+      <div className={styles.title}>
+        <h2 className={styles.titleText}>
           Que tipo de atividade você quer criar?
         </h2>
-        <p className="text-mist-gray">
+        <p className={styles.description}>
           Selecione o tipo de atividade para continuar com o planejamento
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className={styles.cardContainer}>
         {ACTIVITY_TYPE_OPTIONS.map((option) => {
-          const isSelected = watchedActivityType === option.value;
-          const isHovered = hoveredType === option.value;
+          const isSelected = selectedType === option.value;
 
           return (
             <Card
@@ -105,20 +91,15 @@ export default function ActivityTypeSelector({
               background="blue"
               maxWidth="none"
               border={true}
-              className={`transform cursor-pointer p-6 transition-all duration-200 ${isSelected
-                ? 'border-royal-purple bg-royal-purple/10 scale-103'
-                : 'border-slate-dark/30 hover:border-royal-purple/50 hover:bg-slate-dark/50'
-                } ${isHovered ? 'scale-101' : ''} `}
+              className={cn(styles.card, isSelected ? styles.cardSelected : styles.cardUnselected)}
               onClick={() => handleTypeSelect(option.value)}
-              onMouseEnter={() => setHoveredType(option.value)}
-              onMouseLeave={() => setHoveredType(null)}
             >
-              <div className="space-y-3 text-center">
-                <div className="text-2xl">{option.icon}</div>
-                <h3 className="text-parchment-white text-lg font-semibold">
+              <div className={styles.cardContent}>
+                <div className={styles.cardIcon}>{option.icon}</div>
+                <h3 className={styles.cardTitle}>
                   {option.label}
                 </h3>
-                <p className="text-mist-gray text-xs">
+                <p className={styles.cardDescription}>
                   {ACTIVITY_TYPE_INFO[option.value]}
                 </p>
               </div>
@@ -127,13 +108,13 @@ export default function ActivityTypeSelector({
         })}
       </div>
 
-      {watchedActivityType && (
-        <div className="space-y-2">
+      {selectedType && (
+        <div className={styles.searchSelectContainer}>
           <SearchSelect
             label="Tipo de atividade"
             options={subTypeOptions}
+            defaultValue={selectedOption}
             placeholder="Selecione o tipo de atividade"
-            register={register('subType')}
             onSelect={handleSubTypeChange}
           />
         </div>
@@ -142,9 +123,25 @@ export default function ActivityTypeSelector({
       <NavigationButtons
         onBack={() => { }}
         onNext={handleNext}
-        canProceed={!!watchedActivityType && !!watchedSubType}
+        canProceed={!!selectedType && !!selectedSubType}
         canGoBack={false}
       />
     </div>
   );
+}
+
+const styles = {
+  container: 'space-y-6',
+  title: 'text-center',
+  titleText: 'text-parchment-white mb-2 text-2xl font-bold',
+  description: 'text-center',
+  cardContainer: 'grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
+  card: 'transform cursor-pointer p-6 transition-all duration-200',
+  cardContent: 'space-y-3 text-center',
+  cardSelected: 'border-royal-purple bg-royal-purple/10 scale-105',
+  cardUnselected: 'border-slate-dark/30 hover:border-royal-purple/50 hover:bg-slate-dark/50 hover:scale-104',
+  cardIcon: 'text-2xl',
+  cardTitle: 'text-parchment-white text-lg font-semibold',
+  cardDescription: 'text-mist-gray text-xs',
+  searchSelectContainer: 'space-y-2',
 }
