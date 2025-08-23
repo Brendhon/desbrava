@@ -1,17 +1,32 @@
 import { Dropdown, Input } from '@/components/form';
 import { SearchSelectProps, SelectOption } from '@/lib/types';
-import { generateRandomId, normalizeString } from '@/lib/utils/string-utils';
+import { compareStrings, containsString } from '@/lib/utils/string-utils';
 import { X } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  ChangeEvent,
+  forwardRef,
+  KeyboardEvent,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
-export default function SearchSelect({
+// Interface for imperative handle
+export interface SearchSelectRef {
+  clear: () => void;
+  focus: () => void;
+}
+
+const SearchSelect = forwardRef<SearchSelectRef, SearchSelectProps>(({
   label,
   error,
   size = 'md',
   variant = 'default',
   helperText,
   className = '',
-  id,
   options,
   defaultValue,
   placeholder,
@@ -20,63 +35,65 @@ export default function SearchSelect({
   onSelect,
   register,
   position = 'bottom',
-}: SearchSelectProps) {
+}, ref) => {
   // Local state for input value
   const [inputValue, setInputValue] = useState('');
+
+  // Local state for dropdown open
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Local state for highlighted index
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
+
+  // Local state for selected value
   const [selectedValue, setSelectedValue] = useState('');
+
+  // Ref for input element
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Expose imperative methods
+  useImperativeHandle(ref, () => ({
+    clear: () => handleClearInput(),
+    focus: () => inputRef.current?.focus(),
+  }), []);
 
   useEffect(() => {
     if (defaultValue) {
-      setInputValue(defaultValue.label as string);
-      setSelectedValue(defaultValue.value as string);
+      setInputValue(defaultValue.label);
+      setSelectedValue(defaultValue.value);
       setHighlightedIndex(-1);
       setIsDropdownOpen(false);
     }
   }, [defaultValue]);
 
-  // Memoized ID
-  const searchSelectId = useMemo(
-    () => id || generateRandomId('search-select'),
-    [id]
-  );
-
   // Filtered options based on input value
   const filteredOptions = useMemo(() => {
-    // If input value is empty, return all options
-    if (!inputValue?.trim()) return options;
-
-    return options.filter((option) => {
-      // If option label is a string, return the label
-      const labelText =
-        typeof option.label === 'string'
-          ? option.label
-          : option.label?.toString() || '';
-      return normalizeString(labelText).includes(normalizeString(inputValue));
-    });
+    return !inputValue?.trim()
+      ? options
+      : options.filter((option: SelectOption) => containsString(option.label, inputValue));
   }, [options, inputValue]);
+
+  // update register value 
+  const updateRegisterValue = useCallback((value: string) => {
+    register?.onChange({ target: { value: value, name: register?.name } });
+  }, [register]);
 
   // Handle option selection
   const handleOptionSelect = useCallback(
     (option: SelectOption) => {
-      const displayValue =
-        typeof option.label === 'string' ? option.label : option.value;
-      setInputValue(displayValue);
+      setInputValue(option.label);
       setSelectedValue(option.value);
       setHighlightedIndex(-1);
       setIsDropdownOpen(false);
       onSelect?.(option);
-      register?.onChange({
-        target: { value: option.value, name: register?.name },
-      });
+      updateRegisterValue(option.value);
     },
-    [onSelect, register]
+    [onSelect, updateRegisterValue]
   );
 
   // Handle input change
   const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setInputValue(value);
       setSelectedValue('');
@@ -93,9 +110,9 @@ export default function SearchSelect({
     setSelectedValue('');
     setHighlightedIndex(-1);
     setIsDropdownOpen(false);
-    register?.onChange({ target: { value: '', name: register?.name } });
+    updateRegisterValue('');
     onSelect?.({ label: '', value: '' });
-  }, [onSelect]);
+  }, [onSelect, updateRegisterValue]);
 
   // Handle input focus
   const handleInputFocus = useCallback(() => {
@@ -114,7 +131,7 @@ export default function SearchSelect({
 
   // Handle keyboard navigation
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
+    (e: KeyboardEvent<HTMLInputElement>) => {
       if (!isDropdownOpen || filteredOptions.length === 0) return;
 
       switch (e.key) {
@@ -148,7 +165,6 @@ export default function SearchSelect({
   return (
     <div className={styles.container}>
       <Input
-        id={searchSelectId}
         label={label}
         size={size}
         variant={variant}
@@ -165,6 +181,7 @@ export default function SearchSelect({
         icon={inputValue ? X : icon}
         iconPosition="right"
         iconAction={handleClearInput}
+        ref={inputRef}
       />
 
       {/* Dropdown */}
@@ -182,8 +199,12 @@ export default function SearchSelect({
       )}
     </div>
   );
-}
+});
+
+SearchSelect.displayName = 'SearchSelect';
 
 const styles = {
   container: 'w-full',
 };
+
+export default SearchSelect;

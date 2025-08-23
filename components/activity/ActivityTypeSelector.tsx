@@ -1,7 +1,8 @@
 'use client';
 
+import { SubTypeSearchSelect } from '@/components/form/selects';
+import { NavigationButtons } from '@/components/steps';
 import { Card } from '@/components/ui';
-import { usePlaceTypes } from '@/hooks/usePlaceTypes';
 import {
   ACTIVITY_TYPE_INFO,
   ACTIVITY_TYPE_OPTIONS,
@@ -10,8 +11,6 @@ import {
 import { SelectOption } from '@/lib/types/form';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
-import { SearchSelect } from '../form/selects';
-import { NavigationButtons } from '../steps';
 
 export interface ActivityTypeData {
   type: ActivityTypeKey;
@@ -23,51 +22,22 @@ interface ActivityTypeSelectorProps {
   onNext: (data: ActivityTypeData) => void;
 }
 
-export default function ActivityTypeSelector({
-  typeData,
-  onNext,
-}: ActivityTypeSelectorProps) {
+export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeSelectorProps) {
   // Selected type and sub type
-  const [selectedType, setSelectedType] = useState<ActivityTypeKey | null>(
-    typeData?.type || null
-  );
-  const [selectedSubType, setSelectedSubType] = useState<string | null>(
-    typeData?.subType || null
-  );
-
-  // Hooks
-  const { getPlaceOptionsByType, getSubtypesByType } = usePlaceTypes();
-
-  // Options for the sub type select
-  const [subTypeOptions, setSubTypeOptions] = useState<SelectOption[]>(
-    getPlaceOptionsByType(typeData?.type)
-  );
-  const [selectedOption, setSelectedOption] = useState<SelectOption>(
-    getSubtypesByType(typeData?.type, typeData?.subType)
-  );
+  const [selectedType, setSelectedType] = useState<ActivityTypeKey | undefined>(typeData?.type);
+  const [selectedSubType, setSelectedSubType] = useState<string | undefined>(typeData?.subType);
 
   // Handle type select
   const handleTypeSelect = (type: ActivityTypeKey) => {
     setSelectedType(type);
-    setSelectedSubType(null);
-    setSelectedOption(getSubtypesByType(type));
-    setSubTypeOptions(getPlaceOptionsByType(type));
+    setSelectedSubType(undefined);
   };
 
   // Handle next button click
   const handleNext = () => {
-    if (selectedType) {
-      onNext({
-        type: selectedType as ActivityTypeKey,
-        subType: selectedOption?.value || '',
-      });
+    if (selectedType && selectedSubType) {
+      onNext({ type: selectedType, subType: selectedSubType });
     }
-  };
-
-  // Handle sub type change
-  const handleSubTypeChange = (option: SelectOption) => {
-    setSelectedSubType(option.value);
-    setSelectedOption(option);
   };
 
   return (
@@ -111,21 +81,16 @@ export default function ActivityTypeSelector({
         })}
       </div>
 
-      {selectedType && (
-        <div className={styles.searchSelectContainer}>
-          <SearchSelect
-            label="Tipo de atividade"
-            options={subTypeOptions}
-            position="top"
-            placeholder="Selecione o tipo de atividade"
-            defaultValue={selectedOption}
-            onSelect={handleSubTypeChange}
-          />
-        </div>
-      )}
+      <div className={styles.searchSelectContainer}>
+        <SubTypeSearchSelect
+          activityType={selectedType}
+          defaultValue={typeData?.subType}
+          onSelect={(option: SelectOption) => setSelectedSubType(option.value)}
+        />
+      </div>
 
       <NavigationButtons
-        onBack={() => {}}
+        onBack={() => { }}
         onNext={handleNext}
         canProceed={!!selectedType && !!selectedSubType}
         canGoBack={false}
