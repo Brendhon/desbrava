@@ -8,6 +8,7 @@ export interface Country {
   currency_code: null | string;
   currency_name_pt: null | string;
   iso_country: string;
+  emoji?: string;
 }
 
 export enum Continent {
