@@ -10,7 +10,7 @@ import {
 } from '@/lib/types/activity';
 import { SelectOption } from '@/lib/types/form';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface ActivityTypeData {
   type: ActivityTypeKey;
@@ -18,14 +18,14 @@ export interface ActivityTypeData {
 }
 
 interface ActivityTypeSelectorProps {
-  typeData?: ActivityTypeData;
+  defaultData?: ActivityTypeData;
   onNext: (data: ActivityTypeData) => void;
 }
 
-export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeSelectorProps) {
+export default function ActivityTypeSelector({ defaultData, onNext }: ActivityTypeSelectorProps) {
   // Selected type and sub type
-  const [selectedType, setSelectedType] = useState<ActivityTypeKey | undefined>(typeData?.type);
-  const [selectedSubType, setSelectedSubType] = useState<string | undefined>(typeData?.subType);
+  const [selectedType, setSelectedType] = useState<ActivityTypeKey | undefined>(defaultData?.type);
+  const [selectedSubType, setSelectedSubType] = useState<string | undefined>(defaultData?.subType);
 
   // Handle type select
   const handleTypeSelect = (type: ActivityTypeKey) => {
@@ -39,6 +39,14 @@ export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeS
       onNext({ type: selectedType, subType: selectedSubType });
     }
   };
+
+  // Use effect to set default data
+  useEffect(() => {
+    if (defaultData) {
+      setSelectedType(defaultData.type);
+      setSelectedSubType(defaultData.subType);
+    }
+  }, [defaultData]);
 
   return (
     <div className={styles.container}>
@@ -84,7 +92,7 @@ export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeS
       <div className={styles.searchSelectContainer}>
         <SubTypeSearchSelect
           activityType={selectedType}
-          defaultValue={typeData?.subType}
+          defaultValue={selectedSubType}
           onSelect={(option: SelectOption) => setSelectedSubType(option.value)}
         />
       </div>

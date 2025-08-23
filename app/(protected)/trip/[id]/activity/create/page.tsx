@@ -91,7 +91,7 @@ export default function CreateActivityPage() {
       description: 'Selecione o tipo',
       status: 'current',
       children: (
-        <ActivityTypeSelector typeData={typeData} onNext={handleTypeNext} />
+        <ActivityTypeSelector defaultData={typeData} onNext={handleTypeNext} />
       ),
     },
     {
