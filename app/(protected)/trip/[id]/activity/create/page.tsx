@@ -30,7 +30,9 @@ export default function CreateActivityPage() {
     type: 'accommodation',
     subType: '',
   });
-  const [destinations, setDestinations] = useState<DestinationData>({});
+  const [destinations, setDestinations] = useState<DestinationData>({
+    searchType: 'searchText',
+  });
   const [periodData, setPeriodData] = useState<PeriodData>({
     date: '',
     startTime: '',

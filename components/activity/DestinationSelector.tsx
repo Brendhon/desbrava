@@ -3,13 +3,13 @@
 import { NavigationButtons } from '@/components/steps';
 import { ACTIVITY_PLACE_PLACEHOLDERS } from '@/lib/types/activity';
 import { Place } from '@/lib/types/places';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { PageHeader, PlaceSelector } from './destination';
 import { ActivityTypeData } from './ActivityTypeSelector';
 
 export interface DestinationData {
   place?: Place;
-  destination?: Place;
+  searchType: 'searchText' | 'searchNearby' | 'street';
 }
 
 interface DestinationSelectorProps {
@@ -23,77 +23,47 @@ export default function DestinationSelector({
   onNext,
   onBack,
 }: DestinationSelectorProps) {
-  const [destinations, setDestinations] = useState<DestinationData>({});
+  const [destinations, setDestinations] = useState<DestinationData>({
+    searchType: 'searchText',
+  });
 
   const [searchOrigin, setSearchOrigin] = useState('');
-  const [searchDestination, setSearchDestination] = useState('');
   const [isSearchingOrigin, setIsSearchingOrigin] = useState(false);
-  const [isSearchingDestination, setIsSearchingDestination] = useState(false);
-
-  // Determine if this activity type needs multiple destinations
-  const needsMultiple = useMemo(
-    () => activityType.type === 'transportation',
-    [activityType.type]
-  );
 
   // Handle next step
   const handleNext = useCallback(() => {
     onNext({
       place: destinations.place,
-      destination: needsMultiple ? destinations.destination : undefined,
+      searchType: destinations.searchType,
     });
-  }, [needsMultiple, destinations.place, destinations.destination, onNext]);
-
-  // Check if can proceed
-  const canProceed = useMemo(
-    () =>
-      needsMultiple
-        ? destinations.place && destinations.destination
-        : destinations.destination,
-    [needsMultiple, destinations.place, destinations.destination]
-  );
+  }, [destinations.place, destinations.searchType, onNext]);
 
   // Render
   return (
     <div className={styles.container}>
       {/* Page Header */}
-      <PageHeader needsMultipleDestinations={needsMultiple} />
+      <PageHeader needsMultipleDestinations={false} />
 
       {/* Selectors */}
       <div className={styles.selectorsContainer}>
         <PlaceSelector
-          title={needsMultiple ? 'Ponto de partida' : 'Local da Atividade'}
-          searchLabel={
-            needsMultiple ? 'Buscar local de origem' : 'Buscar local'
-          }
+          title={'Local da Atividade'}
+          searchLabel={'Buscar local'}
           searchPlaceholder={ACTIVITY_PLACE_PLACEHOLDERS[activityType.type]}
           searchValue={searchOrigin}
           activityType={activityType.type}
           onSearchChange={setSearchOrigin}
           isSearching={isSearchingOrigin}
           selectedPlace={destinations.place}
-          showBorder={needsMultiple}
+          showBorder={false}
         />
-
-        {needsMultiple && (
-          <PlaceSelector
-            title="Local de destino"
-            searchLabel="Buscar local de destino"
-            searchPlaceholder="Digite para buscar cidades, aeroportos, estações..."
-            searchValue={searchDestination}
-            activityType={activityType.type}
-            onSearchChange={setSearchDestination}
-            isSearching={isSearchingDestination}
-            selectedPlace={destinations.destination}
-          />
-        )}
       </div>
 
       {/* Navigation Buttons */}
       <NavigationButtons
         onBack={onBack}
         onNext={handleNext}
-        canProceed={!!canProceed}
+        canProceed={!!destinations.place}
       />
     </div>
   );

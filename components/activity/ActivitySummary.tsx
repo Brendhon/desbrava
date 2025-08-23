@@ -23,9 +23,6 @@ export default function ActivitySummary({
   onSubmit,
   isSubmitting = false,
 }: ActivitySummaryProps) {
-  const isTransportation = activityType.type === 'transportation';
-  const needsTimeRange = !isTransportation;
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
       weekday: 'long',
@@ -96,63 +93,19 @@ export default function ActivitySummary({
         >
           <h3 className="text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold">
             <MapPin className="text-royal-purple h-5 w-5" />
-            {isTransportation ? 'Rota da Viagem' : 'Local da Atividade'}
+            Local da Atividade
           </h3>
 
-          {isTransportation ? (
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="bg-royal-purple/20 flex h-8 w-8 items-center justify-center rounded-full">
-                  <span className="text-royal-purple text-sm font-medium">
-                    1
-                  </span>
-                </div>
-                <div>
-                  <p className="text-mist-gray text-sm">Ponto de Partida</p>
-                  <p className="text-parchment-white font-medium">
-                    {destinations.place?.displayName.text}
-                  </p>
-                  {destinations.place?.formattedAddress && (
-                    <p className="text-mist-gray text-xs">
-                      {destinations.place.formattedAddress}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <div className="flex justify-center">
-                <div className="bg-royal-purple/30 h-8 w-0.5" />
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="bg-royal-purple/20 flex h-8 w-8 items-center justify-center rounded-full">
-                  <span className="text-royal-purple text-sm font-medium">
-                    2
-                  </span>
-                </div>
-                <div>
-                  <p className="text-mist-gray text-sm">Destino</p>
-                  <p className="text-parchment-white font-medium">
-                    {destinations.destination?.displayName.text}
-                  </p>
-                  {destinations.destination?.formattedAddress && (
-                    <p className="text-mist-gray text-xs">
-                      {destinations.destination.formattedAddress}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-          ) : (
+          {destinations.place && (
             <div className="flex items-center gap-3">
               <div className="bg-royal-purple/20 flex h-8 w-8 items-center justify-center rounded-full">
                 <MapPin className="text-royal-purple h-4 w-4" />
               </div>
               <div>
                 <p className="text-parchment-white font-medium">
-                  {destinations.place?.displayName.text}
+                  {destinations.place.displayName.text}
                 </p>
-                {destinations.place?.formattedAddress && (
+                {destinations.place.formattedAddress && (
                   <p className="text-mist-gray text-sm">
                     {destinations.place.formattedAddress}
                   </p>
@@ -186,7 +139,7 @@ export default function ActivitySummary({
               </div>
             </div>
 
-            {needsTimeRange && periodData.startTime && (
+            {periodData.startTime && (
               <div className="flex items-center gap-3">
                 <Clock className="text-mist-gray h-5 w-5" />
                 <div>
@@ -198,7 +151,7 @@ export default function ActivitySummary({
               </div>
             )}
 
-            {needsTimeRange && periodData.endTime && (
+            {periodData.endTime && (
               <div className="flex items-center gap-3">
                 <Clock className="text-mist-gray h-5 w-5" />
                 <div>
@@ -228,11 +181,10 @@ export default function ActivitySummary({
           type="button"
           onClick={onSubmit}
           disabled={isSubmitting}
-          className={`rounded-lg px-8 py-3 font-medium transition-all duration-200 ${
-            isSubmitting
+          className={`rounded-lg px-8 py-3 font-medium transition-all duration-200 ${isSubmitting
               ? 'bg-slate-dark/50 text-mist-gray cursor-not-allowed'
               : 'bg-royal-purple text-parchment-white hover:bg-royal-purple/90 hover:scale-105'
-          } `}
+            } `}
         >
           {isSubmitting ? 'Criando...' : 'Criar Atividade'}
         </button>
