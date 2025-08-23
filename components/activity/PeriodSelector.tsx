@@ -48,8 +48,7 @@ export default function PeriodSelector({
   };
 
   const canProceed =
-    periodData.date &&
-    (periodData.startTime || periodData.endTime);
+    periodData.date && (periodData.startTime || periodData.endTime);
 
   return (
     <div className="space-y-6">
@@ -196,10 +195,11 @@ export default function PeriodSelector({
           type="button"
           onClick={handleNext}
           disabled={!canProceed}
-          className={`rounded-lg px-8 py-3 font-medium transition-all duration-200 ${canProceed
+          className={`rounded-lg px-8 py-3 font-medium transition-all duration-200 ${
+            canProceed
               ? 'bg-royal-purple text-parchment-white hover:bg-royal-purple/90 hover:scale-105'
               : 'bg-slate-dark/50 text-mist-gray cursor-not-allowed'
-            } `}
+          } `}
         >
           Continuar
         </button>

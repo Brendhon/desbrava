@@ -1,7 +1,7 @@
 // Utility functions for places data
 // Handles formatting, validation, and common operations
 
-import { Place, PlaceType, PLACE_TYPES } from '../types/places';
+import { Place, PlaceType } from '../types/places';
 
 /**
  * Format a place's display name

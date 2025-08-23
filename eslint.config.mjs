@@ -16,6 +16,7 @@ const eslintConfig = [
       // Overrides
       'react-hooks/exhaustive-deps': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
       '@next/next/no-img-element': 'off',
 
       // Allow Prettier to handle formatting

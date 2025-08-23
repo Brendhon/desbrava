@@ -3,17 +3,13 @@
 
 import {
   NearbySearchOptions,
-  PLACE_TYPES,
   PlaceNearbySearchRequest,
   PlaceNearbySearchResponse,
   PlacesApiConfig,
   PlacesApiError,
 } from '@/lib/types';
+import { getPlaceTypesByCategory } from '@/lib/types/places';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
-import {
-  ACCOMMODATION_TYPES,
-  getPlaceTypesByCategory,
-} from '@/lib/types/places';
 
 /**
  * Search for places near a specific location

@@ -181,10 +181,11 @@ export default function ActivitySummary({
           type="button"
           onClick={onSubmit}
           disabled={isSubmitting}
-          className={`rounded-lg px-8 py-3 font-medium transition-all duration-200 ${isSubmitting
+          className={`rounded-lg px-8 py-3 font-medium transition-all duration-200 ${
+            isSubmitting
               ? 'bg-slate-dark/50 text-mist-gray cursor-not-allowed'
               : 'bg-royal-purple text-parchment-white hover:bg-royal-purple/90 hover:scale-105'
-            } `}
+          } `}
         >
           {isSubmitting ? 'Criando...' : 'Criar Atividade'}
         </button>

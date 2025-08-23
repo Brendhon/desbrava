@@ -22,10 +22,17 @@ interface ActivityTypeSelectorProps {
   onNext: (data: ActivityTypeData) => void;
 }
 
-export default function ActivityTypeSelector({ defaultData, onNext }: ActivityTypeSelectorProps) {
+export default function ActivityTypeSelector({
+  defaultData,
+  onNext,
+}: ActivityTypeSelectorProps) {
   // Selected type and sub type
-  const [selectedType, setSelectedType] = useState<ActivityTypeKey | undefined>(defaultData?.type);
-  const [selectedSubType, setSelectedSubType] = useState<string | undefined>(defaultData?.subType);
+  const [selectedType, setSelectedType] = useState<ActivityTypeKey | undefined>(
+    defaultData?.type
+  );
+  const [selectedSubType, setSelectedSubType] = useState<string | undefined>(
+    defaultData?.subType
+  );
 
   // Handle type select
   const handleTypeSelect = (type: ActivityTypeKey) => {
@@ -98,7 +105,7 @@ export default function ActivityTypeSelector({ defaultData, onNext }: ActivityTy
       </div>
 
       <NavigationButtons
-        onBack={() => { }}
+        onBack={() => {}}
         onNext={handleNext}
         canProceed={!!selectedType && !!selectedSubType}
         canGoBack={false}

@@ -25,7 +25,9 @@ export default function SubTypeSearchSelect({
 }: SubTypeSearchSelectProps) {
   // States
   const [subTypeOptions, setSubTypeOptions] = useState<SelectOption[]>([]);
-  const [defaultValueOption, setDefaultValueOption] = useState<SelectOption | undefined>(undefined);
+  const [defaultValueOption, setDefaultValueOption] = useState<
+    SelectOption | undefined
+  >(undefined);
 
   // Ref for SearchSelect to call clear method
   const searchSelectRef = useRef<SearchSelectRef>(null);

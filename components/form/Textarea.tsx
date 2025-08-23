@@ -1,6 +1,5 @@
-import { TextareaHTMLAttributes } from 'react';
-import Field from './Field';
 import { TextareaProps } from '@/lib/types';
+import Field from './Field';
 
 export default function Textarea({
   label,

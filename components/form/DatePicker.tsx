@@ -17,7 +17,6 @@ export default function DatePicker({
   variant = 'default',
   register,
   helperText,
-  className = '',
   id,
   placeholder = 'dd/mm/aaaa',
   disabled = false,
