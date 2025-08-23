@@ -10,8 +10,10 @@ import {
   type CreateTripFormData,
   type TripSettingsFormData,
 } from '@/lib/schemas/trip';
+import { addDaysToDate, isStartDateBeforeEndDate, parsePtBrToDate } from '@/lib/utils/trip';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LucideIcon } from 'lucide-react';
+import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
 interface TripFormProps {
@@ -39,6 +41,8 @@ export default function TripForm({
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<CreateTripFormData | TripSettingsFormData>({
     resolver: zodResolver(schema),
@@ -59,6 +63,20 @@ export default function TripForm({
     }
     return isCreateMode ? 'Criar Viagem' : 'Salvar Alterações';
   };
+
+  // Get start date
+  const startDate = watch('startDate');
+  const endDate = watch('endDate');
+  
+  // Clear end date if start date is after end date
+  useEffect(() => {
+    if (!isStartDateBeforeEndDate(startDate, endDate)) {
+      setValue('endDate', '');
+    }
+  }, [startDate]);
+
+  // Get end min date
+  const endMinDate = useMemo(() => startDate ? addDaysToDate(parsePtBrToDate(startDate), 1) : undefined, [startDate]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -91,15 +109,19 @@ export default function TripForm({
           register={register('startDate')}
           helperText="Quando sua viagem começa"
           popupPosition="top"
+          value={startDate}
         />
 
         <DatePicker
           label="Data de Fim"
           error={errors.endDate?.message}
+          disabled={!startDate}
+          minDate={endMinDate}
           defaultValue={isCreateMode ? undefined : defaultValues.endDate}
           register={register('endDate')}
           popupPosition="top"
           helperText="Quando sua viagem termina"
+          value={endDate}
         />
       </div>
 

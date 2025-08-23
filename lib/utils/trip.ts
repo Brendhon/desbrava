@@ -1,76 +1,6 @@
-import { CreateTripData, Trip } from '@/lib/types/trip';
+import { Trip } from '@/lib/types/trip';
+import { addDays, format, isValid, parse } from 'date-fns';
 import { normalizeString } from './string-utils';
-
-/**
- * Validate trip data before creation
- */
-export function validateTripData(data: CreateTripData): {
-  isValid: boolean;
-  errors: string[];
-} {
-  const errors: string[] = [];
-
-  // Check required fields
-  if (!data.name?.trim()) {
-    errors.push('Trip name is required');
-  }
-
-  if (!data.description?.trim()) {
-    errors.push('Trip description is required');
-  }
-
-  if (!data.startDate) {
-    errors.push('Start date is required');
-  }
-
-  if (!data.endDate) {
-    errors.push('End date is required');
-  }
-
-  if (!data.country) {
-    errors.push('Country is required');
-  }
-
-  // Validate dates if they exist
-  if (data.startDate && data.endDate) {
-    const startDate = parsePtBrToDate(data.startDate);
-    const endDate = parsePtBrToDate(data.endDate);
-
-    if (isNaN(startDate.getTime())) {
-      errors.push('Invalid start date format');
-    }
-
-    if (isNaN(endDate.getTime())) {
-      errors.push('Invalid end date format');
-    }
-
-    if (startDate >= endDate) {
-      errors.push('Start date must be before end date');
-    }
-
-    // Check if start date is not in the past (optional validation)
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    if (startDate < today) {
-      errors.push('Start date cannot be in the past');
-    }
-  }
-
-  // Validate name length
-  if (data.name && data.name.length > 100) {
-    errors.push('Trip name must be less than 100 characters');
-  }
-
-  // Validate description length
-  if (data.description && data.description.length > 500) {
-    errors.push('Trip description must be less than 500 characters');
-  }
-
-  return {
-    isValid: errors.length === 0,
-    errors,
-  };
-}
 
 /**
  * Format trip dates for display
@@ -79,13 +9,13 @@ export function formatTripDates(startDate: string, endDate: string): string {
   const start = parsePtBrToDate(startDate);
   const end = parsePtBrToDate(endDate);
 
-  const startFormatted = start.toLocaleDateString('pt-BR', {
+  const startFormatted = start?.toLocaleDateString('pt-BR', {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
   });
 
-  const endFormatted = end.toLocaleDateString('pt-BR', {
+  const endFormatted = end?.toLocaleDateString('pt-BR', {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
@@ -106,7 +36,7 @@ export function calculateTripDuration(
   const start = parsePtBrToDate(startDate);
   const end = parsePtBrToDate(endDate);
 
-  const diffTime = Math.abs(end.getTime() - start.getTime());
+  const diffTime = Math.abs((end?.getTime() ?? 0) - (start?.getTime() ?? 0));
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   return diffDays + 1;
@@ -120,7 +50,7 @@ export function isTripActive(trip: Trip): boolean {
   const start = parsePtBrToDate(trip.startDate);
   const end = parsePtBrToDate(trip.endDate);
 
-  return now >= start && now <= end;
+  return now >= (start ?? 0) && now <= (end ?? 0);
 }
 
 /**
@@ -130,7 +60,7 @@ export function isTripFuture(trip: Trip): boolean {
   const now = new Date();
   const start = parsePtBrToDate(trip.startDate);
 
-  return start > now;
+  return (start ?? 0) > now;
 }
 
 /**
@@ -140,7 +70,7 @@ export function isTripPast(trip: Trip): boolean {
   const now = new Date();
   const end = parsePtBrToDate(trip.endDate);
 
-  return end < now;
+  return (end ?? 0) < now;
 }
 
 /**
@@ -163,8 +93,8 @@ export function sortTripsByDate(
 ): Trip[] {
   const now = new Date().getTime();
   return [...trips].sort((a, b) => {
-    const dateA = parsePtBrToDate(a.startDate).getTime();
-    const dateB = parsePtBrToDate(b.startDate).getTime();
+    const dateA = parsePtBrToDate(a.startDate)?.getTime() ?? 0;
+    const dateB = parsePtBrToDate(b.startDate)?.getTime() ?? 0;
     const diffA = Math.abs(dateA - now);
     const diffB = Math.abs(dateB - now);
 
@@ -203,7 +133,37 @@ export function searchTripsByText(trips: Trip[], searchTerm: string): Trip[] {
 /**
  * Parse date from string to Date
  */
-export function parsePtBrToDate(date: string): Date {
-  const [day, month, year] = date.split('/');
-  return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+export function parsePtBrToDate(date: string | undefined): Date | undefined {
+  if (!date) return undefined;
+  const parsed = parse(date, 'dd/MM/yyyy', new Date());
+  return isValid(parsed) ? parsed : undefined;
+}
+
+/**
+ * Add days to a date
+ */
+export function addDaysToDate(date: Date | undefined, days: number): Date | undefined {
+  if (!date) return undefined;
+  return addDays(date, days);
+}
+
+/**
+ * Parse date from Date to string
+ */
+export function parseDateToPtBr(date: Date | undefined): string | undefined {
+  if (!date) return undefined;
+  return format(date, 'dd/MM/yyyy');
+}
+
+/**
+ * Check if start date is before end date
+ */
+export function isStartDateBeforeEndDate(startDate: string, endDate: string): boolean {
+  const start = parsePtBrToDate(startDate);
+  const end = parsePtBrToDate(endDate);
+
+  console.log('start', start);
+  console.log('end', end);
+
+  return !(start && end && start > end);
 }

@@ -30,7 +30,7 @@ export async function requireAuth(): Promise<
       {
         success: false,
         error: 'Unauthorized',
-        message: 'You must be logged in to access this resource',
+        message: 'Você deve estar logado para acessar este recurso',
       },
       { status: 401 }
     );
@@ -89,7 +89,7 @@ export function checkResourceOwnership(
   if (resourceUser !== authenticatedUser) {
     return createErrorResponse(
       'Forbidden',
-      `You can only access your own ${resourceName}s`,
+      `Você só pode acessar seus próprios ${resourceName}s`,
       403
     );
   }
@@ -109,7 +109,7 @@ export function validateRequiredFields(
   if (missingFields.length > 0) {
     return createErrorResponse(
       'Bad request',
-      `Missing required fields: ${missingFields.join(', ')}`,
+      `Campos obrigatórios faltando: ${missingFields.join(', ')}`,
       400
     );
   }
@@ -125,13 +125,13 @@ export function validateDateRange(
   endDate: Date
 ): NextResponse | null {
   if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-    return createErrorResponse('Bad request', 'Invalid date format', 400);
+    return createErrorResponse('Bad request', 'Formato de data inválido', 400);
   }
 
   if (startDate >= endDate) {
     return createErrorResponse(
       'Bad request',
-      'Start date must be before end date',
+      'Data de fim deve ser posterior à data de início',
       400
     );
   }
@@ -145,7 +145,7 @@ export function validateDateRange(
 export function createNotFoundResponse(
   resourceName: string = 'Resource'
 ): NextResponse<ApiResponse> {
-  return createErrorResponse('Not found', `${resourceName} not found`, 404);
+  return createErrorResponse('Not found', `${resourceName} não encontrado`, 404);
 }
 
 /**
@@ -159,7 +159,7 @@ export function createInternalErrorResponse(
 
   return createErrorResponse(
     'Internal server error',
-    `Failed to ${operation}`,
+    `Falha ao ${operation}`,
     500
   );
 }

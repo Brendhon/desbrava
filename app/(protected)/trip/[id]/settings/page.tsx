@@ -76,7 +76,8 @@ export default function TripSettingsPage() {
   // Handle error
   const handleError = useCallback(
     (title: string, description: string, error?: unknown) => {
-      showErrorToast(title, description);
+      const errorMessage = error instanceof Error ? error.message : description;
+      showErrorToast(title, errorMessage);
       if (error) console.error(error);
     },
     [showErrorToast]

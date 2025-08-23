@@ -1,14 +1,15 @@
 'use client';
 
-import { InputWithIcon } from '@/components/form';
-import { useFormField } from '@/hooks/useFormField';
+import { Input, InputWithIcon } from '@/components/form';
+import { useFormField } from '@/hooks';
 import { useFormStyles } from '@/hooks/useFormStyles';
+import { cn } from '@/lib/utils';
 import { generateRandomId } from '@/lib/utils/string-utils';
-import { format, isValid, parse } from 'date-fns';
+import { parseDateToPtBr, parsePtBrToDate } from '@/lib/utils/trip';
 import { ptBR } from 'date-fns/locale';
 import { Calendar, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { DayPicker } from 'react-day-picker';
+import { DayPicker, Matcher } from 'react-day-picker';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface DatePickerProps {
@@ -36,11 +37,15 @@ interface DatePickerProps {
   popupPosition?: 'top' | 'bottom' | 'left' | 'right';
   /** Default value for the date picker (string in dd/MM/yyyy format or Date object) */
   defaultValue?: string;
-  /** Callback function called when the date value changes */
-  onValueChange?: (value: string) => void;
+  /** Minimum date for the date picker */
+  minDate?: Date;
+  /** Maximum date for the date picker */
+  maxDate?: Date;
+  /** Value to be displayed in the input */
+  value: string;
 }
 
-const DatePicker = ({
+export default function DatePicker({
   label,
   error,
   size = 'md',
@@ -53,11 +58,12 @@ const DatePicker = ({
   disabled = false,
   popupPosition = 'bottom',
   defaultValue,
-  onValueChange,
-}: DatePickerProps) => {
+  minDate,
+  maxDate,
+  value,
+}: DatePickerProps) {
   // States
   const [isOpen, setIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
   // Refs
@@ -66,232 +72,143 @@ const DatePicker = ({
   // Memoized input ID to prevent recreation on every render
   const inputId = useMemo(() => id || generateRandomId('datepicker'), [id]);
 
-  // Use custom hooks
-  const { handleChange } = useFormField({ register });
-  const styles = useFormStyles({
+  // Use custom styles
+  const inputStyles = useFormStyles({
     size,
     variant: error ? 'error' : variant,
     hasIcon: true,
     iconPosition: 'right',
-    className: `${className} cursor-pointer`,
+    className,
     error,
   });
 
-  // Memoized formatters
-  const formatCaption = useCallback(
-    (month: Date) => format(month, 'MMMM yyyy', { locale: ptBR }),
-    []
-  );
-
-  const formatInputDate = useCallback(
-    (date: Date): string => format(date, 'dd/MM/yyyy'),
-    []
-  );
-
-  const parseInputDate = useCallback((input: string): Date | undefined => {
-    const parsed = parse(input, 'dd/MM/yyyy', new Date());
-    return isValid(parsed) ? parsed : undefined;
-  }, []);
-
   // Memoized popup position styles
-  const popupStyles = useMemo(() => {
-    const baseStyles = ['datepicker-popup'];
-
-    switch (popupPosition) {
-      case 'top':
-        baseStyles.push('datepicker-popup-top');
-        break;
-      case 'left':
-        baseStyles.push('datepicker-popup-left');
-        break;
-      case 'right':
-        baseStyles.push('datepicker-popup-right');
-        break;
-      case 'bottom':
-      default:
-        baseStyles.push('datepicker-popup-bottom');
-        break;
-    }
-
-    return baseStyles.join(' ');
-  }, [popupPosition]);
+  const popupStyles = useMemo(() => cn(styles.popup, `datepicker-popup-${popupPosition}`), [popupPosition]);
 
   // Update input when date is selected
   const handleDateSelect = useCallback(
     (date: Date | undefined) => {
-      if (date) {
-        const formattedDate = formatInputDate(date);
-        setInputValue(formattedDate);
-        setSelectedDate(date);
+      // If no date is selected, return
+      if (!date) return;
 
-        // Use the hook for form integration
-        handleChange(formattedDate);
+      // Update local state
+      setSelectedDate(date);
 
-        // Call external callback if provided (convert to ISO format for compatibility)
-        onValueChange?.(formattedDate);
+      // Update React Hook Form if register is provided
+      register?.onChange({
+        target: { value: parseDateToPtBr(date), name: register?.name },
+      });
 
-        setIsOpen(false);
-      }
-    },
-    [handleChange, formatInputDate, onValueChange]
-  );
-
-  // Update input when input is typed
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
-      setInputValue(newValue);
-
-      // Validate format and update selected date
-      if (newValue.length === 10) {
-        const parsedDate = parseInputDate(newValue);
-        if (parsedDate) {
-          setSelectedDate(parsedDate);
-          handleChange(newValue);
-          onValueChange?.(newValue);
-        }
-      }
-
-      // Always trigger change for React Hook Form
-      handleChange(newValue);
-    },
-    [handleChange, parseInputDate, onValueChange]
-  );
-
-  // Handle input blur for React Hook Form
-  const handleInputBlur = useCallback(
-    (e: React.FocusEvent<HTMLInputElement>) => {
-      if (register?.onBlur) {
-        register.onBlur(e);
-      }
+      // Close popup
+      setIsOpen(false);
     },
     [register]
   );
 
-  // Handle input focus to open calendar
-  const handleInputFocus = useCallback(() => {
-    setIsOpen(true);
-  }, []);
-
   // Handle button click to toggle calendar
   const handleButtonClick = useCallback(() => {
-    if (!disabled) {
-      setIsOpen(!isOpen);
-    }
-  }, [disabled, isOpen]);
+    if (!disabled) setIsOpen(!isOpen);
+  }, [disabled]);
 
   // Memoized default month for DayPicker
-  const defaultMonth = useMemo(
-    () => (selectedDate ? new Date(selectedDate) : new Date()),
-    [selectedDate]
-  );
-
-  // Memoized formatters object for DayPicker
-  const formatters = useMemo(
-    () => ({
-      formatCaption,
-    }),
-    [formatCaption]
-  );
+  const defaultMonth = useMemo(() => (selectedDate ? new Date(selectedDate) : new Date()), [selectedDate]);
 
   // Close popup when clicking outside
   useEffect(() => {
+    // Close popup when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
+      const current = containerRef.current;
+      if (current && !current.contains(event.target as Node)) setIsOpen(false);
     };
 
+    // Add event listener to document
     document.addEventListener('mousedown', handleClickOutside);
+
+    // Remove event listener on unmount
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Set initial value if defaultValue is provided
   useEffect(() => {
-    if (defaultValue) {
-      let date: Date | undefined;
-      let formattedValue: string;
+    setSelectedDate(parsePtBrToDate(defaultValue));
+  }, [defaultValue]);
 
-      if (typeof defaultValue === 'string') {
-        // Try to parse as ISO format first, then as Brazilian format
-        date = parseInputDate(defaultValue);
-        formattedValue = defaultValue;
-      } else {
-        date = defaultValue;
-        formattedValue = formatInputDate(defaultValue);
-      }
+  // Memoized disabled days for DayPicker
+  const disabledDays = useMemo(() => {
+    // If minDate is provided, add it to the disabled days
+    const disabledDays: Matcher[] = [{ before: minDate || new Date() }];
 
-      if (date) {
-        setSelectedDate(date);
-        setInputValue(formattedValue);
-        handleChange(formattedValue);
-      }
-    }
-  }, [defaultValue, parseInputDate, formatInputDate, handleChange]);
+    // If maxDate is provided, add it to the disabled days
+    if (maxDate) disabledDays.push({ after: maxDate });
+
+    // Return disabled days
+    return disabledDays;
+  }, [minDate, maxDate]);
 
   return (
-    <div className="datepicker-container" ref={containerRef}>
+    <div className={styles.container} ref={containerRef}>
       {label && (
-        <label htmlFor={inputId} className="form-label">
+        <label htmlFor={inputId} className={styles.label}>
           {label}
         </label>
       )}
 
       <InputWithIcon
         icon={isOpen ? X : Calendar}
-        iconAction={handleButtonClick}
+        iconAction={!disabled ? handleButtonClick : undefined}
         iconPosition="right"
         size={size}
         variant={error ? 'error' : variant}
         error={error}
         className={className}
       >
-        <input
+        <Input
           id={inputId}
-          ref={register?.ref}
           type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onBlur={handleInputBlur}
-          onFocus={handleInputFocus}
+          value={value}
           placeholder={placeholder}
-          className={`${styles.input} cursor-pointer`}
-          disabled={disabled}
+          className={inputStyles.input}
+          disabled={true}
           name={register?.name}
         />
       </InputWithIcon>
 
       {isOpen && (
         <div className={popupStyles}>
-          <div className="datepicker-calendar">
+          <div className={styles.calendar}>
             <DayPicker
               mode="single"
               selected={selectedDate}
               onSelect={handleDateSelect}
-              formatters={formatters}
               locale={ptBR}
               lang="pt-BR"
-              defaultMonth={defaultMonth}
+              defaultMonth={minDate || defaultMonth}
               timeZone="America/Sao_Paulo"
               showOutsideDays={true}
               fixedWeeks={true}
+              disabled={disabledDays}
             />
           </div>
         </div>
       )}
 
       {error && (
-        <p className="form-error" role="alert">
+        <p className={styles.error} role="alert">
           {error}
         </p>
       )}
 
-      {helperText && !error && <p className="form-helper-text">{helperText}</p>}
+      {helperText && !error && <p className={styles.helperText}>{helperText}</p>}
     </div>
   );
-};
+}
 
-export default DatePicker;
+const styles = {
+  container: 'datepicker-container',
+  label: 'form-label',
+  input: 'form-input',
+  error: 'form-error',
+  helperText: 'form-helper-text',
+  popup: 'datepicker-popup',
+  calendar: 'datepicker-calendar',
+};

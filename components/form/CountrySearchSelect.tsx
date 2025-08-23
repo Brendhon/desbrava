@@ -73,14 +73,10 @@ export default function CountrySearchSelect({
 }: CountrySearchSelectProps) {
   // Country options
   const countryOptions = useMemo(() => getCountries(), []);
-  
-  const handleValueChange = (newValue: SelectOption) => {
-    console.log('newValue', newValue);
-    onValueChange?.(newValue);
-  };
 
+  // Render the component
   return (
-    <div className="w-full">
+    <div className={styles.container}>
       <SearchSelect
         label={label}
         error={error}
@@ -93,13 +89,14 @@ export default function CountrySearchSelect({
         options={countryOptions}
         placeholder={placeholder}
         defaultValue={countryOptions.find((option) => option.value === defaultValue)}
-        onSelect={handleValueChange}
+        onSelect={(value) => onValueChange?.(value)}
       />
     </div>
   );
 }
 
 const styles = {
+  container: 'w-full',
   renderOptionContent: 'flex items-center gap-2 w-full',
   renderOptionContentEmoji: 'w-4 h-4 rounded-sm',
   renderOptionContentDesc: 'text-xs text-mist-gray ml-auto flex-shrink-0',
