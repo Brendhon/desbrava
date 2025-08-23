@@ -28,7 +28,7 @@ export default function Input({
       className={className}
       iconAction={iconAction}
     >
-      <input        {...register}        {...props} />
+      <input {...register} {...props} />
     </Field>
   );
 }

@@ -142,7 +142,10 @@ export function parsePtBrToDate(date: string | undefined): Date | undefined {
 /**
  * Add days to a date
  */
-export function addDaysToDate(date: Date | undefined, days: number): Date | undefined {
+export function addDaysToDate(
+  date: Date | undefined,
+  days: number
+): Date | undefined {
   if (!date) return undefined;
   return addDays(date, days);
 }
@@ -158,7 +161,10 @@ export function parseDateToPtBr(date: Date | undefined): string | undefined {
 /**
  * Check if start date is before end date
  */
-export function isStartDateBeforeEndDate(startDate: string | undefined, endDate: string | undefined): boolean {
+export function isStartDateBeforeEndDate(
+  startDate: string | undefined,
+  endDate: string | undefined
+): boolean {
   // If start date or end date is not provided, return false
   if (!startDate || !endDate) return false;
 

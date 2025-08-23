@@ -121,9 +121,13 @@ export function validateRequiredFields(
  * Date Validation Helper
  */
 export function validateDateRange(
-  startDate: Date,
-  endDate: Date
+  startDate: Date | null | undefined,
+  endDate: Date | null | undefined
 ): NextResponse | null {
+  if (!startDate || !endDate) {
+    return createErrorResponse('Bad request', 'Data de início ou fim não informada', 400);
+  }
+
   if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
     return createErrorResponse('Bad request', 'Formato de data inválido', 400);
   }
@@ -145,7 +149,11 @@ export function validateDateRange(
 export function createNotFoundResponse(
   resourceName: string = 'Resource'
 ): NextResponse<ApiResponse> {
-  return createErrorResponse('Not found', `${resourceName} não encontrado`, 404);
+  return createErrorResponse(
+    'Not found',
+    `${resourceName} não encontrado`,
+    404
+  );
 }
 
 /**

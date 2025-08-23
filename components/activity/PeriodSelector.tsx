@@ -89,7 +89,9 @@ export default function PeriodSelector({
               label="Data"
               type="date"
               value={periodData.date}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('date', e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleInputChange('date', e.target.value)
+              }
               required
             />
           </div>
@@ -116,7 +118,9 @@ export default function PeriodSelector({
                 icon={TimerIcon}
                 iconPosition="right"
                 value={periodData.startTime}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('startTime', e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleInputChange('startTime', e.target.value)
+                }
               />
 
               <Input
@@ -125,55 +129,55 @@ export default function PeriodSelector({
                 icon={TimerIcon}
                 iconPosition="right"
                 value={periodData.endTime}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('endTime', e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleInputChange('endTime', e.target.value)
+                }
               />
             </div>
           </Card>
         )}
 
         {/* Summary for transportation */}
-        {isTransportation &&
-          destinations.place &&
-          destinations.destination && (
-            <Card
-              shadow="none"
-              background="dark"
-              maxWidth="none"
-              border={false}
-              className="p-6"
-            >
-              <h3 className="text-parchment-white mb-4 text-lg font-semibold">
-                Resumo da Viagem
-              </h3>
+        {isTransportation && destinations.place && destinations.destination && (
+          <Card
+            shadow="none"
+            background="dark"
+            maxWidth="none"
+            border={false}
+            className="p-6"
+          >
+            <h3 className="text-parchment-white mb-4 text-lg font-semibold">
+              Resumo da Viagem
+            </h3>
 
-              <div className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-mist-gray">Tipo:</span>
-                  <span className="text-parchment-white">Transporte</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-mist-gray">De:</span>
-                  <span className="text-parchment-white">
-                    {destinations.place.displayName.text}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-mist-gray">Para:</span>
-                  <span className="text-parchment-white">
-                    {destinations.destination.displayName.text}
-                  </span>
-                </div>
-                {periodData.date && (
-                  <div className="flex justify-between">
-                    <span className="text-mist-gray">Data:</span>
-                    <span className="text-parchment-white">
-                      {new Date(periodData.date).toLocaleDateString('pt-BR')}
-                    </span>
-                  </div>
-                )}
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-between">
+                <span className="text-mist-gray">Tipo:</span>
+                <span className="text-parchment-white">Transporte</span>
               </div>
-            </Card>
-          )}
+              <div className="flex justify-between">
+                <span className="text-mist-gray">De:</span>
+                <span className="text-parchment-white">
+                  {destinations.place.displayName.text}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-mist-gray">Para:</span>
+                <span className="text-parchment-white">
+                  {destinations.destination.displayName.text}
+                </span>
+              </div>
+              {periodData.date && (
+                <div className="flex justify-between">
+                  <span className="text-mist-gray">Data:</span>
+                  <span className="text-parchment-white">
+                    {new Date(periodData.date).toLocaleDateString('pt-BR')}
+                  </span>
+                </div>
+              )}
+            </div>
+          </Card>
+        )}
 
         {/* Summary for other activities */}
         {!isTransportation && destinations.place && (

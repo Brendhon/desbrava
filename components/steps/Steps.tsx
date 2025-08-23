@@ -24,7 +24,7 @@ export default function Steps({
   // Render
   return (
     <div className={styles.container}>
-      <Card border={false} className={styles.steps} padding='md'>
+      <Card border={false} className={styles.steps} padding="md">
         {/* Step Connector - Invisible */}
         <StepConnector
           isCompleted={false}

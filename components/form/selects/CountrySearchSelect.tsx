@@ -10,12 +10,8 @@ import { useCountries } from '@/hooks';
 const CountryItem = ({ country }: { country: Country }) => {
   return (
     <div className={styles.renderOptionContent}>
-      <span className={styles.renderOptionContentEmoji}>
-        {country.emoji}
-      </span>
-      <span className={styles.renderOptionContentLabel}>
-        {country.country}
-      </span>
+      <span className={styles.renderOptionContentEmoji}>{country.emoji}</span>
+      <span className={styles.renderOptionContentLabel}>{country.country}</span>
       {country.continent && (
         <span className={styles.renderOptionContentDesc}>
           {country.continent}
@@ -41,15 +37,16 @@ export default function CountrySearchSelect({
   register,
   defaultValue,
 }: CountrySearchSelectProps) {
-
   // States
   const [countriesOptions, setCountriesOptions] = useState<SelectOption[]>([]);
-  const [defaultValueOption, setDefaultValueOption] = useState<SelectOption | undefined>(undefined);
+  const [defaultValueOption, setDefaultValueOption] = useState<
+    SelectOption | undefined
+  >(undefined);
 
   // Use countries hook
   const { countries } = useCountries();
 
-  useEffect(() => {  
+  useEffect(() => {
     // Get countries options
     const options = countries.map((c) => ({
       value: c.iso_country || c.country,
@@ -63,7 +60,9 @@ export default function CountrySearchSelect({
 
   useEffect(() => {
     // Get default value option
-    const defaultValueOption = countriesOptions.find((o) => o.value === defaultValue);
+    const defaultValueOption = countriesOptions.find(
+      (o) => o.value === defaultValue
+    );
 
     // Set default value option
     setDefaultValueOption(defaultValueOption);

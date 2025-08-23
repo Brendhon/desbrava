@@ -60,4 +60,3 @@ const styles = {
   checkIcon: 'w-4 h-4 sm:w-5 sm:h-5',
   stepNumber: 'text-sm font-semibold',
 };
-

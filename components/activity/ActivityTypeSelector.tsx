@@ -23,17 +23,28 @@ interface ActivityTypeSelectorProps {
   onNext: (data: ActivityTypeData) => void;
 }
 
-export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeSelectorProps) {
+export default function ActivityTypeSelector({
+  typeData,
+  onNext,
+}: ActivityTypeSelectorProps) {
   // Selected type and sub type
-  const [selectedType, setSelectedType] = useState<ActivityTypeKey | null>(typeData?.type || null);
-  const [selectedSubType, setSelectedSubType] = useState<string | null>(typeData?.subType || null);
+  const [selectedType, setSelectedType] = useState<ActivityTypeKey | null>(
+    typeData?.type || null
+  );
+  const [selectedSubType, setSelectedSubType] = useState<string | null>(
+    typeData?.subType || null
+  );
 
   // Hooks
   const { getPlaceOptionsByType, getSubtypesByType } = usePlaceTypes();
 
   // Options for the sub type select
-  const [subTypeOptions, setSubTypeOptions] = useState<SelectOption[]>(getPlaceOptionsByType(typeData?.type));
-  const [selectedOption, setSelectedOption] = useState<SelectOption>(getSubtypesByType(typeData?.type, typeData?.subType));
+  const [subTypeOptions, setSubTypeOptions] = useState<SelectOption[]>(
+    getPlaceOptionsByType(typeData?.type)
+  );
+  const [selectedOption, setSelectedOption] = useState<SelectOption>(
+    getSubtypesByType(typeData?.type, typeData?.subType)
+  );
 
   // Handle type select
   const handleTypeSelect = (type: ActivityTypeKey) => {
@@ -46,7 +57,10 @@ export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeS
   // Handle next button click
   const handleNext = () => {
     if (selectedType) {
-      onNext({ type: selectedType as ActivityTypeKey, subType: selectedOption?.value || '' });
+      onNext({
+        type: selectedType as ActivityTypeKey,
+        subType: selectedOption?.value || '',
+      });
     }
   };
 
@@ -79,14 +93,15 @@ export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeS
               background="blue"
               maxWidth="none"
               border={true}
-              className={cn(styles.card, isSelected ? styles.cardSelected : styles.cardUnselected)}
+              className={cn(
+                styles.card,
+                isSelected ? styles.cardSelected : styles.cardUnselected
+              )}
               onClick={() => handleTypeSelect(option.value)}
             >
               <div className={styles.cardContent}>
                 <div className={styles.cardIcon}>{option.icon}</div>
-                <h3 className={styles.cardTitle}>
-                  {option.label}
-                </h3>
+                <h3 className={styles.cardTitle}>{option.label}</h3>
                 <p className={styles.cardDescription}>
                   {ACTIVITY_TYPE_INFO[option.value]}
                 </p>
@@ -101,8 +116,8 @@ export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeS
           <SearchSelect
             label="Tipo de atividade"
             options={subTypeOptions}
-            position='top'
-            placeholder='Selecione o tipo de atividade'
+            position="top"
+            placeholder="Selecione o tipo de atividade"
             defaultValue={selectedOption}
             onSelect={handleSubTypeChange}
           />
@@ -110,7 +125,7 @@ export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeS
       )}
 
       <NavigationButtons
-        onBack={() => { }}
+        onBack={() => {}}
         onNext={handleNext}
         canProceed={!!selectedType && !!selectedSubType}
         canGoBack={false}
@@ -124,13 +139,15 @@ const styles = {
   title: 'text-center',
   titleText: 'text-parchment-white mb-2 text-2xl font-bold',
   description: 'text-center',
-  cardContainer: 'grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
+  cardContainer:
+    'grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
   card: 'transform cursor-pointer p-6 transition-all duration-200',
   cardContent: 'space-y-3 text-center',
   cardSelected: 'border-royal-purple bg-royal-purple/10 scale-105',
-  cardUnselected: 'border-slate-dark/30 hover:border-royal-purple/50 hover:bg-slate-dark/50 hover:scale-104',
+  cardUnselected:
+    'border-slate-dark/30 hover:border-royal-purple/50 hover:bg-slate-dark/50 hover:scale-104',
   cardIcon: 'text-2xl',
   cardTitle: 'text-parchment-white text-lg font-semibold',
   cardDescription: 'text-mist-gray text-xs',
   searchSelectContainer: 'mt-4 mb-0',
-}
+};

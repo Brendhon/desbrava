@@ -20,6 +20,7 @@ export const createActivitySchema = z.object({
 });
 
 // Tipos derivados dos schemas
-export type ActivityTypeSelectorFormData = z.infer<typeof activityTypeSelectorSchema>;
+export type ActivityTypeSelectorFormData = z.infer<
+  typeof activityTypeSelectorSchema
+>;
 export type CreateActivityFormData = z.infer<typeof createActivitySchema>;
-

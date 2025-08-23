@@ -1,7 +1,7 @@
 // Google Places API Types for Desbrava Project
 
-import { ActivityTypeKey } from "./activity";
-import { SelectOption } from "./form";
+import { ActivityTypeKey } from './activity';
+import { SelectOption } from './form';
 
 export interface PlaceLocation {
   latitude: number;
@@ -272,12 +272,12 @@ export const OTHER_TYPES = {
   STREET_ADDRESS: 'street_address',
   POSTAL_CODE: 'postal_code',
   COUNTRY: 'country',
-  
+
   // General points of interest
   POINT_OF_INTEREST: 'point_of_interest',
   ESTABLISHMENT: 'establishment',
   LANDMARK: 'landmark',
-  
+
   // Shopping and services (basic)
   SHOPPING_MALL: 'shopping_mall',
   GROCERY_STORE: 'grocery_store',
@@ -285,7 +285,7 @@ export const OTHER_TYPES = {
   BANK: 'bank',
   ATM: 'atm',
   POST_OFFICE: 'post_office',
-  
+
   // Health and emergency
   HOSPITAL: 'hospital',
   POLICE_STATION: 'police_station',
@@ -303,15 +303,19 @@ export const PLACE_TYPES = {
 } as const;
 
 // Type definitions
-export type AccommodationType = (typeof ACCOMMODATION_TYPES)[keyof typeof ACCOMMODATION_TYPES];
-export type TransportationType = (typeof TRANSPORTATION_TYPES)[keyof typeof TRANSPORTATION_TYPES];
+export type AccommodationType =
+  (typeof ACCOMMODATION_TYPES)[keyof typeof ACCOMMODATION_TYPES];
+export type TransportationType =
+  (typeof TRANSPORTATION_TYPES)[keyof typeof TRANSPORTATION_TYPES];
 export type FoodType = (typeof FOOD_TYPES)[keyof typeof FOOD_TYPES];
 export type LeisureType = (typeof LEISURE_TYPES)[keyof typeof LEISURE_TYPES];
 export type OtherType = (typeof OTHER_TYPES)[keyof typeof OTHER_TYPES];
 export type PlaceType = (typeof PLACE_TYPES)[keyof typeof PLACE_TYPES];
 
 // Helper function to get types by activity category
-export const getPlaceTypesByCategory = (category: ActivityTypeKey): PlaceType[] => {
+export const getPlaceTypesByCategory = (
+  category: ActivityTypeKey
+): PlaceType[] => {
   switch (category) {
     case 'accommodation':
       return Object.values(ACCOMMODATION_TYPES);
@@ -329,9 +333,9 @@ export const getPlaceTypesByCategory = (category: ActivityTypeKey): PlaceType[] 
 };
 
 export interface PlaceTypeOptions {
-  accommodation:  SelectOption[];
+  accommodation: SelectOption[];
   transportation: SelectOption[];
-  food:           SelectOption[];
-  leisure:        SelectOption[];
-  other:          SelectOption[];
+  food: SelectOption[];
+  leisure: SelectOption[];
+  other: SelectOption[];
 }

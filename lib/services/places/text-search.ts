@@ -6,7 +6,7 @@ import {
   PlacesApiError,
   PlaceTextSearchRequest,
   PlaceTextSearchResponse,
-  TextSearchOptions
+  TextSearchOptions,
 } from '@/lib/types';
 import { getPlaceTypesByCategory } from '@/lib/types/places';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
@@ -17,14 +17,7 @@ import { makePlacesRequest, validateLocation, validateRadius } from './base';
 export async function searchPlacesByText(
   options: TextSearchOptions
 ): Promise<PlaceTextSearchResponse> {
-  const {
-    query,
-    latitude,
-    longitude,
-    radius = 10000,
-    types,
-    config,
-  } = options;
+  const { query, latitude, longitude, radius = 10000, types, config } = options;
 
   if (!query || query.trim().length === 0) {
     throw new Error('Search query is required');
@@ -35,7 +28,7 @@ export async function searchPlacesByText(
   }
 
   const request: PlaceTextSearchRequest = {
-    textQuery: query.trim()
+    textQuery: query.trim(),
   };
 
   // Add location bias if coordinates are provided
@@ -123,7 +116,7 @@ export async function searchAttractionsByText(
   query: string,
   latitude?: number,
   longitude?: number,
-  radius: number = 10000, 
+  radius: number = 10000,
   config?: PlacesApiConfig
 ): Promise<PlaceTextSearchResponse> {
   return searchPlacesByText({

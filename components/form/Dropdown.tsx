@@ -26,7 +26,10 @@ export default function Dropdown({
   // If the dropdown is open, render the dropdown
   return (
     <div
-      className={cn(styles.dropdown, position === 'top' ? styles.dropdownTop : styles.dropdownBottom)}
+      className={cn(
+        styles.dropdown,
+        position === 'top' ? styles.dropdownTop : styles.dropdownBottom
+      )}
       style={{
         maxWidth: '100%',
         minWidth: '100%',
@@ -40,7 +43,12 @@ export default function Dropdown({
           <button
             key={option.value}
             type="button"
-            className={cn(styles.option, highlightedIndex === index && styles.optionHighlighted, option.disabled && styles.optionDisabled, option.value === selectedValue && styles.optionSelected)}
+            className={cn(
+              styles.option,
+              highlightedIndex === index && styles.optionHighlighted,
+              option.disabled && styles.optionDisabled,
+              option.value === selectedValue && styles.optionSelected
+            )}
             onClick={() => !option.disabled && onOptionSelect(option)}
             disabled={option.disabled}
           >
@@ -51,7 +59,6 @@ export default function Dropdown({
     </div>
   );
 }
-
 
 const styles = {
   dropdown:

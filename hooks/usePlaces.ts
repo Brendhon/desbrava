@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDebounce } from './useDebounce';
 import { Place, PlaceType, getPlaceTypesByCategory } from '@/lib/types/places';
-import { getPlaceSuggestions, generateSessionToken } from '@/lib/services/places';
+import {
+  getPlaceSuggestions,
+  generateSessionToken,
+} from '@/lib/services/places';
 
 interface UsePlacesReturn {
   places: Place[];
@@ -65,13 +68,20 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
     // Check if this exact search has already been performed recently
     const normalizedInput = input.trim().toLowerCase();
     const normalizedTypes = types.sort().join(',');
-    
+
     if (lastSearchCache.current) {
-      const normalizedLastInput = lastSearchCache.current.input.trim().toLowerCase();
-      const normalizedLastTypes = lastSearchCache.current.types.sort().join(',');
-      
+      const normalizedLastInput = lastSearchCache.current.input
+        .trim()
+        .toLowerCase();
+      const normalizedLastTypes = lastSearchCache.current.types
+        .sort()
+        .join(',');
+
       // If input and types are the same, skip the search
-      if (normalizedInput === normalizedLastInput && normalizedTypes === normalizedLastTypes) {
+      if (
+        normalizedInput === normalizedLastInput &&
+        normalizedTypes === normalizedLastTypes
+      ) {
         return;
       }
     }
@@ -91,19 +101,24 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
       });
 
       // Convert suggestions to places format
-      const placeSuggestions = response.suggestions.map(suggestion => ({
-        id: suggestion.placePrediction.placeId,
-        displayName: {
-          text: suggestion.placePrediction.text.text,
-          languageCode: 'pt-BR',
-        },
-        formattedAddress: suggestion.placePrediction.structuredFormat?.secondaryText?.text || '',
-        location: { latitude: 0, longitude: 0 }, // Will be filled by details API if needed
-        types,
-      } as Place));
+      const placeSuggestions = response.suggestions.map(
+        (suggestion) =>
+          ({
+            id: suggestion.placePrediction.placeId,
+            displayName: {
+              text: suggestion.placePrediction.text.text,
+              languageCode: 'pt-BR',
+            },
+            formattedAddress:
+              suggestion.placePrediction.structuredFormat?.secondaryText
+                ?.text || '',
+            location: { latitude: 0, longitude: 0 }, // Will be filled by details API if needed
+            types,
+          }) as Place
+      );
 
       setPlaces(placeSuggestions);
-      
+
       // Update the search cache with current parameters
       lastSearchCache.current = {
         input: input.trim(),
@@ -111,7 +126,8 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
         timestamp: Date.now(),
       };
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to search places';
+      const errorMessage =
+        err instanceof Error ? err.message : 'Failed to search places';
       setError(errorMessage);
       setPlaces([]);
     } finally {
@@ -130,7 +146,10 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
   useEffect(() => {
     const searchPlaces = async () => {
       // Don't search for very short terms or empty terms
-      if (!debouncedSearchTerm.trim() || debouncedSearchTerm.trim().length < 2) {
+      if (
+        !debouncedSearchTerm.trim() ||
+        debouncedSearchTerm.trim().length < 2
+      ) {
         setPlaces([]);
         setError(null);
         setLoading(false);
@@ -140,13 +159,20 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
       // Check if this search is already cached to avoid duplicate calls
       const normalizedInput = debouncedSearchTerm.trim().toLowerCase();
       const normalizedTypes = defaultTypes.sort().join(',');
-      
+
       if (lastSearchCache.current) {
-        const normalizedLastInput = lastSearchCache.current.input.trim().toLowerCase();
-        const normalizedLastTypes = lastSearchCache.current.types.sort().join(',');
-        
+        const normalizedLastInput = lastSearchCache.current.input
+          .trim()
+          .toLowerCase();
+        const normalizedLastTypes = lastSearchCache.current.types
+          .sort()
+          .join(',');
+
         // If input and types are the same, skip the search
-        if (normalizedInput === normalizedLastInput && normalizedTypes === normalizedLastTypes) {
+        if (
+          normalizedInput === normalizedLastInput &&
+          normalizedTypes === normalizedLastTypes
+        ) {
           return;
         }
       }

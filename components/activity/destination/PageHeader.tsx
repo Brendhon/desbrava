@@ -2,7 +2,9 @@ interface PageHeaderProps {
   needsMultipleDestinations: boolean;
 }
 
-export default function PageHeader({ needsMultipleDestinations }: PageHeaderProps) {
+export default function PageHeader({
+  needsMultipleDestinations,
+}: PageHeaderProps) {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>

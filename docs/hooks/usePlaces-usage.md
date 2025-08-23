@@ -17,29 +17,29 @@ The `usePlaces` hook provides a comprehensive interface for searching places usi
 
 ### UsePlacesOptions
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `initialSearchTerm` | `string` | `''` | Initial search term |
-| `debounceDelay` | `number` | `400` | Delay for debouncing in milliseconds |
-| `defaultTypes` | `PlaceType[]` | `[CITIES, REGIONS, COUNTRIES]` | Default place types to search for |
-| `latitude` | `number` | `undefined` | Latitude for location bias |
-| `longitude` | `number` | `undefined` | Longitude for location bias |
-| `radius` | `number` | `50000` | Search radius in meters |
-| `maxResults` | `number` | `20` | Maximum number of results |
+| Property            | Type          | Default                        | Description                          |
+| ------------------- | ------------- | ------------------------------ | ------------------------------------ |
+| `initialSearchTerm` | `string`      | `''`                           | Initial search term                  |
+| `debounceDelay`     | `number`      | `400`                          | Delay for debouncing in milliseconds |
+| `defaultTypes`      | `PlaceType[]` | `[CITIES, REGIONS, COUNTRIES]` | Default place types to search for    |
+| `latitude`          | `number`      | `undefined`                    | Latitude for location bias           |
+| `longitude`         | `number`      | `undefined`                    | Longitude for location bias          |
+| `radius`            | `number`      | `50000`                        | Search radius in meters              |
+| `maxResults`        | `number`      | `20`                           | Maximum number of results            |
 
 ## Return Value
 
 ### UsePlacesReturn
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `places` | `Place[]` | Array of places from the search |
-| `loading` | `boolean` | Loading state indicator |
-| `error` | `string \| null` | Error message if search failed |
-| `searchTerm` | `string` | Current search term |
-| `setSearchTerm` | `(term: string) => void` | Function to update search term |
-| `searchByType` | `(input: string, types: PlaceType[]) => Promise<void>` | Search places by specific types |
-| `clearResults` | `() => void` | Clear search results and reset state |
+| Property        | Type                                                   | Description                          |
+| --------------- | ------------------------------------------------------ | ------------------------------------ |
+| `places`        | `Place[]`                                              | Array of places from the search      |
+| `loading`       | `boolean`                                              | Loading state indicator              |
+| `error`         | `string \| null`                                       | Error message if search failed       |
+| `searchTerm`    | `string`                                               | Current search term                  |
+| `setSearchTerm` | `(term: string) => void`                               | Function to update search term       |
+| `searchByType`  | `(input: string, types: PlaceType[]) => Promise<void>` | Search places by specific types      |
+| `clearResults`  | `() => void`                                           | Clear search results and reset state |
 
 ## Usage
 
@@ -49,13 +49,7 @@ The `usePlaces` hook provides a comprehensive interface for searching places usi
 import { usePlaces } from '@/hooks/usePlaces';
 
 function MyComponent() {
-  const {
-    places,
-    loading,
-    error,
-    searchTerm,
-    setSearchTerm,
-  } = usePlaces();
+  const { places, loading, error, searchTerm, setSearchTerm } = usePlaces();
 
   return (
     <div>
@@ -64,12 +58,12 @@ function MyComponent() {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Buscar lugares..."
       />
-      
+
       {loading && <p>Buscando...</p>}
       {error && <p>Erro: {error}</p>}
-      
+
       <ul>
-        {places.map(place => (
+        {places.map((place) => (
           <li key={place.id}>{place.displayName.text}</li>
         ))}
       </ul>
@@ -84,21 +78,15 @@ function MyComponent() {
 import { usePlaces, PLACE_TYPES } from '@/hooks/usePlaces';
 
 function MyComponent() {
-  const {
-    places,
-    loading,
-    error,
-    searchTerm,
-    setSearchTerm,
-    searchByType,
-  } = usePlaces({
-    debounceDelay: 600,
-    defaultTypes: [PLACE_TYPES.RESTAURANT, PLACE_TYPES.CAFE],
-    latitude: -23.5505,
-    longitude: -46.6333,
-    radius: 10000,
-    maxResults: 15,
-  });
+  const { places, loading, error, searchTerm, setSearchTerm, searchByType } =
+    usePlaces({
+      debounceDelay: 600,
+      defaultTypes: [PLACE_TYPES.RESTAURANT, PLACE_TYPES.CAFE],
+      latitude: -23.5505,
+      longitude: -46.6333,
+      radius: 10000,
+      maxResults: 15,
+    });
 
   const handleRestaurantSearch = () => {
     searchByType('pizza', [PLACE_TYPES.RESTAURANT]);
@@ -111,16 +99,14 @@ function MyComponent() {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Buscar restaurantes..."
       />
-      
-      <button onClick={handleRestaurantSearch}>
-        Buscar Pizzarias
-      </button>
-      
+
+      <button onClick={handleRestaurantSearch}>Buscar Pizzarias</button>
+
       {loading && <p>Buscando...</p>}
       {error && <p>Erro: {error}</p>}
-      
+
       <ul>
-        {places.map(place => (
+        {places.map((place) => (
           <li key={place.id}>{place.displayName.text}</li>
         ))}
       </ul>
@@ -136,8 +122,10 @@ import { usePlaces, PLACE_TYPES } from '@/hooks/usePlaces';
 import { useState } from 'react';
 
 function AdvancedSearch() {
-  const [searchType, setSearchType] = useState<'general' | 'hotels' | 'restaurants'>('general');
-  
+  const [searchType, setSearchType] = useState<
+    'general' | 'hotels' | 'restaurants'
+  >('general');
+
   const {
     places,
     loading,
@@ -156,7 +144,7 @@ function AdvancedSearch() {
   const handleTypeChange = (type: 'general' | 'hotels' | 'restaurants') => {
     setSearchType(type);
     clearResults();
-    
+
     if (searchTerm.trim().length >= 2) {
       switch (type) {
         case 'hotels':
@@ -193,18 +181,18 @@ function AdvancedSearch() {
           Restaurantes
         </button>
       </div>
-      
+
       <input
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder={`Buscar ${searchType === 'general' ? 'lugares' : searchType}...`}
       />
-      
+
       {loading && <p>Buscando...</p>}
       {error && <p>Erro: {error}</p>}
-      
+
       <ul>
-        {places.map(place => (
+        {places.map((place) => (
           <li key={place.id}>
             <strong>{place.displayName.text}</strong>
             <br />
@@ -228,6 +216,7 @@ The hook automatically debounces search terms to prevent excessive API calls. Th
 ### Search Triggers
 
 Searches are automatically triggered when:
+
 - The debounced search term changes
 - The search term is at least 2 characters long
 - The `defaultTypes` array changes
@@ -235,6 +224,7 @@ Searches are automatically triggered when:
 ### Error Handling
 
 The hook provides comprehensive error handling:
+
 - API errors are captured and stored in the `error` state
 - Network failures are handled gracefully
 - Invalid search terms are prevented

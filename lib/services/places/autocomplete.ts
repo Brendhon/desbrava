@@ -7,7 +7,7 @@ import {
   PlaceAutocompleteRequest,
   PlaceAutocompleteResponse,
   PlacesApiConfig,
-  PlacesApiError
+  PlacesApiError,
 } from '@/lib/types';
 import { generateRandomId } from '@/lib/utils';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';

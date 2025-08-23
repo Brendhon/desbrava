@@ -18,12 +18,18 @@ export default function CreateTripPage() {
   const { getCountryByCode } = useCountries();
 
   const handleSuccess = () => {
-    showSuccessToast('Viagem criada com sucesso!', 'Redirecionando para o dashboard...');
+    showSuccessToast(
+      'Viagem criada com sucesso!',
+      'Redirecionando para o dashboard...'
+    );
     setTimeout(() => router.push(DashboardRoutes.dashboard()), 3000);
   };
 
   const handleError = (error?: unknown) => {
-    showErrorToast('Erro ao criar viagem', 'Ocorreu um erro inesperado. Tente novamente.');
+    showErrorToast(
+      'Erro ao criar viagem',
+      'Ocorreu um erro inesperado. Tente novamente.'
+    );
     error && console.error('Erro ao criar viagem:', error);
   };
 

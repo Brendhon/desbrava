@@ -7,13 +7,9 @@ interface PlaceInfoProps {
 export default function PlaceInfo({ place }: PlaceInfoProps) {
   return (
     <div className={styles.container}>
-      <p className={styles.name}>
-        {place.displayName.text}
-      </p>
+      <p className={styles.name}>{place.displayName.text}</p>
       {place.formattedAddress && (
-        <p className={styles.address}>
-          {place.formattedAddress}
-        </p>
+        <p className={styles.address}>{place.formattedAddress}</p>
       )}
     </div>
   );

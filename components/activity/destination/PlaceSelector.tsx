@@ -60,9 +60,11 @@ export default function PlaceSelector({
 const styles = {
   container: 'px-8 w-full',
   border: 'border-r-0 border-mist-gray/50 lg:border-r',
-  title: 'text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold',
+  title:
+    'text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold',
   icon: 'text-royal-gray h-5 w-5',
   searchContainer: 'space-y-3',
   loadingContainer: 'text-mist-gray flex items-center gap-2 text-sm',
-  spinner: 'border-mist-gray h-4 w-4 animate-spin rounded-full border-2 border-t-transparent',
+  spinner:
+    'border-mist-gray h-4 w-4 animate-spin rounded-full border-2 border-t-transparent',
 };

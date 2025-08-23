@@ -57,7 +57,9 @@ export default function PlaceSearchSelect({
         <h3>{place.displayName.text}</h3>
         <p>{place.formattedAddress}</p>
         <p>{place.types.join(', ')}</p>
-        <p>{place.location.latitude}, {place.location.longitude}</p>
+        <p>
+          {place.location.latitude}, {place.location.longitude}
+        </p>
       </div>
     );
   };

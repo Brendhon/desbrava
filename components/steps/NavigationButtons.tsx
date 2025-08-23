@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { Button } from "../ui";
+import { cn } from '@/lib/utils';
+import { Button } from '../ui';
 
 interface NavigationButtonsProps {
   onBack: () => void;
@@ -8,7 +8,12 @@ interface NavigationButtonsProps {
   canGoBack?: boolean;
 }
 
-export default function NavigationButtons({ onBack, onNext, canProceed, canGoBack = true }: NavigationButtonsProps) {
+export default function NavigationButtons({
+  onBack,
+  onNext,
+  canProceed,
+  canGoBack = true,
+}: NavigationButtonsProps) {
   return (
     <div className={styles.container}>
       <Button
@@ -19,11 +24,7 @@ export default function NavigationButtons({ onBack, onNext, canProceed, canGoBac
         Voltar
       </Button>
 
-      <Button
-        variant="primary"
-        onClick={onNext}
-        disabled={!canProceed}
-      >
+      <Button variant="primary" onClick={onNext} disabled={!canProceed}>
         Continuar
       </Button>
     </div>

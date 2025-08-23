@@ -47,7 +47,10 @@ export interface FieldProps extends BaseFieldProps, IconActionProps {
 }
 
 // Complete interface for Input component
-export interface InputProps extends BaseFieldProps, IconActionProps, FormRegisterProps {
+export interface InputProps
+  extends BaseFieldProps,
+    IconActionProps,
+    FormRegisterProps {
   [key: string]: any; // Allow additional HTML input attributes
 }
 
@@ -64,7 +67,11 @@ export interface SelectProps extends BaseFieldProps, FormRegisterProps {
 }
 
 // Complete interface for SearchSelect component
-export interface SearchSelectProps extends BaseFieldProps, FormRegisterProps, IdProps, PlaceholderProps {
+export interface SearchSelectProps
+  extends BaseFieldProps,
+    FormRegisterProps,
+    IdProps,
+    PlaceholderProps {
   options: SelectOption[];
   defaultValue?: SelectOption;
   icon?: LucideIcon;
@@ -75,7 +82,12 @@ export interface SearchSelectProps extends BaseFieldProps, FormRegisterProps, Id
 }
 
 // Complete interface for DatePicker component
-export interface DatePickerProps extends BaseFieldProps, FormRegisterProps, IdProps, PlaceholderProps, DisabledProps {
+export interface DatePickerProps
+  extends BaseFieldProps,
+    FormRegisterProps,
+    IdProps,
+    PlaceholderProps,
+    DisabledProps {
   value: string;
   defaultValue?: string;
   popupPosition?: 'top' | 'bottom' | 'left' | 'right';
@@ -84,12 +96,19 @@ export interface DatePickerProps extends BaseFieldProps, FormRegisterProps, IdPr
 }
 
 // Complete interface for CountrySearchSelect component
-export interface CountrySearchSelectProps extends BaseFieldProps, FormRegisterProps, IdProps, PlaceholderProps {
+export interface CountrySearchSelectProps
+  extends BaseFieldProps,
+    FormRegisterProps,
+    IdProps,
+    PlaceholderProps {
   defaultValue?: string; // Country code
 }
 
 // Complete interface for PlaceSearchSelect component
-export interface PlaceSearchSelectProps extends BaseFieldProps, IdProps, PlaceholderProps {
+export interface PlaceSearchSelectProps
+  extends BaseFieldProps,
+    IdProps,
+    PlaceholderProps {
   onValueChange?: (value: string) => void;
   debounceDelay?: number;
   defaultValue?: string;

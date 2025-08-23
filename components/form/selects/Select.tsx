@@ -29,7 +29,11 @@ export default function Select({
       className={className}
     >
       <select {...register} {...props}>
-        {placeholder && <option value="" disabled>{placeholder}</option>}
+        {placeholder && (
+          <option value="" disabled>
+            {placeholder}
+          </option>
+        )}
 
         {options.map((option) => (
           <option

@@ -27,8 +27,8 @@ function PlaceTypeSelector() {
 
   return (
     <div>
-      <select 
-        value={category || ''} 
+      <select
+        value={category || ''}
         onChange={(e) => setCategory(e.target.value as ActivityTypeKey)}
       >
         <option value="">Select a category</option>
@@ -41,7 +41,7 @@ function PlaceTypeSelector() {
 
       {loading && <p>Loading place types...</p>}
       {error && <p>Error: {error}</p>}
-      
+
       {placeTypes.length > 0 && (
         <div>
           <h3>Place Types for {category}:</h3>
@@ -88,12 +88,12 @@ function AccommodationTypes() {
 
 ```typescript
 function PlaceTypeManager() {
-  const { 
-    placeTypes, 
-    loading, 
-    error, 
-    getAllPlaceTypes, 
-    getPlaceTypesByCategory 
+  const {
+    placeTypes,
+    loading,
+    error,
+    getAllPlaceTypes,
+    getPlaceTypesByCategory
   } = usePlaceTypes();
 
   const handleFetchAll = async () => {
@@ -117,13 +117,13 @@ function PlaceTypeManager() {
   return (
     <div>
       <div className="space-x-2 mb-4">
-        <button 
+        <button
           onClick={handleFetchAll}
           className="px-4 py-2 bg-blue-500 text-white rounded"
         >
           Fetch All Types
         </button>
-        <button 
+        <button
           onClick={() => handleFetchCategory('food')}
           className="px-4 py-2 bg-green-500 text-white rounded"
         >
@@ -133,7 +133,7 @@ function PlaceTypeManager() {
 
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      
+
       {placeTypes.length > 0 && (
         <div>
           <h3>Current Place Types ({placeTypes.length})</h3>
@@ -160,13 +160,13 @@ The hook uses the following API endpoints:
 
 ```typescript
 interface UsePlaceTypesReturn {
-  placeTypes: PlaceType[];           // Array of place types for current category
-  loading: boolean;                  // Loading state
-  error: string | null;              // Error message if any
-  category: ActivityTypeKey | null;  // Current selected category
-  setCategory: (category: ActivityTypeKey | null) => void;  // Set category function
-  getAllPlaceTypes: () => Promise<Record<string, PlaceType[]>>;  // Fetch all types
-  getPlaceTypesByCategory: (category: ActivityTypeKey) => Promise<PlaceType[]>;  // Fetch by category
+  placeTypes: PlaceType[]; // Array of place types for current category
+  loading: boolean; // Loading state
+  error: string | null; // Error message if any
+  category: ActivityTypeKey | null; // Current selected category
+  setCategory: (category: ActivityTypeKey | null) => void; // Set category function
+  getAllPlaceTypes: () => Promise<Record<string, PlaceType[]>>; // Fetch all types
+  getPlaceTypesByCategory: (category: ActivityTypeKey) => Promise<PlaceType[]>; // Fetch by category
 }
 ```
 
@@ -174,8 +174,8 @@ interface UsePlaceTypesReturn {
 
 ```typescript
 interface PlaceType {
-  key: string;    // Unique identifier (e.g., "hotel", "restaurant")
-  value: string;  // Human-readable name in Portuguese (e.g., "Hotel", "Restaurante")
+  key: string; // Unique identifier (e.g., "hotel", "restaurant")
+  value: string; // Human-readable name in Portuguese (e.g., "Hotel", "Restaurante")
 }
 ```
 

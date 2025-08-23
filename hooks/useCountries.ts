@@ -25,7 +25,6 @@ const getCountries = () => CountriesData as Country[];
  * @returns Object with countries data
  */
 export function useCountries(): UseCountriesReturn {
-
   // Get country by name
   const getCountryByName = (name: string): Country => {
     const country = getCountries().find((country) => country.country === name);
@@ -34,7 +33,9 @@ export function useCountries(): UseCountriesReturn {
 
   // Get country by code
   const getCountryByCode = (code: string): Country => {
-    const country = getCountries().find((country) => country.iso_country === code);
+    const country = getCountries().find(
+      (country) => country.iso_country === code
+    );
     return country || defaultCountry;
   };
 

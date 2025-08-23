@@ -16,25 +16,25 @@ The `PlaceSearchSelect` component provides dynamic place search functionality us
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `React.ReactNode` | `'Local'` | Label displayed above the input |
-| `error` | `string` | `undefined` | Error message to display |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the input field |
-| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant of the input |
-| `register` | `UseFormRegisterReturn` | `undefined` | React Hook Form register function |
-| `helperText` | `string` | `'Local da sua viagem'` | Helper text below the input |
-| `className` | `string` | `''` | Additional CSS classes |
-| `id` | `string` | `undefined` | HTML id attribute |
-| `placeholder` | `string` | `'Digite para buscar um local...'` | Placeholder text |
-| `onValueChange` | `(value: string) => void` | `undefined` | Callback when value changes |
-| `debounceDelay` | `number` | `400` | Delay for debouncing in milliseconds |
-| `defaultValue` | `string` | `undefined` | Initial/default value |
-| `placeTypes` | `PlaceType[]` | `[CITIES, REGIONS, COUNTRIES]` | Types of places to search for |
-| `latitude` | `number` | `undefined` | Latitude for location bias |
-| `longitude` | `number` | `undefined` | Longitude for location bias |
-| `radius` | `number` | `50000` | Search radius in meters |
-| `maxResults` | `number` | `20` | Maximum number of results |
+| Prop            | Type                                | Default                            | Description                          |
+| --------------- | ----------------------------------- | ---------------------------------- | ------------------------------------ |
+| `label`         | `React.ReactNode`                   | `'Local'`                          | Label displayed above the input      |
+| `error`         | `string`                            | `undefined`                        | Error message to display             |
+| `size`          | `'sm' \| 'md' \| 'lg'`              | `'md'`                             | Size of the input field              |
+| `variant`       | `'default' \| 'error' \| 'success'` | `'default'`                        | Visual variant of the input          |
+| `register`      | `UseFormRegisterReturn`             | `undefined`                        | React Hook Form register function    |
+| `helperText`    | `string`                            | `'Local da sua viagem'`            | Helper text below the input          |
+| `className`     | `string`                            | `''`                               | Additional CSS classes               |
+| `id`            | `string`                            | `undefined`                        | HTML id attribute                    |
+| `placeholder`   | `string`                            | `'Digite para buscar um local...'` | Placeholder text                     |
+| `onValueChange` | `(value: string) => void`           | `undefined`                        | Callback when value changes          |
+| `debounceDelay` | `number`                            | `400`                              | Delay for debouncing in milliseconds |
+| `defaultValue`  | `string`                            | `undefined`                        | Initial/default value                |
+| `placeTypes`    | `PlaceType[]`                       | `[CITIES, REGIONS, COUNTRIES]`     | Types of places to search for        |
+| `latitude`      | `number`                            | `undefined`                        | Latitude for location bias           |
+| `longitude`     | `number`                            | `undefined`                        | Longitude for location bias          |
+| `radius`        | `number`                            | `50000`                            | Search radius in meters              |
+| `maxResults`    | `number`                            | `20`                               | Maximum number of results            |
 
 ## Usage
 
@@ -74,13 +74,13 @@ function MyForm() {
         register={register('departurePlace')}
         helperText="De onde você vai partir?"
       />
-      
+
       <PlaceSearchSelect
         label="Destino"
         register={register('destination')}
         helperText="Para onde você vai?"
       />
-      
+
       <button type="submit">Enviar</button>
     </form>
   );

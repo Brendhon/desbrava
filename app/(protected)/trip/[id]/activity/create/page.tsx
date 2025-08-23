@@ -1,9 +1,15 @@
 'use client';
 
 import ActivitySummary from '@/components/activity/ActivitySummary';
-import ActivityTypeSelector, { ActivityTypeData } from '@/components/activity/ActivityTypeSelector';
-import DestinationSelector, { DestinationData } from '@/components/activity/DestinationSelector';
-import PeriodSelector, { PeriodData } from '@/components/activity/PeriodSelector';
+import ActivityTypeSelector, {
+  ActivityTypeData,
+} from '@/components/activity/ActivityTypeSelector';
+import DestinationSelector, {
+  DestinationData,
+} from '@/components/activity/DestinationSelector';
+import PeriodSelector, {
+  PeriodData,
+} from '@/components/activity/PeriodSelector';
 import { PageHeader } from '@/components/layout';
 import { Steps } from '@/components/steps';
 import { Step } from '@/lib/types';
@@ -22,7 +28,7 @@ export default function CreateActivityPage() {
   // Form data
   const [typeData, setTypeData] = useState<ActivityTypeData>({
     type: 'accommodation',
-    subType: ''
+    subType: '',
   });
   const [destinations, setDestinations] = useState<DestinationData>({});
   const [periodData, setPeriodData] = useState<PeriodData>({
@@ -30,7 +36,7 @@ export default function CreateActivityPage() {
     startTime: '',
     endTime: '',
   });
-  
+
   const handleTypeNext = (typeData: ActivityTypeData) => {
     setTypeData(typeData);
     setCurrentStep(1);
@@ -83,10 +89,7 @@ export default function CreateActivityPage() {
       description: 'Selecione o tipo',
       status: 'current',
       children: (
-        <ActivityTypeSelector
-          typeData={typeData}
-          onNext={handleTypeNext}
-        />
+        <ActivityTypeSelector typeData={typeData} onNext={handleTypeNext} />
       ),
     },
     {
@@ -179,4 +182,3 @@ const styles = {
   cancelButton:
     'px-6 py-3 text-mist-gray hover:text-parchment-white transition-colors duration-200',
 };
-

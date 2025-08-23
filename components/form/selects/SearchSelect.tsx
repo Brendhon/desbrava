@@ -37,7 +37,10 @@ export default function SearchSelect({
   }, [defaultValue]);
 
   // Memoized ID
-  const searchSelectId = useMemo(() => id || generateRandomId('search-select'), [id]);
+  const searchSelectId = useMemo(
+    () => id || generateRandomId('search-select'),
+    [id]
+  );
 
   // Filtered options based on input value
   const filteredOptions = useMemo(() => {
@@ -57,13 +60,16 @@ export default function SearchSelect({
   // Handle option selection
   const handleOptionSelect = useCallback(
     (option: SelectOption) => {
-      const displayValue = typeof option.label === 'string' ? option.label : option.value;
+      const displayValue =
+        typeof option.label === 'string' ? option.label : option.value;
       setInputValue(displayValue);
       setSelectedValue(option.value);
       setHighlightedIndex(-1);
       setIsDropdownOpen(false);
       onSelect?.(option);
-      register?.onChange({ target: { value: option.value, name: register?.name } });
+      register?.onChange({
+        target: { value: option.value, name: register?.name },
+      });
     },
     [onSelect, register]
   );

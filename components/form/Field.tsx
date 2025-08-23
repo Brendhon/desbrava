@@ -1,7 +1,13 @@
 import { useFormStyles } from '@/hooks/useFormStyles';
 import { FieldProps } from '@/lib/types';
 import { cn, generateRandomId } from '@/lib/utils';
-import { Children, cloneElement, isValidElement, ReactElement, useMemo } from 'react';
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  ReactElement,
+  useMemo,
+} from 'react';
 
 export default function Field({
   idPrefix,
@@ -31,7 +37,6 @@ export default function Field({
 
   return (
     <>
-
       {/* Label */}
       {label && (
         <label htmlFor={inputId} className={styles.label}>
@@ -65,7 +70,6 @@ export default function Field({
           return child;
         })}
 
-
         {/* Right Icon */}
         {Icon && iconPosition === 'right' && (
           <Icon
@@ -80,10 +84,16 @@ export default function Field({
       </div>
 
       {/* Error */}
-      {error && <p className={styles.error} role="alert">{error}</p>}
+      {error && (
+        <p className={styles.error} role="alert">
+          {error}
+        </p>
+      )}
 
       {/* Helper text */}
-      {helperText && !error && <p className={styles.helperText}>{helperText}</p>}
+      {helperText && !error && (
+        <p className={styles.helperText}>{helperText}</p>
+      )}
     </>
   );
 }

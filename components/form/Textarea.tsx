@@ -27,12 +27,7 @@ export default function Textarea({
       error={error}
       className={className}
     >
-      <textarea
-        {...register}
-        {...props}
-      />
+      <textarea {...register} {...props} />
     </Field>
-
   );
 }
-

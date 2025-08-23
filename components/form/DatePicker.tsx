@@ -38,7 +38,10 @@ export default function DatePicker({
   const inputId = useMemo(() => id || generateRandomId('datepicker'), [id]);
 
   // Memoized popup position styles
-  const popupStyles = useMemo(() => cn(styles.popup, `datepicker-popup-${popupPosition}`), [popupPosition]);
+  const popupStyles = useMemo(
+    () => cn(styles.popup, `datepicker-popup-${popupPosition}`),
+    [popupPosition]
+  );
 
   // Update input when date is selected
   const handleDateSelect = useCallback(
@@ -66,7 +69,10 @@ export default function DatePicker({
   }, [disabled]);
 
   // Memoized default month for DayPicker
-  const defaultMonth = useMemo(() => (selectedDate ? new Date(selectedDate) : new Date()), [selectedDate]);
+  const defaultMonth = useMemo(
+    () => (selectedDate ? new Date(selectedDate) : new Date()),
+    [selectedDate]
+  );
 
   // Close popup when clicking outside
   useEffect(() => {

@@ -10,7 +10,10 @@ import {
   PlacesApiError,
 } from '@/lib/types';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
-import { ACCOMMODATION_TYPES, getPlaceTypesByCategory } from '@/lib/types/places';
+import {
+  ACCOMMODATION_TYPES,
+  getPlaceTypesByCategory,
+} from '@/lib/types/places';
 
 /**
  * Search for places near a specific location

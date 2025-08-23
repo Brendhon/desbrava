@@ -10,7 +10,11 @@ import {
   type CreateTripFormData,
   type TripSettingsFormData,
 } from '@/lib/schemas/trip';
-import { addDaysToDate, isStartDateBeforeEndDate, parsePtBrToDate } from '@/lib/utils/trip';
+import {
+  addDaysToDate,
+  isStartDateBeforeEndDate,
+  parsePtBrToDate,
+} from '@/lib/utils/trip';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LucideIcon } from 'lucide-react';
 import { useEffect, useMemo } from 'react';
@@ -67,7 +71,7 @@ export default function TripForm({
   // Get start date
   const startDate = watch('startDate');
   const endDate = watch('endDate');
-  
+
   // Clear end date if start date is after end date
   useEffect(() => {
     if (!isStartDateBeforeEndDate(startDate, endDate)) {
@@ -76,7 +80,11 @@ export default function TripForm({
   }, [startDate]);
 
   // Get end min date
-  const endMinDate = useMemo(() => startDate ? addDaysToDate(parsePtBrToDate(startDate), 1) : undefined, [startDate]);
+  const endMinDate = useMemo(
+    () =>
+      startDate ? addDaysToDate(parsePtBrToDate(startDate), 1) : undefined,
+    [startDate]
+  );
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>

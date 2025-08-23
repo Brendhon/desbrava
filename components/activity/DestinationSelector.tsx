@@ -4,10 +4,7 @@ import { NavigationButtons } from '@/components/steps';
 import { ACTIVITY_PLACE_PLACEHOLDERS } from '@/lib/types/activity';
 import { Place } from '@/lib/types/places';
 import { useCallback, useMemo, useState } from 'react';
-import {
-  PageHeader,
-  PlaceSelector,
-} from './destination';
+import { PageHeader, PlaceSelector } from './destination';
 import { ActivityTypeData } from './ActivityTypeSelector';
 
 export interface DestinationData {
@@ -34,17 +31,27 @@ export default function DestinationSelector({
   const [isSearchingDestination, setIsSearchingDestination] = useState(false);
 
   // Determine if this activity type needs multiple destinations
-  const needsMultiple = useMemo(() => activityType.type === 'transportation', [activityType.type]);
+  const needsMultiple = useMemo(
+    () => activityType.type === 'transportation',
+    [activityType.type]
+  );
 
   // Handle next step
   const handleNext = useCallback(() => {
-    onNext({ place: destinations.place, destination: needsMultiple ? destinations.destination : undefined });
+    onNext({
+      place: destinations.place,
+      destination: needsMultiple ? destinations.destination : undefined,
+    });
   }, [needsMultiple, destinations.place, destinations.destination, onNext]);
 
   // Check if can proceed
-  const canProceed = useMemo(() => needsMultiple
-    ? destinations.place && destinations.destination
-    : destinations.destination, [needsMultiple, destinations.place, destinations.destination]);
+  const canProceed = useMemo(
+    () =>
+      needsMultiple
+        ? destinations.place && destinations.destination
+        : destinations.destination,
+    [needsMultiple, destinations.place, destinations.destination]
+  );
 
   // Render
   return (
@@ -56,7 +63,9 @@ export default function DestinationSelector({
       <div className={styles.selectorsContainer}>
         <PlaceSelector
           title={needsMultiple ? 'Ponto de partida' : 'Local da Atividade'}
-          searchLabel={needsMultiple ? "Buscar local de origem" : 'Buscar local'}
+          searchLabel={
+            needsMultiple ? 'Buscar local de origem' : 'Buscar local'
+          }
           searchPlaceholder={ACTIVITY_PLACE_PLACEHOLDERS[activityType.type]}
           searchValue={searchOrigin}
           activityType={activityType.type}
