@@ -40,66 +40,6 @@ export function formatPlaceRating(place: Place): string {
 }
 
 /**
- * Get place type display name
- */
-export function getPlaceTypeDisplayName(type: PlaceType): string {
-  const typeNames: Record<PlaceType, string> = {
-    [PLACE_TYPES.LODGING]: 'Hotel',
-    [PLACE_TYPES.CAMPGROUND]: 'Camping',
-    [PLACE_TYPES.RV_PARK]: 'RV Park',
-    [PLACE_TYPES.RESTAURANT]: 'Restaurant',
-    [PLACE_TYPES.CAFE]: 'Café',
-    [PLACE_TYPES.BAR]: 'Bar',
-    [PLACE_TYPES.BAKERY]: 'Bakery',
-    [PLACE_TYPES.MEAL_TAKEAWAY]: 'Takeaway',
-    [PLACE_TYPES.TOURIST_ATTRACTION]: 'Tourist Attraction',
-    [PLACE_TYPES.MUSEUM]: 'Museum',
-    [PLACE_TYPES.ART_GALLERY]: 'Art Gallery',
-    [PLACE_TYPES.AMUSEMENT_PARK]: 'Amusement Park',
-    [PLACE_TYPES.AQUARIUM]: 'Aquarium',
-    [PLACE_TYPES.ZOO]: 'Zoo',
-    [PLACE_TYPES.PARK]: 'Park',
-    [PLACE_TYPES.AIRPORT]: 'Airport',
-    [PLACE_TYPES.TRAIN_STATION]: 'Train Station',
-    [PLACE_TYPES.BUS_STATION]: 'Bus Station',
-    [PLACE_TYPES.SUBWAY_STATION]: 'Subway Station',
-    [PLACE_TYPES.CITIES]: 'City',
-    [PLACE_TYPES.REGIONS]: 'Region',
-    [PLACE_TYPES.COUNTRIES]: 'Country',
-  };
-
-  return typeNames[type] || type;
-}
-
-/**
- * Get primary place type for display
- */
-export function getPrimaryPlaceType(place: Place): string {
-  if (!place.types || place.types.length === 0) {
-    return 'Place';
-  }
-
-  // Priority order for display
-  const priorityTypes = [
-    PLACE_TYPES.LODGING,
-    PLACE_TYPES.RESTAURANT,
-    PLACE_TYPES.TOURIST_ATTRACTION,
-    PLACE_TYPES.MUSEUM,
-    PLACE_TYPES.PARK,
-    PLACE_TYPES.AIRPORT,
-  ];
-
-  for (const priorityType of priorityTypes) {
-    if (place.types.includes(priorityType)) {
-      return getPlaceTypeDisplayName(priorityType);
-    }
-  }
-
-  // Return first available type
-  return getPlaceTypeDisplayName(place.types[0] as PlaceType);
-}
-
-/**
  * Check if a place is currently open
  */
 export function isPlaceOpen(place: Place): boolean | null {

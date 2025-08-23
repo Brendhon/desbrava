@@ -95,8 +95,8 @@ export default function TripStats({ trips }: TripStatsProps) {
       .slice()
       .sort(
         (a, b) =>
-          parsePtBrToDate(a.startDate).getTime() -
-          parsePtBrToDate(b.startDate).getTime()
+          parsePtBrToDate(a.startDate)!.getTime() -
+          parsePtBrToDate(b.startDate)!.getTime()
       )?.[0];
 
     // Set next trip

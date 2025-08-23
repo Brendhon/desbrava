@@ -125,7 +125,11 @@ export function validateDateRange(
   endDate: Date | null | undefined
 ): NextResponse | null {
   if (!startDate || !endDate) {
-    return createErrorResponse('Bad request', 'Data de início ou fim não informada', 400);
+    return createErrorResponse(
+      'Bad request',
+      'Data de início ou fim não informada',
+      400
+    );
   }
 
   if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
