@@ -1,5 +1,7 @@
 'use client';
 
+import { SubTypeSearchSelect } from '@/components/form/selects';
+import { NavigationButtons } from '@/components/steps';
 import { Card } from '@/components/ui';
 import { usePlaceTypes } from '@/hooks/usePlaceTypes';
 import {
@@ -10,8 +12,6 @@ import {
 import { SelectOption } from '@/lib/types/form';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
-import { SearchSelect } from '../form';
-import { NavigationButtons } from '../steps';
 
 export interface ActivityTypeData {
   type: ActivityTypeKey;
@@ -29,24 +29,26 @@ export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeS
   const [selectedSubType, setSelectedSubType] = useState<string | null>(typeData?.subType || null);
 
   // Hooks
-  const { getPlaceOptionsByType, getSubtypesByType } = usePlaceTypes();
+  const { getSubtypesByType } = usePlaceTypes();
 
-  // Options for the sub type select
-  const [subTypeOptions, setSubTypeOptions] = useState<SelectOption[]>(getPlaceOptionsByType(typeData?.type));
-  const [selectedOption, setSelectedOption] = useState<SelectOption>(getSubtypesByType(typeData?.type, typeData?.subType));
+  // Selected option for the sub type
+  const [selectedOption, setSelectedOption] = useState<SelectOption | undefined>(
+    typeData?.type && typeData?.subType 
+      ? getSubtypesByType(typeData.type, typeData.subType)
+      : undefined
+  );
 
   // Handle type select
   const handleTypeSelect = (type: ActivityTypeKey) => {
     setSelectedType(type);
     setSelectedSubType(null);
-    setSelectedOption(getSubtypesByType(type));
-    setSubTypeOptions(getPlaceOptionsByType(type));
+    setSelectedOption(undefined);
   };
 
   // Handle next button click
   const handleNext = () => {
-    if (selectedType) {
-      onNext({ type: selectedType as ActivityTypeKey, subType: selectedOption?.value || '' });
+    if (selectedType && selectedSubType) {
+      onNext({ type: selectedType as ActivityTypeKey, subType: selectedSubType });
     }
   };
 
@@ -97,15 +99,13 @@ export default function ActivityTypeSelector({ typeData, onNext }: ActivityTypeS
       </div>
 
       {selectedType && (
-        <div className={styles.searchSelectContainer}>
-          <SearchSelect
+          <SubTypeSearchSelect
             label="Tipo de atividade"
-            options={subTypeOptions}
-            defaultValue={selectedOption}
+            defaultValue={selectedOption?.value}
             placeholder="Selecione o tipo de atividade"
             onSelect={handleSubTypeChange}
-          />
-        </div>
+          activityType={selectedType}
+        />
       )}
 
       <NavigationButtons

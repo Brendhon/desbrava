@@ -1,9 +1,8 @@
 import { Dropdown, Input } from '@/components/form';
-import { SelectOption } from '@/lib/types';
+import { SearchSelectProps, SelectOption } from '@/lib/types';
 import { generateRandomId, normalizeString } from '@/lib/utils/string-utils';
 import { X } from 'lucide-react';
-import { InputHTMLAttributes, useCallback, useEffect, useMemo, useState } from 'react';
-import { SearchSelectProps } from '@/lib/types';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export default function SearchSelect({
   label,

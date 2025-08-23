@@ -1,5 +1,4 @@
 import { Field } from '@/components/form';
-import { SelectHTMLAttributes } from 'react';
 import { SelectProps } from '@/lib/types';
 
 export default function Select({

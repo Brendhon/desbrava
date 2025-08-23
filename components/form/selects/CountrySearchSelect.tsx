@@ -1,6 +1,6 @@
 'use client';
 
-import { SearchSelect } from '@/components/form';
+import { SearchSelect } from '@/components/form/selects';
 import { SelectOption } from '@/lib/types';
 import { Country } from '@/lib/types/country';
 import { useEffect, useState } from 'react';

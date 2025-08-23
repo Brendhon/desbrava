@@ -1,6 +1,6 @@
 'use client';
 
-import { SearchSelect } from '@/components/form';
+import { SearchSelect } from '@/components/form/selects';
 import { usePlaces } from '@/hooks/usePlaces';
 import { PlaceSearchSelectProps, SelectOption } from '@/lib/types';
 import { Place, getPlaceTypesByCategory } from '@/lib/types/places';

@@ -1,5 +1,5 @@
 import { PlaceInfo } from '@/components/activity/destination';
-import { PlaceSearchSelect } from '@/components/form';
+import { PlaceSearchSelect } from '@/components/form/selects';
 import { ActivityTypeKey } from '@/lib/types/activity';
 import { getPlaceTypesByCategory, Place } from '@/lib/types/places';
 import { cn } from '@/lib/utils';

@@ -1,7 +1,7 @@
 'use client';
 
 import { Input, Textarea } from '@/components/form';
-import CountrySearchSelect from '@/components/form/CountrySearchSelect';
+import CountrySearchSelect from '@/components/form/selects/CountrySearchSelect';
 import DatePicker from '@/components/form/DatePicker';
 import { Button } from '@/components/ui';
 import {

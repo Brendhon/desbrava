@@ -89,7 +89,7 @@ export default function PeriodSelector({
               label="Data"
               type="date"
               value={periodData.date}
-              onChange={(e) => handleInputChange('date', e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('date', e.target.value)}
               required
             />
           </div>
@@ -116,7 +116,7 @@ export default function PeriodSelector({
                 icon={TimerIcon}
                 iconPosition="right"
                 value={periodData.startTime}
-                onChange={(e) => handleInputChange('startTime', e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('startTime', e.target.value)}
               />
 
               <Input
@@ -125,7 +125,7 @@ export default function PeriodSelector({
                 icon={TimerIcon}
                 iconPosition="right"
                 value={periodData.endTime}
-                onChange={(e) => handleInputChange('endTime', e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('endTime', e.target.value)}
               />
             </div>
           </Card>
