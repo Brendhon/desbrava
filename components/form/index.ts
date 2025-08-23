@@ -3,7 +3,7 @@ export { default as Textarea } from './Textarea';
 export { default as SearchSelect } from './SearchSelect';
 export { default as Select } from './Select';
 export { default as DatePicker } from './DatePicker';
-export { default as InputWithIcon } from './InputWithIcon';
+export { default as Field } from './Field';
 export { default as Dropdown } from './Dropdown';
 export { default as TripForm } from './TripForm';
 export { default as CountrySearchSelect } from './CountrySearchSelect';

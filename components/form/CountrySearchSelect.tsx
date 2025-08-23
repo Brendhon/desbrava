@@ -5,20 +5,7 @@ import { SelectOption } from '@/lib/types';
 import { Country } from '@/lib/types/country';
 import CountriesData from '@/public/data/countries.json';
 import { useMemo } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
-
-interface CountrySearchSelectProps {
-  label?: string;
-  error?: string;
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'default' | 'error' | 'success';
-  helperText?: string;
-  className?: string;
-  id?: string;
-  placeholder?: string;
-  defaultValue?: string; // Country code
-  register?: UseFormRegisterReturn;
-}
+import { CountrySearchSelectProps } from '@/lib/types';
 
 const CountryItem = ({ country }: { country: Country }) => {
   return (

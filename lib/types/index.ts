@@ -3,6 +3,7 @@ export * from './airport';
 export * from './autocomplete';
 export * from './country';
 export * from './form';
+export * from './form-components';
 export * from './places';
 export * from './route';
 export * from './search';

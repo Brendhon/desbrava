@@ -1,86 +1,38 @@
-import { useFormStyles } from '@/hooks/useFormStyles';
-import { generateRandomId } from '@/lib/utils/string-utils';
-import { forwardRef, TextareaHTMLAttributes, useMemo } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { TextareaHTMLAttributes } from 'react';
+import Field from './Field';
+import { TextareaProps } from '@/lib/types';
 
-interface TextareaProps
-  extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
-  label?: string;
-  error?: string;
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'default' | 'error' | 'success';
-  register?: UseFormRegisterReturn;
-  helperText?: string;
-  className?: string;
-  id?: string;
+export default function Textarea({
+  label,
+  error,
+  size = 'md',
+  variant = 'default',
+  register,
+  helperText,
+  className = '',
+  icon: Icon,
+  iconPosition = 'left',
+  ...props
+}: TextareaProps) {
+  // Render the textarea component
+  return (
+    <Field
+      idPrefix="textarea"
+      label={label}
+      helperText={helperText}
+      icon={Icon}
+      iconPosition={iconPosition}
+      size={size}
+      variant={variant}
+      error={error}
+      className={className}
+    >
+      <textarea
+        {...register}
+        {...props}
+      />
+    </Field>
+
+  );
 }
 
-const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  (
-    {
-      label,
-      error,
-      size = 'md',
-      variant = 'default',
-      register,
-      helperText,
-      className = '',
-      id,
-      ...props
-    },
-    ref
-  ) => {
-    const textareaId = useMemo(
-      () => id || generateRandomId('textarea'),
-      [id]
-    );
-
-    const inputStyles = useFormStyles({
-      size,
-      variant,
-      hasIcon: false,
-      iconPosition: 'left',
-      className,
-      error,
-    });
-
-    return (
-      <div className={styles.container}>
-        {label && (
-          <label htmlFor={textareaId} className={styles.label}>
-            {label}
-          </label>
-        )}
-
-        <textarea
-          id={textareaId}
-          ref={register ? register.ref : ref}
-          className={inputStyles.input}
-          {...register}
-          {...props}
-        />
-
-        {error && (
-          <p className={styles.error} role="alert">
-            {error}
-          </p>
-        )}
-
-        {helperText && !error && (
-          <p className={styles.helperText}>{helperText}</p>
-        )}
-      </div>
-    );
-  }
-);
-
-Textarea.displayName = 'Textarea';
-
-export default Textarea;
-
-const styles = {
-  container: 'w-full',
-  label: 'form-label',
-  helperText: 'form-helper-text',
-  error: 'form-error',
-};

@@ -9,40 +9,7 @@ import { ptBR } from 'date-fns/locale';
 import { Calendar, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DayPicker, Matcher } from 'react-day-picker';
-import { UseFormRegisterReturn } from 'react-hook-form';
-
-interface DatePickerProps {
-  /** Label text displayed above the input */
-  label?: string;
-  /** Error message to display below the input */
-  error?: string;
-  /** Size variant of the input */
-  size?: 'sm' | 'md' | 'lg';
-  /** Visual variant of the input */
-  variant?: 'default' | 'error' | 'success';
-  /** React Hook Form register object */
-  register?: UseFormRegisterReturn;
-  /** Helper text displayed below the input */
-  helperText?: string;
-  /** Additional CSS classes */
-  className?: string;
-  /** Input ID attribute */
-  id?: string;
-  /** Placeholder text for the input */
-  placeholder?: string;
-  /** Whether the input is disabled */
-  disabled?: boolean;
-  /** Position of the calendar popup relative to the input */
-  popupPosition?: 'top' | 'bottom' | 'left' | 'right';
-  /** Default value for the date picker (string in dd/MM/yyyy format or Date object) */
-  defaultValue?: string;
-  /** Minimum date for the date picker */
-  minDate?: Date;
-  /** Maximum date for the date picker */
-  maxDate?: Date;
-  /** Value to be displayed in the input */
-  value: string;
-}
+import { DatePickerProps } from '@/lib/types';
 
 export default function DatePicker({
   label,

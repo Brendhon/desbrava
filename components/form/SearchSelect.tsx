@@ -1,27 +1,9 @@
 import { Dropdown, Input } from '@/components/form';
 import { SelectOption } from '@/lib/types';
 import { generateRandomId, normalizeString } from '@/lib/utils/string-utils';
-import { LucideIcon, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { InputHTMLAttributes, useCallback, useEffect, useMemo, useState } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
-
-interface SearchSelectProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'onSelect' | 'defaultValue'> {
-  label?: string;
-  error?: string;
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'default' | 'error' | 'success';
-  helperText?: string;
-  className?: string;
-  id?: string;
-  options: SelectOption[];
-  defaultValue?: SelectOption;
-  placeholder?: string;
-  register?: UseFormRegisterReturn;
-  icon?: LucideIcon;
-  onInputChange?: (value: string) => void;
-  onSelect?: (value: SelectOption) => void;
-}
+import { SearchSelectProps } from '@/lib/types';
 
 export default function SearchSelect({
   label,

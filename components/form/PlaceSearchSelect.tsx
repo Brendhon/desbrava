@@ -5,25 +5,7 @@ import { usePlaces } from '@/hooks/usePlaces';
 import { SelectOption } from '@/lib/types';
 import { Place, PlaceType, getPlaceTypesByCategory } from '@/lib/types/places';
 import { useEffect, useMemo, useState } from 'react';
-
-interface PlaceSearchSelectProps {
-  label?: string;
-  error?: string;
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'default' | 'error' | 'success';
-  helperText?: string;
-  className?: string;
-  id?: string;
-  placeholder?: string;
-  onValueChange?: (value: string) => void;
-  debounceDelay?: number;
-  defaultValue?: string;
-  placeTypes?: PlaceType[];
-  latitude?: number;
-  longitude?: number;
-  radius?: number;
-  maxResults?: number;
-}
+import { PlaceSearchSelectProps } from '@/lib/types';
 
 /**
  * PlaceSearchSelect component that provides dynamic place search using the Google Places API
