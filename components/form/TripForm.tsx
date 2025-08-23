@@ -40,8 +40,6 @@ export default function TripForm({
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
-    watch,
   } = useForm<CreateTripFormData | TripSettingsFormData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -54,28 +52,6 @@ export default function TripForm({
     },
   });
 
-  // Handle country selection from CountrySearchSelect
-  const handleCountrySelect = (countryCode: string) => {
-    setValue('country', countryCode);
-  };
-
-  const handleFormSubmit = async (
-    data: CreateTripFormData | TripSettingsFormData
-  ) => {
-    if (isCreateMode) {
-      // For create mode, we need to get the full country data
-      const createData = data as CreateTripFormData;
-      const tripData = {
-        ...createData,
-        country: createData.country,
-      };
-      await onSubmit(tripData);
-    } else {
-      // For edit mode, pass the data as is
-      await onSubmit(data);
-    }
-  };
-
   const getSubmitButtonText = () => {
     if (submitButtonText) return submitButtonText;
     if (isSubmitting || loading) {
@@ -85,7 +61,7 @@ export default function TripForm({
   };
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       {/* Nome da Viagem */}
       <Input
         label="Nome da Viagem"
@@ -103,9 +79,7 @@ export default function TripForm({
         error={errors.country?.message}
         register={register('country')}
         helperText="País principal da sua viagem"
-        debounceDelay={300}
-        onValueChange={handleCountrySelect}
-        defaultValue={watch('country')}
+        defaultValue={defaultValues.country}
       />
 
       {/* Datas */}

@@ -1,104 +1,46 @@
-import { useState, useEffect } from 'react';
 import { Continent, Country } from '@/lib/types/country';
-import { useDebounce } from './useDebounce';
+import CountriesData from '@/public/data/countries.json';
 
 interface UseCountriesReturn {
   countries: Country[];
-  loading: boolean;
-  error: string | null;
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-  getCountryByName: (name: string) => Promise<Country>;
+  getCountryByName: (name: string) => Country;
+  getCountryByCode: (code: string) => Country;
 }
 
+const defaultCountry: Country = {
+  continent: Continent.Outro,
+  id: 0,
+  language: [],
+  region: '',
+  country: '',
+  currency_code: '',
+  currency_name_pt: '',
+  iso_country: '',
+};
+
+const getCountries = () => CountriesData as Country[];
+
 /**
- * Hook to search countries using the countries API with debouncing
- * @param initialSearchTerm - Initial search term
- * @param debounceDelay - Delay for debouncing in milliseconds (default: 300ms)
- * @returns Object with countries data, loading state, error state, and search controls
+ * Hook to search countries
+ * @returns Object with countries data
  */
-export function useCountries(
-  initialSearchTerm: string = '',
-  debounceDelay: number = 300
-): UseCountriesReturn {
-  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
-  const [countries, setCountries] = useState<Country[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+export function useCountries(): UseCountriesReturn {
 
   // Get country by name
-  const getCountryByName = async (name: string) => {
-    const response = await fetch(`/api/countries/${name}`);
-    const data = await response.json();
-    return (
-      data.data || {
-        continent: Continent.Outro,
-        id: 0,
-        language: [],
-        region: '',
-        country: name,
-        currency_code: '',
-        currency_name_pt: '',
-        iso_country: '',
-      }
-    );
+  const getCountryByName = (name: string): Country => {
+    const country = getCountries().find((country) => country.country === name);
+    return country || defaultCountry;
   };
 
-  // Debounce the search term to avoid excessive API calls
-  const debouncedSearchTerm = useDebounce(searchTerm, debounceDelay);
-
-  useEffect(() => {
-    const searchCountries = async () => {
-      // Don't search for very short terms or empty terms
-      if (
-        !debouncedSearchTerm.trim() ||
-        debouncedSearchTerm.trim().length < 2
-      ) {
-        setCountries([]);
-        setError(null);
-        setLoading(false);
-        return;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch(
-          `/api/countries?name=${encodeURIComponent(debouncedSearchTerm)}`
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (data.success) {
-          setCountries(data.data);
-        } else {
-          setError(data.message || 'Failed to search countries');
-          setCountries([]);
-        }
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : 'Failed to search countries';
-        setError(errorMessage);
-        setCountries([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    searchCountries();
-  }, [debouncedSearchTerm]);
+  // Get country by code
+  const getCountryByCode = (code: string): Country => {
+    const country = getCountries().find((country) => country.iso_country === code);
+    return country || defaultCountry;
+  };
 
   return {
-    countries,
-    loading,
-    error,
-    searchTerm,
-    setSearchTerm,
+    countries: getCountries(),
     getCountryByName,
+    getCountryByCode,
   };
 }

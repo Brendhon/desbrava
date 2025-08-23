@@ -15,10 +15,21 @@ export default function CreateTripPage() {
   const router = useRouter();
   const { createTrip, loading, clearError } = useTrips();
   const { success: showSuccessToast, error: showErrorToast } = useToast();
-  const { getCountryByName } = useCountries();
+  const { getCountryByCode } = useCountries();
+
+  const handleSuccess = () => {
+    showSuccessToast('Viagem criada com sucesso!', 'Redirecionando para o dashboard...');
+    setTimeout(() => router.push(DashboardRoutes.dashboard()), 3000);
+  };
+
+  const handleError = (error?: unknown) => {
+    showErrorToast('Erro ao criar viagem', 'Ocorreu um erro inesperado. Tente novamente.');
+    error && console.error('Erro ao criar viagem:', error);
+  };
 
   const handleSubmit = async (data: CreateTripFormData) => {
     try {
+      // Clear error
       clearError();
 
       // Get Trip Data
@@ -27,34 +38,16 @@ export default function CreateTripPage() {
         description: data.description || '',
         startDate: data.startDate,
         endDate: data.endDate,
-        country: await getCountryByName(data.country),
+        country: getCountryByCode(data.country),
       };
 
       // Create Trip
       const newTrip = await createTrip(tripData);
 
-      if (newTrip) {
-        showSuccessToast(
-          'Viagem criada com sucesso!',
-          'Redirecionando para o dashboard...'
-        );
-
-        // Redirect to dashboard after 2 seconds
-        setTimeout(() => {
-          router.push(DashboardRoutes.dashboard());
-        }, 2000);
-      } else {
-        showErrorToast(
-          'Erro ao criar viagem',
-          'Ocorreu um erro inesperado. Tente novamente.'
-        );
-      }
+      // Handle response
+      newTrip ? handleSuccess() : handleError();
     } catch (error) {
-      console.error('Erro ao criar viagem:', error);
-      showErrorToast(
-        'Erro ao criar viagem',
-        'Ocorreu um erro inesperado. Tente novamente.'
-      );
+      handleError(error);
     }
   };
 

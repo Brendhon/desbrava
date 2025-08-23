@@ -7,7 +7,7 @@ import { Place, PlaceType, getPlaceTypesByCategory } from '@/lib/types/places';
 import { useEffect, useMemo, useState } from 'react';
 
 interface PlaceSearchSelectProps {
-  label?: React.ReactNode;
+  label?: string;
   error?: string;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'default' | 'error' | 'success';

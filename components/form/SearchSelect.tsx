@@ -3,10 +3,11 @@ import { SelectOption } from '@/lib/types';
 import { generateRandomId, normalizeString } from '@/lib/utils/string-utils';
 import { LucideIcon, X } from 'lucide-react';
 import { InputHTMLAttributes, useCallback, useEffect, useMemo, useState } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface SearchSelectProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'onSelect' | 'defaultValue'> {
-  label?: React.ReactNode;
+  label?: string;
   error?: string;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'default' | 'error' | 'success';
@@ -16,6 +17,7 @@ interface SearchSelectProps
   options: SelectOption[];
   defaultValue?: SelectOption;
   placeholder?: string;
+  register?: UseFormRegisterReturn;
   icon?: LucideIcon;
   onInputChange?: (value: string) => void;
   onSelect?: (value: SelectOption) => void;
@@ -35,6 +37,7 @@ export default function SearchSelect({
   icon,
   onInputChange,
   onSelect,
+  register,
 }: SearchSelectProps) {
   // Local state for input value
   const [inputValue, setInputValue] = useState('');
@@ -56,9 +59,11 @@ export default function SearchSelect({
 
   // Filtered options based on input value
   const filteredOptions = useMemo(() => {
-    if (!inputValue.trim()) return options;
+    // If input value is empty, return all options
+    if (!inputValue?.trim()) return options;
 
     return options.filter((option) => {
+      // If option label is a string, return the label
       const labelText =
         typeof option.label === 'string'
           ? option.label
@@ -76,8 +81,9 @@ export default function SearchSelect({
       setHighlightedIndex(-1);
       setIsDropdownOpen(false);
       onSelect?.(option);
+      register?.onChange({ target: { value: option.value, name: register?.name } });
     },
-    [onSelect]
+    [onSelect, register]
   );
 
   // Handle input change

@@ -8,8 +8,8 @@ import { Card } from '@/components/ui';
 import { useCountries } from '@/hooks/useCountries';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
-import { DashboardRoutes, TripRoutes } from '@/lib/types';
 import { TripSettingsFormData } from '@/lib/schemas/trip';
+import { DashboardRoutes, TripRoutes } from '@/lib/types';
 import { Save, Trash2 } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -27,7 +27,7 @@ export default function TripSettingsPage() {
   // Hooks
   const { fetchTrip, updateTrip, deleteTrip, error, clearError } = useTrips();
   const { success: showSuccessToast, error: showErrorToast } = useToast();
-  const { getCountryByName } = useCountries();
+  const { getCountryByCode } = useCountries();
 
   // State for trip data
   const [tripData, setTripData] = useState<TripSettingsFormData | null>(null);
@@ -47,7 +47,7 @@ export default function TripSettingsPage() {
       // Convert trip data to form format
       const formData: TripSettingsFormData = {
         name: trip?.name || '',
-        country: trip?.country.country || '', // Use country name for the form
+        country: trip?.country.iso_country || '', // Use country code for the form
         startDate: trip?.startDate || '',
         endDate: trip?.endDate || '',
         description: trip?.description || '',
@@ -101,7 +101,7 @@ export default function TripSettingsPage() {
           description: data.description || '',
           startDate: data.startDate,
           endDate: data.endDate,
-          country: await getCountryByName(data.country),
+          country: getCountryByCode(data.country),
         };
 
         // Update trip
