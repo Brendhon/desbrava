@@ -1,5 +1,6 @@
 import { InputWithIcon } from '@/components/form';
 import { useFormStyles } from '@/hooks/useFormStyles';
+import { generateRandomId } from '@/lib/utils/string-utils';
 import { LucideIcon } from 'lucide-react';
 import { forwardRef, InputHTMLAttributes, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
@@ -39,7 +40,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     // Memoized input ID to prevent recreation on every render
     const inputId = useMemo(
-      () => id || `input-${Math.random().toString(36).slice(2, 11)}`,
+      () => id || generateRandomId('input'),
       [id]
     );
 

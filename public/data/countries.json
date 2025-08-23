@@ -990,17 +990,6 @@
     "iso_country": "CG"
   },
   {
-    "continent": "África",
-    "flag": "https://www.worldometers.info//img/flags/small/tn_congo-flag.gif",
-    "id": 92,
-    "region": "África Subsaariana",
-    "country": "Congo",
-    "currency_code": "CDF",
-    "currency_name_pt": "Franco congolês",
-    "language": ["Francês"],
-    "iso_country": "CG"
-  },
-  {
     "continent": "Ásia",
     "flag": "https://www.worldometers.info//img/flags/small/tn_kn-flag.gif",
     "id": 93,

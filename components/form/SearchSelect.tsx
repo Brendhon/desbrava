@@ -1,6 +1,6 @@
 import { Dropdown, Input } from '@/components/form';
 import { SelectOption } from '@/lib/types';
-import { normalizeString } from '@/lib/utils/string-utils';
+import { generateRandomId, normalizeString } from '@/lib/utils/string-utils';
 import { LucideIcon, X } from 'lucide-react';
 import { InputHTMLAttributes, useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -17,6 +17,7 @@ interface SearchSelectProps
   defaultValue?: SelectOption;
   placeholder?: string;
   icon?: LucideIcon;
+  onInputChange?: (value: string) => void;
   onSelect?: (value: SelectOption) => void;
 }
 
@@ -32,6 +33,7 @@ export default function SearchSelect({
   defaultValue,
   placeholder,
   icon,
+  onInputChange,
   onSelect,
 }: SearchSelectProps) {
   // Local state for input value
@@ -50,10 +52,7 @@ export default function SearchSelect({
   }, [defaultValue]);
 
   // Memoized ID
-  const searchSelectId = useMemo(
-    () => id || `search-select-${Math.random().toString(36).slice(2, 11)}`,
-    [id]
-  );
+  const searchSelectId = useMemo(() => id || generateRandomId('search-select'), [id]);
 
   // Filtered options based on input value
   const filteredOptions = useMemo(() => {
@@ -89,8 +88,9 @@ export default function SearchSelect({
       setSelectedValue('');
       setHighlightedIndex(-1);
       setIsDropdownOpen(true);
+      onInputChange?.(value);
     },
-    []
+    [onInputChange]
   );
 
   // Handle clear input

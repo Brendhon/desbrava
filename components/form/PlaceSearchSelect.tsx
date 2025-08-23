@@ -70,17 +70,23 @@ export default function PlaceSearchSelect({
     maxResults,
   });
 
+  const PlaceItem = ({ place }: { place: Place }) => {
+    return (
+      <div className={styles.placeItem}>
+        <h3>{place.displayName.text}</h3>
+        <p>{place.formattedAddress}</p>
+        <p>{place.types.join(', ')}</p>
+        <p>{place.location.latitude}, {place.location.longitude}</p>
+      </div>
+    );
+  };
+
   // Convert places to SelectOption format
   const placeOptions: SelectOption[] = useMemo(() => {
     return places.map((place: Place) => ({
       value: place.id,
       label: place.displayName.text,
-      data: {
-        name: place.displayName.text,
-        address: place.formattedAddress,
-        types: place.types,
-        location: place.location,
-      },
+      item: <PlaceItem place={place} />,
     }));
   }, [places]);
 
@@ -144,3 +150,7 @@ export default function PlaceSearchSelect({
     </div>
   );
 }
+
+const styles = {
+  placeItem: 'flex flex-col gap-2',
+};

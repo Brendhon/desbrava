@@ -68,3 +68,11 @@ export function findBestMatch(
 
   return startsWithMatch || null;
 }
+
+/**
+ * Generates a random ID
+ * @returns A random ID
+ */
+export function generateRandomId(prefix: string = 'id'): string {
+  return `${prefix}-${Math.random().toString(36).slice(2, 11)}`;
+}

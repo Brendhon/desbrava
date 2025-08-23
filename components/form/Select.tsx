@@ -1,6 +1,7 @@
 import { InputWithIcon } from '@/components/form';
 import { useFormStyles } from '@/hooks/useFormStyles';
 import { SelectOption } from '@/lib/types';
+import { generateRandomId } from '@/lib/utils/string-utils';
 import { LucideIcon } from 'lucide-react';
 import { forwardRef, ReactNode, SelectHTMLAttributes, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
@@ -42,7 +43,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ) => {
     // Memoized select ID to prevent recreation on every render
     const selectId = useMemo(
-      () => id || `select-${Math.random().toString(36).substr(2, 9)}`,
+      () => id || generateRandomId('select'),
       [id]
     );
 

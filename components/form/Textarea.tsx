@@ -1,4 +1,5 @@
 import { useFormStyles } from '@/hooks/useFormStyles';
+import { generateRandomId } from '@/lib/utils/string-utils';
 import { forwardRef, TextareaHTMLAttributes, useMemo } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
@@ -30,7 +31,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     ref
   ) => {
     const textareaId = useMemo(
-      () => id || `textarea-${Math.random().toString(36).slice(2, 11)}`,
+      () => id || generateRandomId('textarea'),
       [id]
     );
 

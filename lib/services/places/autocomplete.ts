@@ -9,6 +9,7 @@ import {
   PlacesApiConfig,
   PlacesApiError
 } from '@/lib/types';
+import { generateRandomId } from '@/lib/utils';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
 
 /**
@@ -167,5 +168,5 @@ export async function getTouristAttractionSuggestions(
  * Generate a session token for grouping related requests
  */
 export function generateSessionToken(): string {
-  return `session_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
+  return generateRandomId(`session_${Date.now()}`);
 }

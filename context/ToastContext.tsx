@@ -1,6 +1,7 @@
 'use client';
 
 import { Toast, ToastOptions } from '@/lib/types';
+import { generateRandomId } from '@/lib/utils';
 import React, { createContext, ReactNode, useContext, useReducer } from 'react';
 
 interface ToastState {
@@ -47,7 +48,7 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({
   const [state, dispatch] = useReducer(toastReducer, { toasts: [] });
 
   const addToast = (options: ToastOptions) => {
-    const id = Math.random().toString(36).substr(2, 9);
+    const id = generateRandomId();
     const toast: Toast = {
       id,
       type: options.type,

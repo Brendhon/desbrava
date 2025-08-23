@@ -7,11 +7,11 @@ import {
   type ActivityTypeKey,
 } from '@/lib/types/activity';
 import { SelectOption } from '@/lib/types/form';
+import { cn } from '@/lib/utils';
 import placeTypesData from '@/public/data/place_types.json';
 import { useState } from 'react';
 import { SearchSelect } from '../form';
 import { NavigationButtons } from '../steps';
-import { cn } from '@/lib/utils';
 
 const defaultSelectedOption = { label: '', value: '' };
 
@@ -144,4 +144,6 @@ const styles = {
   cardTitle: 'text-parchment-white text-lg font-semibold',
   cardDescription: 'text-mist-gray text-xs',
   searchSelectContainer: 'space-y-2',
+  typeNotFound: 'text-mist-gray text-xs',
+  typeNotFoundLink: 'text-royal-purple underline cursor-pointer',
 }

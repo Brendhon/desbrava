@@ -1,10 +1,10 @@
 'use client';
 
 import { SearchSelect } from '@/components/form';
-import { useCountries } from '@/hooks/useCountries';
 import { SelectOption } from '@/lib/types';
 import { Country } from '@/lib/types/country';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
+import CountriesData from '@/public/data/countries.json';
 
 interface CountrySearchSelectProps {
   label?: React.ReactNode;
@@ -19,6 +19,36 @@ interface CountrySearchSelectProps {
   debounceDelay?: number;
   defaultValue?: string;
 }
+
+const CountryItem = ({ country }: { country: Country }) => {
+  return (
+    <div className={styles.renderOptionContent}>
+      <span className={styles.renderOptionContentLabel}>
+        {country.country}
+      </span>
+      {country.continent && (
+        <span className={styles.renderOptionContentDesc}>
+          {country.continent}
+        </span>
+      )}
+    </div>
+  );
+};
+
+const getCountries = (): SelectOption[] => {
+  // Get countries
+  const countries = CountriesData as Country[];
+
+  // Check if countries exists
+  if (!countries) return [];
+
+  // Return countries
+  return countries.map((c) => ({
+    value: c.iso_country || c.country,
+    label: c.country,
+    item: <CountryItem country={c} />,
+  }));
+};
 
 /**
  * CountrySearchSelect component that provides dynamic country search using the countries API
@@ -35,55 +65,16 @@ export default function CountrySearchSelect({
   placeholder = 'Digite para buscar um país...',
   onValueChange,
   debounceDelay = 400,
-  defaultValue,
-  ...props
+  defaultValue = '',
 }: CountrySearchSelectProps) {
   // Internal state for selected value
-  const [selectedValue, setSelectedValue] = useState<string>(
-    defaultValue || ''
-  );
+  const [selectedValue, setSelectedValue] = useState<string>(defaultValue);
 
-  // Countries API
-  const {
-    countries,
-    loading,
-    error: searchError,
-    searchTerm,
-    setSearchTerm,
-  } = useCountries('', debounceDelay);
+  // Search term
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  // Convert countries to SelectOption format with simplified labels for better compatibility
-  const countryOptions: SelectOption[] = useMemo(() => {
-    return countries.map((country: Country) => ({
-      value: country.country,
-      label: country.country,
-      data: {
-        image: country.flag,
-        desc: country.continent,
-        name: country.country,
-      },
-    }));
-  }, [countries]);
-
-  // Effect to apply the initial value after loading the countries
-  useEffect(() => {
-    if (defaultValue) {
-      const initialValue = defaultValue || '';
-      setSelectedValue(initialValue);
-
-      // If no countries are loaded yet, make an initial search
-      if (countries.length === 0 && initialValue.trim().length > 0) {
-        setSearchTerm(initialValue);
-      }
-    }
-  }, [defaultValue, countries.length, setSearchTerm]);
-
-  // Effect to synchronize with external changes in value
-  useEffect(() => {
-    if (defaultValue !== undefined && defaultValue !== selectedValue) {
-      setSelectedValue(defaultValue);
-    }
-  }, [defaultValue, selectedValue]);
+  // Country options
+  const [countryOptions, setCountryOptions] = useState<SelectOption[]>(getCountries());
 
   // Handle option selection and search updates
   const handleValueChange = (newValue: SelectOption) => {
@@ -99,13 +90,6 @@ export default function CountrySearchSelect({
     }
   };
 
-  // Show loading state or error in helper text if there is an error
-  const displayHelperText = searchError
-    ? `Erro na busca: ${searchError}`
-    : loading && searchTerm.trim().length >= 2
-      ? 'Buscando países...'
-      : helperText;
-
   return (
     <div className="w-full">
       <SearchSelect
@@ -113,15 +97,23 @@ export default function CountrySearchSelect({
         error={error}
         size={size}
         variant={variant}
-        helperText={displayHelperText}
+        helperText={helperText}
         className={className}
         id={id}
         options={countryOptions}
         placeholder={placeholder}
         value={selectedValue}
+        defaultValue={countryOptions.find((option) => option.value === defaultValue)}
         onSelect={handleValueChange}
-        {...props}
+        onInputChange={setSearchTerm}
       />
     </div>
   );
 }
+
+const styles = {
+  renderOptionContent: 'flex items-center gap-2 w-full',
+  renderOptionContentImage: 'w-4 h-4 rounded-sm object-cover flex-shrink-0',
+  renderOptionContentDesc: 'text-xs text-mist-gray ml-auto flex-shrink-0',
+  renderOptionContentLabel: 'flex-1 truncate',
+};

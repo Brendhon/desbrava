@@ -3,6 +3,7 @@
 import { InputWithIcon } from '@/components/form';
 import { useFormField } from '@/hooks/useFormField';
 import { useFormStyles } from '@/hooks/useFormStyles';
+import { generateRandomId } from '@/lib/utils/string-utils';
 import { format, isValid, parse } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Calendar, X } from 'lucide-react';
@@ -63,10 +64,7 @@ const DatePicker = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Memoized input ID to prevent recreation on every render
-  const inputId = useMemo(
-    () => id || `datepicker-${Math.random().toString(36).substr(2, 9)}`,
-    [id]
-  );
+  const inputId = useMemo(() => id || generateRandomId('datepicker'), [id]);
 
   // Use custom hooks
   const { handleChange } = useFormField({ register });

@@ -24,37 +24,6 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
   ) => {
     if (!isOpen) return null;
 
-    // Helper function to render option content
-    const renderOptionContent = (option: SelectOption) => {
-      // If option has data with flag and continent, render enhanced display
-      if (option.data?.image || option.data?.desc) {
-        return (
-          <div className={styles.renderOptionContent}>
-            {option.data.image ? (
-              <img
-                src={option.data.image}
-                alt={`${option.data.name} flag`}
-                className={styles.renderOptionContentImage}
-              />
-            ) : (
-              <div className={styles.renderOptionContentImage} />
-            )}
-            <span className={styles.renderOptionContentLabel}>
-              {option.label}
-            </span>
-            {option.data.desc && (
-              <span className={styles.renderOptionContentDesc}>
-                {option.data.desc}
-              </span>
-            )}
-          </div>
-        );
-      }
-
-      // Default rendering for simple options
-      return option.label;
-    };
-
     return (
       <div
         ref={ref}
@@ -76,7 +45,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
               onClick={() => !option.disabled && onOptionSelect(option)}
               disabled={option.disabled}
             >
-              {renderOptionContent(option)}
+              {option.item ? option.item : option.label}
             </button>
           ))
         )}
