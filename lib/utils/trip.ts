@@ -158,12 +158,14 @@ export function parseDateToPtBr(date: Date | undefined): string | undefined {
 /**
  * Check if start date is before end date
  */
-export function isStartDateBeforeEndDate(startDate: string, endDate: string): boolean {
+export function isStartDateBeforeEndDate(startDate: string | undefined, endDate: string | undefined): boolean {
+  // If start date or end date is not provided, return false
+  if (!startDate || !endDate) return false;
+
+  // Get start and end dates
   const start = parsePtBrToDate(startDate);
   const end = parsePtBrToDate(endDate);
 
-  console.log('start', start);
-  console.log('end', end);
-
+  // If start date is before end date, return true
   return !(start && end && start > end);
 }

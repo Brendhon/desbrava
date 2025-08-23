@@ -16,7 +16,6 @@ interface CountrySearchSelectProps {
   className?: string;
   id?: string;
   placeholder?: string;
-  onValueChange?: (value: SelectOption) => void;
   defaultValue?: string; // Country code
   register?: UseFormRegisterReturn;
 }
@@ -67,7 +66,6 @@ export default function CountrySearchSelect({
   className = '',
   id,
   placeholder = 'Digite para buscar um país...',
-  onValueChange,
   register,
   defaultValue,
 }: CountrySearchSelectProps) {
@@ -89,7 +87,6 @@ export default function CountrySearchSelect({
         options={countryOptions}
         placeholder={placeholder}
         defaultValue={countryOptions.find((option) => option.value === defaultValue)}
-        onSelect={(value) => onValueChange?.(value)}
       />
     </div>
   );

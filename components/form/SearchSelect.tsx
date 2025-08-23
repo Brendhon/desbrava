@@ -105,6 +105,7 @@ export default function SearchSelect({
     setSelectedValue('');
     setHighlightedIndex(-1);
     setIsDropdownOpen(false);
+    register?.onChange({ target: { value: '', name: register?.name } });
     onSelect?.({ label: '', value: '' });
   }, [onSelect]);
 
@@ -158,14 +159,9 @@ export default function SearchSelect({
 
   return (
     <div className={styles.container}>
-      {label && (
-        <label htmlFor={searchSelectId} className={styles.label}>
-          {label}
-        </label>
-      )}
-
       <Input
         id={searchSelectId}
+        label={label}
         size={size}
         variant={variant}
         placeholder={placeholder}
@@ -175,6 +171,7 @@ export default function SearchSelect({
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         onKeyDown={handleKeyDown}
+        helperText={helperText}
         error={error}
         className={className}
         icon={inputValue ? X : icon}
@@ -194,23 +191,10 @@ export default function SearchSelect({
           />
         </div>
       )}
-
-      {error && (
-        <p className={styles.error} role="alert">
-          {error}
-        </p>
-      )}
-
-      {helperText && !error && (
-        <p className={styles.helperText}>{helperText}</p>
-      )}
     </div>
   );
 }
 
 const styles = {
   container: 'w-full',
-  label: 'form-label',
-  helperText: 'form-helper-text',
-  error: 'form-error',
 };

@@ -1,7 +1,6 @@
 'use client';
 
-import { Input, InputWithIcon } from '@/components/form';
-import { useFormField } from '@/hooks';
+import { Input } from '@/components/form';
 import { useFormStyles } from '@/hooks/useFormStyles';
 import { cn } from '@/lib/utils';
 import { generateRandomId } from '@/lib/utils/string-utils';
@@ -147,31 +146,23 @@ export default function DatePicker({
 
   return (
     <div className={styles.container} ref={containerRef}>
-      {label && (
-        <label htmlFor={inputId} className={styles.label}>
-          {label}
-        </label>
-      )}
-
-      <InputWithIcon
+      <Input
+        id={inputId}
+        type="text"
+        label={label}
+        value={value}
+        placeholder={placeholder}
+        className={inputStyles.input}
+        helperText={helperText}
+        disabled={true}
+        name={register?.name}
         icon={isOpen ? X : Calendar}
         iconAction={!disabled ? handleButtonClick : undefined}
         iconPosition="right"
         size={size}
         variant={error ? 'error' : variant}
         error={error}
-        className={className}
-      >
-        <Input
-          id={inputId}
-          type="text"
-          value={value}
-          placeholder={placeholder}
-          className={inputStyles.input}
-          disabled={true}
-          name={register?.name}
-        />
-      </InputWithIcon>
+      />
 
       {isOpen && (
         <div className={popupStyles}>
@@ -191,24 +182,12 @@ export default function DatePicker({
           </div>
         </div>
       )}
-
-      {error && (
-        <p className={styles.error} role="alert">
-          {error}
-        </p>
-      )}
-
-      {helperText && !error && <p className={styles.helperText}>{helperText}</p>}
     </div>
   );
 }
 
 const styles = {
   container: 'datepicker-container',
-  label: 'form-label',
-  input: 'form-input',
-  error: 'form-error',
-  helperText: 'form-helper-text',
   popup: 'datepicker-popup',
   calendar: 'datepicker-calendar',
 };
