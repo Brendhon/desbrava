@@ -2,10 +2,9 @@
 
 import { SearchSelect } from '@/components/form';
 import { usePlaces } from '@/hooks/usePlaces';
-import { SelectOption } from '@/lib/types';
-import { Place, PlaceType, getPlaceTypesByCategory } from '@/lib/types/places';
+import { PlaceSearchSelectProps, SelectOption } from '@/lib/types';
+import { Place, getPlaceTypesByCategory } from '@/lib/types/places';
 import { useEffect, useMemo, useState } from 'react';
-import { PlaceSearchSelectProps } from '@/lib/types';
 
 /**
  * PlaceSearchSelect component that provides dynamic place search using the Google Places API

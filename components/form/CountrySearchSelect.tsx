@@ -3,9 +3,9 @@
 import { SearchSelect } from '@/components/form';
 import { SelectOption } from '@/lib/types';
 import { Country } from '@/lib/types/country';
-import CountriesData from '@/public/data/countries.json';
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { CountrySearchSelectProps } from '@/lib/types';
+import { useCountries } from '@/hooks';
 
 const CountryItem = ({ country }: { country: Country }) => {
   return (
@@ -25,21 +25,6 @@ const CountryItem = ({ country }: { country: Country }) => {
   );
 };
 
-const getCountries = (): SelectOption[] => {
-  // Get countries
-  const countries = CountriesData as Country[];
-
-  // Check if countries exists
-  if (!countries) return [];
-
-  // Return countries
-  return countries.map((c) => ({
-    value: c.iso_country || c.country,
-    label: c.country,
-    item: <CountryItem country={c} />,
-  }));
-};
-
 /**
  * CountrySearchSelect component that provides dynamic country search using the countries API
  * with debouncing to avoid excessive API calls and support for initial/default values
@@ -56,8 +41,33 @@ export default function CountrySearchSelect({
   register,
   defaultValue,
 }: CountrySearchSelectProps) {
-  // Country options
-  const countryOptions = useMemo(() => getCountries(), []);
+
+  // States
+  const [countriesOptions, setCountriesOptions] = useState<SelectOption[]>([]);
+  const [defaultValueOption, setDefaultValueOption] = useState<SelectOption | undefined>(undefined);
+
+  // Use countries hook
+  const { countries } = useCountries();
+
+  useEffect(() => {  
+    // Get countries options
+    const options = countries.map((c) => ({
+      value: c.iso_country || c.country,
+      label: c.country,
+      item: <CountryItem country={c} />,
+    }));
+
+    // Return countries
+    setCountriesOptions(options);
+  }, [countries]);
+
+  useEffect(() => {
+    // Get default value option
+    const defaultValueOption = countriesOptions.find((o) => o.value === defaultValue);
+
+    // Set default value option
+    setDefaultValueOption(defaultValueOption);
+  }, [countriesOptions, defaultValue]);
 
   // Render the component
   return (
@@ -71,9 +81,9 @@ export default function CountrySearchSelect({
         helperText={helperText}
         className={className}
         id={id}
-        options={countryOptions}
+        options={countriesOptions}
         placeholder={placeholder}
-        defaultValue={countryOptions.find((option) => option.value === defaultValue)}
+        defaultValue={defaultValueOption}
       />
     </div>
   );
