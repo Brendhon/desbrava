@@ -78,7 +78,11 @@ export function createFieldMask(fields: string[]): string {
 /**
  * Validate location coordinates
  */
-export function validateLocation(lat: number, lng: number): void {
+export function validateLocation(lat?: number, lng?: number): void {
+  if (!lat || !lng) {
+    throw new Error('Latitude and longitude are required');
+  }
+
   if (lat < -90 || lat > 90) {
     throw new Error('Latitude must be between -90 and 90');
   }

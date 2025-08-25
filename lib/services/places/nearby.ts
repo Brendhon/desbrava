@@ -43,7 +43,7 @@ export async function searchNearbyPlaces(
     includedTypes: [type],
     locationRestriction: {
       circle: {
-        center: { latitude, longitude },
+        center: { latitude: latitude!, longitude: longitude! },
         radius,
       },
     },

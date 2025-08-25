@@ -1,6 +1,5 @@
 export * from './activity';
 export * from './airport';
-export * from './autocomplete';
 export * from './country';
 export * from './form';
 export * from './places';

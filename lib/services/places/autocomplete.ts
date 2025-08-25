@@ -2,7 +2,7 @@
 // Handles place suggestions and predictions
 
 import {
-  AutocompleteOptions,
+  AutocompleteSearchOptions,
   PlaceAutocompleteRequest,
   PlaceAutocompleteResponse,
   PlacesApiError,
@@ -14,7 +14,7 @@ import { handleSearchError, makePlacesRequest, validateLocation, validateRadius,
  * Get place suggestions for autocomplete
  */
 export async function getPlaceSuggestions(
-  options: AutocompleteOptions
+  options: AutocompleteSearchOptions
 ): Promise<PlaceAutocompleteResponse | PlacesApiError> {
   const {
     input,

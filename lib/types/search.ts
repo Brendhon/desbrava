@@ -1,21 +1,28 @@
-import { PlaceSearchType, PlacesApiConfig } from './places';
+import { PlacesApiConfig, PlaceSearchType } from './places';
 
-export interface TextSearchOptions {
-  query: string;
+// Base interface with common search properties
+export interface BaseSearchOptions {
   latitude?: number;
   longitude?: number;
   radius?: number;
   type?: PlaceSearchType;
-  maxResults?: number;
   config?: PlacesApiConfig;
 }
 
-export interface NearbySearchOptions {
-  latitude: number;
-  longitude: number;
-  radius: number;
-  type: PlaceSearchType;
+export interface AutocompleteSearchOptions extends BaseSearchOptions {
+  input: string;
+  sessionToken?: string;
+}
+
+export interface TextSearchOptions extends BaseSearchOptions {
+  query: string;
+  maxResults?: number;
+}
+
+export interface NearbySearchOptions extends BaseSearchOptions {
+  latitude: number; // Required for nearby search
+  radius: number;   // Required for nearby search
+  type: PlaceSearchType; // Required for nearby search
   maxResults?: number;
   rankByDistance?: boolean;
-  config?: PlacesApiConfig;
 }
