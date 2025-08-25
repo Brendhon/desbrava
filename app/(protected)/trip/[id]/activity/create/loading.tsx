@@ -31,7 +31,7 @@ export default function CreateActivityLoading() {
 }
 
 const styles = {
-  container: 'max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 space-y-6',
+  container: 'max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-4 space-y-6',
   header: 'flex items-center space-x-4',
   backButton: 'flex-shrink-0',
   headerContent: 'space-y-3',

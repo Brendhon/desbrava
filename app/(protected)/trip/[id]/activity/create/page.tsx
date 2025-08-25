@@ -216,7 +216,7 @@ export default function CreateActivityPage() {
   );
 }
 const styles = {
-  container: 'max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 space-y-6',
+  container: 'max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-4 space-y-6',
   stepsCard: 'p-6',
   steps: 'overflow-x-auto',
   contentCard: 'p-8',
