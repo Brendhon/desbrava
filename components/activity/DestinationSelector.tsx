@@ -3,7 +3,7 @@
 import { NavigationButtons } from '@/components/steps';
 import { usePlaceTypes } from '@/hooks/usePlaceTypes';
 import { Place } from '@/lib/types/places';
-import { useCallback, useState } from 'react';
+import { Fragment, useCallback, useState } from 'react';
 import { ActivityTypeData } from './ActivityTypeSelector';
 import { PageHeader, PlaceSelector } from './destination';
 
@@ -46,22 +46,20 @@ export default function DestinationSelector({
 
   // Render
   return (
-    <div className={styles.container}>
+    <Fragment>
       {/* Page Header */}
       <PageHeader needsMultipleDestinations={false} />
 
       {/* Selectors */}
-      <div className={styles.selectorsContainer}>
-        <PlaceSelector
-          title={'Local da Atividade'}
-          searchLabel={'Buscar local'}
-          searchPlaceholder={placeholder()}
-          activityType={activityType}
-          onSearchChange={handleSearchChange}
-          selectedPlace={destinations.place}
-          showBorder={false}
-        />
-      </div>
+      <PlaceSelector
+        title={'Local da Atividade'}
+        searchLabel={'Buscar local'}
+        searchPlaceholder={placeholder()}
+        activityType={activityType}
+        onSearchChange={handleSearchChange}
+        selectedPlace={destinations.place}
+        showBorder={false}
+      />
 
       {/* Navigation Buttons */}
       <NavigationButtons
@@ -69,11 +67,6 @@ export default function DestinationSelector({
         onNext={handleNext}
         canProceed={!!destinations.place}
       />
-    </div>
+    </Fragment>
   );
 }
-
-const styles = {
-  container: 'space-y-6',
-  selectorsContainer: 'flex w-full flex-col gap-4 lg:flex-row',
-};
