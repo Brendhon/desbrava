@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { ActivityTypeData } from '../ActivityTypeSelector';
+import { DestinationData } from '../DestinationSelector';
 
 interface PlaceSelectorProps {
   title: string;
@@ -15,6 +16,7 @@ interface PlaceSelectorProps {
   onSearchChange: (value?: Place) => void;
   selectedPlace?: Place;
   showBorder?: boolean;
+  defaultData?: DestinationData;
 }
 
 export default function PlaceSelector({
@@ -22,6 +24,7 @@ export default function PlaceSelector({
   searchLabel,
   searchPlaceholder,
   activityType,
+  defaultData,
   onSearchChange,
   selectedPlace,
   showBorder = false,
@@ -52,7 +55,7 @@ export default function PlaceSelector({
           placeholder={searchPlaceholder}
           helperText="Digite para buscar um local..."
           onValueChange={(value) => setSearch(value)}
-          defaultValue={search}
+          defaultValue={defaultData?.place}
           activityType={activityType}
         />
       </div>

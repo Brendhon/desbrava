@@ -6,6 +6,18 @@ import { PlaceSearchSelectProps, SelectOption } from '@/lib/types';
 import { Place } from '@/lib/types/places';
 import { useEffect, useMemo, useState } from 'react';
 
+const PlaceItem = ({ place }: { place: Place }) => {
+  return <h3>{place.displayName.text}</h3>
+};
+
+const getPlaceSelectOption = (place: Place): SelectOption => {
+  return {
+    value: place.id,
+    label: place.displayName.text,
+    item: <PlaceItem place={place} />,
+  };
+};
+
 /**
  * PlaceSearchSelect component that provides dynamic place search using the Google Places API
  * with debouncing to avoid excessive API calls and support for initial/default values
@@ -20,7 +32,7 @@ export default function PlaceSearchSelect({
   id,
   placeholder = 'Digite para buscar um local...',
   onValueChange,
-  debounceDelay = 2000,
+  debounceDelay = 500,
   defaultValue,
   activityType,
   latitude,
@@ -30,8 +42,8 @@ export default function PlaceSearchSelect({
   ...props
 }: PlaceSearchSelectProps) {
   // Internal state for selected value
-  const [selectedValue, setSelectedValue] = useState<string>(
-    defaultValue || ''
+  const [selectedValue, setSelectedValue] = useState<SelectOption | undefined>(
+    defaultValue ? getPlaceSelectOption(defaultValue) : undefined
   );
 
   // Places API
@@ -49,44 +61,31 @@ export default function PlaceSearchSelect({
     maxResults,
   });
 
-  const PlaceItem = ({ place }: { place: Place }) => {
-    return <h3>{place.displayName.text}</h3>
-  };
-
   // Convert places to SelectOption format
   const placeOptions: SelectOption[] = useMemo(() => {
-    return places.map((place: Place) => ({
-      value: place.id,
-      label: place.displayName.text,
-      item: <PlaceItem place={place} />,
-    }));
+    return places.map((place: Place) => getPlaceSelectOption(place));
   }, [places]);
 
   // Effect to apply the initial value after loading the places
   useEffect(() => {
     if (defaultValue) {
-      const initialValue = defaultValue || '';
+      const initialValue = getPlaceSelectOption(defaultValue);
       setSelectedValue(initialValue);
-
-      // If no places are loaded yet, make an initial search
-      if (places.length === 0 && initialValue.trim().length > 0) {
-        setSearchTerm(initialValue);
-      }
+      setSearchTerm(initialValue.value);
+      onValueChange?.(initialValue.value);
     }
   }, [defaultValue]);
 
   // Handle option selection and search updates
   const handleValueChange = (newValue: SelectOption) => {
     // Update internal state with the new value
-    setSelectedValue(newValue.value);
+    setSelectedValue(newValue);
 
     // Update search term for API calls to the places API
     setSearchTerm(newValue.value);
 
     // Call the original onValueChange if provided to the parent component
-    if (onValueChange) {
-      onValueChange(newValue.value);
-    }
+    onValueChange?.(newValue.value);
   };
 
   // Render the component
@@ -102,7 +101,7 @@ export default function PlaceSearchSelect({
         id={id}
         options={placeOptions}
         placeholder={placeholder}
-        value={selectedValue}
+        defaultValue={selectedValue}
         onInputChange={setSearchTerm}
         onSelect={handleValueChange}
         {...props}

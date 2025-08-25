@@ -100,6 +100,7 @@ export default function CreateActivityPage() {
       status: 'pending',
       children: (
         <DestinationSelector
+          defaultData={destinations}
           activityType={typeData}
           onNext={handleDestinationNext}
           onBack={handleDestinationBack}

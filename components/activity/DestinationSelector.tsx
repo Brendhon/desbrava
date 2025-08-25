@@ -13,19 +13,23 @@ export interface DestinationData {
 }
 
 interface DestinationSelectorProps {
+  defaultData?: DestinationData;
   activityType: ActivityTypeData;
   onNext: (destinations: DestinationData) => void;
   onBack: () => void;
 }
 
 export default function DestinationSelector({
+  defaultData,
   activityType,
   onNext,
   onBack,
 }: DestinationSelectorProps) {
-  const [destinations, setDestinations] = useState<DestinationData>({
-    searchType: 'searchText',
-  });
+  const [destinations, setDestinations] = useState<DestinationData>(
+    defaultData || {
+      searchType: 'searchText',
+    }
+  );
 
   // Hooks
   const { getSubtypeLabel } = usePlaceTypes();
@@ -55,6 +59,7 @@ export default function DestinationSelector({
         title={'Local da Atividade'}
         searchLabel={'Buscar local'}
         searchPlaceholder={placeholder()}
+        defaultData={defaultData}
         activityType={activityType}
         onSearchChange={handleSearchChange}
         selectedPlace={destinations.place}
