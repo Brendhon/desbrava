@@ -1,7 +1,7 @@
 // Base utilities for Google Places API
 // This module provides common functionality and configuration
 
-import { PlacesApiConfig, PlacesApiError } from '@/lib/types';
+import { PlacesApiConfig, PlacesApiError, PlaceSearchType } from '@/lib/types';
 
 const GOOGLE_PLACES_API_BASE = 'https://places.googleapis.com/v1';
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
@@ -95,3 +95,41 @@ export function validateRadius(radius: number): void {
     throw new Error('Radius must be between 0 and 50000 meters');
   }
 }
+
+/**
+ * Validate search query
+ */
+export function validateSearchQuery(query: string): void {
+  if (!query || query.trim().length === 0) {
+    throw new Error('Search query is required');
+  }
+
+  if (query.trim().length < 2) {
+    throw new Error('Search query must be at least 2 characters long');
+  }
+}
+
+/**
+ * Validate place type
+ */
+export function validatePlaceType(type: PlaceSearchType): void {
+  if (!type) {
+    throw new Error('Place type is required');
+  }
+}
+
+/**
+ * Handle error
+ */
+export const handleSearchError = (searchType: string, error: unknown): PlacesApiError => {
+  // If the error is an instance of PlacesApiError, throw it
+  if (error instanceof PlacesApiError) {
+    throw error;
+  }
+
+  // Create the message
+  const message = `${searchType}: ${error instanceof Error ? error.message : 'Unknown error'}`;
+
+  // Throw a new PlacesApiError with the message and status code 500
+  throw new PlacesApiError(message, 500);
+};

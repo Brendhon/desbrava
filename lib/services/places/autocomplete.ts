@@ -8,14 +8,14 @@ import {
   PlacesApiError,
 } from '@/lib/types';
 import { generateRandomId } from '@/lib/utils';
-import { makePlacesRequest, validateLocation, validateRadius } from './base';
+import { handleSearchError, makePlacesRequest, validateLocation, validateRadius, validateSearchQuery } from './base';
 
 /**
  * Get place suggestions for autocomplete
  */
 export async function getPlaceSuggestions(
   options: AutocompleteOptions
-): Promise<PlaceAutocompleteResponse> {
+): Promise<PlaceAutocompleteResponse | PlacesApiError> {
   const {
     input,
     latitude,
@@ -26,23 +26,19 @@ export async function getPlaceSuggestions(
     config,
   } = options;
 
-  if (!input || input.trim().length === 0) {
-    throw new Error('Input text is required');
-  }
+  // Validate the input
+  validateSearchQuery(input);
 
-  if (input.trim().length < 2) {
-    throw new Error('Input text must be at least 2 characters long');
-  }
-
-  const request: PlaceAutocompleteRequest = {
-    input: input.trim(),
-  };
+  // Create the initial request
+  const request: PlaceAutocompleteRequest = { input: input.trim() };
 
   // Add location bias if coordinates are provided
-  if (latitude !== undefined && longitude !== undefined) {
+  if (!!latitude && !!longitude) {
+    // Validate the location and radius
     validateLocation(latitude, longitude);
     validateRadius(radius);
 
+    // Add location bias to the request
     request.locationBias = {
       circle: {
         center: { latitude, longitude },
@@ -52,31 +48,21 @@ export async function getPlaceSuggestions(
   }
 
   // Add session token if provided
-  if (sessionToken) {
-    request.sessionToken = sessionToken;
-  }
+  if (sessionToken) request.sessionToken = sessionToken;
 
-  if (type) {
-    request.includedPrimaryTypes = [type];
-  }
+  // Add type filtering if specified
+  if (type) request.includedPrimaryTypes = [type];
 
   try {
-    return await makePlacesRequest<PlaceAutocompleteResponse>(
-      '/places:autocomplete',
-      config,
-      {
-        method: 'POST',
-        body: JSON.stringify(request),
-      }
-    );
+    // Create the URL, body and method
+    const url = '/places:autocomplete';
+    const body = JSON.stringify(request);
+    const method = 'POST';
+
+    // Make the request
+    return await makePlacesRequest<PlaceAutocompleteResponse>(url, config, { method, body });
   } catch (error) {
-    if (error instanceof PlacesApiError) {
-      throw error;
-    }
-    throw new PlacesApiError(
-      `Failed to get autocomplete suggestions: ${error instanceof Error ? error.message : 'Unknown error'}`,
-      500
-    );
+    return handleSearchError('autocomplete', error);
   }
 }
 

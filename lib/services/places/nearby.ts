@@ -5,18 +5,23 @@ import {
   NearbySearchOptions,
   PlaceNearbySearchRequest,
   PlaceNearbySearchResponse,
-  PlacesApiConfig,
-  PlacesApiError,
-  PlaceSearchType,
+  PlacesApiError
 } from '@/lib/types';
-import { makePlacesRequest, validateLocation, validateRadius } from './base';
+import {
+  handleSearchError,
+  makePlacesRequest,
+  validateLocation,
+  validatePlaceType,
+  validateRadius,
+} from './base';
 
 /**
  * Search for places near a specific location
  */
 export async function searchNearbyPlaces(
   options: NearbySearchOptions
-): Promise<PlaceNearbySearchResponse> {
+): Promise<PlaceNearbySearchResponse | PlacesApiError> {
+  // Get the options
   const {
     latitude,
     longitude,
@@ -26,13 +31,14 @@ export async function searchNearbyPlaces(
     config,
   } = options;
 
+  // Validate the location and radius
   validateLocation(latitude, longitude);
   validateRadius(radius);
 
-  if (!type) {
-    throw new Error('At least one place type must be specified');
-  }
+  // Validate the place type
+  validatePlaceType(type);
 
+  // Create the request
   const request: PlaceNearbySearchRequest = {
     includedTypes: [type],
     locationRestriction: {
@@ -44,127 +50,16 @@ export async function searchNearbyPlaces(
     rankPreference: rankByDistance ? 'DISTANCE' : 'RELEVANCE',
   };
 
+  // Make the request
   try {
-    return await makePlacesRequest<PlaceNearbySearchResponse>(
-      '/places:searchNearby',
-      config,
-      {
-        method: 'POST',
-        body: JSON.stringify(request),
-      }
-    );
+    // Create the URL, body and method
+    const url = '/places:searchNearby';
+    const body = JSON.stringify(request);
+    const method = 'POST';
+
+    // Make the request
+    return await makePlacesRequest<PlaceNearbySearchResponse>(url, config, { method, body });
   } catch (error) {
-    if (error instanceof PlacesApiError) {
-      throw error;
-    }
-    throw new PlacesApiError(
-      `Failed to search nearby places: ${error instanceof Error ? error.message : 'Unknown error'}`,
-      500
-    );
+    return handleSearchError('nearby-search', error);
   }
-}
-
-/**
- * Find hotels near a location
- */
-export async function findNearbyHotels(
-  type: PlaceSearchType,
-  latitude: number,
-  longitude: number,
-  radius: number = 5000,
-  maxResults: number = 20,
-  config?: PlacesApiConfig
-): Promise<PlaceNearbySearchResponse> {
-  return searchNearbyPlaces({
-    latitude,
-    longitude,
-    radius,
-    type,
-    maxResults,
-    config,
-  });
-}
-
-/**
- * Find restaurants near a location
- */
-export async function findNearbyRestaurants(
-  type: PlaceSearchType,
-  latitude: number,
-  longitude: number,
-  radius: number = 3000,
-  maxResults: number = 20,
-  config?: PlacesApiConfig
-): Promise<PlaceNearbySearchResponse> {
-  return searchNearbyPlaces({
-    latitude,
-    longitude,
-    radius,
-    type,
-    maxResults,
-    config,
-  });
-}
-
-/**
- * Find tourist attractions near a location
- */
-export async function findNearbyAttractions(
-  type: PlaceSearchType,
-  latitude: number,
-  longitude: number,
-  radius: number = 10000,
-  maxResults: number = 20,
-  config?: PlacesApiConfig
-): Promise<PlaceNearbySearchResponse> {
-  return searchNearbyPlaces({
-    latitude,
-    longitude,
-    radius,
-    type,
-    maxResults,
-    config,
-  });
-}
-
-/**
- * Find transportation options near a location
- */
-export async function findNearbyTransportation(
-  type: PlaceSearchType,
-  latitude: number,
-  longitude: number,
-  radius: number = 5000,
-  maxResults: number = 20,
-  config?: PlacesApiConfig
-): Promise<PlaceNearbySearchResponse> {
-  return searchNearbyPlaces({
-    latitude,
-    longitude,
-    radius,
-    type,
-    maxResults,
-    config,
-  });
-}
-
-/**
- * Find all types of places near a location
- */
-export async function findAllNearbyPlaces(
-  type: PlaceSearchType,
-  latitude: number,
-  longitude: number,
-  radius: number = 5000,
-  maxResults: number = 20,
-  config?: PlacesApiConfig
-): Promise<PlaceNearbySearchResponse> {
-  return searchNearbyPlaces({
-    latitude,
-    longitude,
-    radius,
-    type,
-    maxResults,
-    config,
-  });
 }

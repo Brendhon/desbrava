@@ -2,7 +2,7 @@ import {
   generateSessionToken,
   getPlaceSuggestions,
 } from '@/lib/services/places';
-import { Place, PlaceSearchType } from '@/lib/types/places';
+import { Place, PlacesApiError, PlaceSearchType } from '@/lib/types/places';
 import { parsePlaceSuggestions } from '@/lib/utils/places';
 import { useEffect, useState } from 'react';
 import { useDebounce } from './useDebounce';
@@ -60,8 +60,11 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
         sessionToken,
       });
 
+      // If the response is an error, set the error and return
+      if (response instanceof PlacesApiError) throw response;
+
       // Parse suggestions to places format
-      const placeSuggestions = parsePlaceSuggestions(response?.suggestions);
+      const placeSuggestions = parsePlaceSuggestions(response.suggestions);
 
       // Set the places to the state
       setPlaces(placeSuggestions);
