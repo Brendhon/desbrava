@@ -6,6 +6,7 @@ import { Card } from '@/components/ui';
 import {
   ACTIVITY_TYPE_INFO,
   ACTIVITY_TYPE_OPTIONS,
+  ACTIVITY_SUB_TYPE_PLACE_PLACEHOLDERS,
   type ActivityTypeKey,
 } from '@/lib/types/activity';
 import { SelectOption } from '@/lib/types/form';
@@ -100,6 +101,11 @@ export default function ActivityTypeSelector({
         <SubTypeSearchSelect
           activityType={selectedType}
           defaultValue={selectedSubType}
+          placeholder={
+            selectedType
+              ? ACTIVITY_SUB_TYPE_PLACE_PLACEHOLDERS[selectedType]
+              : ''
+          }
           onSelect={(option: SelectOption) => setSelectedSubType(option.value)}
         />
       </div>

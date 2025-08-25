@@ -88,24 +88,24 @@ export const ACTIVITY_TYPE_OPTIONS: {
  */
 export const ACTIVITY_TYPE_INFO: Record<ActivityTypeKey, string> = {
   accommodation:
-    'Inclui hotéis, hostels, guesthouses, e qualquer tipo de acomodação.',
+    'Selecione esta categoria para escolher entre hotéis, hostels, pousadas, resorts e outros tipos de acomodação.',
   transportation:
-    'Inclui voos, trens, ônibus, aluguel de carros, e transferências.',
-  food: 'Inclui restaurantes, cafés, padarias, supermercados, e qualquer tipo de alimentação.',
+    'Selecione esta categoria para escolher entre aeroportos, estações, aluguel de carros, postos de gasolina e outros serviços de transporte.',
+  food: 'Selecione esta categoria para escolher entre restaurantes, cafés, padarias, supermercados e outros estabelecimentos de alimentação.',
   leisure:
-    'Inclui atrações, entretenimento, cultura, natureza, esportes, bem-estar e compras.',
-  other: 'Qualquer atividade que não se encaixa nas categorias acima.',
+    'Selecione esta categoria para escolher entre atrações turísticas, museus, parques, centros esportivos, shoppings e outros locais de lazer.',
+  other: 'Selecione esta categoria para escolher entre serviços, comércios, instituições e outros locais que não se encaixam nas categorias acima.',
 };
 
 export const ACTIVITY_PLACE_PLACEHOLDERS: Record<ActivityTypeKey, string> = {
-  accommodation: 'Digite para buscar hotéis, hostels, guesthouses, etc.',
+  accommodation: '🏨 Digite o nome do hotel, pousada, resort, hostel, acomodação ou outro local de acomodação',
   transportation:
-    'Digite para buscar voos, trens, ônibus, aluguel de carros, etc.',
-  food: 'Digite para buscar restaurantes, cafés, padarias, supermercados, etc.',
+    '🚗 Digite o nome do aeroporto, estação, locadora de carros, posto de gasolina, serviço de transporte ou outro local de transporte',
+  food: '🍽️ Digite o nome do restaurante, café, padaria, supermercado, mercado ou estabelecimento de alimentação',
   leisure:
-    'Digite para buscar atrações, entretenimento, cultura, natureza, esportes, bem-estar, compras, etc.',
+    '🎭 Digite o nome do parque, museu, shopping, centro esportivo, atração turística ou local de lazer',
   other:
-    'Digite para buscar qualquer atividade que não se encaixa nas outras categorias.',
+    '🏢 Digite o nome do serviço, comércio, instituição ou local que deseja encontrar (ex: farmácia, clínica, etc.)',
 };
 
 export type ActivityStatus =
@@ -114,6 +114,18 @@ export type ActivityStatus =
   | 'in_progress'
   | 'completed'
   | 'cancelled';
+
+  export const ACTIVITY_SUB_TYPE_PLACE_PLACEHOLDERS: Record<ActivityTypeKey, string> = {
+    accommodation: 'Escolha o tipo de acomodação que deseja buscar...',
+    transportation:
+      'Escolha o tipo de serviço de transporte que deseja buscar...',
+    food: 'Escolha o tipo de estabelecimento de alimentação que deseja buscar...',
+    leisure:
+      'Escolha o tipo de atração ou local de lazer que deseja buscar...',
+    other:
+      'Escolha o tipo de serviço ou estabelecimento que deseja buscar...',
+  };
+  
 
 export type ActivityPriority = 'low' | 'medium' | 'high' | 'critical';
 

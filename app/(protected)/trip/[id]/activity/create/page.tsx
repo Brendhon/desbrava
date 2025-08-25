@@ -96,7 +96,7 @@ export default function CreateActivityPage() {
     },
     {
       title: 'Destino',
-      description: 'Defina o local ou rota',
+      description: 'Defina o local',
       status: 'pending',
       children: (
         <DestinationSelector
