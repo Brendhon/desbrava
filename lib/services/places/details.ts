@@ -9,6 +9,7 @@ import {
   PlacesApiError,
   PlaceSearchType,
   ActivityTypeKey,
+  Place,
 } from '@/lib/types';
 import {
   ATTRACTION_FIELDS,
@@ -24,7 +25,7 @@ import { createFieldMask, makePlacesRequest } from './base';
  */
 async function makePlaceDetailsRequest(
   options: PlaceDetailsOptions
-): Promise<PlaceDetailsResponse> {
+): Promise<Place> {
   const { placeId, fields, config } = options;
 
   if (!placeId || placeId.trim().length === 0) {
@@ -37,7 +38,7 @@ async function makePlaceDetailsRequest(
   };
 
   try {
-    const response = await makePlacesRequest<PlaceDetailsResponse>(
+    const response = await makePlacesRequest<Place>(
       `/places/${placeId}`,
       config,
       {
@@ -66,7 +67,7 @@ async function makePlaceDetailsRequest(
 export async function getBasicPlaceDetails(
   placeId: string,
   config?: PlacesApiConfig
-): Promise<PlaceDetailsResponse> {
+): Promise<Place> {
   return makePlaceDetailsRequest({
     placeId,
     fields: DEFAULT_FIELDS,
@@ -80,7 +81,7 @@ export async function getBasicPlaceDetails(
 export async function getExtendedPlaceDetails(
   placeId: string,
   config?: PlacesApiConfig
-): Promise<PlaceDetailsResponse> {
+): Promise<Place> {
   return makePlaceDetailsRequest({
     placeId,
     fields: EXTENDED_FIELDS,
@@ -94,7 +95,7 @@ export async function getExtendedPlaceDetails(
 export async function getHotelDetails(
   placeId: string,
   config?: PlacesApiConfig
-): Promise<PlaceDetailsResponse> {
+): Promise<Place> {
   return makePlaceDetailsRequest({ placeId, fields: HOTEL_FIELDS, config });
 }
 
@@ -104,7 +105,7 @@ export async function getHotelDetails(
 export async function getRestaurantDetails(
   placeId: string,
   config?: PlacesApiConfig
-): Promise<PlaceDetailsResponse> {
+): Promise<Place> {
   return makePlaceDetailsRequest({ placeId, fields: RESTAURANT_FIELDS, config });
 }
 
@@ -114,7 +115,7 @@ export async function getRestaurantDetails(
 export async function getAttractionDetails(
   placeId: string,
   config?: PlacesApiConfig
-): Promise<PlaceDetailsResponse> {
+): Promise<Place> {
   return makePlaceDetailsRequest({ placeId, fields: ATTRACTION_FIELDS, config });
 }
 
@@ -124,7 +125,7 @@ export async function getAttractionDetails(
 export async function getMultiplePlaceDetails(
   placeIds: string[],
   config?: PlacesApiConfig
-): Promise<PlaceDetailsResponse[]> {
+): Promise<Place[]> {
   if (!placeIds || placeIds.length === 0) {
     throw new Error('At least one place ID is required');
   }
@@ -157,7 +158,7 @@ export async function getPlaceDetailsById(
   type: ActivityTypeKey,
   placeId: string,
   config?: PlacesApiConfig
-): Promise<PlaceDetailsResponse> {
+): Promise<Place> {
   switch (type) {
     case 'accommodation':
       return getHotelDetails(placeId, config);

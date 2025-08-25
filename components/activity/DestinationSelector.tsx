@@ -34,11 +34,8 @@ export default function DestinationSelector({
   const handleNext = useCallback(() => onNext(destinations), [destinations, onNext]);
 
   // Handle search change
-  const handleSearchChange = useCallback((place: Place) => {
-    setDestinations((prev) => ({
-      ...prev,
-      place,
-    }));
+  const handleSearchChange = useCallback((place?: Place) => {
+    setDestinations((prev) => ({ ...prev, place }));
   }, []);
 
   // Form placeholder 

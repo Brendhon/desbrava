@@ -1,18 +1,18 @@
 import { PlaceInfo } from '@/components/activity/destination';
 import { PlaceSearchSelect } from '@/components/form/selects';
+import { usePlaces } from '@/hooks/usePlaces';
 import { Place } from '@/lib/types/places';
 import { cn } from '@/lib/utils';
 import { MapPin } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { ActivityTypeData } from '../ActivityTypeSelector';
-import { useCallback, useEffect, useState } from 'react';
-import { usePlaces } from '@/hooks/usePlaces';
 
 interface PlaceSelectorProps {
   title: string;
   searchLabel: string;
   searchPlaceholder: string;
   activityType: ActivityTypeData;
-  onSearchChange: (value: Place) => void;
+  onSearchChange: (value?: Place) => void;
   selectedPlace?: Place;
   showBorder?: boolean;
 }
@@ -26,38 +26,39 @@ export default function PlaceSelector({
   selectedPlace,
   showBorder = false,
 }: PlaceSelectorProps) {
-  const [searchValue, setSearchValue] = useState('');
+  // Search state
+  const [search, setSearch] = useState('');
 
   // Places API
   const { getPlaceFromApi } = usePlaces({ activityType });
 
-
-  // Listen to search value change
+  // Listen to search value change to fetch place from API
   useEffect(() => {
-    // fetch place from API
-    getPlaceFromApi(searchValue)
-      .then(console.log);
-  }, [searchValue]);
+    getPlaceFromApi(search).then(onSearchChange);
+  }, [search]);
 
   return (
     <div className={cn(styles.container, showBorder && styles.border)}>
+      {/* Title */}
       <h3 className={styles.title}>
         <MapPin className={styles.icon} />
         {title}
       </h3>
 
+      {/* Search */}
       <div className={styles.searchContainer}>
         <PlaceSearchSelect
           label={searchLabel}
           placeholder={searchPlaceholder}
           helperText="Digite para buscar um local..."
-          onValueChange={(value) => setSearchValue(value)}
-          defaultValue={searchValue}
+          onValueChange={(value) => setSearch(value)}
+          defaultValue={search}
           activityType={activityType}
         />
       </div>
 
-      {selectedPlace && <PlaceInfo place={selectedPlace} />}
+      {/* Place info */}
+      {selectedPlace && <PlaceInfo type={activityType.type} place={selectedPlace} />}
     </div>
   );
 }

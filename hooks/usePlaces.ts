@@ -16,7 +16,7 @@ interface UsePlacesReturn {
   searchTerm: string;
   setSearchTerm: (term: string) => void;
   clearResults: () => void;
-  getPlaceFromApi: (placeId?: string) => Promise<Place | null>;
+  getPlaceFromApi: (placeId?: string) => Promise<Place | undefined>;
 }
 
 interface UsePlacesOptions {
@@ -99,9 +99,8 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
 
   // Fetch place from API
   const getPlaceFromApi = async (placeId?: string) => {
-    if (!activityType || !placeId) return null;
-    const response = await getPlaceDetailsById(activityType, placeId);
-    return response.place;
+    if (!activityType || !placeId) return undefined;
+    return getPlaceDetailsById(activityType, placeId);
   };
 
   // Search places with debounced search term
