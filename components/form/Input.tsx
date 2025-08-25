@@ -12,6 +12,7 @@ export default function Input({
   icon: Icon,
   iconPosition = 'left',
   iconAction,
+  loading,
   ...props
 }: InputProps) {
   return (
@@ -21,13 +22,14 @@ export default function Input({
       iconPosition={iconPosition}
       size={size}
       label={label}
+      loading={loading}
       helperText={helperText}
       variant={variant}
       error={error}
       className={className}
       iconAction={iconAction}
     >
-      <input {...register} {...props} />
+      <input {...register} {...props} disabled={loading} />
     </Field>
   );
 }

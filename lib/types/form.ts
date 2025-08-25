@@ -52,6 +52,7 @@ export interface DisabledProps {
 // Complete interface for Field component
 export interface FieldProps extends BaseFieldProps, IconActionProps {
   idPrefix?: string;
+  loading?: boolean;
   children: React.ReactNode;
 }
 

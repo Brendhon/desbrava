@@ -37,6 +37,7 @@ const SearchSelect = forwardRef<SearchSelectRef, SearchSelectProps>(
       onSelect,
       register,
       position = 'bottom',
+      loading,
     },
     ref
   ) => {
@@ -195,6 +196,7 @@ const SearchSelect = forwardRef<SearchSelectRef, SearchSelectProps>(
           iconPosition="right"
           iconAction={handleClearInput}
           ref={inputRef}
+          loading={loading}
         />
 
         {/* Dropdown */}

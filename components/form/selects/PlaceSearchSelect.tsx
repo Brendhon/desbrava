@@ -50,6 +50,7 @@ export default function PlaceSearchSelect({
   const {
     places,
     error: searchError,
+    loading,
     setSearchTerm,
   } = usePlaces({
     initialSearchTerm: '',
@@ -104,6 +105,7 @@ export default function PlaceSearchSelect({
         defaultValue={selectedValue}
         onInputChange={setSearchTerm}
         onSelect={handleValueChange}
+        isLoading={loading}
         {...props}
       />
     </div>

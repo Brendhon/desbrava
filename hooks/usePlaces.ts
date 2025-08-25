@@ -94,7 +94,6 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
   const clearResults = () => {
     setPlaces([]);
     setError(null);
-    setLoading(false);
   };
 
   // Fetch place from API
