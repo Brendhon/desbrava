@@ -39,15 +39,54 @@ export default function CreateActivityPage() {
     endTime: '',
   });
 
-  const handleTypeNext = (typeData: ActivityTypeData) => {
-    setTypeData(typeData);
+  const resetDestinationData = () => {
+    setDestinations({
+      searchType: 'searchText',
+    });
+  };
+
+  const resetPeriodData = () => {
+    setPeriodData({
+      date: '',
+      startTime: '',
+      endTime: '',
+    });
+  };
+
+  const handleTypeNext = (newValue: ActivityTypeData) => {
+    // Check if typeData is different from the new value
+    const isDiff = typeData.type !== newValue.type || typeData.subType !== newValue.subType;
+
+    // If it is, clear future steps
+    if (isDiff) {
+      resetDestinationData();
+      resetPeriodData();
+    }
+
+    // Set the new typeData
+    setTypeData(newValue);
+
+    // Set the current step
     setCurrentStep(1);
+
+    // Update the steps status
     updateStepsStatus(1);
   };
 
   const handleDestinationNext = (destData: DestinationData) => {
+    // Check if destData is different from the current destData
+    const isDiff = destData.place?.id !== destinations.place?.id;
+
+    // If it is, clear future steps
+    if (isDiff) resetPeriodData();
+
+    // Set the new destData
     setDestinations(destData);
+
+    // Set the current step
     setCurrentStep(2);
+
+    // Update the steps status
     updateStepsStatus(2);
   };
 
