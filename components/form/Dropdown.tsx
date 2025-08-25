@@ -62,15 +62,15 @@ export default function Dropdown({
 
 const styles = {
   dropdown:
-    'absolute z-50 w-full bg-midnight-blue border border-slate-dark/20 rounded-lg shadow-2xl max-h-60 overflow-y-auto',
+    'absolute z-50 w-full bg-slate-dark border border-midnight-blue rounded-lg shadow-4xl max-h-60 overflow-y-auto',
   dropdownTop: 'bottom-full mb-20',
   dropdownBottom: 'top-full mt-1',
   emptyMessage: 'px-4 py-3 text-mist-gray text-center',
   option:
-    'w-full px-4 py-3 text-left hover:bg-slate-dark/70 focus:bg-slate-dark/70 focus:outline-none transition-colors',
-  optionHighlighted: 'bg-slate-dark/70',
+    'w-full px-4 py-3 text-left hover:bg-midnight-blue/70 focus:bg-midnight-blue/70 focus:outline-none transition-colors',
+  optionHighlighted: 'bg-midnight-blue/70',
   optionDisabled: 'text-mist-gray cursor-not-allowed',
-  optionSelected: 'bg-slate-dark/70 text-parchment-white',
+  optionSelected: 'bg-midnight-blue/70 text-parchment-white',
   renderOptionContent: 'flex items-center gap-2 w-full',
   renderOptionContentImage: 'w-4 h-4 rounded-sm object-cover flex-shrink-0',
   renderOptionContentDesc: 'text-xs text-mist-gray ml-auto flex-shrink-0',
