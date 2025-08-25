@@ -1,7 +1,8 @@
 import { LucideIcon } from 'lucide-react';
-import { ReactNode } from 'react';
+import { ActivityProps, ReactNode } from 'react';
 import { ActivityTypeKey } from './activity';
 import { PlaceSearchType } from './places';
+import { ActivityTypeData } from '@/components/activity/ActivityTypeSelector';
 
 // Interface for select options
 export interface SelectOption {
@@ -121,7 +122,7 @@ export interface PlaceSearchSelectProps
   onValueChange?: (value: string) => void;
   debounceDelay?: number;
   defaultValue?: string;
-  placeType?: PlaceSearchType;
+  activityType?: ActivityTypeData;
   latitude?: number;
   longitude?: number;
   radius?: number;

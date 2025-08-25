@@ -7,6 +7,8 @@ import {
   PlaceDetailsRequest,
   PlaceDetailsResponse,
   PlacesApiError,
+  PlaceSearchType,
+  ActivityTypeKey,
 } from '@/lib/types';
 import {
   ATTRACTION_FIELDS,
@@ -20,7 +22,7 @@ import { createFieldMask, makePlacesRequest } from './base';
 /**
  * Get detailed information about a specific place
  */
-export async function getPlaceDetails(
+async function makePlaceDetailsRequest(
   options: PlaceDetailsOptions
 ): Promise<PlaceDetailsResponse> {
   const { placeId, fields, config } = options;
@@ -65,7 +67,7 @@ export async function getBasicPlaceDetails(
   placeId: string,
   config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse> {
-  return getPlaceDetails({
+  return makePlaceDetailsRequest({
     placeId,
     fields: DEFAULT_FIELDS,
     config,
@@ -79,7 +81,7 @@ export async function getExtendedPlaceDetails(
   placeId: string,
   config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse> {
-  return getPlaceDetails({
+  return makePlaceDetailsRequest({
     placeId,
     fields: EXTENDED_FIELDS,
     config,
@@ -93,7 +95,7 @@ export async function getHotelDetails(
   placeId: string,
   config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse> {
-  return getPlaceDetails({ placeId, fields: HOTEL_FIELDS, config });
+  return makePlaceDetailsRequest({ placeId, fields: HOTEL_FIELDS, config });
 }
 
 /**
@@ -103,7 +105,7 @@ export async function getRestaurantDetails(
   placeId: string,
   config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse> {
-  return getPlaceDetails({ placeId, fields: RESTAURANT_FIELDS, config });
+  return makePlaceDetailsRequest({ placeId, fields: RESTAURANT_FIELDS, config });
 }
 
 /**
@@ -113,7 +115,7 @@ export async function getAttractionDetails(
   placeId: string,
   config?: PlacesApiConfig
 ): Promise<PlaceDetailsResponse> {
-  return getPlaceDetails({ placeId, fields: ATTRACTION_FIELDS, config });
+  return makePlaceDetailsRequest({ placeId, fields: ATTRACTION_FIELDS, config });
 }
 
 /**
@@ -142,5 +144,28 @@ export async function getMultiplePlaceDetails(
       `Failed to get multiple place details: ${error instanceof Error ? error.message : 'Unknown error'}`,
       500
     );
+  }
+}
+
+/**
+ * Get place details by id
+ * @param placeId - The id of the place
+ * @param config - The config for the request
+ * @returns The place details
+ */
+export async function getPlaceDetailsById(
+  type: ActivityTypeKey,
+  placeId: string,
+  config?: PlacesApiConfig
+): Promise<PlaceDetailsResponse> {
+  switch (type) {
+    case 'accommodation':
+      return getHotelDetails(placeId, config);
+    case 'food':
+      return getRestaurantDetails(placeId, config);
+    case 'leisure':
+      return getAttractionDetails(placeId, config);
+    default:
+      return getBasicPlaceDetails(placeId, config);
   }
 }

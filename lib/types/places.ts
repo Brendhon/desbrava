@@ -1,4 +1,5 @@
 // Google Places API Types for Desbrava Project
+// Updated to match Google Places API v1 specification
 
 import { SelectOption } from './form';
 
@@ -109,6 +110,7 @@ export interface PlacesApiConfig {
   timeout?: number;
 }
 
+// Updated Place interface to match Google Places API v1
 export interface Place {
   id: string;
   displayName: PlaceDisplayName;
@@ -120,14 +122,34 @@ export interface Place {
   photos?: PlacePhoto[];
   websiteUri?: string;
   types: PlaceSearchType[];
-  priceRange?: any;
-  priceLevel?:
-    | 'FREE'
-    | 'INEXPENSIVE'
-    | 'MODERATE'
-    | 'EXPENSIVE'
-    | 'VERY_EXPENSIVE';
+  priceLevel?: 'FREE' | 'INEXPENSIVE' | 'MODERATE' | 'EXPENSIVE' | 'VERY_EXPENSIVE';
   businessStatus?: 'OPERATIONAL' | 'CLOSED_TEMPORARILY' | 'CLOSED_PERMANENTLY';
+  editorialSummary?: PlaceEditorialSummary;
+  reviews?: PlaceReview[];
+  utcOffsetMinutes?: number;
+  adrFormatAddress?: string;
+  internationalPhoneNumber?: string;
+  nationalPhoneNumber?: string;
+  primaryType?: string;
+  primaryTypeDisplayName?: PlaceDisplayName;
+  shortFormattedAddress?: string;
+  subDestinations?: PlaceSubDestination[];
+  viewport?: PlaceViewport;
+  // Restaurant-specific fields
+  servesBeer?: boolean;
+  servesBreakfast?: boolean;
+  servesBrunch?: boolean;
+  servesDinner?: boolean;
+  servesLunch?: boolean;
+  servesVegetarianFood?: boolean;
+  servesWine?: boolean;
+  takeout?: boolean;
+  delivery?: boolean;
+  dineIn?: boolean;
+  reservable?: boolean;
+  wheelchairAccessibleEntrance?: boolean;
+  // Hotel-specific fields
+  lodging?: PlaceLodging;
 }
 
 export interface PlaceDisplayName {
@@ -163,6 +185,57 @@ export interface PlaceAuthorAttribution {
   displayName: string;
   uri: string;
   photoUri: string;
+}
+
+export interface PlaceEditorialSummary {
+  text: string;
+  languageCode: string;
+}
+
+export interface PlaceReview {
+  name: string;
+  relativePublishTimeDescription: string;
+  rating: number;
+  text: PlaceText;
+  authorAttribution: PlaceAuthorAttribution;
+  originalText: PlaceText;
+}
+
+export interface PlaceSubDestination {
+  name: string;
+  placeId: string;
+  displayName: PlaceDisplayName;
+  types: PlaceSearchType[];
+}
+
+export interface PlaceViewport {
+  low: PlaceLocation;
+  high: PlaceLocation;
+}
+
+export interface PlaceLodging {
+  name: string;
+  placeId: string;
+  displayName: PlaceDisplayName;
+  types: PlaceSearchType[];
+  rating?: number;
+  userRatingCount?: number;
+  photos?: PlacePhoto[];
+  websiteUri?: string;
+  currentOpeningHours?: PlaceOpeningHours;
+  businessStatus?: 'OPERATIONAL' | 'CLOSED_TEMPORARILY' | 'CLOSED_PERMANENTLY';
+  editorialSummary?: PlaceEditorialSummary;
+  reviews?: PlaceReview[];
+  utcOffsetMinutes?: number;
+  adrFormatAddress?: string;
+  internationalPhoneNumber?: string;
+  nationalPhoneNumber?: string;
+  primaryType?: string;
+  primaryTypeDisplayName?: PlaceDisplayName;
+  shortFormattedAddress?: string;
+  subDestinations?: PlaceSubDestination[];
+  viewport?: PlaceViewport;
+  wheelchairAccessibleEntrance?: boolean;
 }
 
 // Place Types organized by activity categories for Desbrava Project

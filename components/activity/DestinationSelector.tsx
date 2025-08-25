@@ -27,19 +27,19 @@ export default function DestinationSelector({
     searchType: 'searchText',
   });
 
-  const [searchOrigin, setSearchOrigin] = useState('');
-  const [isSearchingOrigin, setIsSearchingOrigin] = useState(false);
-
   // Hooks
   const { getSubtypeLabel } = usePlaceTypes();
 
   // Handle next step
-  const handleNext = useCallback(() => {
-    onNext({
-      place: destinations.place,
-      searchType: destinations.searchType,
-    });
-  }, [destinations.place, destinations.searchType, onNext]);
+  const handleNext = useCallback(() => onNext(destinations), [destinations, onNext]);
+
+  // Handle search change
+  const handleSearchChange = useCallback((place: Place) => {
+    setDestinations((prev) => ({
+      ...prev,
+      place,
+    }));
+  }, []);
 
   // Form placeholder 
   const placeholder = useCallback(() => {
@@ -59,10 +59,8 @@ export default function DestinationSelector({
           title={'Local da Atividade'}
           searchLabel={'Buscar local'}
           searchPlaceholder={placeholder()}
-          searchValue={searchOrigin}
           activityType={activityType}
-          onSearchChange={setSearchOrigin}
-          isSearching={isSearchingOrigin}
+          onSearchChange={handleSearchChange}
           selectedPlace={destinations.place}
           showBorder={false}
         />

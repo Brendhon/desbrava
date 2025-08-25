@@ -4,15 +4,15 @@ import { Place } from '@/lib/types/places';
 import { cn } from '@/lib/utils';
 import { MapPin } from 'lucide-react';
 import { ActivityTypeData } from '../ActivityTypeSelector';
+import { useCallback, useEffect, useState } from 'react';
+import { usePlaces } from '@/hooks/usePlaces';
 
 interface PlaceSelectorProps {
   title: string;
   searchLabel: string;
   searchPlaceholder: string;
-  searchValue: string;
   activityType: ActivityTypeData;
-  onSearchChange: (value: string) => void;
-  isSearching: boolean;
+  onSearchChange: (value: Place) => void;
   selectedPlace?: Place;
   showBorder?: boolean;
 }
@@ -21,13 +21,24 @@ export default function PlaceSelector({
   title,
   searchLabel,
   searchPlaceholder,
-  searchValue,
   activityType,
   onSearchChange,
-  isSearching,
   selectedPlace,
   showBorder = false,
 }: PlaceSelectorProps) {
+  const [searchValue, setSearchValue] = useState('');
+
+  // Places API
+  const { getPlaceFromApi } = usePlaces({ activityType });
+
+
+  // Listen to search value change
+  useEffect(() => {
+    // fetch place from API
+    getPlaceFromApi(searchValue)
+      .then(console.log);
+  }, [searchValue]);
+
   return (
     <div className={cn(styles.container, showBorder && styles.border)}>
       <h3 className={styles.title}>
@@ -40,16 +51,10 @@ export default function PlaceSelector({
           label={searchLabel}
           placeholder={searchPlaceholder}
           helperText="Digite para buscar um local..."
-          onValueChange={onSearchChange}
+          onValueChange={(value) => setSearchValue(value)}
           defaultValue={searchValue}
-          placeType={activityType.subType}
+          activityType={activityType}
         />
-        {isSearching && (
-          <div className={styles.loadingContainer}>
-            <div className={styles.spinner} />
-            Buscando...
-          </div>
-        )}
       </div>
 
       {selectedPlace && <PlaceInfo place={selectedPlace} />}

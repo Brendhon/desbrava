@@ -1,5 +1,7 @@
+import { ActivityTypeData } from '@/components/activity/ActivityTypeSelector';
 import {
   generateSessionToken,
+  getPlaceDetailsById,
   getPlaceSuggestions,
 } from '@/lib/services/places';
 import { Place, PlacesApiError, PlaceSearchType } from '@/lib/types/places';
@@ -14,12 +16,13 @@ interface UsePlacesReturn {
   searchTerm: string;
   setSearchTerm: (term: string) => void;
   clearResults: () => void;
+  getPlaceFromApi: (placeId?: string) => Promise<Place | null>;
 }
 
 interface UsePlacesOptions {
   initialSearchTerm?: string;
   debounceDelay?: number;
-  defaultType?: PlaceSearchType;
+  activityType?: ActivityTypeData;
   latitude?: number;
   longitude?: number;
   radius?: number;
@@ -40,11 +43,15 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
   const [error, setError] = useState<string | null>(null);
   const [sessionToken] = useState(() => generateSessionToken());
 
+  // Get the activity type
+  const activityType = options.activityType?.type;
+  const searchType = options.activityType?.subType;
+
   // Debounce the search term to avoid excessive API calls
-  const debouncedTerm = useDebounce(searchTerm, options.debounceDelay || 2000);
+  const debouncedTerm = useDebounce(searchTerm, options.debounceDelay || 1000);
 
   // Search places by type
-  const searchByType = async (input: string, types: PlaceSearchType) => {
+  const searchByType = async (input: string, type: PlaceSearchType) => {
     // Set loading state
     setLoading(true);
     setError(null);
@@ -53,7 +60,7 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
       // Get place suggestions
       const response = await getPlaceSuggestions({
         input,
-        type: types,
+        type,
         latitude: options.latitude,
         longitude: options.longitude,
         radius: options.radius || 50000,
@@ -90,6 +97,13 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
     setLoading(false);
   };
 
+  // Fetch place from API
+  const getPlaceFromApi = async (placeId?: string) => {
+    if (!activityType || !placeId) return null;
+    const response = await getPlaceDetailsById(activityType, placeId);
+    return response.place;
+  };
+
   // Search places with debounced search term
   useEffect(() => {
     const searchPlaces = () => {
@@ -97,12 +111,12 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
       const term = debouncedTerm?.trim();
 
       // Check if the search term is valid
-      const invalid = !term || term.length < 2 || !options.defaultType;
+      const invalid = !term || term.length < 2 || !searchType;
 
       // Clear results if the search term is invalid or the default type is not set
       return invalid
         ? clearResults() // Clear results if the search term is invalid
-        : searchByType(term, options.defaultType!); // Search for the default type if it is set
+        : searchByType(term, searchType); // Search for the default type if it is set
     };
 
     // Search for the places
@@ -118,6 +132,7 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
     error,
     searchTerm,
     setSearchTerm,
+    getPlaceFromApi,
     clearResults,
   };
 }

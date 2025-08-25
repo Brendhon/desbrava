@@ -22,7 +22,7 @@ export default function PlaceSearchSelect({
   onValueChange,
   debounceDelay = 2000,
   defaultValue,
-  placeType,
+  activityType,
   latitude,
   longitude,
   radius = 50000,
@@ -37,14 +37,12 @@ export default function PlaceSearchSelect({
   // Places API
   const {
     places,
-    loading,
     error: searchError,
-    searchTerm,
     setSearchTerm,
   } = usePlaces({
     initialSearchTerm: '',
     debounceDelay,
-    defaultType: placeType,
+    activityType,
     latitude,
     longitude,
     radius,
@@ -52,16 +50,7 @@ export default function PlaceSearchSelect({
   });
 
   const PlaceItem = ({ place }: { place: Place }) => {
-    return (
-      <div className={styles.placeItem}>
-        <h3>{place.displayName.text}</h3>
-        <p>{place.formattedAddress}</p>
-        <p>{place.types.join(', ')}</p>
-        <p>
-          {place.location.latitude}, {place.location.longitude}
-        </p>
-      </div>
-    );
+    return <h3>{place.displayName.text}</h3>
   };
 
   // Convert places to SelectOption format
@@ -121,7 +110,3 @@ export default function PlaceSearchSelect({
     </div>
   );
 }
-
-const styles = {
-  placeItem: 'flex flex-col gap-2',
-};
