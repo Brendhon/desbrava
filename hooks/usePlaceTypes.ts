@@ -10,6 +10,7 @@ interface UsePlaceTypesReturn {
     type: ActivityTypeKey | undefined,
     subType?: string
   ) => SelectOption;
+  getSubtypeLabel: (type?: ActivityTypeKey, subType?: string) => string;
 }
 
 const defaultPlaceOptions: SelectOption = { label: '', value: '' };
@@ -31,6 +32,17 @@ export function usePlaceTypes(): UsePlaceTypesReturn {
   };
 
   // Get subtypes by type
+  const getSubtypeLabel = (
+    type?: ActivityTypeKey,
+    subType?: string
+  ): string => {
+    if (!type || !subType) return '';
+    const placeType = getPlaceTypes()[type];
+    const subTypeLabel = placeType.find((option) => option.value === subType)?.label;
+    return subTypeLabel || '';
+  };
+
+  // Get subtypes by type
   const getSubtypesByType = (
     type: ActivityTypeKey | undefined,
     subType?: string
@@ -46,5 +58,6 @@ export function usePlaceTypes(): UsePlaceTypesReturn {
     placeTypes: getPlaceTypes(),
     getPlaceOptionsByType,
     getSubtypesByType,
+    getSubtypeLabel,
   };
 }

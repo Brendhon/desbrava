@@ -1,11 +1,11 @@
 'use client';
 
 import { NavigationButtons } from '@/components/steps';
-import { ACTIVITY_PLACE_PLACEHOLDERS } from '@/lib/types/activity';
+import { usePlaceTypes } from '@/hooks/usePlaceTypes';
 import { Place } from '@/lib/types/places';
 import { useCallback, useState } from 'react';
-import { PageHeader, PlaceSelector } from './destination';
 import { ActivityTypeData } from './ActivityTypeSelector';
+import { PageHeader, PlaceSelector } from './destination';
 
 export interface DestinationData {
   place?: Place;
@@ -30,6 +30,9 @@ export default function DestinationSelector({
   const [searchOrigin, setSearchOrigin] = useState('');
   const [isSearchingOrigin, setIsSearchingOrigin] = useState(false);
 
+  // Hooks
+  const { getSubtypeLabel } = usePlaceTypes();
+
   // Handle next step
   const handleNext = useCallback(() => {
     onNext({
@@ -37,6 +40,12 @@ export default function DestinationSelector({
       searchType: destinations.searchType,
     });
   }, [destinations.place, destinations.searchType, onNext]);
+
+  // Form placeholder 
+  const placeholder = useCallback(() => {
+    const localName = getSubtypeLabel(activityType.type, activityType.subType);
+    return `Digite o nome do(a) ${localName.toLowerCase()} desejado`;
+  }, [activityType]);
 
   // Render
   return (
@@ -49,7 +58,7 @@ export default function DestinationSelector({
         <PlaceSelector
           title={'Local da Atividade'}
           searchLabel={'Buscar local'}
-          searchPlaceholder={ACTIVITY_PLACE_PLACEHOLDERS[activityType.type]}
+          searchPlaceholder={placeholder()}
           searchValue={searchOrigin}
           activityType={activityType.type}
           onSearchChange={setSearchOrigin}

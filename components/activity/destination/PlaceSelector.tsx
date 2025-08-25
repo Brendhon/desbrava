@@ -61,8 +61,8 @@ const styles = {
   container: 'px-8 w-full',
   border: 'border-r-0 border-mist-gray/50 lg:border-r',
   title:
-    'text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold',
-  icon: 'text-royal-gray h-5 w-5',
+    'mb-4 flex items-center gap-2 text-lg font-semibold',
+  icon: 'text-royal-purple h-5 w-5',
   searchContainer: 'space-y-3',
   loadingContainer: 'text-mist-gray flex items-center gap-2 text-sm',
   spinner:
