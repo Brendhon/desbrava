@@ -2,14 +2,12 @@
 // Handles retrieving detailed information about specific places
 
 import {
-  PlacesApiConfig,
-  PlaceDetailsOptions,
-  PlaceDetailsRequest,
-  PlaceDetailsResponse,
-  PlacesApiError,
-  PlaceSearchType,
   ActivityTypeKey,
   Place,
+  PlaceDetailsOptions,
+  PlaceDetailsRequest,
+  PlacesApiConfig,
+  PlacesApiError
 } from '@/lib/types';
 import {
   ATTRACTION_FIELDS,

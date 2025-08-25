@@ -1,8 +1,8 @@
+import { ActivityTypeData } from '@/components/activity/ActivityTypeSelector';
 import { LucideIcon } from 'lucide-react';
-import { ActivityProps, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { ActivityTypeKey } from './activity';
 import { Place, PlaceSearchType } from './places';
-import { ActivityTypeData } from '@/components/activity/ActivityTypeSelector';
 
 // Interface for select options
 export interface SelectOption {
