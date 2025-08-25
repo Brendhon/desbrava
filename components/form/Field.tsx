@@ -44,7 +44,7 @@ export default function Field({
         </label>
       )}
 
-      <div className="relative">
+      <div className={styles.inputContainer}>
         {/* Left Icon */}
         {Icon && iconPosition === 'left' && (
           <Icon
@@ -100,6 +100,7 @@ export default function Field({
 
 const styles = {
   container: 'w-full',
+  inputContainer: 'relative mb-0',
   label: 'form-label',
   helperText: 'form-helper-text',
   error: 'form-error',
