@@ -3,7 +3,7 @@
 import { SearchSelect } from '@/components/form/selects';
 import { usePlaces } from '@/hooks/usePlaces';
 import { PlaceSearchSelectProps, SelectOption } from '@/lib/types';
-import { Place, getPlaceTypesByCategory } from '@/lib/types/places';
+import { Place } from '@/lib/types/places';
 import { useEffect, useMemo, useState } from 'react';
 
 /**
@@ -22,7 +22,7 @@ export default function PlaceSearchSelect({
   onValueChange,
   debounceDelay = 2000,
   defaultValue,
-  placeTypes = getPlaceTypesByCategory('other'),
+  placeType,
   latitude,
   longitude,
   radius = 50000,
@@ -44,7 +44,7 @@ export default function PlaceSearchSelect({
   } = usePlaces({
     initialSearchTerm: '',
     debounceDelay,
-    defaultTypes: placeTypes,
+    defaultType: placeType,
     latitude,
     longitude,
     radius,
@@ -84,14 +84,7 @@ export default function PlaceSearchSelect({
         setSearchTerm(initialValue);
       }
     }
-  }, [defaultValue, places.length, setSearchTerm]);
-
-  // Effect to synchronize with external changes in value
-  useEffect(() => {
-    if (defaultValue !== undefined && defaultValue !== selectedValue) {
-      setSelectedValue(defaultValue);
-    }
-  }, [defaultValue, selectedValue]);
+  }, [defaultValue]);
 
   // Handle option selection and search updates
   const handleValueChange = (newValue: SelectOption) => {
@@ -107,26 +100,21 @@ export default function PlaceSearchSelect({
     }
   };
 
-  // Show loading state or error in helper text if there is an error
-  const displayHelperText = searchError
-    ? `Erro na busca: ${searchError}`
-    : loading && searchTerm.trim().length >= 2
-      ? 'Buscando locais...'
-      : helperText;
-
+  // Render the component
   return (
     <div className="w-full">
       <SearchSelect
         label={label}
-        error={error}
+        error={error || searchError}
         size={size}
         variant={variant}
-        helperText={displayHelperText}
+        helperText={helperText}
         className={className}
         id={id}
         options={placeOptions}
         placeholder={placeholder}
         value={selectedValue}
+        onInputChange={setSearchTerm}
         onSelect={handleValueChange}
         {...props}
       />

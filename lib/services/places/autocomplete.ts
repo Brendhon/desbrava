@@ -3,10 +3,8 @@
 
 import {
   AutocompleteOptions,
-  getPlaceTypesByCategory,
   PlaceAutocompleteRequest,
   PlaceAutocompleteResponse,
-  PlacesApiConfig,
   PlacesApiError,
 } from '@/lib/types';
 import { generateRandomId } from '@/lib/utils';
@@ -23,7 +21,7 @@ export async function getPlaceSuggestions(
     latitude,
     longitude,
     radius = 50000,
-    types,
+    type,
     sessionToken,
     config,
   } = options;
@@ -58,8 +56,8 @@ export async function getPlaceSuggestions(
     request.sessionToken = sessionToken;
   }
 
-  if (types) {
-    request.includedPrimaryTypes = types;
+  if (type) {
+    request.includedPrimaryTypes = [type];
   }
 
   try {
@@ -80,88 +78,6 @@ export async function getPlaceSuggestions(
       500
     );
   }
-}
-
-/**
- * Get destination suggestions (cities, countries, regions)
- */
-export async function getDestinationSuggestions(
-  input: string,
-  maxResults: number = 10,
-  config?: PlacesApiConfig
-): Promise<PlaceAutocompleteResponse> {
-  return getPlaceSuggestions({
-    input,
-    types: getPlaceTypesByCategory('transportation'),
-    maxResults,
-    config,
-  });
-}
-
-/**
- * Get hotel suggestions
- */
-export async function getHotelSuggestions(
-  input: string,
-  latitude?: number,
-  longitude?: number,
-  radius: number = 50000,
-  maxResults: number = 10,
-  config?: PlacesApiConfig
-): Promise<PlaceAutocompleteResponse> {
-  return getPlaceSuggestions({
-    input,
-    latitude,
-    longitude,
-    radius,
-    types: getPlaceTypesByCategory('accommodation'),
-    maxResults,
-    config,
-  });
-}
-
-/**
- * Get restaurant suggestions
- */
-export async function getRestaurantSuggestions(
-  input: string,
-  latitude?: number,
-  longitude?: number,
-  radius: number = 5000,
-  maxResults: number = 10,
-  config?: PlacesApiConfig
-): Promise<PlaceAutocompleteResponse> {
-  return getPlaceSuggestions({
-    input,
-    latitude,
-    longitude,
-    radius,
-    types: getPlaceTypesByCategory('food'),
-    maxResults,
-    config,
-  });
-}
-
-/**
- * Get tourist attraction suggestions
- */
-export async function getTouristAttractionSuggestions(
-  input: string,
-  latitude?: number,
-  longitude?: number,
-  radius: number = 10000,
-  maxResults: number = 10,
-  config?: PlacesApiConfig
-): Promise<PlaceAutocompleteResponse> {
-  return getPlaceSuggestions({
-    input,
-    latitude,
-    longitude,
-    radius,
-    types: getPlaceTypesByCategory('leisure'),
-    maxResults,
-    config,
-  });
 }
 
 /**

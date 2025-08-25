@@ -2,13 +2,13 @@
 // Handles searching places by text queries
 
 import {
+  PlaceSearchType,
   PlacesApiConfig,
   PlacesApiError,
   PlaceTextSearchRequest,
   PlaceTextSearchResponse,
   TextSearchOptions,
 } from '@/lib/types';
-import { getPlaceTypesByCategory } from '@/lib/types/places';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
 
 /**
@@ -17,7 +17,7 @@ import { makePlacesRequest, validateLocation, validateRadius } from './base';
 export async function searchPlacesByText(
   options: TextSearchOptions
 ): Promise<PlaceTextSearchResponse> {
-  const { query, latitude, longitude, radius = 10000, types, config } = options;
+  const { query, latitude, longitude, radius = 10000, type, config } = options;
 
   if (!query || query.trim().length === 0) {
     throw new Error('Search query is required');
@@ -45,8 +45,8 @@ export async function searchPlacesByText(
   }
 
   // Add type filtering if specified
-  if (types && types.length > 0) {
-    request.includedTypes = types;
+  if (type) {
+    request.includedTypes = [type];
   }
 
   try {
@@ -73,6 +73,7 @@ export async function searchPlacesByText(
  * Search for hotels by name or description
  */
 export async function searchHotelsByText(
+  type: PlaceSearchType,
   query: string,
   latitude?: number,
   longitude?: number,
@@ -84,7 +85,7 @@ export async function searchHotelsByText(
     latitude,
     longitude,
     radius,
-    types: getPlaceTypesByCategory('accommodation'),
+    type,
     config,
   });
 }
@@ -93,6 +94,7 @@ export async function searchHotelsByText(
  * Search for restaurants by name, cuisine, or description
  */
 export async function searchRestaurantsByText(
+  type: PlaceSearchType,
   query: string,
   latitude?: number,
   longitude?: number,
@@ -104,7 +106,7 @@ export async function searchRestaurantsByText(
     latitude,
     longitude,
     radius,
-    types: getPlaceTypesByCategory('food'),
+    type,
     config,
   });
 }
@@ -113,6 +115,7 @@ export async function searchRestaurantsByText(
  * Search for tourist attractions by name or description
  */
 export async function searchAttractionsByText(
+  type: PlaceSearchType,
   query: string,
   latitude?: number,
   longitude?: number,
@@ -124,7 +127,7 @@ export async function searchAttractionsByText(
     latitude,
     longitude,
     radius,
-    types: getPlaceTypesByCategory('leisure'),
+    type,
     config,
   });
 }
@@ -133,6 +136,7 @@ export async function searchAttractionsByText(
  * Search for transportation options
  */
 export async function searchTransportationByText(
+  type: PlaceSearchType,
   query: string,
   latitude?: number,
   longitude?: number,
@@ -144,7 +148,7 @@ export async function searchTransportationByText(
     latitude,
     longitude,
     radius,
-    types: getPlaceTypesByCategory('transportation'),
+    type,
     config,
   });
 }
@@ -153,6 +157,7 @@ export async function searchTransportationByText(
  * Search for any type of place
  */
 export async function searchAnyPlaceByText(
+  type: PlaceSearchType,
   query: string,
   latitude?: number,
   longitude?: number,
@@ -164,6 +169,7 @@ export async function searchAnyPlaceByText(
     latitude,
     longitude,
     radius,
+    type,
     config,
   });
 }

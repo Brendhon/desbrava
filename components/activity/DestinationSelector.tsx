@@ -60,7 +60,7 @@ export default function DestinationSelector({
           searchLabel={'Buscar local'}
           searchPlaceholder={placeholder()}
           searchValue={searchOrigin}
-          activityType={activityType.type}
+          activityType={activityType}
           onSearchChange={setSearchOrigin}
           isSearching={isSearchingOrigin}
           selectedPlace={destinations.place}

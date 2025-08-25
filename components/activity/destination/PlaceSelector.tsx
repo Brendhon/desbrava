@@ -1,16 +1,16 @@
 import { PlaceInfo } from '@/components/activity/destination';
 import { PlaceSearchSelect } from '@/components/form/selects';
-import { ActivityTypeKey } from '@/lib/types/activity';
-import { getPlaceTypesByCategory, Place } from '@/lib/types/places';
+import { Place } from '@/lib/types/places';
 import { cn } from '@/lib/utils';
 import { MapPin } from 'lucide-react';
+import { ActivityTypeData } from '../ActivityTypeSelector';
 
 interface PlaceSelectorProps {
   title: string;
   searchLabel: string;
   searchPlaceholder: string;
   searchValue: string;
-  activityType: ActivityTypeKey;
+  activityType: ActivityTypeData;
   onSearchChange: (value: string) => void;
   isSearching: boolean;
   selectedPlace?: Place;
@@ -42,7 +42,7 @@ export default function PlaceSelector({
           helperText="Digite para buscar um local..."
           onValueChange={onSearchChange}
           defaultValue={searchValue}
-          placeTypes={getPlaceTypesByCategory(activityType)}
+          placeType={activityType.subType}
         />
         {isSearching && (
           <div className={styles.loadingContainer}>

@@ -28,7 +28,7 @@ export default function CreateActivityPage() {
   // Form data
   const [typeData, setTypeData] = useState<ActivityTypeData>({
     type: 'accommodation',
-    subType: '',
+    subType: undefined,
   });
   const [destinations, setDestinations] = useState<DestinationData>({
     searchType: 'searchText',

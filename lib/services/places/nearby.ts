@@ -7,8 +7,8 @@ import {
   PlaceNearbySearchResponse,
   PlacesApiConfig,
   PlacesApiError,
+  PlaceSearchType,
 } from '@/lib/types';
-import { getPlaceTypesByCategory } from '@/lib/types/places';
 import { makePlacesRequest, validateLocation, validateRadius } from './base';
 
 /**
@@ -21,7 +21,7 @@ export async function searchNearbyPlaces(
     latitude,
     longitude,
     radius,
-    types,
+    type,
     rankByDistance = false,
     config,
   } = options;
@@ -29,12 +29,12 @@ export async function searchNearbyPlaces(
   validateLocation(latitude, longitude);
   validateRadius(radius);
 
-  if (!types || types.length === 0) {
+  if (!type) {
     throw new Error('At least one place type must be specified');
   }
 
   const request: PlaceNearbySearchRequest = {
-    includedTypes: types,
+    includedTypes: [type],
     locationRestriction: {
       circle: {
         center: { latitude, longitude },
@@ -68,6 +68,7 @@ export async function searchNearbyPlaces(
  * Find hotels near a location
  */
 export async function findNearbyHotels(
+  type: PlaceSearchType,
   latitude: number,
   longitude: number,
   radius: number = 5000,
@@ -78,7 +79,7 @@ export async function findNearbyHotels(
     latitude,
     longitude,
     radius,
-    types: getPlaceTypesByCategory('accommodation'),
+    type,
     maxResults,
     config,
   });
@@ -88,6 +89,7 @@ export async function findNearbyHotels(
  * Find restaurants near a location
  */
 export async function findNearbyRestaurants(
+  type: PlaceSearchType,
   latitude: number,
   longitude: number,
   radius: number = 3000,
@@ -98,7 +100,7 @@ export async function findNearbyRestaurants(
     latitude,
     longitude,
     radius,
-    types: getPlaceTypesByCategory('food'),
+    type,
     maxResults,
     config,
   });
@@ -108,6 +110,7 @@ export async function findNearbyRestaurants(
  * Find tourist attractions near a location
  */
 export async function findNearbyAttractions(
+  type: PlaceSearchType,
   latitude: number,
   longitude: number,
   radius: number = 10000,
@@ -118,7 +121,7 @@ export async function findNearbyAttractions(
     latitude,
     longitude,
     radius,
-    types: getPlaceTypesByCategory('leisure'),
+    type,
     maxResults,
     config,
   });
@@ -128,6 +131,7 @@ export async function findNearbyAttractions(
  * Find transportation options near a location
  */
 export async function findNearbyTransportation(
+  type: PlaceSearchType,
   latitude: number,
   longitude: number,
   radius: number = 5000,
@@ -138,7 +142,7 @@ export async function findNearbyTransportation(
     latitude,
     longitude,
     radius,
-    types: getPlaceTypesByCategory('transportation'),
+    type,
     maxResults,
     config,
   });
@@ -148,6 +152,7 @@ export async function findNearbyTransportation(
  * Find all types of places near a location
  */
 export async function findAllNearbyPlaces(
+  type: PlaceSearchType,
   latitude: number,
   longitude: number,
   radius: number = 5000,
@@ -158,7 +163,7 @@ export async function findAllNearbyPlaces(
     latitude,
     longitude,
     radius,
-    types: getPlaceTypesByCategory('other'),
+    type,
     maxResults,
     config,
   });

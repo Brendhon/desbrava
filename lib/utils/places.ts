@@ -1,7 +1,7 @@
 // Utility functions for places data
 // Handles formatting, validation, and common operations
 
-import { Place, PlaceType } from '../types/places';
+import { Place, PlaceSuggestion } from '../types/places';
 
 /**
  * Format a place's display name
@@ -131,22 +131,6 @@ export function sortPlacesByDistance(
 }
 
 /**
- * Filter places by type
- */
-export function filterPlacesByType(
-  places: Place[],
-  types: PlaceType[]
-): Place[] {
-  if (!types || types.length === 0) return places;
-
-  return places.filter(
-    (place) =>
-      place.types &&
-      place.types.some((type) => types.includes(type as PlaceType))
-  );
-}
-
-/**
  * Get place photo URL (if available)
  */
 export function getPlacePhotoUrl(place: Place): string | null {
@@ -156,6 +140,35 @@ export function getPlacePhotoUrl(place: Place): string | null {
   // Note: In a real implementation, you'd need to use the Places Photo API
   // to get the actual photo URLs from the photo references
   return place.photos[0]?.name || null;
+}
+
+/**
+ * Parse place suggestions to places
+ */
+export function parsePlaceSuggestions(suggestions?: PlaceSuggestion[]): Place[] {
+  // Check if there are suggestions
+  if (!suggestions) return [];
+
+  // Parse the suggestions to places
+  return suggestions.map((suggestion) => ({
+    id: suggestion.placePrediction.placeId,
+    displayName: {
+      text: suggestion.placePrediction.text.text,
+      languageCode: 'pt-BR',
+    },
+    formattedAddress: suggestion.placePrediction.structuredFormat?.secondaryText?.text || '',
+    location: { latitude: 0, longitude: 0 },
+    types: suggestion.placePrediction.types,
+    photos: [],
+    websiteUri: '',
+    rating: 0,
+    userRatingCount: 0,
+    currentOpeningHours: undefined,
+    priceRange: undefined,
+    priceLevel: undefined,
+    businessStatus: undefined,
+    editorialSummary: undefined,
+  }));
 }
 
 // Default fields to retrieve for most use cases

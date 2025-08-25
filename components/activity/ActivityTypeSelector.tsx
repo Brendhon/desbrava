@@ -10,12 +10,13 @@ import {
   type ActivityTypeKey,
 } from '@/lib/types/activity';
 import { SelectOption } from '@/lib/types/form';
+import { PlaceSearchType } from '@/lib/types/places';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 
 export interface ActivityTypeData {
   type: ActivityTypeKey;
-  subType: string;
+  subType?: PlaceSearchType;
 }
 
 interface ActivityTypeSelectorProps {
@@ -31,9 +32,9 @@ export default function ActivityTypeSelector({
   const [selectedType, setSelectedType] = useState<ActivityTypeKey | undefined>(
     defaultData?.type
   );
-  const [selectedSubType, setSelectedSubType] = useState<string | undefined>(
-    defaultData?.subType
-  );
+  const [selectedSubType, setSelectedSubType] = useState<
+    PlaceSearchType | undefined
+  >(defaultData?.subType);
 
   // Handle type select
   const handleTypeSelect = (type: ActivityTypeKey) => {
@@ -106,7 +107,9 @@ export default function ActivityTypeSelector({
               ? ACTIVITY_SUB_TYPE_PLACE_PLACEHOLDERS[selectedType]
               : ''
           }
-          onSelect={(option: SelectOption) => setSelectedSubType(option.value)}
+          onSelect={(option: SelectOption) =>
+            setSelectedSubType(option.value as PlaceSearchType)
+          }
         />
       </div>
 
