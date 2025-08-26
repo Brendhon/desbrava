@@ -10,7 +10,7 @@ export interface BaseSearchOptions {
 }
 
 export interface AutocompleteSearchOptions extends BaseSearchOptions {
-  input: string;
+  query: string;
   sessionToken?: string;
 }
 
@@ -23,7 +23,6 @@ export interface NearbySearchOptions extends BaseSearchOptions {
   latitude: number; // Required for nearby search
   radius: number; // Required for nearby search
   type: PlaceSearchType; // Required for nearby search
-  maxResults?: number;
   rankByDistance?: boolean;
 }
 

@@ -7,7 +7,9 @@ import {
   PlaceTextSearchResponse,
   TextSearchOptions,
 } from '@/lib/types';
+import { DEFAULT_FIELDS } from '@/lib/utils/places';
 import {
+  createFieldMask,
   handleSearchError,
   makePlacesRequest,
   validateLocation,
@@ -46,7 +48,7 @@ export async function searchPlacesByText(
   }
 
   // Add type filtering if specified
-  if (type) request.includedTypes = [type];
+  if (type) request.includedType = type;
 
   // Make the request
   try {
@@ -59,6 +61,9 @@ export async function searchPlacesByText(
     return await makePlacesRequest<PlaceTextSearchResponse>(url, config, {
       method,
       body,
+      headers: {
+        'X-Goog-FieldMask': createFieldMask(DEFAULT_FIELDS, 'places.'),
+      },
     });
   } catch (error) {
     return handleSearchError('text-search', error);

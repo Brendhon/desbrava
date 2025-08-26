@@ -3,6 +3,7 @@ import { LucideIcon } from 'lucide-react';
 import { ReactNode } from 'react';
 import { ActivityTypeKey } from './activity';
 import { Place, PlaceSearchType } from './places';
+import { SearchType } from './search';
 
 // Interface for select options
 export interface SelectOption {
@@ -128,6 +129,7 @@ export interface PlaceSearchSelectProps
   longitude?: number;
   radius?: number;
   maxResults?: number;
+  searchType?: SearchType;
 }
 
 // Base interface for subtype search select components

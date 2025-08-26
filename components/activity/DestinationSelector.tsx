@@ -67,7 +67,7 @@ export default function DestinationSelector({
         activityType={activityType}
         onSearchChange={handleSearchChange}
         selectedPlace={destinations.place}
-        showBorder={false}
+        showSearchTypeButtons={false}
       />
 
       {/* Navigation Buttons */}

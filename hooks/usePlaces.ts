@@ -3,7 +3,10 @@ import {
   generateSessionToken,
   getPlaceDetailsById,
   getPlaceSuggestions,
+  searchNearbyPlaces,
+  searchPlacesByText,
 } from '@/lib/services/places';
+import { SearchType } from '@/lib/types';
 import { Place, PlacesApiError, PlaceSearchType } from '@/lib/types/places';
 import { parsePlaceSuggestions } from '@/lib/utils/places';
 import { useEffect, useState } from 'react';
@@ -27,6 +30,7 @@ interface UsePlacesOptions {
   longitude?: number;
   radius?: number;
   maxResults?: number;
+  searchType?: SearchType;
 }
 
 /**
@@ -43,36 +47,49 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
 
   // Get the activity type
   const activityType = options.activityType?.type;
-  const searchType = options.activityType?.subType;
+  const subType = options.activityType?.subType;
+
+  // Get the search type
+  const searchType = options.searchType || 'searchText';
 
   // Debounce the search term to avoid excessive API calls
   const debouncedTerm = useDebounce(searchTerm, options.debounceDelay || 1000);
 
   // Search places by type
-  const searchByType = async (input: string, type: PlaceSearchType) => {
+  const searchByType = async (
+    input: string,
+    type: PlaceSearchType,
+    searchType: SearchType
+  ) => {
     // Set loading state
     setLoading(true);
     setError(null);
 
     try {
-      // Get place suggestions
-      const response = await getPlaceSuggestions({
-        input,
-        type,
-        latitude: options.latitude,
-        longitude: options.longitude,
+      // Create the request body
+      const reqBody = {
+        latitude: options.latitude ?? 0,
+        longitude: options.longitude ?? 0,
         radius: options.radius || 50000,
-        sessionToken,
-      });
+        type,
+      };
+
+      // Get place suggestions
+      const response =
+        searchType === 'searchText'
+          ? await getPlaceSuggestions({ ...reqBody, sessionToken, query: input })
+          : await searchNearbyPlaces(reqBody);
 
       // If the response is an error, set the error and return
       if (response instanceof PlacesApiError) throw response;
 
       // Parse suggestions to places format
-      const placeSuggestions = parsePlaceSuggestions(response.suggestions);
+      const placesResult = 'suggestions' in response
+        ? parsePlaceSuggestions(response.suggestions)
+        : response.places;
 
       // Set the places to the state
-      setPlaces(placeSuggestions);
+      setPlaces(placesResult);
     } catch (err) {
       handleError(err);
     } finally {
@@ -108,12 +125,12 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
       const term = debouncedTerm?.trim();
 
       // Check if the search term is valid
-      const invalid = !term || term.length < 2 || !searchType;
+      const invalid = !term || term.length < 2 || !subType;
 
       // Clear results if the search term is invalid or the default type is not set
       return invalid
         ? clearResults() // Clear results if the search term is invalid
-        : searchByType(term, searchType); // Search for the default type if it is set
+        : searchByType(term, subType, searchType); // Search for the default type if it is set
     };
 
     // Search for the places
@@ -121,7 +138,7 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
 
     // Clear results if the search term is invalid or the default type is not set
     return () => clearResults();
-  }, [debouncedTerm]);
+  }, [debouncedTerm, searchType]);
 
   return {
     places,

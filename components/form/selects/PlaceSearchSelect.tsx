@@ -1,10 +1,10 @@
 'use client';
 
-import { SearchSelect } from '@/components/form/selects';
+import { SearchSelect, SearchSelectRef } from '@/components/form/selects';
 import { usePlaces } from '@/hooks/usePlaces';
 import { PlaceSearchSelectProps, SelectOption } from '@/lib/types';
 import { Place } from '@/lib/types/places';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 const PlaceItem = ({ place }: { place: Place }) => {
   return <h3>{place.displayName.text}</h3>;
@@ -34,6 +34,7 @@ export default function PlaceSearchSelect({
   onValueChange,
   debounceDelay = 500,
   defaultValue,
+  searchType = 'searchText',
   activityType,
   latitude,
   longitude,
@@ -45,6 +46,11 @@ export default function PlaceSearchSelect({
   const [selectedValue, setSelectedValue] = useState<SelectOption | undefined>(
     defaultValue ? getPlaceSelectOption(defaultValue) : undefined
   );
+  // Internal state for search type
+  const [searchTypeState, setSearchTypeState] = useState(searchType);
+
+  // Ref for SearchSelect to call clear method
+  const searchSelectRef = useRef<SearchSelectRef>(null);
 
   // Places API
   const {
@@ -60,12 +66,14 @@ export default function PlaceSearchSelect({
     longitude,
     radius,
     maxResults,
+    searchType,
   });
 
   // Convert places to SelectOption format
-  const placeOptions: SelectOption[] = useMemo(() => {
-    return places.map((place: Place) => getPlaceSelectOption(place));
-  }, [places]);
+  const placeOptions: SelectOption[] = useMemo(
+    () => places?.map((place: Place) => getPlaceSelectOption(place)) || [],
+    [places]
+  );
 
   // Effect to apply the initial value after loading the places
   useEffect(() => {
@@ -76,6 +84,13 @@ export default function PlaceSearchSelect({
       onValueChange?.(initialValue.value);
     }
   }, [defaultValue]);
+
+  useEffect(() => {
+    if (searchSelectRef.current && searchTypeState !== searchType) {
+      searchSelectRef.current.clear();
+      setSearchTypeState(searchType);
+    }
+  }, [searchType]);
 
   // Handle option selection and search updates
   const handleValueChange = (newValue: SelectOption) => {
@@ -106,6 +121,7 @@ export default function PlaceSearchSelect({
         onInputChange={setSearchTerm}
         onSelect={handleValueChange}
         isLoading={loading}
+        ref={searchSelectRef}
         {...props}
       />
     </div>

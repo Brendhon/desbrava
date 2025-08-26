@@ -40,7 +40,7 @@ export async function searchNearbyPlaces(
 
   // Create the request
   const request: PlaceNearbySearchRequest = {
-    includedTypes: [type],
+    includedType: [type],
     locationRestriction: {
       circle: {
         center: { latitude: latitude!, longitude: longitude! },

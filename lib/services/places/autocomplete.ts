@@ -23,7 +23,7 @@ export async function getPlaceSuggestions(
   options: AutocompleteSearchOptions
 ): Promise<PlaceAutocompleteResponse | PlacesApiError> {
   const {
-    input,
+    query,
     latitude,
     longitude,
     radius = 50000,
@@ -33,10 +33,10 @@ export async function getPlaceSuggestions(
   } = options;
 
   // Validate the input
-  validateSearchQuery(input);
+  validateSearchQuery(query);
 
   // Create the initial request
-  const request: PlaceAutocompleteRequest = { input: input.trim() };
+  const request: PlaceAutocompleteRequest = { input: query.trim() };
 
   // Add location bias if coordinates are provided
   if (!!latitude && !!longitude) {

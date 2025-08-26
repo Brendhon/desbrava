@@ -17,7 +17,7 @@ interface PlaceSelectorProps {
   activityType: ActivityTypeData;
   onSearchChange: (value?: Place) => void;
   selectedPlace?: Place;
-  showBorder?: boolean;
+  showSearchTypeButtons?: boolean;
   defaultData?: DestinationData;
 }
 
@@ -29,7 +29,7 @@ export default function PlaceSelector({
   defaultData,
   onSearchChange,
   selectedPlace,
-  showBorder = false,
+  showSearchTypeButtons = true,
 }: PlaceSelectorProps) {
   // Search state
   const [search, setSearch] = useState('');
@@ -46,7 +46,7 @@ export default function PlaceSelector({
   }, [search]);
 
   return (
-    <div className={cn(styles.container, showBorder && styles.border)}>
+    <div className={styles.container}>
       {/* Header */}
       <div className={styles.header}>
         <h3 className={styles.title}>
@@ -54,7 +54,7 @@ export default function PlaceSelector({
           {title}
         </h3>
 
-        <div className={styles.searchTypeButtons}>
+        <div className={cn(styles.searchTypeButtons, !showSearchTypeButtons && styles.invisible)}>
           <Button size='sm' variant={searchType === 'searchText' ? 'primary' : 'ghost'} onClick={() => setSearchType('searchText')}>
             <span> Texto </span>
           </Button>
@@ -75,6 +75,7 @@ export default function PlaceSelector({
           onValueChange={(value) => setSearch(value)}
           defaultValue={defaultData?.place}
           activityType={activityType}
+          searchType={searchType}
         />
       </div>
 
@@ -97,4 +98,5 @@ const styles = {
   spinner:
     'border-mist-gray h-4 w-4 animate-spin rounded-full border-2 border-t-transparent',
   searchTypeButtons: 'flex gap-1',
+  invisible: 'invisible',
 };

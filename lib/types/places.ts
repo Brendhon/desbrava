@@ -59,7 +59,7 @@ export interface PlaceStructuredFormat {
 }
 
 export interface PlaceNearbySearchRequest {
-  includedTypes: string[];
+  includedType: string[];
   locationRestriction: PlaceLocationRestriction;
   rankPreference?: 'DISTANCE' | 'RELEVANCE';
 }
@@ -71,7 +71,7 @@ export interface PlaceNearbySearchResponse {
 export interface PlaceTextSearchRequest {
   textQuery: string;
   locationBias?: PlaceLocationBias;
-  includedTypes?: string[];
+  includedType?: string;
 }
 
 export interface PlaceTextSearchResponse {

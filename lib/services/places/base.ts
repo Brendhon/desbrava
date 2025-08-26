@@ -71,8 +71,8 @@ export async function makePlacesRequest<T>(
 /**
  * Create a field mask for API requests
  */
-export function createFieldMask(fields: string[]): string {
-  return fields.join(',');
+export function createFieldMask(fields: string[], prefix = ''): string {
+  return fields.map((field) => `${prefix}${field}`).join(',');
 }
 
 /**
