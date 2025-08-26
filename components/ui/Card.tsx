@@ -41,9 +41,9 @@ const styles = {
   base: 'w-full transition-all duration-700 ease-out',
   padding: {
     sm: 'p-4',
-    md: 'p-6',
-    lg: 'p-8',
-    xl: 'p-6 md:p-8',
+    md: 'p-4 md:p-6',
+    lg: 'p-4 md:p-6 lg:p-8',
+    xl: 'p-4 md:p-6 lg:p-8 xl:p-10',
   },
   shadow: {
     none: '',

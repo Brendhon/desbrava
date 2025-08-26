@@ -67,7 +67,7 @@ export default function PlaceSelector({
 }
 
 const styles = {
-  container: 'px-8 w-full',
+  container: 'px-2 sm:px-4 md:px-6 lg:px-8 w-full',
   border: 'border-r-0 border-mist-gray/50 lg:border-r',
   title:
     'mb-4 flex items-center gap-2 text-lg font-semibold',

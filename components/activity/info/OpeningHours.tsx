@@ -21,8 +21,9 @@ function Weekday({ weekday }: { weekday: string }) {
 }
 
 const Description = ({ place }: { place: Place }) => {
-  return <div className={styles.hoursText}>
-    {place.currentOpeningHours?.openNow ? 'Aberto' : 'Fechado'}
+  return <div className={styles.hoursContainer}>
+    <Clock className={styles.hoursIcon} />
+    <span className={styles.hoursText}>{place.currentOpeningHours?.openNow ? 'Aberto' : 'Fechado'}</span>
   </div>
 };
 
@@ -30,8 +31,7 @@ export default function OpeningHours({ place }: OpeningHoursProps) {
   return (
     place.currentOpeningHours && (
       <CardPlaceInfo
-        title="Horário de funcionamento"
-        Icon={Clock}
+        title="Horário local de funcionamento"
         description={<Description place={place} />}>
         <div className={styles.hoursSection}>
 
@@ -49,10 +49,11 @@ export default function OpeningHours({ place }: OpeningHoursProps) {
 
 
 const styles = {
-  // Base 
+  // Base
+  hoursContainer: 'flex items-center gap-2',
   hoursSection: 'flex flex-col items-start gap-2',
   hoursText: 'text-mist-gray text-sm',
-
+  hoursIcon: 'w-4 h-4 text-royal-purple',
   // Periods
   periods: 'pt-2 flex gap-4 flex-wrap w-full justify-between',
 

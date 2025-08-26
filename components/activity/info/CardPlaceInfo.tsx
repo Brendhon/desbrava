@@ -6,7 +6,7 @@ interface CardPlaceInfoProps {
   children: ReactNode;
   title: string;
   description?: ReactNode;
-  Icon: LucideIcon;
+  Icon?: LucideIcon;
 }
 
 export default function CardPlaceInfo({ children, title, description, Icon }: CardPlaceInfoProps) {
@@ -17,7 +17,7 @@ export default function CardPlaceInfo({ children, title, description, Icon }: Ca
       <div className={styles.header}>
         {/* Title */}
         <span className={styles.titleContainer}>
-          <Icon className={styles.icon} />
+          {Icon && <Icon className={styles.icon} />}
           <h4 className={styles.title}>{title}</h4>
         </span>
 
@@ -33,10 +33,10 @@ export default function CardPlaceInfo({ children, title, description, Icon }: Ca
 }
 
 const styles = {
-  container: 'border-royal-purple/30 rounded-lg border p-4 mt-4 space-y-4',
+  container: 'bg-royal-purple/20 border-royal-purple/30 rounded-lg border p-4 mt-4 space-y-4',
   header: 'flex flex-col sm:flex-row sm:items-center gap-2 justify-between',
   title: 'text-parchment-white font-semibold text-lg',
-  description: 'text-parchment-white text-sm',
+  description: 'text-mist-gray text-sm',
   icon: "w-6 h-6 text-royal-purple",
   titleContainer: 'flex items-center gap-2'
 }
