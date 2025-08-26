@@ -26,3 +26,6 @@ export interface NearbySearchOptions extends BaseSearchOptions {
   maxResults?: number;
   rankByDistance?: boolean;
 }
+
+
+export type SearchType = 'searchText' | 'searchNearby' | 'street';

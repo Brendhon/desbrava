@@ -1,5 +1,4 @@
 import {
-  AccommodationInfo,
   BasePlaceInfo,
   ContactInfo,
   EditorialSummary,
@@ -31,8 +30,6 @@ export default function PlaceInfo({ place, type }: PlaceInfoProps) {
   switch (type) {
     case 'food':
       return <FoodPlaceInfo place={place} />;
-    case 'accommodation':
-      return <AccommodationPlaceInfo place={place} />;
     case 'leisure':
       return <LeisurePlaceInfo place={place} />;
     default:
@@ -48,6 +45,7 @@ function BaseInfo({ place }: { place: Place }) {
       <BasePlaceInfo place={place} />
       <PriceInfo place={place} />
       <ContactInfo place={place} />
+      <OpeningHours place={place} />
     </>
   );
 }
@@ -57,19 +55,8 @@ function FoodPlaceInfo({ place }: { place: Place }) {
   return (
     <>
       <BaseInfo place={place} />
-      <OpeningHours place={place} />
       <FoodServices place={place} />
       <FoodOptions place={place} />
-    </>
-  );
-}
-
-// Accommodation-specific Place Info
-function AccommodationPlaceInfo({ place }: { place: Place }) {
-  return (
-    <>
-      <BaseInfo place={place} />
-      <AccommodationInfo place={place} />
     </>
   );
 }

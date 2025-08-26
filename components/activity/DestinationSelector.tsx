@@ -6,10 +6,11 @@ import { Place } from '@/lib/types/places';
 import { Fragment, useCallback, useState } from 'react';
 import { ActivityTypeData } from './ActivityTypeSelector';
 import { PageHeader, PlaceSelector } from './destination';
+import { SearchType } from '@/lib/types';
 
 export interface DestinationData {
   place?: Place;
-  searchType: 'searchText' | 'searchNearby' | 'street';
+  searchType: SearchType;
 }
 
 interface DestinationSelectorProps {

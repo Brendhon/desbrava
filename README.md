@@ -55,6 +55,7 @@ Como **PWA (Progressive Web App)**, o Desbrava pode ser instalado em seu disposi
 - **Sugestões Inteligentes:** Recomendações de restaurantes e pontos turísticos com base na sua localização.
 - **Funcionalidades Avançadas:** Paginação, filtros, exportação de roteiros, compartilhamento e notificações push.
 - **Melhorias de UX/UI:** Tema claro/escuro e suporte a múltiplos idiomas.
+- **Places Photo API:** Exibição de fotos dos locais.
 
 ---
 
