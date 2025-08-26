@@ -6,7 +6,7 @@ import { Place } from '@/lib/types/places';
 import { Fragment, useCallback, useState } from 'react';
 import { ActivityTypeData } from './ActivityTypeSelector';
 import { PageHeader, PlaceSelector } from './destination';
-import { SearchType } from '@/lib/types';
+import { Activity, SearchType } from '@/lib/types';
 
 export interface DestinationData {
   place?: Place;
@@ -31,6 +31,9 @@ export default function DestinationSelector({
       searchType: 'searchText',
     }
   );
+
+  // Last activity
+  const [lastActivity, setLastActivity] = useState<Activity | null>(null);
 
   // Hooks
   const { getSubtypeLabel } = usePlaceTypes();
@@ -67,7 +70,7 @@ export default function DestinationSelector({
         activityType={activityType}
         onSearchChange={handleSearchChange}
         selectedPlace={destinations.place}
-        showSearchTypeButtons={false}
+        showSearchTypeButtons={!!lastActivity}
       />
 
       {/* Navigation Buttons */}
