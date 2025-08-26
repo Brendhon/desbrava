@@ -35,14 +35,17 @@ export default function DestinationSelector({
   const { getSubtypeLabel } = usePlaceTypes();
 
   // Handle next step
-  const handleNext = useCallback(() => onNext(destinations), [destinations, onNext]);
+  const handleNext = useCallback(
+    () => onNext(destinations),
+    [destinations, onNext]
+  );
 
   // Handle search change
   const handleSearchChange = useCallback((place?: Place) => {
     setDestinations((prev) => ({ ...prev, place }));
   }, []);
 
-  // Form placeholder 
+  // Form placeholder
   const placeholder = useCallback(() => {
     const localName = getSubtypeLabel(activityType.type, activityType.subType);
     return `Digite o nome do(a) ${localName.toLowerCase()} desejado`;

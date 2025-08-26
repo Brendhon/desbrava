@@ -1,32 +1,27 @@
-import { CardPlaceInfo } from ".";
-import { Place } from "@/lib/types/places";
-import { UtensilsCrossed } from "lucide-react";
+import { Place } from '@/lib/types/places';
+import { CardPlaceInfo } from '.';
 
 interface FoodServicesProps {
   place: Place;
 }
 
 const Description = ({ place }: { place: Place }) => {
-  const hasServices = place.takeout || place.delivery || place.dineIn || place.reservable;
-  
+  const hasServices =
+    place.takeout || place.delivery || place.dineIn || place.reservable;
+
   if (!hasServices) return null;
-  
-  return (
-    <div className={styles.servicesText}>
-      Serviços disponíveis
-    </div>
-  );
+
+  return <div className={styles.servicesText}>Serviços disponíveis</div>;
 };
 
 export default function FoodServices({ place }: FoodServicesProps) {
-  const hasServices = place.takeout || place.delivery || place.dineIn || place.reservable;
-  
+  const hasServices =
+    place.takeout || place.delivery || place.dineIn || place.reservable;
+
   if (!hasServices) return null;
 
   return (
-    <CardPlaceInfo
-      title="Serviços"
-      description={<Description place={place} />}>
+    <CardPlaceInfo title="Serviços" description={<Description place={place} />}>
       <div className={styles.servicesSection}>
         <div className={styles.serviceGrid}>
           {place.takeout && (
@@ -58,9 +53,10 @@ export default function FoodServices({ place }: FoodServicesProps) {
 const styles = {
   servicesSection: 'flex flex-col items-start gap-2',
   servicesText: 'text-mist-gray text-sm',
-  
+
   serviceGrid: 'flex flex-wrap gap-2 w-full',
   serviceItem: 'flex items-center gap-2 text-mist-gray text-xs',
   serviceIcon: 'w-3 h-3 text-royal-purple',
-  serviceText: 'bg-royal-purple/80 text-parchment-white text-xs px-2 py-1 rounded-full',
+  serviceText:
+    'bg-royal-purple/80 text-parchment-white text-xs px-2 py-1 rounded-full',
 };

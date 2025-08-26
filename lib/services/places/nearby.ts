@@ -5,7 +5,7 @@ import {
   NearbySearchOptions,
   PlaceNearbySearchRequest,
   PlaceNearbySearchResponse,
-  PlacesApiError
+  PlacesApiError,
 } from '@/lib/types';
 import {
   handleSearchError,
@@ -58,7 +58,10 @@ export async function searchNearbyPlaces(
     const method = 'POST';
 
     // Make the request
-    return await makePlacesRequest<PlaceNearbySearchResponse>(url, config, { method, body });
+    return await makePlacesRequest<PlaceNearbySearchResponse>(url, config, {
+      method,
+      body,
+    });
   } catch (error) {
     return handleSearchError('nearby-search', error);
   }

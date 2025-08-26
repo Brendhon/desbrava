@@ -9,10 +9,21 @@ interface CardPlaceInfoProps {
   Icon?: LucideIcon;
 }
 
-export default function CardPlaceInfo({ children, title, description, Icon }: CardPlaceInfoProps) {
+export default function CardPlaceInfo({
+  children,
+  title,
+  description,
+  Icon,
+}: CardPlaceInfoProps) {
   return (
-    <Card shadow="none" padding='sm' background="royal-purple" maxWidth="none" border={false} className={styles.container}>
-
+    <Card
+      shadow="none"
+      padding="sm"
+      background="royal-purple"
+      maxWidth="none"
+      border={false}
+      className={styles.container}
+    >
       {/* Header */}
       <div className={styles.header}>
         {/* Title */}
@@ -27,16 +38,16 @@ export default function CardPlaceInfo({ children, title, description, Icon }: Ca
 
       {/* Children */}
       {children}
-
     </Card>
   );
 }
 
 const styles = {
-  container: 'bg-royal-purple/20 border-royal-purple/30 rounded-lg border p-4 mt-4 space-y-4',
+  container:
+    'bg-royal-purple/20 border-royal-purple/30 rounded-lg border p-4 mt-4 space-y-4',
   header: 'flex flex-col sm:flex-row sm:items-center gap-2 justify-between',
   title: 'text-parchment-white font-semibold text-lg',
   description: 'text-mist-gray text-sm',
-  icon: "w-6 h-6 text-royal-purple",
-  titleContainer: 'flex items-center gap-2'
-}
+  icon: 'w-6 h-6 text-royal-purple',
+  titleContainer: 'flex items-center gap-2',
+};

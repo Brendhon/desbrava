@@ -125,7 +125,10 @@ export function validatePlaceType(type: PlaceSearchType): void {
 /**
  * Handle error
  */
-export const handleSearchError = (searchType: string, error: unknown): PlacesApiError => {
+export const handleSearchError = (
+  searchType: string,
+  error: unknown
+): PlacesApiError => {
   // If the error is an instance of PlacesApiError, throw it
   if (error instanceof PlacesApiError) {
     throw error;

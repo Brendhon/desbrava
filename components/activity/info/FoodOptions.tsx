@@ -1,34 +1,42 @@
-import { CardPlaceInfo } from ".";
-import { Place } from "@/lib/types/places";
-import { UtensilsCrossed } from "lucide-react";
+import { Place } from '@/lib/types/places';
+import { CardPlaceInfo } from '.';
 
 interface FoodOptionsProps {
   place: Place;
 }
 
 const Description = ({ place }: { place: Place }) => {
-  const hasOptions = place.servesBreakfast || place.servesLunch || place.servesDinner || 
-                    place.servesVegetarianFood || place.servesBeer || place.servesWine;
-  
+  const hasOptions =
+    place.servesBreakfast ||
+    place.servesLunch ||
+    place.servesDinner ||
+    place.servesVegetarianFood ||
+    place.servesBeer ||
+    place.servesWine;
+
   if (!hasOptions) return null;
-  
+
   return (
-    <div className={styles.optionsText}>
-      Opções de alimentação disponíveis
-    </div>
+    <div className={styles.optionsText}>Opções de alimentação disponíveis</div>
   );
 };
 
 export default function FoodOptions({ place }: FoodOptionsProps) {
-  const hasOptions = place.servesBreakfast || place.servesLunch || place.servesDinner || 
-                    place.servesVegetarianFood || place.servesBeer || place.servesWine;
-  
+  const hasOptions =
+    place.servesBreakfast ||
+    place.servesLunch ||
+    place.servesDinner ||
+    place.servesVegetarianFood ||
+    place.servesBeer ||
+    place.servesWine;
+
   if (!hasOptions) return null;
 
   return (
     <CardPlaceInfo
       title="Opções de Alimentação"
-      description={<Description place={place} />}>
+      description={<Description place={place} />}
+    >
       <div className={styles.optionsSection}>
         <div className={styles.optionGrid}>
           {place.servesBreakfast && (
@@ -46,9 +54,7 @@ export default function FoodOptions({ place }: FoodOptionsProps) {
           {place.servesBeer && (
             <span className={styles.optionTag}>Cerveja</span>
           )}
-          {place.servesWine && (
-            <span className={styles.optionTag}>Vinho</span>
-          )}
+          {place.servesWine && <span className={styles.optionTag}>Vinho</span>}
         </div>
       </div>
     </CardPlaceInfo>
@@ -58,7 +64,8 @@ export default function FoodOptions({ place }: FoodOptionsProps) {
 const styles = {
   optionsSection: 'flex flex-col items-start gap-2',
   optionsText: 'text-mist-gray text-sm',
-  
+
   optionGrid: 'flex flex-wrap gap-2 w-full',
-  optionTag: 'bg-royal-purple/80 text-parchment-white text-xs px-2 py-1 rounded-full',
+  optionTag:
+    'bg-royal-purple/80 text-parchment-white text-xs px-2 py-1 rounded-full',
 };

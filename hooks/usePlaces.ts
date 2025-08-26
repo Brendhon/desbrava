@@ -35,9 +35,7 @@ interface UsePlacesOptions {
  * @returns Object with places data, loading state, error state, and search controls
  */
 export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
-  const [searchTerm, setSearchTerm] = useState(
-    options.initialSearchTerm || ''
-  );
+  const [searchTerm, setSearchTerm] = useState(options.initialSearchTerm || '');
   const [places, setPlaces] = useState<Place[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -84,7 +82,8 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
 
   // Handle error
   const handleError = (err: unknown) => {
-    const errorMessage = err instanceof Error ? err.message : 'Failed to search places';
+    const errorMessage =
+      err instanceof Error ? err.message : 'Failed to search places';
     setError(errorMessage);
     setPlaces([]);
     console.error(err);

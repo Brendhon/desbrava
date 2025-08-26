@@ -21,7 +21,7 @@ export interface TextSearchOptions extends BaseSearchOptions {
 
 export interface NearbySearchOptions extends BaseSearchOptions {
   latitude: number; // Required for nearby search
-  radius: number;   // Required for nearby search
+  radius: number; // Required for nearby search
   type: PlaceSearchType; // Required for nearby search
   maxResults?: number;
   rankByDistance?: boolean;

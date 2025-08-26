@@ -7,7 +7,7 @@ import {
   PlaceDetailsOptions,
   PlaceDetailsRequest,
   PlacesApiConfig,
-  PlacesApiError
+  PlacesApiError,
 } from '@/lib/types';
 import {
   ATTRACTION_FIELDS,
@@ -104,7 +104,11 @@ export async function getRestaurantDetails(
   placeId: string,
   config?: PlacesApiConfig
 ): Promise<Place> {
-  return makePlaceDetailsRequest({ placeId, fields: RESTAURANT_FIELDS, config });
+  return makePlaceDetailsRequest({
+    placeId,
+    fields: RESTAURANT_FIELDS,
+    config,
+  });
 }
 
 /**
@@ -114,7 +118,11 @@ export async function getAttractionDetails(
   placeId: string,
   config?: PlacesApiConfig
 ): Promise<Place> {
-  return makePlaceDetailsRequest({ placeId, fields: ATTRACTION_FIELDS, config });
+  return makePlaceDetailsRequest({
+    placeId,
+    fields: ATTRACTION_FIELDS,
+    config,
+  });
 }
 
 /**

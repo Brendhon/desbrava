@@ -8,7 +8,13 @@ import {
   PlacesApiError,
 } from '@/lib/types';
 import { generateRandomId } from '@/lib/utils';
-import { handleSearchError, makePlacesRequest, validateLocation, validateRadius, validateSearchQuery } from './base';
+import {
+  handleSearchError,
+  makePlacesRequest,
+  validateLocation,
+  validateRadius,
+  validateSearchQuery,
+} from './base';
 
 /**
  * Get place suggestions for autocomplete
@@ -60,7 +66,10 @@ export async function getPlaceSuggestions(
     const method = 'POST';
 
     // Make the request
-    return await makePlacesRequest<PlaceAutocompleteResponse>(url, config, { method, body });
+    return await makePlacesRequest<PlaceAutocompleteResponse>(url, config, {
+      method,
+      body,
+    });
   } catch (error) {
     return handleSearchError('autocomplete', error);
   }

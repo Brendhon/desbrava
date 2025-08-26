@@ -94,11 +94,13 @@ export const ACTIVITY_TYPE_INFO: Record<ActivityTypeKey, string> = {
   food: 'Selecione esta categoria para escolher entre restaurantes, cafés, padarias, supermercados e outros estabelecimentos de alimentação.',
   leisure:
     'Selecione esta categoria para escolher entre atrações turísticas, museus, parques, centros esportivos, shoppings e outros locais de lazer.',
-  other: 'Selecione esta categoria para escolher entre serviços, comércios, instituições e outros locais que não se encaixam nas categorias acima.',
+  other:
+    'Selecione esta categoria para escolher entre serviços, comércios, instituições e outros locais que não se encaixam nas categorias acima.',
 };
 
 export const ACTIVITY_PLACE_PLACEHOLDERS: Record<ActivityTypeKey, string> = {
-  accommodation: '🏨 Digite o nome do hotel, pousada, resort, hostel, acomodação ou outro local de acomodação',
+  accommodation:
+    '🏨 Digite o nome do hotel, pousada, resort, hostel, acomodação ou outro local de acomodação',
   transportation:
     '🚗 Digite o nome do aeroporto, estação, locadora de carros, posto de gasolina, serviço de transporte ou outro local de transporte',
   food: '🍽️ Digite o nome do restaurante, café, padaria, supermercado, mercado ou estabelecimento de alimentação',
@@ -115,17 +117,17 @@ export type ActivityStatus =
   | 'completed'
   | 'cancelled';
 
-  export const ACTIVITY_SUB_TYPE_PLACE_PLACEHOLDERS: Record<ActivityTypeKey, string> = {
-    accommodation: 'Escolha o tipo de acomodação que deseja buscar...',
-    transportation:
-      'Escolha o tipo de serviço de transporte que deseja buscar...',
-    food: 'Escolha o tipo de estabelecimento de alimentação que deseja buscar...',
-    leisure:
-      'Escolha o tipo de atração ou local de lazer que deseja buscar...',
-    other:
-      'Escolha o tipo de serviço ou estabelecimento que deseja buscar...',
-  };
-  
+export const ACTIVITY_SUB_TYPE_PLACE_PLACEHOLDERS: Record<
+  ActivityTypeKey,
+  string
+> = {
+  accommodation: 'Escolha o tipo de acomodação que deseja buscar...',
+  transportation:
+    'Escolha o tipo de serviço de transporte que deseja buscar...',
+  food: 'Escolha o tipo de estabelecimento de alimentação que deseja buscar...',
+  leisure: 'Escolha o tipo de atração ou local de lazer que deseja buscar...',
+  other: 'Escolha o tipo de serviço ou estabelecimento que deseja buscar...',
+};
 
 export type ActivityPriority = 'low' | 'medium' | 'high' | 'critical';
 

@@ -1,6 +1,5 @@
-import { CardPlaceInfo } from ".";
-import { Place } from "@/lib/types/places";
-import { FileText } from "lucide-react";
+import { Place } from '@/lib/types/places';
+import { CardPlaceInfo } from '.';
 
 interface EditorialSummaryProps {
   place: Place;
@@ -8,12 +7,8 @@ interface EditorialSummaryProps {
 
 const Description = ({ place }: { place: Place }) => {
   if (!place.editorialSummary) return null;
-  
-  return (
-    <div className={styles.summaryText}>
-      Descrição do local
-    </div>
-  );
+
+  return <div className={styles.summaryText}>Descrição do local</div>;
 };
 
 export default function EditorialSummary({ place }: EditorialSummaryProps) {
@@ -22,7 +17,8 @@ export default function EditorialSummary({ place }: EditorialSummaryProps) {
   return (
     <CardPlaceInfo
       title="Descrição"
-      description={<Description place={place} />}>
+      description={<Description place={place} />}
+    >
       <div className={styles.summarySection}>
         <p className={styles.summaryContent}>{place.editorialSummary.text}</p>
       </div>
@@ -33,6 +29,6 @@ export default function EditorialSummary({ place }: EditorialSummaryProps) {
 const styles = {
   summarySection: 'flex flex-col items-start gap-2',
   summaryText: 'text-mist-gray text-sm',
-  
+
   summaryContent: 'text-mist-gray text-sm leading-relaxed',
 };

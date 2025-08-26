@@ -56,7 +56,10 @@ export async function searchPlacesByText(
     const method = 'POST';
 
     // Make the request
-    return await makePlacesRequest<PlaceTextSearchResponse>(url, config, { method, body });
+    return await makePlacesRequest<PlaceTextSearchResponse>(url, config, {
+      method,
+      body,
+    });
   } catch (error) {
     return handleSearchError('text-search', error);
   }

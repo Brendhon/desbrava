@@ -61,7 +61,9 @@ export default function PlaceSelector({
       </div>
 
       {/* Place info */}
-      {selectedPlace && <PlaceInfo type={activityType.type} place={selectedPlace} />}
+      {selectedPlace && (
+        <PlaceInfo type={activityType.type} place={selectedPlace} />
+      )}
     </div>
   );
 }
@@ -69,8 +71,7 @@ export default function PlaceSelector({
 const styles = {
   container: 'px-2 sm:px-4 md:px-6 lg:px-8 w-full',
   border: 'border-r-0 border-mist-gray/50 lg:border-r',
-  title:
-    'mb-4 flex items-center gap-2 text-lg font-semibold',
+  title: 'mb-4 flex items-center gap-2 text-lg font-semibold',
   icon: 'text-royal-purple h-5 w-5',
   searchContainer: 'space-y-3',
   loadingContainer: 'text-mist-gray flex items-center gap-2 text-sm',

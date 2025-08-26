@@ -6,7 +6,7 @@ import {
   FoodOptions,
   FoodServices,
   OpeningHours,
-  PriceInfo
+  PriceInfo,
 } from '@/components/activity/info';
 import { ActivityTypeKey } from '@/lib/types';
 import { Place } from '@/lib/types/places';
@@ -18,11 +18,11 @@ interface PlaceInfoProps {
 
 /**
  * PlaceInfo Component
- * 
+ *
  * Displays detailed information about a place based on the activity type.
  * Renders different information sections depending on whether it's a restaurant,
  * hotel, transportation hub, leisure attraction, or other type of place.
- * 
+ *
  * @param place - The place object containing all place information
  * @param type - The activity type to determine which specific info to display
  */

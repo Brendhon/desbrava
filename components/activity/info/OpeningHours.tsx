@@ -1,16 +1,16 @@
-import { CardPlaceInfo } from ".";
-import { Place } from "@/lib/types/places";
-import { Clock } from "lucide-react";
+import { CardPlaceInfo } from '.';
+import { Place } from '@/lib/types/places';
+import { Clock } from 'lucide-react';
 
 interface OpeningHoursProps {
   place: Place;
 }
 
 function Weekday({ weekday }: { weekday: string }) {
-  let [weekdayName, weekdayTime] = weekday.split(' ');
+  const [weekdayFullName, weekdayTime] = weekday.split(' ');
 
   // Remove the last character of the weekdayName
-  weekdayName = weekdayName.slice(0, -1);
+  const weekdayName = weekdayFullName.slice(0, -1);
 
   return (
     <div className={styles.weekday}>
@@ -21,10 +21,14 @@ function Weekday({ weekday }: { weekday: string }) {
 }
 
 const Description = ({ place }: { place: Place }) => {
-  return <div className={styles.hoursContainer}>
-    <Clock className={styles.hoursIcon} />
-    <span className={styles.hoursText}>{place.currentOpeningHours?.openNow ? 'Aberto' : 'Fechado'}</span>
-  </div>
+  return (
+    <div className={styles.hoursContainer}>
+      <Clock className={styles.hoursIcon} />
+      <span className={styles.hoursText}>
+        {place.currentOpeningHours?.openNow ? 'Aberto' : 'Fechado'}
+      </span>
+    </div>
+  );
 };
 
 export default function OpeningHours({ place }: OpeningHoursProps) {
@@ -32,9 +36,9 @@ export default function OpeningHours({ place }: OpeningHoursProps) {
     place.currentOpeningHours && (
       <CardPlaceInfo
         title="Horário local de funcionamento"
-        description={<Description place={place} />}>
+        description={<Description place={place} />}
+      >
         <div className={styles.hoursSection}>
-
           {/* Periods */}
           <div className={styles.periods}>
             {place.currentOpeningHours.weekdayDescriptions.map((weekday) => (
@@ -46,7 +50,6 @@ export default function OpeningHours({ place }: OpeningHoursProps) {
     )
   );
 }
-
 
 const styles = {
   // Base
@@ -66,4 +69,4 @@ const styles = {
   nextOpenTime: 'flex items-center gap-2',
   nextOpenTimeIcon: 'w-4 h-4 text-royal-purple',
   nextOpenTimeText: 'text-mist-gray text-sm',
-}
+};

@@ -7,7 +7,7 @@ import { Place } from '@/lib/types/places';
 import { useEffect, useMemo, useState } from 'react';
 
 const PlaceItem = ({ place }: { place: Place }) => {
-  return <h3>{place.displayName.text}</h3>
+  return <h3>{place.displayName.text}</h3>;
 };
 
 const getPlaceSelectOption = (place: Place): SelectOption => {

@@ -145,7 +145,9 @@ export function getPlacePhotoUrl(place: Place): string | null {
 /**
  * Parse place suggestions to places
  */
-export function parsePlaceSuggestions(suggestions?: PlaceSuggestion[]): Place[] {
+export function parsePlaceSuggestions(
+  suggestions?: PlaceSuggestion[]
+): Place[] {
   // Check if there are suggestions
   if (!suggestions) return [];
 
@@ -156,7 +158,8 @@ export function parsePlaceSuggestions(suggestions?: PlaceSuggestion[]): Place[] 
       text: suggestion.placePrediction.text.text,
       languageCode: 'pt-BR',
     },
-    formattedAddress: suggestion.placePrediction.structuredFormat?.secondaryText?.text || '',
+    formattedAddress:
+      suggestion.placePrediction.structuredFormat?.secondaryText?.text || '',
     location: { latitude: 0, longitude: 0 },
     types: suggestion.placePrediction.types,
     photos: [],
@@ -223,7 +226,7 @@ export const RESTAURANT_FIELDS = [
   'websiteUri',
   'types',
   'priceLevel',
-  'priceRange', 
+  'priceRange',
   'businessStatus',
   'editorialSummary',
   'utcOffsetMinutes',

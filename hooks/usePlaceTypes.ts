@@ -38,7 +38,9 @@ export function usePlaceTypes(): UsePlaceTypesReturn {
   ): string => {
     if (!type || !subType) return '';
     const placeType = getPlaceTypes()[type];
-    const subTypeLabel = placeType.find((option) => option.value === subType)?.label;
+    const subTypeLabel = placeType.find(
+      (option) => option.value === subType
+    )?.label;
     return subTypeLabel || '';
   };
 

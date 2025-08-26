@@ -55,7 +55,8 @@ export default function CreateActivityPage() {
 
   const handleTypeNext = (newValue: ActivityTypeData) => {
     // Check if typeData is different from the new value
-    const isDiff = typeData.type !== newValue.type || typeData.subType !== newValue.subType;
+    const isDiff =
+      typeData.type !== newValue.type || typeData.subType !== newValue.subType;
 
     // If it is, clear future steps
     if (isDiff) {

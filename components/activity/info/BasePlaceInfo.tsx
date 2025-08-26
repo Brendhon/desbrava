@@ -1,6 +1,6 @@
-import { CardPlaceInfo } from ".";
-import { Place } from "@/lib/types/places";
-import { MapPin, Star } from "lucide-react";
+import { CardPlaceInfo } from '.';
+import { Place } from '@/lib/types/places';
+import { MapPin, Star } from 'lucide-react';
 
 interface BasePlaceInfoProps {
   place: Place;
@@ -27,7 +27,8 @@ export default function BasePlaceInfo({ place }: BasePlaceInfoProps) {
   return (
     <CardPlaceInfo
       title={place.displayName.text}
-      description={<Description place={place} />}>
+      description={<Description place={place} />}
+    >
       <div className={styles.locationSection}>
         <div className={styles.addressItem}>
           <MapPin className={styles.addressIcon} />

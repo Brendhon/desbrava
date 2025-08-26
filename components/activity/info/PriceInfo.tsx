@@ -1,6 +1,6 @@
-import { CardPlaceInfo } from ".";
-import { Place } from "@/lib/types/places";
-import { DollarSign, DollarSignIcon } from "lucide-react";
+import { CardPlaceInfo } from '.';
+import { Place } from '@/lib/types/places';
+import { DollarSign, DollarSignIcon } from 'lucide-react';
 
 interface PriceInfoProps {
   place: Place;
@@ -8,25 +8,24 @@ interface PriceInfoProps {
 
 const Description = ({ place }: { place: Place }) => {
   const hasPriceInfo = place.priceLevel || place.priceRange;
-  
+
   if (!hasPriceInfo) return null;
-  
+
   return (
-    <div className={styles.priceText}>
-      Informações de preço disponíveis
-    </div>
+    <div className={styles.priceText}>Informações de preço disponíveis</div>
   );
 };
 
 export default function PriceInfo({ place }: PriceInfoProps) {
   const hasPriceInfo = place.priceLevel || place.priceRange;
-  
+
   if (!hasPriceInfo) return null;
 
   return (
     <CardPlaceInfo
       title="Informações de Preço"
-      description={<Description place={place} />}>
+      description={<Description place={place} />}
+    >
       <div className={styles.priceSection}>
         {place.priceLevel && (
           <div className={styles.priceItem}>
@@ -46,7 +45,9 @@ export default function PriceInfo({ place }: PriceInfoProps) {
             <div className={styles.priceDetails}>
               <span className={styles.priceLabel}>Faixa de Preço:</span>
               <span className={styles.priceValue}>
-                {place.priceRange.startPrice.units} - {place.priceRange.endPrice.units} {place.priceRange.startPrice.currencyCode}
+                {place.priceRange.startPrice.units} -{' '}
+                {place.priceRange.endPrice.units}{' '}
+                {place.priceRange.startPrice.currencyCode}
               </span>
             </div>
           </div>
@@ -59,11 +60,11 @@ export default function PriceInfo({ place }: PriceInfoProps) {
 // Utility functions
 function formatPriceLevel(priceLevel: string): string {
   const priceMap = {
-    'FREE': 'Gratuito',
-    'PRICE_LEVEL_INEXPENSIVE': 'Barato',
-    'PRICE_LEVEL_MODERATE': 'Moderado',
-    'PRICE_LEVEL_EXPENSIVE': 'Caro',
-    'PRICE_LEVEL_VERY_EXPENSIVE': 'Muito caro'
+    FREE: 'Gratuito',
+    PRICE_LEVEL_INEXPENSIVE: 'Barato',
+    PRICE_LEVEL_MODERATE: 'Moderado',
+    PRICE_LEVEL_EXPENSIVE: 'Caro',
+    PRICE_LEVEL_VERY_EXPENSIVE: 'Muito caro',
   };
   return priceMap[priceLevel as keyof typeof priceMap] || priceLevel;
 }
@@ -71,7 +72,7 @@ function formatPriceLevel(priceLevel: string): string {
 const styles = {
   priceSection: 'flex flex-col items-start gap-3',
   priceText: 'text-mist-gray text-sm',
-  
+
   priceItem: 'flex items-start gap-3 w-full',
   priceIcon: 'w-4 h-4 text-royal-purple mt-0.5 flex-shrink-0',
   priceDetails: 'flex flex-col gap-1',
