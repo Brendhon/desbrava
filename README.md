@@ -25,7 +25,6 @@
   - [3. Configuração do Google OAuth](#3-configuração-do-google-oauth)
   - [4. Executando a Aplicação](#4-executando-a-aplicação)
 - [🔐 Autenticação](#-autenticação)
-- [🚀 Funcionalidades PWA](#-funcionalidades-pwa)
 - [🤝 Como Contribuir](#-como-contribuir)
 - [📝 Licença](#-licença)
 - [👥 Autor](#-autor)
@@ -36,8 +35,6 @@
 
 O **Desbrava** simplifica o planejamento de viagens, oferecendo uma interface centralizada e intuitiva para organizar roteiros. O objetivo é permitir que o usuário crie viagens, adicione pontos de referência e construa seu itinerário com atividades manuais e sugestões inteligentes de locais próximos.
 
-Como **PWA (Progressive Web App)**, o Desbrava pode ser instalado em seu dispositivo, oferecendo funcionalidades offline e uma experiência de aplicativo nativo.
-
 ---
 
 ## ✨ Features
@@ -46,16 +43,16 @@ Como **PWA (Progressive Web App)**, o Desbrava pode ser instalado em seu disposi
 
 - **Autenticação Segura com Google:** Login rápido e seguro utilizando NextAuth.js.
 - **Sistema de Formulários:** Componentes reutilizáveis com validação via React Hook Form e Zod.
-- **Progressive Web App (PWA):** Aplicação instalável com funcionalidades offline.
-
-### Planejadas
-
 - **Criação e Gerenciamento de Viagens:** Dashboard pessoal para visualizar e organizar todas as suas viagens.
 - **Planejamento de Roteiro:** Adição de pontos de referência (hotéis, etc.) e atividades manuais.
 - **Sugestões Inteligentes:** Recomendações de restaurantes e pontos turísticos com base na sua localização.
-- **Funcionalidades Avançadas:** Paginação, filtros, exportação de roteiros, compartilhamento e notificações push.
+
+### Planejadas
+
+- **Progressive Web App (PWA):** Aplicação instalável com funcionalidades offline.
 - **Melhorias de UX/UI:** Tema claro/escuro e suporte a múltiplos idiomas.
 - **Places Photo API:** Exibição de fotos dos locais.
+- **Funcionalidades Avançadas:** Paginação, filtros, exportação de roteiros, compartilhamento e notificações push.
 
 ---
 
@@ -68,7 +65,6 @@ Como **PWA (Progressive Web App)**, o Desbrava pode ser instalado em seu disposi
 - **Autenticação:** NextAuth.js
 - **APIs:** Google Places API
 - **Formulários:** React Hook Form com Zod para validação
-- **PWA:** Service Workers e Web App Manifest
 
 ---
 
@@ -148,18 +144,6 @@ O sistema utiliza NextAuth.js com Google OAuth para login seguro:
 1. **Página Inicial** → Botão "Entrar com Google"
 2. **Autorização Google** → Redirecionamento para dashboard
 3. **Dashboard Protegido** → Acesso apenas para usuários autenticados
-
----
-
-## 🚀 Funcionalidades PWA
-
-- **Instalação:** Adicione à tela inicial como aplicativo nativo
-- **Modo Offline:** Acesse suas viagens sem conexão
-- **Cache Inteligente:** Recursos armazenados localmente
-- **Experiência App-like:** Interface nativa e navegação suave
-- **Notificações Push:** Lembretes configuráveis
-
-**iOS:** Use o botão compartilhar e selecione "Adicionar à Tela Inicial"
 
 ---
 
