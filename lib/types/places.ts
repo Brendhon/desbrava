@@ -122,7 +122,8 @@ export interface Place {
   photos?: PlacePhoto[];
   websiteUri?: string;
   types: PlaceSearchType[];
-  priceLevel?: 'FREE' | 'INEXPENSIVE' | 'MODERATE' | 'EXPENSIVE' | 'VERY_EXPENSIVE';
+  priceRange?: PriceRange;
+  priceLevel?: 'FREE' | 'PRICE_LEVEL_INEXPENSIVE' | 'PRICE_LEVEL_MODERATE' | 'PRICE_LEVEL_EXPENSIVE' | 'PRICE_LEVEL_VERY_EXPENSIVE';
   businessStatus?: 'OPERATIONAL' | 'CLOSED_TEMPORARILY' | 'CLOSED_PERMANENTLY';
   editorialSummary?: PlaceEditorialSummary;
   reviews?: PlaceReview[];
@@ -157,10 +158,21 @@ export interface PlaceDisplayName {
   languageCode: string;
 }
 
+export interface PriceRange {
+  startPrice: Price;
+  endPrice:   Price;
+}
+
+export interface Price {
+  currencyCode: string;
+  units:        string;
+}
+
 export interface PlaceOpeningHours {
   openNow: boolean;
   periods: PlacePeriod[];
   weekdayDescriptions: string[];
+  nextOpenTime?: Date;
 }
 
 export interface PlacePeriod {

@@ -175,6 +175,7 @@ export function parsePlaceSuggestions(suggestions?: PlaceSuggestion[]): Place[] 
 export const DEFAULT_FIELDS = [
   'id',
   'displayName',
+  'photos',
   'formattedAddress',
   'location',
   'rating',
@@ -196,9 +197,9 @@ export const EXTENDED_FIELDS = [
   'websiteUri',
   'types',
   'priceLevel',
+  'priceRange',
   'businessStatus',
   'editorialSummary',
-  'reviews',
   'utcOffsetMinutes',
   'adrFormatAddress',
   'internationalPhoneNumber',
@@ -222,9 +223,9 @@ export const RESTAURANT_FIELDS = [
   'websiteUri',
   'types',
   'priceLevel',
+  'priceRange', 
   'businessStatus',
   'editorialSummary',
-  'reviews',
   'utcOffsetMinutes',
   'adrFormatAddress',
   'internationalPhoneNumber',
@@ -243,7 +244,6 @@ export const RESTAURANT_FIELDS = [
   'delivery',
   'dineIn',
   'reservable',
-  'wheelchairAccessibleEntrance',
 ];
 
 export const ATTRACTION_FIELDS = [
@@ -258,9 +258,9 @@ export const ATTRACTION_FIELDS = [
   'websiteUri',
   'types',
   'priceLevel',
+  'priceRange',
   'businessStatus',
   'editorialSummary',
-  'reviews',
   'utcOffsetMinutes',
   'adrFormatAddress',
   'internationalPhoneNumber',
@@ -270,7 +270,6 @@ export const ATTRACTION_FIELDS = [
   'shortFormattedAddress',
   'subDestinations',
   'viewport',
-  'wheelchairAccessibleEntrance',
 ];
 
 export const HOTEL_FIELDS = [
@@ -285,8 +284,8 @@ export const HOTEL_FIELDS = [
   'websiteUri',
   'types',
   'priceLevel',
+  'priceRange',
   'businessStatus',
-  'reviews',
   'utcOffsetMinutes',
   'adrFormatAddress',
   'internationalPhoneNumber',
@@ -296,6 +295,5 @@ export const HOTEL_FIELDS = [
   'shortFormattedAddress',
   'subDestinations',
   'viewport',
-  'wheelchairAccessibleEntrance',
   'lodging',
 ];

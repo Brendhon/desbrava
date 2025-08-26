@@ -4,7 +4,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   onClick?: () => void;
   padding?: 'sm' | 'md' | 'lg' | 'xl';
   shadow?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-  background?: 'dark' | 'light' | 'gray' | 'blue';
+  background?: 'dark' | 'light' | 'gray' | 'blue' | 'royal-purple';
   maxWidth?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full' | '7xl';
   border?: boolean;
   rounded?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
@@ -58,6 +58,7 @@ const styles = {
     light: 'bg-parchment-white',
     gray: 'bg-mist-gray',
     blue: 'bg-midnight-blue',
+    'royal-purple': 'bg-royal-purple/20',
   },
   maxWidth: {
     none: '',
