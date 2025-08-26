@@ -114,7 +114,8 @@ export default function DatePicker({
         value={value}
         placeholder={placeholder}
         helperText={helperText}
-        disabled={true}
+        disabled={false}
+        readOnly={true}
         name={register?.name}
         icon={isOpen ? X : Calendar}
         iconAction={!disabled ? handleButtonClick : undefined}

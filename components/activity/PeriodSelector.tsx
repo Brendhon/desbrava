@@ -1,20 +1,19 @@
 'use client';
 
 import { Input } from '@/components/form';
-import { Card } from '@/components/ui';
-import { Calendar, Clock, TimerIcon } from 'lucide-react';
-import { useState } from 'react';
-
+import DatePicker from '@/components/form/DatePicker';
+import { NavigationButtons } from '@/components/steps';
+import { PeriodData, periodSchema } from '@/lib/schemas/period';
+import { addDaysToDate, parsePtBrToDate } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Calendar, Clock } from 'lucide-react';
+import { Fragment, useCallback, useEffect, useMemo } from 'react';
+import { useForm } from 'react-hook-form';
 import { ActivityTypeData } from './ActivityTypeSelector';
 import { DestinationData } from './DestinationSelector';
 
-export interface PeriodData {
-  date: string;
-  startTime: string;
-  endTime: string;
-}
-
 interface PeriodSelectorProps {
+  defaultData?: PeriodData;
   activityType: ActivityTypeData;
   destinations: DestinationData;
   onNext: (periodData: PeriodData) => void;
@@ -22,188 +21,184 @@ interface PeriodSelectorProps {
 }
 
 export default function PeriodSelector({
+  defaultData,
   activityType,
   destinations,
   onNext,
   onBack,
 }: PeriodSelectorProps) {
-  const [periodData, setPeriodData] = useState<PeriodData>({
-    date: '',
-    startTime: '',
-    endTime: '',
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm<PeriodData>({
+    resolver: zodResolver(periodSchema),
+    defaultValues: {
+      startDate: '',
+      endDate: '',
+      startTime: '',
+      endTime: '',
+      ...defaultData,
+    },
+    mode: 'onChange',
   });
 
-  const handleInputChange = (field: string, value: string) => {
-    setPeriodData((prev) => ({ ...prev, [field]: value }));
-  };
+  // Watch form values
+  const startDate = watch('startDate');
+  const endDate = watch('endDate');
 
-  const handleNext = () => {
-    if (periodData.date) {
-      onNext({
-        date: periodData.date,
-        startTime: periodData.startTime,
-        endTime: periodData.endTime,
-      });
+  // Clear end date if start date is after end date
+  useEffect(() => {
+    const updateEndDate = () => {
+      // Parse dates
+      const startDateParsed = parsePtBrToDate(startDate);
+      const endDateParsed = parsePtBrToDate(endDate);
+
+      // Check if start date is valid
+      if (!startDateParsed) return;
+
+      // If start date is after end date, clear end date
+      if (!endDateParsed || startDateParsed > endDateParsed) {
+        setValue('endDate', startDate)
+      }
     }
+
+    // Update end date
+    updateEndDate();
+  }, [startDate]);
+
+  // Get end min date for DatePicker
+  const endMinDate = useMemo(
+    () => startDate ? parsePtBrToDate(startDate) : new Date(),
+    [startDate]
+  );
+
+  // Handle form submission
+  const onSubmit = useCallback(
+    (data: PeriodData) => onNext(data),
+    [onNext]
+  );
+
+  // Create register objects for DatePicker
+  const startDateRegister = {
+    name: 'startDate',
+    onChange: (e: { target: { value: string; name: string } }) => {
+      setValue('startDate', e.target.value);
+    },
   };
 
-  const canProceed =
-    periodData.date && (periodData.startTime || periodData.endTime);
+  const endDateRegister = {
+    name: 'endDate',
+    onChange: (e: { target: { value: string; name: string } }) => {
+      setValue('endDate', e.target.value);
+    },
+  };
 
+  // Render
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-parchment-white mb-2 text-2xl font-bold">
+    <Fragment>
+      {/* Page Header */}
+      <div className={styles.header}>
+        <h2 className={styles.title}>
           Quando será a atividade?
         </h2>
-        <p className="text-mist-gray">
+        <p className={styles.description}>
           Selecione a data e horário da atividade
         </p>
       </div>
 
-      <div className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         {/* Date Selection */}
-        <Card
-          shadow="none"
-          background="dark"
-          maxWidth="none"
-          border={false}
-          className="p-6"
-        >
-          <h3 className="text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold">
-            <Calendar className="text-royal-purple h-5 w-5" />
+        <div className={styles.card}>
+          <h3 className={styles.cardTitle}>
+            <Calendar className={styles.cardIcon} />
             Data
           </h3>
 
-          <div className="space-y-3">
-            <Input
-              label="Data"
-              type="date"
-              value={periodData.date}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleInputChange('date', e.target.value)
-              }
-              required
-            />
-          </div>
-        </Card>
+          <div className={styles.dateContainer}>
+            <div className={styles.dateField}>
+              <DatePicker
+                label="Data de Início"
+                defaultValue={startDate}
+                register={startDateRegister}
+                helperText="Data em que a atividade começará"
+                popupPosition="top"
+                value={startDate}
+                error={errors.startDate?.message}
+                minDate={new Date()}
+              />
+            </div>
 
-        {/* Time Selection  */}
-        <Card
-          shadow="none"
-          background="dark"
-          maxWidth="none"
-          border={false}
-          className="p-6"
-        >
-          <h3 className="text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold">
-            <Clock className="text-royal-purple h-5 w-5" />
+            <div className={styles.dateField}>
+              <DatePicker
+                label="Data de Fim"
+                defaultValue={endDate || ''}
+                register={endDateRegister}
+                popupPosition="top"
+                value={endDate || ''}
+                helperText="Data em que a atividade terminará"
+                error={errors.endDate?.message}
+                disabled={!startDate}
+                minDate={endMinDate}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Time Selection */}
+        <div className={styles.card}>
+          <h3 className={styles.cardTitle}>
+            <Clock className={styles.cardIcon} />
             Horário
           </h3>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <Input
-              label="Horário de Início"
-              type="time"
-              icon={TimerIcon}
-              iconPosition="right"
-              value={periodData.startTime}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleInputChange('startTime', e.target.value)
-              }
-            />
-
-            <Input
-              label="Horário de Fim"
-              type="time"
-              icon={TimerIcon}
-              iconPosition="right"
-              value={periodData.endTime}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleInputChange('endTime', e.target.value)
-              }
-            />
-          </div>
-        </Card>
-
-        {/* Summary for other activities */}
-        {destinations.place && (
-          <Card
-            shadow="none"
-            background="dark"
-            maxWidth="none"
-            border={false}
-            className="p-6"
-          >
-            <h3 className="text-parchment-white mb-4 text-lg font-semibold">
-              Resumo da Atividade
-            </h3>
-
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between">
-                <span className="text-mist-gray">Tipo:</span>
-                <span className="text-parchment-white capitalize">
-                  {activityType.type}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-mist-gray">Local:</span>
-                <span className="text-parchment-white">
-                  {destinations.place.displayName.text}
-                </span>
-              </div>
-              {periodData.date && (
-                <div className="flex justify-between">
-                  <span className="text-mist-gray">Data:</span>
-                  <span className="text-parchment-white">
-                    {new Date(periodData.date).toLocaleDateString('pt-BR')}
-                  </span>
-                </div>
-              )}
-              {periodData.startTime && (
-                <div className="flex justify-between">
-                  <span className="text-mist-gray">Início:</span>
-                  <span className="text-parchment-white">
-                    {periodData.startTime}
-                  </span>
-                </div>
-              )}
-              {periodData.endTime && (
-                <div className="flex justify-between">
-                  <span className="text-mist-gray">Fim:</span>
-                  <span className="text-parchment-white">
-                    {periodData.endTime}
-                  </span>
-                </div>
-              )}
+          <div className={styles.timeContainer}>
+            <div className={styles.timeField}>
+              <Input
+                label="Horário de Início"
+                type="time"
+                register={register('startTime')}
+                required
+                helperText="Horário em que a atividade começará"
+                error={errors.startTime?.message}
+              />
             </div>
-          </Card>
-        )}
-      </div>
 
-      {/* Navigation */}
-      <div className="flex justify-between pt-6">
-        <button
-          type="button"
-          onClick={onBack}
-          className="text-mist-gray hover:text-parchment-white px-6 py-3 transition-colors duration-200"
-        >
-          Voltar
-        </button>
+            <div className={styles.timeField}>
+              <Input
+                label="Horário de Fim"
+                type="time"
+                register={register('endTime')}
+                helperText="Horário em que a atividade terminará"
+                error={errors.endTime?.message}
+              />
+            </div>
+          </div>
+        </div>
 
-        <button
-          type="button"
-          onClick={handleNext}
-          disabled={!canProceed}
-          className={`rounded-lg px-8 py-3 font-medium transition-all duration-200 ${
-            canProceed
-              ? 'bg-royal-purple text-parchment-white hover:bg-royal-purple/90 hover:scale-105'
-              : 'bg-slate-dark/50 text-mist-gray cursor-not-allowed'
-          } `}
-        >
-          Continuar
-        </button>
-      </div>
-    </div>
+        {/* Navigation Buttons */}
+        <NavigationButtons
+          onBack={onBack}
+          onNext={handleSubmit(onSubmit)}
+          canProceed={isValid}
+        />
+      </form>
+    </Fragment>
   );
 }
+
+const styles = {
+  header: 'text-center pb-4',
+  title: 'text-parchment-white mb-2 text-2xl font-bold',
+  description: 'text-mist-gray',
+  form: 'space-y-6',
+  card: 'px-2 sm:px-4 md:px-6 lg:px-8 w-full mb-5',
+  cardTitle: 'text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold',
+  cardIcon: 'text-royal-purple h-5 w-5',
+  dateContainer: 'grid grid-cols-1 gap-4 md:grid-cols-2',
+  dateField: 'space-y-2',
+  timeContainer: 'grid grid-cols-1 gap-4 md:grid-cols-2',
+  timeField: 'space-y-2',
+};

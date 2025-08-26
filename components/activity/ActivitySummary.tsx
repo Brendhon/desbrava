@@ -1,10 +1,10 @@
 'use client';
 
 import { Card } from '@/components/ui';
+import { PeriodData } from '@/lib/schemas/period';
 import { Calendar, CheckCircle, Clock, MapPin } from 'lucide-react';
-import { DestinationData } from './DestinationSelector';
-import { PeriodData } from './PeriodSelector';
 import { ActivityTypeData } from './ActivityTypeSelector';
+import { DestinationData } from './DestinationSelector';
 
 interface ActivitySummaryProps {
   activityType: ActivityTypeData;
@@ -134,7 +134,9 @@ export default function ActivitySummary({
               <div>
                 <p className="text-mist-gray text-sm">Data</p>
                 <p className="text-parchment-white font-medium">
-                  {formatDate(periodData.date)}
+                  {formatDate(periodData.startDate)}
+                  {periodData.endDate &&
+                    ` - ${formatDate(periodData.endDate)}`}
                 </p>
               </div>
             </div>
