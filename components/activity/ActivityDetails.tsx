@@ -3,7 +3,7 @@
 import { DatePicker, Input, Textarea } from '@/components/form';
 import { NavigationButtons } from '@/components/steps';
 import { GroupSection, PageStructure } from '@/components/ui';
-import { PeriodData, periodSchema } from '@/lib/schemas/period';
+import { ActivityDetailsData, activityDetailsSchema } from '@/lib/schemas';
 import { parsePtBrToDate } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Calendar, Notebook } from 'lucide-react';
@@ -11,8 +11,8 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
 interface ActivityDetailsProps {
-  defaultData?: PeriodData;
-  onNext: (periodData: PeriodData) => void;
+  defaultData?: ActivityDetailsData;
+  onNext: (periodData: ActivityDetailsData) => void;
   onBack: () => void;
 }
 
@@ -27,8 +27,8 @@ export default function ActivityDetails({
     watch,
     setValue,
     formState: { errors, isValid },
-  } = useForm<PeriodData>({
-    resolver: zodResolver(periodSchema),
+  } = useForm<ActivityDetailsData>({
+    resolver: zodResolver(activityDetailsSchema),
     defaultValues: {
       startDate: '',
       endDate: '',
@@ -72,7 +72,7 @@ export default function ActivityDetails({
 
   // Handle form submission
   const onSubmit = useCallback(
-    (data: PeriodData) => onNext(data),
+    (data: ActivityDetailsData) => onNext(data),
     [onNext]
   );
 

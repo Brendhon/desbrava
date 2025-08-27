@@ -10,8 +10,8 @@ import DestinationSelector, {
 import ActivityDetails from '@/components/activity/ActivityDetails';
 import { PageHeader } from '@/components/layout';
 import { Steps } from '@/components/steps';
-import { PeriodData } from '@/lib/schemas/period';
-import { Step } from '@/lib/types';
+import { ActivityDetailsData } from '@/lib/schemas';
+import { Activity, Step } from '@/lib/types';
 import { TripRoutes } from '@/lib/types/route';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -32,7 +32,7 @@ export default function CreateActivityPage() {
   const [destinations, setDestinations] = useState<DestinationData>({
     searchType: 'searchText',
   });
-  const [periodData, setPeriodData] = useState<PeriodData>({
+  const [detailsData, setDetailsData] = useState<ActivityDetailsData>({
     startDate: '',
     endDate: '',
     startTime: '',
@@ -47,7 +47,7 @@ export default function CreateActivityPage() {
   };
 
   const resetPeriodData = () => {
-    setPeriodData({
+    setDetailsData({
       startDate: '',
       endDate: '',
       startTime: '',
@@ -99,8 +99,8 @@ export default function CreateActivityPage() {
     updateStepsStatus(0);
   };
 
-  const handlePeriodNext = (period: PeriodData) => {
-    setPeriodData(period);
+  const handlePeriodNext = (details: ActivityDetailsData) => {
+    setDetailsData(details);
     setCurrentStep(3);
     updateStepsStatus(3);
   };
@@ -116,15 +116,17 @@ export default function CreateActivityPage() {
   };
 
   const handleSubmit = async () => {
+    const activity: Activity = {
+      tripId,
+      ...typeData,
+      ...detailsData,
+      place: destinations.place!,
+    };
     // TODO: Implement form submission
-    console.log('Submitting activity:', {
-      type: typeData,
-      destinations,
-      periodData,
-    });
+    console.log('Submitting activity:', activity);
 
     // For now, just redirect back
-    router.push(TripRoutes.details(tripId));
+    // router.push(TripRoutes.details(tripId));
   };
 
   // Steps configuration
@@ -156,7 +158,7 @@ export default function CreateActivityPage() {
       status: 'pending',
       children: (
         <ActivityDetails
-          defaultData={periodData}    
+          defaultData={detailsData}    
           onNext={handlePeriodNext}
           onBack={handlePeriodBack}
         />
@@ -170,7 +172,7 @@ export default function CreateActivityPage() {
         <ActivitySummary
           activityType={typeData}
           destinations={destinations}
-          periodData={periodData}
+          periodData={detailsData}
           onBack={handleSummaryBack}
           onSubmit={handleSubmit}
         />

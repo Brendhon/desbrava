@@ -1,48 +1,18 @@
-import { SelectOption } from './form';
-import { Place } from './places';
+import { Place, PlaceSearchType } from './places';
 
 export interface Activity {
-  id: string;
+  id?: string;
   tripId: string;
-  name: string;
   description?: string;
   type: ActivityTypeKey;
+  subType?: PlaceSearchType;
   place: Place;
-  destination?: Place;
-  date: string;
-  startTime?: string;
-  endTime?: string;
-  duration?: number; // in minutes
-  notes?: string;
-  status: ActivityStatus;
-  priority: ActivityPriority;
-  cost?: {
-    amount: number;
-    currency: string;
-  };
-  tags?: string[];
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface CreateActivityData {
-  tripId: string;
-  name: string;
-  description?: string;
-  type: ActivityTypeKey;
-  place: Place;
-  destination?: Place;
-  date: string;
-  startTime?: string;
-  endTime?: string;
-  duration?: number;
-  notes?: string;
-  priority: ActivityPriority;
-  cost?: {
-    amount: number;
-    currency: string;
-  };
-  tags?: string[];
+  startDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 /**
@@ -98,25 +68,6 @@ export const ACTIVITY_TYPE_INFO: Record<ActivityTypeKey, string> = {
     'Selecione esta categoria para escolher entre serviços, comércios, instituições e outros locais que não se encaixam nas categorias acima.',
 };
 
-export const ACTIVITY_PLACE_PLACEHOLDERS: Record<ActivityTypeKey, string> = {
-  accommodation:
-    '🏨 Digite o nome do hotel, pousada, resort, hostel, acomodação ou outro local de acomodação',
-  transportation:
-    '🚗 Digite o nome do aeroporto, estação, locadora de carros, posto de gasolina, serviço de transporte ou outro local de transporte',
-  food: '🍽️ Digite o nome do restaurante, café, padaria, supermercado, mercado ou estabelecimento de alimentação',
-  leisure:
-    '🎭 Digite o nome do parque, museu, shopping, centro esportivo, atração turística ou local de lazer',
-  other:
-    '🏢 Digite o nome do serviço, comércio, instituição ou local que deseja encontrar (ex: farmácia, clínica, etc.)',
-};
-
-export type ActivityStatus =
-  | 'planned'
-  | 'confirmed'
-  | 'in_progress'
-  | 'completed'
-  | 'cancelled';
-
 export const ACTIVITY_SUB_TYPE_PLACE_PLACEHOLDERS: Record<
   ActivityTypeKey,
   string
@@ -128,12 +79,3 @@ export const ACTIVITY_SUB_TYPE_PLACE_PLACEHOLDERS: Record<
   leisure: 'Escolha o tipo de atração ou local de lazer que deseja buscar...',
   other: 'Escolha o tipo de serviço ou estabelecimento que deseja buscar...',
 };
-
-export type ActivityPriority = 'low' | 'medium' | 'high' | 'critical';
-
-// Status options for the form
-export const ACTIVITY_STATUS_OPTIONS: SelectOption[] = [
-  { value: 'planned', label: 'Planejado' },
-  { value: 'completed', label: 'Concluído' },
-  { value: 'cancelled', label: 'Cancelado' },
-];

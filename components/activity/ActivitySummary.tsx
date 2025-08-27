@@ -2,7 +2,7 @@
 
 import { NavigationButtons } from '@/components/steps';
 import { GroupSection, PageStructure } from '@/components/ui';
-import { PeriodData } from '@/lib/schemas/period';
+import { ActivityDetailsData } from '@/lib/schemas/period';
 import { ActivityType } from '@/lib/types';
 import { formatTripDates } from '@/lib/utils';
 import { Calendar, CheckCircle, Clock, Drama, Hotel, LucideIcon, MapPin, NotebookIcon, NotebookPen, Plane, Utensils } from 'lucide-react';
@@ -15,7 +15,7 @@ import { usePlaceTypes } from '@/hooks/usePlaceTypes';
 interface ActivitySummaryProps {
   activityType: ActivityTypeData;
   destinations: DestinationData;
-  periodData: PeriodData;
+  periodData: ActivityDetailsData;
   onBack: () => void;
   onSubmit: () => void;
   isSubmitting?: boolean;
