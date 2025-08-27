@@ -49,6 +49,11 @@ export default function DestinationSelector({
     setDestinations((prev) => ({ ...prev, place }));
   }, []);
 
+  // Handle search type change
+  const handleSearchTypeChange = useCallback((searchType: SearchType) => {
+    setDestinations((prev) => ({ ...prev, searchType }));
+  }, []);
+
   // Form placeholder
   const placeholder = useCallback(() => {
     const localName = getSubtypeLabel(activityType.type, activityType.subType);
@@ -69,8 +74,10 @@ export default function DestinationSelector({
         defaultData={defaultData}
         activityType={activityType}
         onSearchChange={handleSearchChange}
+        onSearchTypeChange={handleSearchTypeChange}
         selectedPlace={destinations.place}
-        showSearchTypeButtons={!!lastActivity}
+        showSearchTypeButtons={!!lastActivity?.place?.location}
+        lastActivity={lastActivity}
       />
 
       {/* Navigation Buttons */}

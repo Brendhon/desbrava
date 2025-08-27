@@ -6,7 +6,7 @@ interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   icon?: LucideIcon;
   iconPosition?: 'left' | 'right';
   externalIcon?: LucideIcon;
@@ -41,18 +41,21 @@ export default function Button({
   };
 
   const sizeStyles = {
+    xs: 'px-3 py-1 text-xs rounded-sm',
     sm: 'px-4 py-2 text-sm rounded-md',
     md: 'px-6 py-3 rounded-lg',
     lg: 'px-8 py-4 text-lg rounded-lg',
   };
 
   const iconStyles = {
+    xs: 'w-3 h-3',
     sm: 'w-4 h-4',
     md: 'w-5 h-5',
     lg: 'w-6 h-6',
   };
 
   const externalIconStyles = {
+    xs: 'w-3 h-3',
     sm: 'w-3 h-3',
     md: 'w-4 h-4',
     lg: 'w-5 h-5',

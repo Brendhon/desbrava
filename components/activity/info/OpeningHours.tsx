@@ -7,7 +7,8 @@ interface OpeningHoursProps {
 }
 
 function Weekday({ weekday }: { weekday: string }) {
-  const [weekdayFullName, weekdayTime] = weekday.split(' ');
+  // Split the weekday into a weekday name and a time
+  const [weekdayFullName, weekdayTime] = weekday.split(/ (.+)/).filter(Boolean);
 
   // Remove the last character of the weekdayName
   const weekdayName = weekdayFullName.slice(0, -1);
@@ -15,7 +16,9 @@ function Weekday({ weekday }: { weekday: string }) {
   return (
     <div className={styles.weekday}>
       <strong className={styles.weekdayText}>{weekdayName}</strong>
-      <span className={styles.weekdayText}>{weekdayTime}</span>
+      <span className={styles.weekdayText}>
+        {weekdayTime.includes('24') ? '24 horas' : weekdayTime}
+      </span>
     </div>
   );
 }

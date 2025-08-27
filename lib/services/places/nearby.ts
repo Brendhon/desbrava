@@ -8,12 +8,14 @@ import {
   PlacesApiError,
 } from '@/lib/types';
 import {
+  createFieldMask,
   handleSearchError,
   makePlacesRequest,
   validateLocation,
   validatePlaceType,
   validateRadius,
 } from './base';
+import { DEFAULT_FIELDS } from '@/lib/utils';
 
 /**
  * Search for places near a specific location
@@ -27,7 +29,7 @@ export async function searchNearbyPlaces(
     longitude,
     radius,
     type,
-    rankByDistance = false,
+    rankByDistance = true,
     config,
   } = options;
 
@@ -40,7 +42,7 @@ export async function searchNearbyPlaces(
 
   // Create the request
   const request: PlaceNearbySearchRequest = {
-    includedType: [type],
+    includedPrimaryTypes: [type],
     locationRestriction: {
       circle: {
         center: { latitude: latitude!, longitude: longitude! },
@@ -61,6 +63,9 @@ export async function searchNearbyPlaces(
     return await makePlacesRequest<PlaceNearbySearchResponse>(url, config, {
       method,
       body,
+      headers: {
+        'X-Goog-FieldMask': createFieldMask(DEFAULT_FIELDS, 'places.'),
+      },
     });
   } catch (error) {
     return handleSearchError('nearby-search', error);

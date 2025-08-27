@@ -193,7 +193,6 @@ export function useActivities(): UseActivitiesReturn {
           throw new Error(result.message || 'Failed to fetch last activity');
         }
 
-        console.log('result', result);
         return result.data;
       } catch (error) {
         handleError(error);
