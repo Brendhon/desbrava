@@ -17,6 +17,7 @@ export interface DestinationData {
 interface DestinationSelectorProps {
   defaultData?: DestinationData;
   activityType: ActivityTypeData;
+  lastActivity: Activity | null;
   onNext: (destinations: DestinationData) => void;
   onBack: () => void;
 }
@@ -24,6 +25,7 @@ interface DestinationSelectorProps {
 export default function DestinationSelector({
   defaultData,
   activityType,
+  lastActivity,
   onNext,
   onBack,
 }: DestinationSelectorProps) {
@@ -32,9 +34,6 @@ export default function DestinationSelector({
       searchType: 'searchText',
     }
   );
-
-  // Last activity
-  const [lastActivity, setLastActivity] = useState<Activity | null>(null);
 
   // Hooks
   const { getSubtypeLabel } = usePlaceTypes();

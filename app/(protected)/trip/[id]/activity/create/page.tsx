@@ -14,7 +14,7 @@ import { ActivityDetailsData } from '@/lib/schemas';
 import { Activity, Step } from '@/lib/types';
 import { TripRoutes } from '@/lib/types/route';
 import { useParams, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useActivities } from '@/hooks/useActivities';
 import { useToast } from '@/hooks/useToast';
 import { LoadingSpinner } from '@/components/ui';
@@ -27,6 +27,7 @@ export default function CreateActivityPage() {
   // Step management
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [lastActivity, setLastActivity] = useState<Activity | null>(null);
 
   // Form data
   const [typeData, setTypeData] = useState<ActivityTypeData>({
@@ -45,8 +46,13 @@ export default function CreateActivityPage() {
   });
 
   // Hooks
-  const { createActivity } = useActivities();
+  const { createActivity, getLastActivity } = useActivities();
   const { success, error } = useToast();
+
+  useEffect(() => {
+    console.log('tripId', tripId);
+    getLastActivity(tripId).then(setLastActivity);
+  }, [tripId]);
 
   const resetDestinationData = () => {
     setDestinations({
@@ -175,6 +181,7 @@ export default function CreateActivityPage() {
         <DestinationSelector
           defaultData={destinations}
           activityType={typeData}
+          lastActivity={lastActivity}
           onNext={handleDestinationNext}
           onBack={handleDestinationBack}
         />

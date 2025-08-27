@@ -222,3 +222,27 @@ export async function getTripActivitiesByType(
     throw new Error('Failed to fetch activities by type');
   }
 }
+
+/**
+ * Get the last activity for a specific trip (sorted by startDate)
+ */
+export async function getLastActivity(tripId: string): Promise<Activity | null> {
+  try {
+    const activitiesRef = collection(db, getPath(tripId));
+    const q = query(activitiesRef, where('tripId', '==', tripId), orderBy('startDate', 'desc'));
+    const querySnapshot = await getDocs(q);
+    const activities: Activity[] = [];
+
+    querySnapshot.forEach((doc) => {
+      activities.push({
+        id: doc.id,
+        ...doc.data(),
+      } as Activity);
+    });
+
+    return activities?.[0] || null;
+  } catch (error) {
+    console.error('Error fetching last activity:', error);
+    throw new Error('Failed to fetch last activity');
+  }
+}

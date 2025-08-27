@@ -1,11 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getTripActivities, searchTripActivities } from '@/services/firebase/activity.service';
 import {
-  requireAuth,
-  createSuccessResponse,
-  createErrorResponse,
   createInternalErrorResponse,
+  createSuccessResponse,
+  requireAuth
 } from '@/lib/utils';
+import { getTripActivities, searchTripActivities } from '@/services/firebase/activity.service';
+import { NextRequest, NextResponse } from 'next/server';
 
 interface TripParams {
   params: Promise<{ tripId: string }>;

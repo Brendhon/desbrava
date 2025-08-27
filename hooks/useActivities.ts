@@ -12,6 +12,7 @@ interface UseActivitiesReturn {
   createActivity: (tripId: string, data: CreateActivityData) => Promise<Activity | null>;
   updateActivity: (tripId: string, id: string, data: UpdateActivityData) => Promise<Activity | null>;
   deleteActivity: (tripId: string, id: string) => Promise<boolean>;
+  getLastActivity: (tripId: string) => Promise<Activity | null>;
   searchTripActivities: (tripId: string, searchTerm: string, filters?: any) => Promise<void>;
   clearError: () => void;
 }
@@ -179,6 +180,31 @@ export function useActivities(): UseActivitiesReturn {
     [handleError]
   );
 
+  const getLastActivity = useCallback(
+    async (tripId: string): Promise<Activity | null> => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await fetch(formPath(tripId, 'last'));
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.message || 'Failed to fetch last activity');
+        }
+
+        console.log('result', result);
+        return result.data;
+      } catch (error) {
+        handleError(error);
+        return null;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [handleError]
+  );
+
   const searchTripActivities = useCallback(
     async (tripId: string, searchTerm: string, filters?: any) => {
       try {
@@ -217,6 +243,7 @@ export function useActivities(): UseActivitiesReturn {
     createActivity,
     updateActivity,
     deleteActivity,
+    getLastActivity,
     searchTripActivities,
     clearError,
   };
