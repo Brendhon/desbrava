@@ -5,7 +5,8 @@ import { usePlaceTypes } from '@/hooks/usePlaceTypes';
 import { Place } from '@/lib/types/places';
 import { Fragment, useCallback, useState } from 'react';
 import { ActivityTypeData } from './ActivityTypeSelector';
-import { PageHeader, PlaceSelector } from './destination';
+import { PlaceSelector } from './destination';
+import { PageStructure } from '@/components/ui';
 import { Activity, SearchType } from '@/lib/types';
 
 export interface DestinationData {
@@ -57,10 +58,10 @@ export default function DestinationSelector({
 
   // Render
   return (
-    <Fragment>
-      {/* Page Header */}
-      <PageHeader needsMultipleDestinations={false} />
-
+    <PageStructure
+      title="Onde será a atividade?"
+      description="Selecione o local onde acontecerá a atividade"
+    >
       {/* Selectors */}
       <PlaceSelector
         title={'Local da Atividade'}
@@ -79,6 +80,6 @@ export default function DestinationSelector({
         onNext={handleNext}
         canProceed={!!destinations.place}
       />
-    </Fragment>
+    </PageStructure>
   );
 }

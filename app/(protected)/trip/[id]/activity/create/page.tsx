@@ -37,6 +37,7 @@ export default function CreateActivityPage() {
     endDate: '',
     startTime: '',
     endTime: '',
+    description: '',
   });
 
   const resetDestinationData = () => {
@@ -51,6 +52,7 @@ export default function CreateActivityPage() {
       endDate: '',
       startTime: '',
       endTime: '',
+      description: '',
     });
   };
 

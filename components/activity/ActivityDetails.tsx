@@ -6,8 +6,9 @@ import { PeriodData, periodSchema } from '@/lib/schemas/period';
 import { parsePtBrToDate } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Calendar, Notebook } from 'lucide-react';
-import { Fragment, useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
+import { PageStructure } from '@/components/ui';
 
 interface ActivityDetailsProps {
   defaultData?: PeriodData;
@@ -92,17 +93,10 @@ export default function ActivityDetails({
 
   // Render
   return (
-    <Fragment>
-      {/* Page Header */}
-      <div className={styles.header}>
-        <h2 className={styles.title}>
-          Detalhes da Atividade
-        </h2>
-        <p className={styles.description}>
-          Configure quando e como será sua atividade
-        </p>
-      </div>
-
+    <PageStructure
+      title="Detalhes da Atividade"
+      description="Configure quando e como será sua atividade"
+    >
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         {/* Period Selection Group */}
         <div className={styles.periodGroup}>
@@ -206,14 +200,11 @@ export default function ActivityDetails({
           canProceed={isValid}
         />
       </form>
-    </Fragment>
+    </PageStructure>
   );
 }
 
 const styles = {
-  header: 'text-center pb-6',
-  title: 'text-parchment-white mb-3 text-2xl font-bold',
-  description: 'text-mist-gray text-lg',
   form: 'space-y-8',
   
   // Period Group Styles

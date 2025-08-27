@@ -2,7 +2,7 @@
 
 import { SubTypeSearchSelect } from '@/components/form/selects';
 import { NavigationButtons } from '@/components/steps';
-import { Card } from '@/components/ui';
+import { Card, PageStructure } from '@/components/ui';
 import {
   ACTIVITY_TYPE_INFO,
   ACTIVITY_TYPE_OPTIONS,
@@ -58,16 +58,10 @@ export default function ActivityTypeSelector({
   }, [defaultData]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
-        <h2 className={styles.titleText}>
-          Que tipo de atividade você quer criar?
-        </h2>
-        <p className={styles.description}>
-          Selecione o tipo de atividade para continuar com o planejamento
-        </p>
-      </div>
-
+    <PageStructure
+      title="Que tipo de atividade você quer criar?"
+      description="Selecione o tipo de atividade para continuar com o planejamento"
+    >
       <div className={styles.cardContainer}>
         {ACTIVITY_TYPE_OPTIONS.map((option) => {
           const isSelected = selectedType === option.value;
@@ -119,15 +113,11 @@ export default function ActivityTypeSelector({
         canProceed={!!selectedType && !!selectedSubType}
         canGoBack={false}
       />
-    </div>
+    </PageStructure>
   );
 }
 
 const styles = {
-  container: 'space-y-6',
-  title: 'text-center',
-  titleText: 'text-parchment-white mb-2 text-2xl font-bold',
-  description: 'text-center text-mist-gray text-lg',
   cardContainer:
     'grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
   card: 'transform cursor-pointer p-6 transition-all duration-200',
