@@ -7,6 +7,7 @@ export const periodSchema = z.object({
   endDate: z.string().min(1, 'Data de fim é obrigatória'),
   startTime: z.string().min(1, 'Horário de início é obrigatório'),
   endTime: z.string().min(1, 'Horário de fim é obrigatório'),
+  description: z.string().optional(),
 }).refine((data) => {
   // If endDate is provided, it must be >= startDate
   const startDateParsed = parsePtBrToDate(data.startDate);

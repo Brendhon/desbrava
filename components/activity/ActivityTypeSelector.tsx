@@ -127,7 +127,7 @@ const styles = {
   container: 'space-y-6',
   title: 'text-center',
   titleText: 'text-parchment-white mb-2 text-2xl font-bold',
-  description: 'text-center',
+  description: 'text-center text-mist-gray text-lg',
   cardContainer:
     'grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
   card: 'transform cursor-pointer p-6 transition-all duration-200',

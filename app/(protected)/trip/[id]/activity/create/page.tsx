@@ -7,7 +7,7 @@ import ActivityTypeSelector, {
 import DestinationSelector, {
   DestinationData,
 } from '@/components/activity/DestinationSelector';
-import PeriodSelector from '@/components/activity/PeriodSelector';
+import ActivityDetails from '@/components/activity/ActivityDetails';
 import { PageHeader } from '@/components/layout';
 import { Steps } from '@/components/steps';
 import { PeriodData } from '@/lib/schemas/period';
@@ -149,11 +149,11 @@ export default function CreateActivityPage() {
       ),
     },
     {
-      title: 'Período',
-      description: 'Data e horário',
+      title: 'Detalhes',
+      description: 'Data, hora e descrição',
       status: 'pending',
       children: (
-        <PeriodSelector
+        <ActivityDetails
           defaultData={periodData}    
           onNext={handlePeriodNext}
           onBack={handlePeriodBack}
