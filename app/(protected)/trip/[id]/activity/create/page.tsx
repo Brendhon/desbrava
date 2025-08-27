@@ -17,7 +17,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useActivities } from '@/hooks/useActivities';
 import { useToast } from '@/hooks/useToast';
-import { LoadingSpinner } from '@/components/ui';
 
 export default function CreateActivityPage() {
   const params = useParams();
@@ -153,8 +152,11 @@ export default function CreateActivityPage() {
           'Redirecionando para a página de detalhes da viagem...'
         );
 
-        // Redirect to the trip details page after 2 seconds
-        setTimeout(() => router.push(TripRoutes.details(tripId)), 2000);
+        // Redirect to the trip details page after 2 seconds using a Promise to await the delay
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
+        // Redirect to the trip details page
+        router.push(TripRoutes.details(tripId));
       } else {
         error(
           'Erro ao criar atividade',
@@ -213,9 +215,10 @@ export default function CreateActivityPage() {
         <ActivitySummary
           activityType={typeData}
           destinations={destinations}
-          periodData={detailsData}
+          details={detailsData}
           onBack={handleSummaryBack}
           onSubmit={handleSubmit}
+          isSubmitting={isLoading}
         />
       ),
     },
@@ -251,18 +254,12 @@ export default function CreateActivityPage() {
         subtitle="Crie uma nova atividade seguindo os passos abaixo"
       />
 
-      {/* Loading state */}
-      {isLoading && <LoadingSpinner />}
-
-      {/* Steps */}
-      {!isLoading && (
-        <Steps
-          steps={steps}
-          currentStep={currentStep}
-          onStepClick={handleStepClick}
-          className={styles.steps}
-        />
-      )}
+      <Steps
+        steps={steps}
+        currentStep={currentStep}
+        onStepClick={handleStepClick}
+        className={styles.steps}
+      />
     </div>
   );
 }

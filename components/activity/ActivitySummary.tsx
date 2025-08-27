@@ -27,7 +27,7 @@ import { ActivityDetailsData } from '@/lib/schemas';
 interface ActivitySummaryProps {
   activityType: ActivityTypeData;
   destinations: DestinationData;
-  periodData: ActivityDetailsData;
+  details: ActivityDetailsData;
   onBack: () => void;
   onSubmit: () => void;
   isSubmitting?: boolean;
@@ -56,7 +56,7 @@ function ActivityItem({
 export default function ActivitySummary({
   activityType,
   destinations,
-  periodData,
+  details,
   onBack,
   onSubmit,
   isSubmitting = false,
@@ -108,36 +108,36 @@ export default function ActivitySummary({
             {/* Date Section */}
             <ActivityItem
               label="Data"
-              value={formatTripDates(periodData.startDate, periodData.endDate)}
+              value={formatTripDates(details.startDate, details.endDate)}
               Icon={Calendar}
             />
 
             {/* Time Section */}
             <div className={styles.row}>
               {/* Start Time Section */}
-              {periodData.startTime && (
+              {details.startTime && (
                 <ActivityItem
                   label="Início"
-                  value={periodData.startTime}
+                  value={details.startTime}
                   Icon={Clock}
                 />
               )}
 
               {/* End Time Section */}
-              {periodData.endTime && (
+              {details.endTime && (
                 <ActivityItem
                   label="Fim"
-                  value={periodData.endTime}
+                  value={details.endTime}
                   Icon={Clock}
                 />
               )}
             </div>
 
             {/* Description Section */}
-            {periodData.description && (
+            {details.description && (
               <ActivityItem
                 label="Observações e Notas"
-                value={periodData.description}
+                value={details.description}
                 Icon={NotebookIcon}
               />
             )}
@@ -159,7 +159,7 @@ export default function ActivitySummary({
         <NavigationButtons
           onBack={onBack}
           onNext={onSubmit}
-          canProceed={true}
+          canProceed={!isSubmitting}
           nextButtonText={isSubmitting ? 'Criando...' : 'Criar Atividade'}
         />
       </div>

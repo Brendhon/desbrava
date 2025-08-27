@@ -391,8 +391,8 @@ const [loading, setLoading] = useState(false);
 Validate user input before making API calls:
 
 ```typescript
-if (searchTerm.trim().length < 2) {
-  return; // Don't search for very short terms
+if (!searchTerm.trim()) {
+  return; // Don't search for empty terms
 }
 ```
 

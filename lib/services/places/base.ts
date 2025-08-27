@@ -107,10 +107,6 @@ export function validateSearchQuery(query: string): void {
   if (!query || query.trim().length === 0) {
     throw new Error('Search query is required');
   }
-
-  if (query.trim().length < 2) {
-    throw new Error('Search query must be at least 2 characters long');
-  }
 }
 
 /**

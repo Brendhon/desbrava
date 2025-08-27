@@ -115,7 +115,7 @@ export function DestinationSearch() {
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (searchQuery: string) => {
-    if (searchQuery.length < 2) return;
+    if (!searchQuery.trim()) return;
 
     setLoading(true);
     try {

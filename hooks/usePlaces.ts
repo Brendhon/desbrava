@@ -130,7 +130,7 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
       const term = debouncedTerm?.trim();
 
       // Check if the search term is valid
-      const invalid = !term || term.length < 2 || !subType;
+      const invalid = !term || !subType;
 
       // Clear results if the search term is invalid or the default type is not set
       return invalid
