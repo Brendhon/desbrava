@@ -17,6 +17,7 @@ import {
 interface TripParams {
   params: Promise<{ tripId: string }>;
 }
+
 /**
  * GET /api/trips/[tripId]
  * Get a specific trip by ID

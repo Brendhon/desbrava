@@ -16,6 +16,8 @@ import { TripRoutes } from '@/lib/types/route';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useActivities } from '@/hooks/useActivities';
+import { useToast } from '@/hooks/useToast';
+import { LoadingSpinner } from '@/components/ui';
 
 export default function CreateActivityPage() {
   const params = useParams();
@@ -24,6 +26,7 @@ export default function CreateActivityPage() {
 
   // Step management
   const [currentStep, setCurrentStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Form data
   const [typeData, setTypeData] = useState<ActivityTypeData>({
@@ -41,8 +44,9 @@ export default function CreateActivityPage() {
     description: '',
   });
 
-  // useActivities hook
+  // Hooks
   const { createActivity } = useActivities();
+  const { success, error } = useToast();
 
   const resetDestinationData = () => {
     setDestinations({
@@ -120,18 +124,36 @@ export default function CreateActivityPage() {
   };
 
   const handleSubmit = async () => {
-    const activity: Activity = {
-      tripId,
-      ...typeData,
-      ...detailsData,
-      subType: typeData.subType!,
-      place: destinations.place!,
-    };
+    try {
+      // Set the loading state to true
+      setIsLoading(true);
 
-    const newActivity = await createActivity(tripId, activity);
+      // Activity data
+      const activity: Activity = {
+        tripId,
+        ...typeData,
+        ...detailsData,
+        subType: typeData.subType!,
+        place: destinations.place!,
+      };
 
-    if (newActivity) {
-      router.push(TripRoutes.details(tripId));
+      // Create the activity
+      const newActivity = await createActivity(tripId, activity);
+
+      // If the activity is created, show a success message and redirect to the trip details page
+      if (newActivity) {
+        success('Atividade criada com sucesso', 'Redirecionando para a página de detalhes da viagem...');
+
+        // Redirect to the trip details page after 2 seconds
+        setTimeout(() => router.push(TripRoutes.details(tripId)), 2000);
+      } else {
+        error('Erro ao criar atividade', 'Ocorreu um erro ao criar a atividade');
+      }
+    } catch (err) {
+      console.error('Error creating activity:', err);
+      error('Erro ao criar atividade', 'Ocorreu um erro ao criar a atividade');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -164,7 +186,7 @@ export default function CreateActivityPage() {
       status: 'pending',
       children: (
         <ActivityDetails
-          defaultData={detailsData}    
+          defaultData={detailsData}
           onNext={handlePeriodNext}
           onBack={handlePeriodBack}
         />
@@ -216,13 +238,18 @@ export default function CreateActivityPage() {
         subtitle="Crie uma nova atividade seguindo os passos abaixo"
       />
 
-      {/* Steps Progress */}
-      <Steps
-        steps={steps}
-        currentStep={currentStep}
-        onStepClick={handleStepClick}
-        className={styles.steps}
-      />
+      {/* Loading state */}
+      {isLoading && <LoadingSpinner />}
+
+      {/* Steps */}
+      {!isLoading && (
+        <Steps
+          steps={steps}
+          currentStep={currentStep}
+          onStepClick={handleStepClick}
+          className={styles.steps}
+        />
+      )}
     </div>
   );
 }
