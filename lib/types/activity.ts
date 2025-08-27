@@ -5,7 +5,7 @@ export interface Activity {
   tripId: string;
   description?: string;
   type: ActivityTypeKey;
-  subType?: PlaceSearchType;
+  subType: PlaceSearchType;
   place: Place;
   startDate: string;
   endDate: string;
@@ -13,6 +13,35 @@ export interface Activity {
   endTime: string;
   createdAt?: string;
   updatedAt?: string;
+}
+
+/**
+ * Data structure for creating a new activity
+ */
+export interface CreateActivityData {
+  tripId: string;
+  description?: string;
+  type: ActivityTypeKey;
+  subType: PlaceSearchType;
+  place: Place;
+  startDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
+}
+
+/**
+ * Data structure for updating an existing activity
+ */
+export interface UpdateActivityData {
+  description?: string;
+  type?: ActivityTypeKey;
+  subType?: PlaceSearchType;
+  place?: Place;
+  startDate?: string;
+  endDate?: string;
+  startTime?: string;
+  endTime?: string;
 }
 
 /**

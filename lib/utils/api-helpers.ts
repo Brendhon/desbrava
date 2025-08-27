@@ -101,7 +101,7 @@ export function checkResourceOwnership(
  * Required Fields Validation Helper
  */
 export function validateRequiredFields(
-  data: Record<string, unknown>,
+  data: any,
   requiredFields: string[]
 ): NextResponse | null {
   const missingFields = requiredFields.filter((field) => !data[field]);

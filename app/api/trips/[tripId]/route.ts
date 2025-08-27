@@ -14,13 +14,16 @@ import {
   createInternalErrorResponse,
 } from '@/lib/utils';
 
+interface TripParams {
+  params: Promise<{ tripId: string }>;
+}
 /**
- * GET /api/trips/[id]
+ * GET /api/trips/[tripId]
  * Get a specific trip by ID
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: TripParams
 ) {
   try {
     // Check authentication
@@ -30,7 +33,7 @@ export async function GET(
     }
 
     const { userEmail } = authResult;
-    const { id: tripId } = await params;
+    const { tripId } = await params;
     const trip = await getTripById(tripId);
 
     if (!trip) {
@@ -50,12 +53,12 @@ export async function GET(
 }
 
 /**
- * PUT /api/trips/[id]
+ * PUT /api/trips/[tripId]
  * Update a specific trip
  */
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: TripParams
 ) {
   try {
     // Check authentication
@@ -65,7 +68,7 @@ export async function PUT(
     }
 
     const { userEmail } = authResult;
-    const { id: tripId } = await params;
+    const { tripId } = await params;
 
     // Check if trip exists and belongs to user
     const existingTrip = await getTripById(tripId);
@@ -111,12 +114,12 @@ export async function PUT(
 }
 
 /**
- * DELETE /api/trips/[id]
+ * DELETE /api/trips/[tripId]
  * Delete a specific trip
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: TripParams
 ) {
   try {
     // Check authentication
@@ -126,7 +129,7 @@ export async function DELETE(
     }
 
     const { userEmail } = authResult;
-    const { id: tripId } = await params;
+    const { tripId } = await params;
 
     // Check if trip exists and belongs to user
     const existingTrip = await getTripById(tripId);

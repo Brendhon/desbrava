@@ -15,6 +15,7 @@ import { Activity, Step } from '@/lib/types';
 import { TripRoutes } from '@/lib/types/route';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useActivities } from '@/hooks/useActivities';
 
 export default function CreateActivityPage() {
   const params = useParams();
@@ -39,6 +40,9 @@ export default function CreateActivityPage() {
     endTime: '',
     description: '',
   });
+
+  // useActivities hook
+  const { createActivity } = useActivities();
 
   const resetDestinationData = () => {
     setDestinations({
@@ -120,13 +124,15 @@ export default function CreateActivityPage() {
       tripId,
       ...typeData,
       ...detailsData,
+      subType: typeData.subType!,
       place: destinations.place!,
     };
-    // TODO: Implement form submission
-    console.log('Submitting activity:', activity);
 
-    // For now, just redirect back
-    // router.push(TripRoutes.details(tripId));
+    const newActivity = await createActivity(tripId, activity);
+
+    if (newActivity) {
+      router.push(TripRoutes.details(tripId));
+    }
   };
 
   // Steps configuration
