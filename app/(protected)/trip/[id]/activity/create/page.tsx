@@ -7,11 +7,10 @@ import ActivityTypeSelector, {
 import DestinationSelector, {
   DestinationData,
 } from '@/components/activity/DestinationSelector';
-import PeriodSelector, {
-  PeriodData,
-} from '@/components/activity/PeriodSelector';
+import PeriodSelector from '@/components/activity/PeriodSelector';
 import { PageHeader } from '@/components/layout';
 import { Steps } from '@/components/steps';
+import { PeriodData } from '@/lib/schemas/period';
 import { Step } from '@/lib/types';
 import { TripRoutes } from '@/lib/types/route';
 import { useParams, useRouter } from 'next/navigation';
@@ -34,7 +33,8 @@ export default function CreateActivityPage() {
     searchType: 'searchText',
   });
   const [periodData, setPeriodData] = useState<PeriodData>({
-    date: '',
+    startDate: '',
+    endDate: '',
     startTime: '',
     endTime: '',
   });
@@ -47,7 +47,8 @@ export default function CreateActivityPage() {
 
   const resetPeriodData = () => {
     setPeriodData({
-      date: '',
+      startDate: '',
+      endDate: '',
       startTime: '',
       endTime: '',
     });
@@ -153,8 +154,7 @@ export default function CreateActivityPage() {
       status: 'pending',
       children: (
         <PeriodSelector
-          activityType={typeData}
-          destinations={destinations}
+          defaultData={periodData}    
           onNext={handlePeriodNext}
           onBack={handlePeriodBack}
         />

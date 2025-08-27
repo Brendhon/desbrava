@@ -1,29 +1,22 @@
 'use client';
 
-import { Input } from '@/components/form';
-import DatePicker from '@/components/form/DatePicker';
+import { DatePicker, Input } from '@/components/form';
 import { NavigationButtons } from '@/components/steps';
 import { PeriodData, periodSchema } from '@/lib/schemas/period';
-import { addDaysToDate, parsePtBrToDate } from '@/lib/utils';
+import { parsePtBrToDate } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Calendar, Clock } from 'lucide-react';
 import { Fragment, useCallback, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
-import { ActivityTypeData } from './ActivityTypeSelector';
-import { DestinationData } from './DestinationSelector';
 
 interface PeriodSelectorProps {
   defaultData?: PeriodData;
-  activityType: ActivityTypeData;
-  destinations: DestinationData;
   onNext: (periodData: PeriodData) => void;
   onBack: () => void;
 }
 
 export default function PeriodSelector({
   defaultData,
-  activityType,
-  destinations,
   onNext,
   onBack,
 }: PeriodSelectorProps) {
