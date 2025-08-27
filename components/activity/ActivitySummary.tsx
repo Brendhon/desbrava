@@ -10,6 +10,7 @@ import { useCallback } from 'react';
 import { ActivityTypeData } from './ActivityTypeSelector';
 import { DestinationData } from './DestinationSelector';
 import PlaceInfo from './destination/PlaceInfo';
+import { usePlaceTypes } from '@/hooks/usePlaceTypes';
 
 interface ActivitySummaryProps {
   activityType: ActivityTypeData;
@@ -40,7 +41,10 @@ export default function ActivitySummary({
   onSubmit,
   isSubmitting = false,
 }: ActivitySummaryProps) {
+  // Hooks
+  const { getSubtypeLabel } = usePlaceTypes();
 
+  // Get the icon for the activity type
   const getActivityTypeIcon = useCallback((): LucideIcon => {
     // Define the icons for each activity type
     const icons = {
@@ -54,6 +58,11 @@ export default function ActivitySummary({
     // Return the icon for the activity type
     return icons[activityType.type];
   }, [activityType.type]);
+
+  // Get the label for the activity type
+  const activityTypeLabel = useCallback(() => {
+    return getSubtypeLabel(activityType.type, activityType.subType);
+  }, [activityType.type, activityType.subType]);
 
   return (
     <PageStructure
@@ -72,7 +81,7 @@ export default function ActivitySummary({
           <div className={styles.section}>
 
             {/* Activity Type Section */}
-            <ActivityItem label={ActivityType[activityType.type]} value={activityType.subType!} Icon={getActivityTypeIcon()} />
+            <ActivityItem label={ActivityType[activityType.type]} value={activityTypeLabel()} Icon={getActivityTypeIcon()} />
 
             {/* Date Section */}
             <ActivityItem label="Data" value={formatTripDates(periodData.startDate, periodData.endDate)} Icon={Calendar} />

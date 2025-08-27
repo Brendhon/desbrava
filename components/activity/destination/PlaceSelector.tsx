@@ -1,14 +1,14 @@
 import { PlaceInfo } from '@/components/activity/destination';
 import { PlaceSearchSelect } from '@/components/form/selects';
+import { Button } from '@/components/ui';
 import { usePlaces } from '@/hooks/usePlaces';
+import { SearchType } from '@/lib/types';
 import { Place } from '@/lib/types/places';
 import { cn } from '@/lib/utils';
-import { MapPin, X } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { ActivityTypeData } from '../ActivityTypeSelector';
 import { DestinationData } from '../DestinationSelector';
-import { Button } from '@/components/ui';
-import { SearchType } from '@/lib/types';
 
 interface PlaceSelectorProps {
   title: string;

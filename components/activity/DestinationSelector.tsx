@@ -1,13 +1,13 @@
 'use client';
 
 import { NavigationButtons } from '@/components/steps';
+import { PageStructure } from '@/components/ui';
 import { usePlaceTypes } from '@/hooks/usePlaceTypes';
+import { Activity, SearchType } from '@/lib/types';
 import { Place } from '@/lib/types/places';
-import { Fragment, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ActivityTypeData } from './ActivityTypeSelector';
 import { PlaceSelector } from './destination';
-import { PageStructure } from '@/components/ui';
-import { Activity, SearchType } from '@/lib/types';
 
 export interface DestinationData {
   place?: Place;
