@@ -2,7 +2,6 @@
 
 import { NavigationButtons } from '@/components/steps';
 import { GroupSection, PageStructure } from '@/components/ui';
-import { ActivityDetailsData } from '@/lib/schemas/period';
 import { ActivityType } from '@/lib/types';
 import { formatTripDates } from '@/lib/utils';
 import {
@@ -23,6 +22,7 @@ import { ActivityTypeData } from './ActivityTypeSelector';
 import { DestinationData } from './DestinationSelector';
 import PlaceInfo from './destination/PlaceInfo';
 import { usePlaceTypes } from '@/hooks/usePlaceTypes';
+import { ActivityDetailsData } from '@/lib/schemas';
 
 interface ActivitySummaryProps {
   activityType: ActivityTypeData;
