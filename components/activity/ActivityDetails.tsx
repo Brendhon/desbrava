@@ -2,13 +2,13 @@
 
 import { DatePicker, Input, Textarea } from '@/components/form';
 import { NavigationButtons } from '@/components/steps';
+import { GroupSection, PageStructure } from '@/components/ui';
 import { PeriodData, periodSchema } from '@/lib/schemas/period';
 import { parsePtBrToDate } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Calendar, Notebook } from 'lucide-react';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
-import { PageStructure } from '@/components/ui';
 
 interface ActivityDetailsProps {
   defaultData?: PeriodData;
@@ -99,17 +99,11 @@ export default function ActivityDetails({
     >
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         {/* Period Selection Group */}
-        <div className={styles.periodGroup}>
-          <div className={styles.groupHeader}>
-            <h3 className={styles.groupTitle}>
-              <Calendar className={styles.groupIcon} />
-              Período da Atividade
-            </h3>
-            <p className={styles.groupDescription}>
-              Defina as datas e horários de início e fim
-            </p>
-          </div>
-
+        <GroupSection
+          title="Período da Atividade"
+          description="Defina as datas e horários de início e fim"
+          icon={Calendar}
+        >
           {/* Date Selection */}
           <div className={styles.dateSection}>
             <h4 className={styles.sectionTitle}>Datas</h4>
@@ -169,20 +163,14 @@ export default function ActivityDetails({
               </div>
             </div>
           </div>
-        </div>
+        </GroupSection>
 
         {/* Notes Section */}
-        <div className={styles.notesSection}>
-          <div className={styles.groupHeader}>
-            <h3 className={styles.groupTitle}>
-              <Notebook className={styles.groupIcon} />
-              Observações e Notas
-            </h3>
-            <p className={styles.groupDescription}>
-              Adicione informações importantes sobre a atividade
-            </p>
-          </div>
-
+        <GroupSection
+          title="Observações e Notas"
+          description="Adicione informações importantes sobre a atividade"
+          icon={Notebook}
+        >
           <Textarea
             label="Descrição da Atividade (opcional)"
             register={register('description')}
@@ -191,7 +179,7 @@ export default function ActivityDetails({
             rows={4}
             error={errors.description?.message}
           />
-        </div>
+        </GroupSection>
 
         {/* Navigation Buttons */}
         <NavigationButtons
@@ -207,13 +195,6 @@ export default function ActivityDetails({
 const styles = {
   form: 'space-y-8',
   
-  // Period Group Styles
-  periodGroup: 'bg-slate-800/30 rounded-xl p-6 border border-slate-700/50',
-  groupHeader: 'mb-6 text-center',
-  groupTitle: 'text-parchment-white mb-2 text-xl font-semibold flex items-center justify-center gap-2',
-  groupIcon: 'text-royal-purple h-6 w-6',
-  groupDescription: 'text-mist-gray text-sm',
-  
   // Section Styles
   dateSection: 'mb-6',
   timeSection: 'mb-0',
@@ -224,7 +205,4 @@ const styles = {
   dateField: 'space-y-2',
   timeContainer: 'grid grid-cols-1 gap-4 md:grid-cols-2',
   timeField: 'space-y-2',
-  
-  // Notes Section
-  notesSection: 'bg-slate-800/30 rounded-xl p-6 border border-slate-700/50',
 };

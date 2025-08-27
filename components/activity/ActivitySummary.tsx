@@ -1,10 +1,15 @@
 'use client';
 
-import { Card } from '@/components/ui';
+import { NavigationButtons } from '@/components/steps';
+import { GroupSection, PageStructure } from '@/components/ui';
 import { PeriodData } from '@/lib/schemas/period';
-import { Calendar, CheckCircle, Clock, MapPin } from 'lucide-react';
+import { ActivityType } from '@/lib/types';
+import { formatTripDates } from '@/lib/utils';
+import { Calendar, CheckCircle, Clock, Drama, Hotel, LucideIcon, MapPin, NotebookIcon, NotebookPen, Plane, Utensils } from 'lucide-react';
+import { useCallback } from 'react';
 import { ActivityTypeData } from './ActivityTypeSelector';
 import { DestinationData } from './DestinationSelector';
+import PlaceInfo from './destination/PlaceInfo';
 
 interface ActivitySummaryProps {
   activityType: ActivityTypeData;
@@ -15,6 +20,18 @@ interface ActivitySummaryProps {
   isSubmitting?: boolean;
 }
 
+function ActivityItem({ label, value, Icon }: { label: string, value: string, Icon: LucideIcon }) {
+  return (
+    <div className={styles.item}>
+      <Icon className={styles.icon} />
+      <div>
+        <p className={styles.label}>{label}</p>
+        <p className={styles.value}>{value}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function ActivitySummary({
   activityType,
   destinations,
@@ -23,175 +40,87 @@ export default function ActivitySummary({
   onSubmit,
   isSubmitting = false,
 }: ActivitySummaryProps) {
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('pt-BR', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
 
-  const formatTime = (timeString: string) => {
-    return timeString;
-  };
+  const getActivityTypeIcon = useCallback((): LucideIcon => {
+    // Define the icons for each activity type
+    const icons = {
+      accommodation: Hotel,
+      transportation: Plane,
+      food: Utensils,
+      leisure: Drama,
+      other: NotebookPen
+    };
+
+    // Return the icon for the activity type
+    return icons[activityType.type];
+  }, [activityType.type]);
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <div className="bg-royal-purple/20 mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full">
-          <CheckCircle className="text-royal-purple h-10 w-10" />
-        </div>
-        <h2 className="text-parchment-white mb-2 text-2xl font-bold">
-          Resumo da Atividade
-        </h2>
-        <p className="text-mist-gray">
-          Revise as informações antes de criar a atividade
-        </p>
-      </div>
-
-      <div className="space-y-6">
-        {/* Activity Type */}
-        <Card
-          shadow="none"
-          background="dark"
-          maxWidth="none"
-          border={false}
-          className="p-6"
+    <PageStructure
+      title="Resumo da Atividade"
+      description="Revise as informações antes de criar a atividade"
+    >
+      <div className={styles.container}>
+        {/* Activity Type Group */}
+        <GroupSection
+          title="Informações básicas"
+          description="Confirme as informações básicas da atividade"
+          icon={CheckCircle}
         >
-          <h3 className="text-parchment-white mb-4 text-lg font-semibold">
-            Tipo de Atividade
-          </h3>
 
-          <div className="flex items-center gap-3">
-            <div className="text-3xl">
-              {activityType.type === 'accommodation' && '🏨'}
-              {activityType.type === 'transportation' && '🚗'}
-              {activityType.type === 'food' && '🍽️'}
-              {activityType.type === 'leisure' && '🎯'}
-              {activityType.type === 'other' && '📝'}
+          {/* Period Section */}
+          <div className={styles.section}>
+
+            {/* Activity Type Section */}
+            <ActivityItem label={ActivityType[activityType.type]} value={activityType.subType!} Icon={getActivityTypeIcon()} />
+
+            {/* Date Section */}
+            <ActivityItem label="Data" value={formatTripDates(periodData.startDate, periodData.endDate)} Icon={Calendar} />
+
+            {/* Time Section */}
+            <div className={styles.row}>
+
+              {/* Start Time Section */}
+              {periodData.startTime && <ActivityItem label="Início" value={periodData.startTime} Icon={Clock} />}
+
+              {/* End Time Section */}
+              {periodData.endTime && <ActivityItem label="Fim" value={periodData.endTime} Icon={Clock} />}
             </div>
-            <div>
-              <p className="text-parchment-white font-medium capitalize">
-                {activityType.type === 'accommodation' && 'Acomodação'}
-                {activityType.type === 'transportation' && 'Transporte'}
-                {activityType.type === 'food' && 'Alimentação'}
-                {activityType.type === 'leisure' && 'Lazer'}
-                {activityType.type === 'other' && 'Outro'}
-              </p>
-            </div>
+
+            {/* Description Section */}
+            {periodData.description && <ActivityItem label="Observações e Notas" value={periodData.description} Icon={NotebookIcon} />}
+
           </div>
-        </Card>
 
-        {/* Destinations */}
-        <Card
-          shadow="none"
-          background="dark"
-          maxWidth="none"
-          border={false}
-          className="p-6"
+        </GroupSection>
+
+        {/* Destinations Group */}
+        <GroupSection
+          title="Local da Atividade"
+          description="Detalhes do local selecionado"
+          icon={MapPin}
         >
-          <h3 className="text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold">
-            <MapPin className="text-royal-purple h-5 w-5" />
-            Local da Atividade
-          </h3>
+          {destinations.place && <PlaceInfo place={destinations.place} type={activityType.type} />}
+        </GroupSection>
 
-          {destinations.place && (
-            <div className="flex items-center gap-3">
-              <div className="bg-royal-purple/20 flex h-8 w-8 items-center justify-center rounded-full">
-                <MapPin className="text-royal-purple h-4 w-4" />
-              </div>
-              <div>
-                <p className="text-parchment-white font-medium">
-                  {destinations.place.displayName.text}
-                </p>
-                {destinations.place.formattedAddress && (
-                  <p className="text-mist-gray text-sm">
-                    {destinations.place.formattedAddress}
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
-        </Card>
-
-        {/* Date and Time */}
-        <Card
-          shadow="none"
-          background="dark"
-          maxWidth="none"
-          border={false}
-          className="p-6"
-        >
-          <h3 className="text-parchment-white mb-4 flex items-center gap-2 text-lg font-semibold">
-            <Calendar className="text-royal-purple h-5 w-5" />
-            Data e Horário
-          </h3>
-
-          <div className="space-y-3">
-            <div className="flex items-center gap-3">
-              <Calendar className="text-mist-gray h-5 w-5" />
-              <div>
-                <p className="text-mist-gray text-sm">Data</p>
-                <p className="text-parchment-white font-medium">
-                  {formatDate(periodData.startDate)}
-                  {periodData.endDate &&
-                    ` - ${formatDate(periodData.endDate)}`}
-                </p>
-              </div>
-            </div>
-
-            {periodData.startTime && (
-              <div className="flex items-center gap-3">
-                <Clock className="text-mist-gray h-5 w-5" />
-                <div>
-                  <p className="text-mist-gray text-sm">Horário de Início</p>
-                  <p className="text-parchment-white font-medium">
-                    {formatTime(periodData.startTime)}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {periodData.endTime && (
-              <div className="flex items-center gap-3">
-                <Clock className="text-mist-gray h-5 w-5" />
-                <div>
-                  <p className="text-mist-gray text-sm">Horário de Fim</p>
-                  <p className="text-parchment-white font-medium">
-                    {formatTime(periodData.endTime)}
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
-        </Card>
+        {/* Navigation Buttons */}
+        <NavigationButtons
+          onBack={onBack}
+          onNext={onSubmit}
+          canProceed={true}
+          nextButtonText={isSubmitting ? 'Criando...' : 'Criar Atividade'}
+        />
       </div>
-
-      {/* Navigation */}
-      <div className="flex justify-between pt-6">
-        <button
-          type="button"
-          onClick={onBack}
-          disabled={isSubmitting}
-          className="text-mist-gray hover:text-parchment-white px-6 py-3 transition-colors duration-200 disabled:opacity-50"
-        >
-          Voltar
-        </button>
-
-        <button
-          type="button"
-          onClick={onSubmit}
-          disabled={isSubmitting}
-          className={`rounded-lg px-8 py-3 font-medium transition-all duration-200 ${
-            isSubmitting
-              ? 'bg-slate-dark/50 text-mist-gray cursor-not-allowed'
-              : 'bg-royal-purple text-parchment-white hover:bg-royal-purple/90 hover:scale-105'
-          } `}
-        >
-          {isSubmitting ? 'Criando...' : 'Criar Atividade'}
-        </button>
-      </div>
-    </div>
+    </PageStructure>
   );
 }
+
+const styles = {
+  container: 'space-y-8',
+  section: ' flex gap-4 flex-col',
+  item: 'flex gap-3',
+  row: 'flex items-center gap-8 flex-wrap',
+  icon: 'text-mist-gray min-w-4 w-4 pt-0.5',
+  label: 'text-mist-gray text-xs uppercase tracking-wide font-medium',
+  value: 'text-parchment-white font-medium text-left text-sm ',
+};

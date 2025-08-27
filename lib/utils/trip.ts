@@ -21,6 +21,9 @@ export function formatTripDates(startDate: string, endDate: string): string {
     year: 'numeric',
   });
 
+  // If start date is the same as end date, return only the start date
+  if (startFormatted === endFormatted) return startFormatted ?? '';
+
   return `${startFormatted} - ${endFormatted}`;
 }
 

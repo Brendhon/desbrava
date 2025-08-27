@@ -50,11 +50,11 @@ export interface CreateActivityData {
  * Use this type for classifying trip activities.
  */
 export enum ActivityType {
-  ACCOMMODATION = 'Acomodação', // Lodging, hotels, hostels, etc.
-  TRANSPORTATION = 'Transporte', // Flights, trains, buses, car rentals, etc.
-  FOOD = 'Alimentação', // Restaurants, cafes, bakeries, supermarkets, etc.
-  LEISURE = 'Lazer', // Attractions, entertainment, culture, nature, sports, wellness, shopping, etc.
-  OTHER = 'Outro', // Any activity not covered by the above
+  accommodation = 'Acomodação', // Lodging, hotels, hostels, etc.
+  transportation = 'Transporte', // Flights, trains, buses, car rentals, etc.
+  food = 'Alimentação', // Restaurants, cafes, bakeries, supermarkets, etc.
+  leisure = 'Lazer', // Attractions, entertainment, culture, nature, sports, wellness, shopping, etc.
+  other = 'Outro', // Any activity not covered by the above
 }
 
 export const ActivityTypeKeys = [

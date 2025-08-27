@@ -5,6 +5,7 @@ interface NavigationButtonsProps {
   onBack: () => void;
   onNext: () => void;
   canProceed: boolean;
+  nextButtonText?: string;
   canGoBack?: boolean;
 }
 
@@ -13,6 +14,7 @@ export default function NavigationButtons({
   onNext,
   canProceed,
   canGoBack = true,
+  nextButtonText = 'Continuar',
 }: NavigationButtonsProps) {
   return (
     <div className={styles.container}>
@@ -25,7 +27,7 @@ export default function NavigationButtons({
       </Button>
 
       <Button variant="primary" onClick={onNext} disabled={!canProceed}>
-        Continuar
+        {nextButtonText}
       </Button>
     </div>
   );
