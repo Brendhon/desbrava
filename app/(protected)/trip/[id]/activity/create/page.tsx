@@ -148,12 +148,18 @@ export default function CreateActivityPage() {
 
       // If the activity is created, show a success message and redirect to the trip details page
       if (newActivity) {
-        success('Atividade criada com sucesso', 'Redirecionando para a página de detalhes da viagem...');
+        success(
+          'Atividade criada com sucesso',
+          'Redirecionando para a página de detalhes da viagem...'
+        );
 
         // Redirect to the trip details page after 2 seconds
         setTimeout(() => router.push(TripRoutes.details(tripId)), 2000);
       } else {
-        error('Erro ao criar atividade', 'Ocorreu um erro ao criar a atividade');
+        error(
+          'Erro ao criar atividade',
+          'Ocorreu um erro ao criar a atividade'
+        );
       }
     } catch (err) {
       console.error('Error creating activity:', err);

@@ -1,7 +1,7 @@
 import {
   createInternalErrorResponse,
   createSuccessResponse,
-  requireAuth
+  requireAuth,
 } from '@/lib/utils';
 import { getLastActivity } from '@/services/firebase/activity.service';
 import { NextRequest, NextResponse } from 'next/server';
@@ -32,4 +32,3 @@ export async function GET(request: NextRequest, { params }: TripParams) {
     return createInternalErrorResponse(error, 'fetching last activity');
   }
 }
-

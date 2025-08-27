@@ -3,7 +3,7 @@ import { PlaceSearchSelect } from '@/components/form/selects';
 import { Button } from '@/components/ui';
 import { usePlaces } from '@/hooks/usePlaces';
 import { Activity, SearchType } from '@/lib/types';
-import { Place, PlaceLocation } from '@/lib/types/places';
+import { Place } from '@/lib/types/places';
 import { cn } from '@/lib/utils';
 import { MapPin } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
@@ -39,7 +39,9 @@ export default function PlaceSelector({
   const [search, setSearch] = useState('');
 
   // Search type state
-  const [searchType, setSearchType] = useState<SearchType>(defaultData?.searchType || 'searchText');
+  const [searchType, setSearchType] = useState<SearchType>(
+    defaultData?.searchType || 'searchText'
+  );
 
   // Places API
   const { getPlaceFromApi } = usePlaces({ activityType });
@@ -85,16 +87,28 @@ export default function PlaceSelector({
         </h3>
 
         {/* Search type buttons */}
-        <div className={cn(styles.searchTypeButtons, !showSearchTypeButtons && styles.invisible)}>
-          <Button size='xs' variant={searchType === 'searchText' ? 'primary' : 'ghost'} onClick={() => setSearchType('searchText')}>
+        <div
+          className={cn(
+            styles.searchTypeButtons,
+            !showSearchTypeButtons && styles.invisible
+          )}
+        >
+          <Button
+            size="xs"
+            variant={searchType === 'searchText' ? 'primary' : 'ghost'}
+            onClick={() => setSearchType('searchText')}
+          >
             <span> Texto </span>
           </Button>
 
-          <Button size='xs' variant={searchType === 'searchNearby' ? 'primary' : 'ghost'} onClick={() => setSearchType('searchNearby')}>
+          <Button
+            size="xs"
+            variant={searchType === 'searchNearby' ? 'primary' : 'ghost'}
+            onClick={() => setSearchType('searchNearby')}
+          >
             <span> Proximidade </span>
           </Button>
         </div>
-
       </div>
 
       {/* Search */}

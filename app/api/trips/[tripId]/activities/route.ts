@@ -1,9 +1,12 @@
 import {
   createInternalErrorResponse,
   createSuccessResponse,
-  requireAuth
+  requireAuth,
 } from '@/lib/utils';
-import { getTripActivities, searchTripActivities } from '@/services/firebase/activity.service';
+import {
+  getTripActivities,
+  searchTripActivities,
+} from '@/services/firebase/activity.service';
 import { NextRequest, NextResponse } from 'next/server';
 
 interface TripParams {
@@ -50,7 +53,11 @@ export async function GET(request: NextRequest, { params }: TripParams) {
         endDate: endDate || undefined,
       };
 
-      results = await searchTripActivities(tripId, search || undefined, filters);
+      results = await searchTripActivities(
+        tripId,
+        search || undefined,
+        filters
+      );
       total = results.length;
     }
     // Default: get all trip activities

@@ -5,7 +5,19 @@ import { GroupSection, PageStructure } from '@/components/ui';
 import { ActivityDetailsData } from '@/lib/schemas/period';
 import { ActivityType } from '@/lib/types';
 import { formatTripDates } from '@/lib/utils';
-import { Calendar, CheckCircle, Clock, Drama, Hotel, LucideIcon, MapPin, NotebookIcon, NotebookPen, Plane, Utensils } from 'lucide-react';
+import {
+  Calendar,
+  CheckCircle,
+  Clock,
+  Drama,
+  Hotel,
+  LucideIcon,
+  MapPin,
+  NotebookIcon,
+  NotebookPen,
+  Plane,
+  Utensils,
+} from 'lucide-react';
 import { useCallback } from 'react';
 import { ActivityTypeData } from './ActivityTypeSelector';
 import { DestinationData } from './DestinationSelector';
@@ -21,7 +33,15 @@ interface ActivitySummaryProps {
   isSubmitting?: boolean;
 }
 
-function ActivityItem({ label, value, Icon }: { label: string, value: string, Icon: LucideIcon }) {
+function ActivityItem({
+  label,
+  value,
+  Icon,
+}: {
+  label: string;
+  value: string;
+  Icon: LucideIcon;
+}) {
   return (
     <div className={styles.item}>
       <Icon className={styles.icon} />
@@ -52,7 +72,7 @@ export default function ActivitySummary({
       transportation: Plane,
       food: Utensils,
       leisure: Drama,
-      other: NotebookPen
+      other: NotebookPen,
     };
 
     // Return the icon for the activity type
@@ -76,31 +96,52 @@ export default function ActivitySummary({
           description="Confirme as informações básicas da atividade"
           icon={CheckCircle}
         >
-
           {/* Period Section */}
           <div className={styles.section}>
-
             {/* Activity Type Section */}
-            <ActivityItem label={ActivityType[activityType.type]} value={activityTypeLabel()} Icon={getActivityTypeIcon()} />
+            <ActivityItem
+              label={ActivityType[activityType.type]}
+              value={activityTypeLabel()}
+              Icon={getActivityTypeIcon()}
+            />
 
             {/* Date Section */}
-            <ActivityItem label="Data" value={formatTripDates(periodData.startDate, periodData.endDate)} Icon={Calendar} />
+            <ActivityItem
+              label="Data"
+              value={formatTripDates(periodData.startDate, periodData.endDate)}
+              Icon={Calendar}
+            />
 
             {/* Time Section */}
             <div className={styles.row}>
-
               {/* Start Time Section */}
-              {periodData.startTime && <ActivityItem label="Início" value={periodData.startTime} Icon={Clock} />}
+              {periodData.startTime && (
+                <ActivityItem
+                  label="Início"
+                  value={periodData.startTime}
+                  Icon={Clock}
+                />
+              )}
 
               {/* End Time Section */}
-              {periodData.endTime && <ActivityItem label="Fim" value={periodData.endTime} Icon={Clock} />}
+              {periodData.endTime && (
+                <ActivityItem
+                  label="Fim"
+                  value={periodData.endTime}
+                  Icon={Clock}
+                />
+              )}
             </div>
 
             {/* Description Section */}
-            {periodData.description && <ActivityItem label="Observações e Notas" value={periodData.description} Icon={NotebookIcon} />}
-
+            {periodData.description && (
+              <ActivityItem
+                label="Observações e Notas"
+                value={periodData.description}
+                Icon={NotebookIcon}
+              />
+            )}
           </div>
-
         </GroupSection>
 
         {/* Destinations Group */}
@@ -109,7 +150,9 @@ export default function ActivitySummary({
           description="Detalhes do local selecionado"
           icon={MapPin}
         >
-          {destinations.place && <PlaceInfo place={destinations.place} type={activityType.type} />}
+          {destinations.place && (
+            <PlaceInfo place={destinations.place} type={activityType.type} />
+          )}
         </GroupSection>
 
         {/* Navigation Buttons */}

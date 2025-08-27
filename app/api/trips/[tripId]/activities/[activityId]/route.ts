@@ -14,17 +14,14 @@ import {
 } from '@/lib/utils';
 
 interface ActivityParams {
-  params: Promise<{ activityId: string, tripId: string }>;
+  params: Promise<{ activityId: string; tripId: string }>;
 }
 
 /**
  * GET /api/trips/[tripId]/activities/[activityId]
  * Get a specific activity by ID
  */
-export async function GET(
-  request: NextRequest,
-  { params }: ActivityParams
-) {
+export async function GET(request: NextRequest, { params }: ActivityParams) {
   try {
     // Check authentication
     const authResult = await requireAuth();
@@ -49,10 +46,7 @@ export async function GET(
  * PUT /api/trips/[tripId]/activities/[activityId]
  * Update a specific activity
  */
-export async function PUT(
-  request: NextRequest,
-  { params }: ActivityParams
-) {
+export async function PUT(request: NextRequest, { params }: ActivityParams) {
   try {
     // Check authentication
     const authResult = await requireAuth();
@@ -90,7 +84,10 @@ export async function PUT(
     // Get the updated activity
     const updatedActivity = await getActivityById(tripId, activityId);
 
-    return createSuccessResponse(updatedActivity, 'Activity updated successfully');
+    return createSuccessResponse(
+      updatedActivity,
+      'Activity updated successfully'
+    );
   } catch (error) {
     return createInternalErrorResponse(error, 'update activity');
   }
@@ -100,10 +97,7 @@ export async function PUT(
  * DELETE /api/trips/[tripId]/activities/[activityId]
  * Delete a specific activity
  */
-export async function DELETE(
-  request: NextRequest,
-  { params }: ActivityParams
-) {
+export async function DELETE(request: NextRequest, { params }: ActivityParams) {
   try {
     // Check authentication
     const authResult = await requireAuth();

@@ -77,16 +77,21 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
       // Get place suggestions
       const response =
         searchType === 'searchText'
-          ? await getPlaceSuggestions({ ...reqBody, sessionToken, query: input })
+          ? await getPlaceSuggestions({
+              ...reqBody,
+              sessionToken,
+              query: input,
+            })
           : await searchNearbyPlaces(reqBody);
 
       // If the response is an error, set the error and return
       if (response instanceof PlacesApiError) throw response;
 
       // Parse suggestions to places format
-      const placesResult = 'suggestions' in response
-        ? parsePlaceSuggestions(response.suggestions)
-        : response.places;
+      const placesResult =
+        'suggestions' in response
+          ? parsePlaceSuggestions(response.suggestions)
+          : response.places;
 
       // Set the places to the state
       setPlaces(placesResult);

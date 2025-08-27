@@ -35,11 +35,9 @@ export default function GroupSection({
           <Icon className={styles.groupIcon} />
           {title}
         </h3>
-        <p className={styles.groupDescription}>
-          {description}
-        </p>
+        <p className={styles.groupDescription}>{description}</p>
       </div>
-      
+
       {children}
     </div>
   );
@@ -48,7 +46,8 @@ export default function GroupSection({
 const styles = {
   group: 'bg-slate-800/30 rounded-xl p-6 border border-slate-700/50',
   groupHeader: 'mb-6 text-center',
-  groupTitle: 'text-parchment-white mb-2 text-xl font-semibold flex items-center justify-center gap-2',
+  groupTitle:
+    'text-parchment-white mb-2 text-xl font-semibold flex items-center justify-center gap-2',
   groupIcon: 'text-royal-purple h-6 w-6',
   groupDescription: 'text-mist-gray text-sm',
 };

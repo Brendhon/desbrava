@@ -15,9 +15,7 @@ export default function PageStructure({
     <div className={`${styles.container} ${className}`}>
       <div className={styles.header}>
         <h2 className={styles.title}>{title}</h2>
-        {description && (
-          <p className={styles.description}>{description}</p>
-        )}
+        {description && <p className={styles.description}>{description}</p>}
       </div>
       {children}
     </div>

@@ -22,10 +22,7 @@ interface TripParams {
  * GET /api/trips/[tripId]
  * Get a specific trip by ID
  */
-export async function GET(
-  request: NextRequest,
-  { params }: TripParams
-) {
+export async function GET(request: NextRequest, { params }: TripParams) {
   try {
     // Check authentication
     const authResult = await requireAuth();
@@ -57,10 +54,7 @@ export async function GET(
  * PUT /api/trips/[tripId]
  * Update a specific trip
  */
-export async function PUT(
-  request: NextRequest,
-  { params }: TripParams
-) {
+export async function PUT(request: NextRequest, { params }: TripParams) {
   try {
     // Check authentication
     const authResult = await requireAuth();
@@ -118,10 +112,7 @@ export async function PUT(
  * DELETE /api/trips/[tripId]
  * Delete a specific trip
  */
-export async function DELETE(
-  request: NextRequest,
-  { params }: TripParams
-) {
+export async function DELETE(request: NextRequest, { params }: TripParams) {
   try {
     // Check authentication
     const authResult = await requireAuth();

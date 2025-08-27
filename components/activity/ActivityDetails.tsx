@@ -56,9 +56,9 @@ export default function ActivityDetails({
 
       // If start date is after end date, clear end date
       if (!endDateParsed || startDateParsed > endDateParsed) {
-        setValue('endDate', startDate)
+        setValue('endDate', startDate);
       }
-    }
+    };
 
     // Update end date
     updateEndDate();
@@ -66,7 +66,7 @@ export default function ActivityDetails({
 
   // Get end min date for DatePicker
   const endMinDate = useMemo(
-    () => startDate ? parsePtBrToDate(startDate) : new Date(),
+    () => (startDate ? parsePtBrToDate(startDate) : new Date()),
     [startDate]
   );
 
@@ -194,12 +194,13 @@ export default function ActivityDetails({
 
 const styles = {
   form: 'space-y-8',
-  
+
   // Section Styles
   dateSection: 'mb-6',
   timeSection: 'mb-0',
-  sectionTitle: 'text-parchment-white mb-4 text-lg font-medium flex items-center gap-2',
-  
+  sectionTitle:
+    'text-parchment-white mb-4 text-lg font-medium flex items-center gap-2',
+
   // Container Styles
   dateContainer: 'grid grid-cols-1 gap-4 md:grid-cols-2',
   dateField: 'space-y-2',

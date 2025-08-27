@@ -1,7 +1,11 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { Activity, CreateActivityData, UpdateActivityData } from '@/lib/types/activity';
+import {
+  Activity,
+  CreateActivityData,
+  UpdateActivityData,
+} from '@/lib/types/activity';
 
 interface UseActivitiesReturn {
   activities: Activity[];
@@ -9,11 +13,22 @@ interface UseActivitiesReturn {
   error: string | null;
   fetchTripActivities: (tripId: string) => Promise<void>;
   fetchActivity: (tripId: string, id: string) => Promise<Activity | null>;
-  createActivity: (tripId: string, data: CreateActivityData) => Promise<Activity | null>;
-  updateActivity: (tripId: string, id: string, data: UpdateActivityData) => Promise<Activity | null>;
+  createActivity: (
+    tripId: string,
+    data: CreateActivityData
+  ) => Promise<Activity | null>;
+  updateActivity: (
+    tripId: string,
+    id: string,
+    data: UpdateActivityData
+  ) => Promise<Activity | null>;
   deleteActivity: (tripId: string, id: string) => Promise<boolean>;
   getLastActivity: (tripId: string) => Promise<Activity | null>;
-  searchTripActivities: (tripId: string, searchTerm: string, filters?: any) => Promise<void>;
+  searchTripActivities: (
+    tripId: string,
+    searchTerm: string,
+    filters?: any
+  ) => Promise<void>;
   clearError: () => void;
 }
 
@@ -36,25 +51,28 @@ export function useActivities(): UseActivitiesReturn {
     setError(message);
   }, []);
 
-  const fetchTripActivities = useCallback(async (tripId: string) => {
-    try {
-      setLoading(true);
-      setError(null);
+  const fetchTripActivities = useCallback(
+    async (tripId: string) => {
+      try {
+        setLoading(true);
+        setError(null);
 
-      const response = await fetch(formPath(tripId));
-      const result = await response.json();
+        const response = await fetch(formPath(tripId));
+        const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(result.message || 'Failed to fetch trip activities');
+        if (!response.ok) {
+          throw new Error(result.message || 'Failed to fetch trip activities');
+        }
+
+        setActivities(result.data || []);
+      } catch (error) {
+        handleError(error);
+      } finally {
+        setLoading(false);
       }
-
-      setActivities(result.data || []);
-    } catch (error) {
-      handleError(error);
-    } finally {
-      setLoading(false);
-    }
-  }, [handleError]);
+    },
+    [handleError]
+  );
 
   const fetchActivity = useCallback(
     async (tripId: string, id: string): Promise<Activity | null> => {
@@ -81,7 +99,10 @@ export function useActivities(): UseActivitiesReturn {
   );
 
   const createActivity = useCallback(
-    async (tripId: string, data: CreateActivityData): Promise<Activity | null> => {
+    async (
+      tripId: string,
+      data: CreateActivityData
+    ): Promise<Activity | null> => {
       try {
         setLoading(true);
         setError(null);
@@ -115,7 +136,11 @@ export function useActivities(): UseActivitiesReturn {
   );
 
   const updateActivity = useCallback(
-    async (tripId: string, id: string, data: UpdateActivityData): Promise<Activity | null> => {
+    async (
+      tripId: string,
+      id: string,
+      data: UpdateActivityData
+    ): Promise<Activity | null> => {
       try {
         setLoading(true);
         setError(null);

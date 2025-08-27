@@ -291,5 +291,5 @@ export const HOTEL_FIELDS = [
   'primaryTypeDisplayName',
   'shortFormattedAddress',
   'subDestinations',
-  'viewport'
+  'viewport',
 ];

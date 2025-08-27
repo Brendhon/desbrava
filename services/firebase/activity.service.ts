@@ -12,7 +12,11 @@ import {
   QueryConstraint,
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
-import { Activity, CreateActivityData, UpdateActivityData } from '@/lib/types/activity';
+import {
+  Activity,
+  CreateActivityData,
+  UpdateActivityData,
+} from '@/lib/types/activity';
 
 const COLLECTION_NAME = 'activities';
 
@@ -50,7 +54,10 @@ export async function getTripActivities(tripId: string): Promise<Activity[]> {
 /**
  * Get a specific activity by ID
  */
-export async function getActivityById(tripId: string, activityId: string): Promise<Activity | null> {
+export async function getActivityById(
+  tripId: string,
+  activityId: string
+): Promise<Activity | null> {
   try {
     const activityRef = doc(db, getPath(tripId), activityId);
     const activitySnap = await getDoc(activityRef);
@@ -120,8 +127,12 @@ export async function searchTripActivities(
       return activities.filter(
         (activity) =>
           activity.description?.toLowerCase().includes(lowerSearchTerm) ||
-          activity.place.displayName.text.toLowerCase().includes(lowerSearchTerm) ||
-          activity.place.formattedAddress.toLowerCase().includes(lowerSearchTerm)
+          activity.place.displayName.text
+            .toLowerCase()
+            .includes(lowerSearchTerm) ||
+          activity.place.formattedAddress
+            .toLowerCase()
+            .includes(lowerSearchTerm)
       );
     }
 
@@ -135,7 +146,10 @@ export async function searchTripActivities(
 /**
  * Create a new activity
  */
-export async function createActivity(tripId: string, activityData: CreateActivityData): Promise<string> {
+export async function createActivity(
+  tripId: string,
+  activityData: CreateActivityData
+): Promise<string> {
   try {
     const activitiesRef = collection(db, getPath(tripId));
     const now = new Date().toISOString();
@@ -180,7 +194,10 @@ export async function updateActivity(
 /**
  * Delete an activity
  */
-export async function deleteActivity(tripId: string, activityId: string): Promise<void> {
+export async function deleteActivity(
+  tripId: string,
+  activityId: string
+): Promise<void> {
   try {
     const activityRef = doc(db, getPath(tripId), activityId);
     await deleteDoc(activityRef);
@@ -226,10 +243,16 @@ export async function getTripActivitiesByType(
 /**
  * Get the last activity for a specific trip (sorted by startDate)
  */
-export async function getLastActivity(tripId: string): Promise<Activity | null> {
+export async function getLastActivity(
+  tripId: string
+): Promise<Activity | null> {
   try {
     const activitiesRef = collection(db, getPath(tripId));
-    const q = query(activitiesRef, where('tripId', '==', tripId), orderBy('startDate', 'desc'));
+    const q = query(
+      activitiesRef,
+      where('tripId', '==', tripId),
+      orderBy('startDate', 'desc')
+    );
     const querySnapshot = await getDocs(q);
     const activities: Activity[] = [];
 

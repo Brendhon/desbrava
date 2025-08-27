@@ -41,13 +41,19 @@ export async function POST(request: NextRequest, { params }: TripParams) {
       'startTime',
       'endTime',
     ];
-    const validationError = validateRequiredFields(activityData, requiredFields);
+    const validationError = validateRequiredFields(
+      activityData,
+      requiredFields
+    );
     if (validationError) {
       return validationError;
     }
 
     // Validate that place has required fields
-    if (!activityData.place.displayName?.text || !activityData.place.formattedAddress) {
+    if (
+      !activityData.place.displayName?.text ||
+      !activityData.place.formattedAddress
+    ) {
       return createErrorResponse(
         'Bad request',
         'Place must have displayName.text and formattedAddress',
