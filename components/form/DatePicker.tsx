@@ -2,9 +2,8 @@
 
 import { Input } from '@/components/form';
 import { DatePickerProps } from '@/lib/types';
-import { cn } from '@/lib/utils';
+import { cn, parseDateToPtBr, parsePtBrToDate } from '@/lib/utils';
 import { generateRandomId } from '@/lib/utils/string-utils';
-import { parseDateToPtBr, parsePtBrToDate } from '@/lib/utils/trip';
 import { ptBR } from 'date-fns/locale';
 import { Calendar, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';

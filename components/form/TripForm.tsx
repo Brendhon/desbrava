@@ -1,8 +1,8 @@
 'use client';
 
 import { Input, Textarea } from '@/components/form';
-import CountrySearchSelect from '@/components/form/selects/CountrySearchSelect';
 import DatePicker from '@/components/form/DatePicker';
+import CountrySearchSelect from '@/components/form/selects/CountrySearchSelect';
 import { Button } from '@/components/ui';
 import {
   createTripSchema,
@@ -14,7 +14,7 @@ import {
   addDaysToDate,
   isStartDateBeforeEndDate,
   parsePtBrToDate,
-} from '@/lib/utils/trip';
+} from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LucideIcon } from 'lucide-react';
 import { useEffect, useMemo } from 'react';
