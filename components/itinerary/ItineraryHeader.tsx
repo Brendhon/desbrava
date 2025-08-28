@@ -34,8 +34,8 @@ export function ItineraryHeader({ tripId }: ItineraryHeaderProps) {
 }
 
 const styles = {
-  header: 'flex items-start justify-between',
-  titleSection: 'space-y-1',
-  title: 'text-xl font-semibold text-parchment-white',
+  header: 'flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4',
+  titleSection: 'space-y-1 text-center sm:text-left',
+  title: 'text-lg sm:text-xl font-semibold text-parchment-white',
   subtitle: 'text-sm text-mist-gray',
 };

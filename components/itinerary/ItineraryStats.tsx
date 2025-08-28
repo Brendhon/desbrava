@@ -138,9 +138,9 @@ function getTypeColor(type: string): string {
 }
 
 const styles = {
-  container: 'bg-slate-dark rounded-lg border border-slate-dark/20 p-6 space-y-6',
+  container: 'bg-slate-dark rounded-lg border border-slate-dark/20 p-4 sm:p-6 space-y-6',
   title: 'text-lg font-semibold text-parchment-white',
-  statsGrid: 'grid grid-cols-2 md:grid-cols-4 gap-4',
+  statsGrid: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4',
   statCard: 'flex items-center gap-3 p-3 bg-midnight-blue rounded-lg',
   statIcon: 'w-10 h-10 bg-royal-purple rounded-lg flex items-center justify-center',
   icon: 'w-5 h-5 text-parchment-white',

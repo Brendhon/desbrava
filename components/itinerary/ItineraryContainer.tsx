@@ -69,10 +69,10 @@ export function ItineraryContainer({
 }
 
 const styles = {
-  container: 'space-y-6',
-  loadingState: 'flex flex-col items-center justify-center py-16 space-y-4',
+  container: 'space-y-4 sm:space-y-6',
+  loadingState: 'flex flex-col items-center justify-center py-8 sm:py-16 space-y-4',
   loadingSpinner: 'w-8 h-8 border-2 border-royal-purple border-t-transparent rounded-full animate-spin',
   loadingText: 'text-mist-gray text-sm',
-  noResults: 'text-center py-16',
+  noResults: 'text-center py-8 sm:py-16',
   noResultsText: 'text-mist-gray text-lg',
 };

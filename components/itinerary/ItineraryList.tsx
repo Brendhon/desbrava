@@ -40,8 +40,8 @@ export function ItineraryList({ activities }: ItineraryListProps) {
 
 const styles = {
   container: 'space-y-6',
-  header: 'flex items-center justify-between border-b border-slate-dark/20 pb-4',
-  title: 'text-lg font-medium text-parchment-white',
-  count: 'text-sm text-mist-gray bg-slate-dark px-3 py-1 rounded-full',
+  header: 'flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-dark/20 pb-4 gap-3',
+  title: 'text-lg font-medium text-parchment-white text-center sm:text-left',
+  count: 'text-sm text-mist-gray bg-slate-dark px-3 py-1 rounded-full text-center sm:text-left',
   daysContainer: 'space-y-6',
 };

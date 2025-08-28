@@ -31,13 +31,13 @@ export function ItineraryEmptyState() {
 }
 
 const styles = {
-  container: 'text-center py-16',
-  iconContainer: 'w-20 h-20 bg-midnight-blue rounded-full flex items-center justify-center mx-auto mb-6',
-  icon: 'w-10 h-10 text-mist-gray',
-  content: 'space-y-4',
-  title: 'text-xl font-semibold text-parchment-white',
-  description: 'text-mist-gray max-w-md mx-auto',
-  tips: 'mt-8 text-left max-w-lg mx-auto',
+  container: 'text-center py-8 sm:py-16',
+  iconContainer: 'w-16 h-16 sm:w-20 sm:h-20 bg-midnight-blue rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6',
+  icon: 'w-8 h-8 sm:w-10 sm:h-10 text-mist-gray',
+  content: 'space-y-3 sm:space-y-4',
+  title: 'text-lg sm:text-xl font-semibold text-parchment-white',
+  description: 'text-mist-gray max-w-md mx-auto text-sm sm:text-base',
+  tips: 'mt-6 sm:mt-8 text-left max-w-lg mx-auto',
   tipsTitle: 'text-sm font-medium text-parchment-white mb-3',
   tipsList: 'space-y-2 text-sm text-mist-gray',
 };
