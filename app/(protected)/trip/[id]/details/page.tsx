@@ -7,7 +7,7 @@ import { ItineraryContainer } from '@/components/itinerary';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
 import { Trip } from '@/lib/types/trip';
-import { calculateTripDuration } from '@/lib/utils/trip';
+import { calculateTripDuration } from '@/lib/utils';
 import {
   Calendar,
   DollarSign,
@@ -22,10 +22,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import TripDetailsLoading from './loading';
-import {
-  DashboardRoutes,
-  TripRoutes,
-} from '@/lib/types';
+import { DashboardRoutes, TripRoutes } from '@/lib/types';
 import { useActivities } from '@/hooks';
 
 const TripInfoCard = ({
@@ -198,5 +195,4 @@ const styles = {
   infoIcon: 'w-5 h-5 text-royal-purple',
   infoLabel: 'text-sm text-mist-gray',
   infoValue: 'text-parchment-white font-medium',
-
 };

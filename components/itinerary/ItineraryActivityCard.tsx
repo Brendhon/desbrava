@@ -2,14 +2,18 @@
 
 import { Card } from '@/components/ui';
 import { Activity, ActivityRoutes, ActivityType } from '@/lib/types';
-import { formatTime, getActivityTypeColor, getActivityTypeIcon } from '@/lib/utils';
+import {
+  formatTime,
+  getActivityTypeColor,
+  getActivityTypeIcon,
+} from '@/lib/utils';
 import {
   Calendar,
   Clock,
   Edit,
   ExternalLink,
   MapPin,
-  Trash2
+  Trash2,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -18,9 +22,9 @@ interface ItineraryActivityCardProps {
   isLast?: boolean;
 }
 
-export function ItineraryActivityCard({ 
-  activity, 
-  isLast = false 
+export function ItineraryActivityCard({
+  activity,
+  isLast = false,
 }: ItineraryActivityCardProps) {
   const ActivityIcon = getActivityTypeIcon(activity.type);
   const typeColor = getActivityTypeColor(activity.type);
@@ -41,13 +45,15 @@ export function ItineraryActivityCard({
             <ActivityIcon className={styles.icon} aria-hidden="true" />
           </div>
           <div className={styles.typeInfo}>
-            <span className={styles.typeLabel}>{ActivityType[activity.type]}</span>
+            <span className={styles.typeLabel}>
+              {ActivityType[activity.type]}
+            </span>
             {activity.subType && (
               <span className={styles.subType}>{activity.subType}</span>
             )}
           </div>
         </div>
-        
+
         <div className={styles.actions}>
           <Link
             href={ActivityRoutes.edit(activity.tripId, activity.id!)}
@@ -69,13 +75,17 @@ export function ItineraryActivityCard({
         {activity.description && (
           <p className={styles.description}>{activity.description}</p>
         )}
-        
+
         <div className={styles.placeInfo}>
           <MapPin className={styles.placeIcon} />
           <div className={styles.placeDetails}>
-            <h6 className={styles.placeName}>{activity.place.displayName.text}</h6>
+            <h6 className={styles.placeName}>
+              {activity.place.displayName.text}
+            </h6>
             {activity.place.formattedAddress && (
-              <p className={styles.placeAddress}>{activity.place.formattedAddress}</p>
+              <p className={styles.placeAddress}>
+                {activity.place.formattedAddress}
+              </p>
             )}
           </div>
           {activity.place.websiteUri && (
@@ -99,7 +109,7 @@ export function ItineraryActivityCard({
             {formatTime(activity.startTime)} - {formatTime(activity.endTime)}
           </span>
         </div>
-        
+
         {!isSameDay && (
           <div className={styles.dateInfo}>
             <Calendar className={styles.dateIcon} />
@@ -115,8 +125,10 @@ export function ItineraryActivityCard({
 
 const styles = {
   container: 'relative transition-colors',
-  withConnector: 'after:content-[""] after:absolute after:left-6 after:top-full after:w-0.5 after:h-3 after:bg-slate-dark/40',
-  header: 'flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-3',
+  withConnector:
+    'after:content-[""] after:absolute after:left-6 after:top-full after:w-0.5 after:h-3 after:bg-slate-dark/40',
+  header:
+    'flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-3',
   typeSection: 'flex items-center gap-3',
   typeIcon: 'w-10 h-10 rounded-lg flex items-center justify-center',
   icon: 'w-5 h-5 text-parchment-white',
@@ -124,7 +136,8 @@ const styles = {
   typeLabel: 'text-sm font-medium text-parchment-white block',
   subType: 'text-xs text-mist-gray block',
   actions: 'flex items-center gap-2 justify-end sm:justify-start',
-  actionButton: 'p-2 text-mist-gray hover:text-parchment-white hover:bg-slate-dark/60 rounded-md transition-colors',
+  actionButton:
+    'p-2 text-mist-gray hover:text-parchment-white hover:bg-slate-dark/60 rounded-md transition-colors',
   deleteButton: 'hover:text-red-400 hover:bg-red-400/10',
   actionIcon: 'w-4 h-4',
   content: 'space-y-4 mb-4',
@@ -134,9 +147,11 @@ const styles = {
   placeDetails: 'flex-1 space-y-1',
   placeName: 'text-parchment-white font-medium',
   placeAddress: 'text-mist-gray text-sm',
-  websiteLink: 'p-1 text-mist-gray hover:text-royal-purple transition-colors self-start sm:self-auto',
+  websiteLink:
+    'p-1 text-mist-gray hover:text-royal-purple transition-colors self-start sm:self-auto',
   websiteIcon: 'w-4 h-4',
-  footer: 'flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-sm text-mist-gray',
+  footer:
+    'flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-sm text-mist-gray',
   timeInfo: 'flex items-center gap-2',
   timeIcon: 'w-4 h-4',
   time: 'font-medium',

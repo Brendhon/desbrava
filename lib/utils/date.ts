@@ -86,7 +86,6 @@ export function getCurrentTime(): string {
   return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
 }
 
-
 /**
  * Parse date from string to Date
  */

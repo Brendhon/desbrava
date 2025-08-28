@@ -4,15 +4,20 @@ import { parsePtBrToDate } from './date';
 /**
  * Groups activities by date for itinerary organization
  */
-export function groupActivitiesByDate(activities: Activity[]): Record<string, Activity[]> {
-  return activities.reduce((groups, activity) => {
-    const date = activity.startDate;
-    if (!groups[date]) {
-      groups[date] = [];
-    }
-    groups[date].push(activity);
-    return groups;
-  }, {} as Record<string, Activity[]>);
+export function groupActivitiesByDate(
+  activities: Activity[]
+): Record<string, Activity[]> {
+  return activities.reduce(
+    (groups, activity) => {
+      const date = activity.startDate;
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(activity);
+      return groups;
+    },
+    {} as Record<string, Activity[]>
+  );
 }
 
 /**
@@ -45,20 +50,20 @@ export function getDayActivitiesDuration(activities: Activity[]): number {
  */
 export function hasTimeConflict(activities: Activity[]): boolean {
   const sortedActivities = sortActivitiesByTime(activities);
-  
+
   for (let i = 0; i < sortedActivities.length - 1; i++) {
     const current = sortedActivities[i];
     const next = sortedActivities[i + 1];
-    
+
     const currentEnd = parsePtBrToDate(current.endTime);
     const nextStart = parsePtBrToDate(next.startTime);
-    
+
     if (!currentEnd || !nextStart) return false;
     if (currentEnd > nextStart) {
       return true;
     }
   }
-  
+
   return false;
 }
 
@@ -70,7 +75,7 @@ export function getActivitiesInDateRange(
   startDate: string,
   endDate: string
 ): Activity[] {
-  return activities.filter(activity => {
+  return activities.filter((activity) => {
     // Parse the dates
     const activityDate = parsePtBrToDate(activity.startDate);
     const rangeStart = parsePtBrToDate(startDate);

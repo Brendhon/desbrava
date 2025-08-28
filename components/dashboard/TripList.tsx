@@ -6,7 +6,7 @@ import {
   filterTripsByStatus,
   searchTripsByText,
   sortTripsByDate,
-} from '@/lib/utils/trip';
+} from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
 

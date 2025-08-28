@@ -1,7 +1,11 @@
 'use client';
 
 import { Activity } from '@/lib/types';
-import { getDayOfWeek, parsePtBrToDate, sortActivitiesByTime } from '@/lib/utils';
+import {
+  getDayOfWeek,
+  parsePtBrToDate,
+  sortActivitiesByTime,
+} from '@/lib/utils';
 import { ItineraryActivityCard } from './ItineraryActivityCard';
 import { useCallback, useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
@@ -15,7 +19,7 @@ export function ItineraryDay({ date, activities }: ItineraryDayProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const sortedActivities = useCallback(
-    () => activities.length > 0 ? sortActivitiesByTime(activities) : [],
+    () => (activities.length > 0 ? sortActivitiesByTime(activities) : []),
     [activities]
   );
 
@@ -69,7 +73,9 @@ export function ItineraryDay({ date, activities }: ItineraryDayProps) {
         </div>
       </div>
 
-      <div className={`${styles.activitiesContainer} ${isCollapsed ? styles.collapsed : ''}`}>
+      <div
+        className={`${styles.activitiesContainer} ${isCollapsed ? styles.collapsed : ''}`}
+      >
         {sortedActivities().map((activity, index) => (
           <ItineraryActivityCard
             key={activity.id || index}
@@ -84,13 +90,15 @@ export function ItineraryDay({ date, activities }: ItineraryDayProps) {
 
 const styles = {
   container: 'space-y-4',
-  dayHeader: 'flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-midnight-blue rounded-lg cursor-pointer hover:bg-midnight-blue/90 transition-colors duration-200 select-none gap-3',
+  dayHeader:
+    'flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-midnight-blue rounded-lg cursor-pointer hover:bg-midnight-blue/90 transition-colors duration-200 select-none gap-3',
   dateInfo: 'space-y-1',
   date: 'text-lg font-semibold text-parchment-white',
   dayOfWeek: 'text-sm text-mist-gray capitalize',
   headerRight: 'flex items-center justify-between sm:justify-end gap-3',
   activityCount: 'text-sm text-mist-gray bg-slate-dark px-3 py-1 rounded-full',
-  activitiesContainer: 'space-y-3 transition-all duration-300 ease-in-out overflow-hidden',
+  activitiesContainer:
+    'space-y-3 transition-all duration-300 ease-in-out overflow-hidden',
   collapsed: 'max-h-0 opacity-0 space-y-0',
   chevron: 'text-mist-gray transition-transform duration-300 ease-in-out',
   chevronCollapsed: 'rotate-180',

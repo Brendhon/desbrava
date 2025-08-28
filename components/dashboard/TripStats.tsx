@@ -2,7 +2,7 @@
 
 import { Card } from '@/components/ui';
 import { Trip } from '@/lib/types/trip';
-import { parsePtBrToDate } from '@/lib/utils/trip';
+import { parsePtBrToDate } from '@/lib/utils';
 import { Calendar, LucideIcon, MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 

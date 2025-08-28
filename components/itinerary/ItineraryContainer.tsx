@@ -2,12 +2,11 @@
 
 import { Card } from '@/components/ui';
 import { Activity, ActivityTypeKey } from '@/lib/types';
-import { ItineraryFilters } from './ItineraryFilters';
-import { ItineraryStats } from './ItineraryStats';
-import { useState, useMemo } from 'react';
-import { ItineraryList } from './ItineraryList';
+import { useMemo, useState } from 'react';
 import { ItineraryEmptyState } from './ItineraryEmptyState';
+import { ItineraryFilters } from './ItineraryFilters';
 import { ItineraryHeader } from './ItineraryHeader';
+import { ItineraryList } from './ItineraryList';
 
 interface ItineraryContainerProps {
   tripId: string;
@@ -21,10 +20,12 @@ export function ItineraryContainer({
   loading = false,
 }: ItineraryContainerProps) {
   const [selectedTypes, setSelectedTypes] = useState<ActivityTypeKey[]>([]);
-  
+
   const filteredActivities = useMemo(() => {
     if (selectedTypes.length === 0) return activities;
-    return activities.filter(activity => selectedTypes.includes(activity.type));
+    return activities.filter((activity) =>
+      selectedTypes.includes(activity.type)
+    );
   }, [activities, selectedTypes]);
 
   const hasActivities = activities.length > 0;
@@ -38,7 +39,7 @@ export function ItineraryContainer({
       className={styles.container}
     >
       <ItineraryHeader tripId={tripId} />
-      
+
       {hasActivities && (
         <ItineraryFilters
           selectedTypes={selectedTypes}
@@ -47,7 +48,7 @@ export function ItineraryContainer({
           filteredCount={filteredActivities.length}
         />
       )}
-      
+
       {loading ? (
         <div className={styles.loadingState}>
           <div className={styles.loadingSpinner} />
@@ -70,8 +71,10 @@ export function ItineraryContainer({
 
 const styles = {
   container: 'space-y-4 sm:space-y-6',
-  loadingState: 'flex flex-col items-center justify-center py-8 sm:py-16 space-y-4',
-  loadingSpinner: 'w-8 h-8 border-2 border-royal-purple border-t-transparent rounded-full animate-spin',
+  loadingState:
+    'flex flex-col items-center justify-center py-8 sm:py-16 space-y-4',
+  loadingSpinner:
+    'w-8 h-8 border-2 border-royal-purple border-t-transparent rounded-full animate-spin',
   loadingText: 'text-mist-gray text-sm',
   noResults: 'text-center py-8 sm:py-16',
   noResultsText: 'text-mist-gray text-lg',

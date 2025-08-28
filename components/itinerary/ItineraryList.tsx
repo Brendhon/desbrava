@@ -24,7 +24,7 @@ export function ItineraryList({ activities }: ItineraryListProps) {
           {activities.length} atividade{activities.length !== 1 ? 's' : ''}
         </span>
       </div>
-      
+
       <div className={styles.daysContainer}>
         {sortedDates.map((date) => (
           <ItineraryDay
@@ -40,8 +40,10 @@ export function ItineraryList({ activities }: ItineraryListProps) {
 
 const styles = {
   container: 'space-y-6',
-  header: 'flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-dark/20 pb-4 gap-3',
+  header:
+    'flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-dark/20 pb-4 gap-3',
   title: 'text-lg font-medium text-parchment-white text-center sm:text-left',
-  count: 'text-sm text-mist-gray bg-slate-dark px-3 py-1 rounded-full text-center sm:text-left',
+  count:
+    'text-sm text-mist-gray bg-slate-dark px-3 py-1 rounded-full text-center sm:text-left',
   daysContainer: 'space-y-6',
 };

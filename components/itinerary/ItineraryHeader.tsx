@@ -18,7 +18,7 @@ export function ItineraryHeader({ tripId }: ItineraryHeaderProps) {
           Organize e visualize todas as suas atividades planejadas
         </p>
       </div>
-      
+
       <Link href={ActivityRoutes.create(tripId)}>
         <Button
           variant="primary"

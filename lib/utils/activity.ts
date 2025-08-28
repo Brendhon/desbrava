@@ -1,10 +1,10 @@
-import { 
-  Hotel, 
-  Plane, 
-  Utensils, 
-  Drama, 
+import {
+  Hotel,
+  Plane,
+  Utensils,
+  Drama,
   NotebookPen,
-  LucideIcon 
+  LucideIcon,
 } from 'lucide-react';
 import { ActivityTypeKey } from '@/lib/types';
 
@@ -19,7 +19,7 @@ export function getActivityTypeIcon(type: ActivityTypeKey): LucideIcon {
     leisure: Drama,
     other: NotebookPen,
   };
-  
+
   return icons[type];
 }
 
@@ -34,7 +34,7 @@ export function getActivityTypeColor(type: ActivityTypeKey): string {
     leisure: 'bg-purple-600',
     other: 'bg-gray-600',
   };
-  
+
   return colors[type];
 }
 
@@ -49,14 +49,24 @@ export function getActivityTypeLabel(type: ActivityTypeKey): string {
     leisure: 'Lazer',
     other: 'Outro',
   };
-  
+
   return labels[type];
 }
 
 /**
  * Gets the activity type from a string value
  */
-export function getActivityTypeFromString(value: string): ActivityTypeKey | null {
-  const validTypes: ActivityTypeKey[] = ['accommodation', 'transportation', 'food', 'leisure', 'other'];
-  return validTypes.includes(value as ActivityTypeKey) ? value as ActivityTypeKey : null;
+export function getActivityTypeFromString(
+  value: string
+): ActivityTypeKey | null {
+  const validTypes: ActivityTypeKey[] = [
+    'accommodation',
+    'transportation',
+    'food',
+    'leisure',
+    'other',
+  ];
+  return validTypes.includes(value as ActivityTypeKey)
+    ? (value as ActivityTypeKey)
+    : null;
 }

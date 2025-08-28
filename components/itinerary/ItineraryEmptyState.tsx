@@ -8,14 +8,14 @@ export function ItineraryEmptyState() {
       <div className={styles.iconContainer}>
         <Map className={styles.icon} aria-hidden="true" />
       </div>
-      
+
       <div className={styles.content}>
         <h3 className={styles.title}>Nenhuma atividade planejada</h3>
         <p className={styles.description}>
-          Comece adicionando atividades ao seu itinerário para organizar
-          melhor sua viagem e aproveitar ao máximo cada dia.
+          Comece adicionando atividades ao seu itinerário para organizar melhor
+          sua viagem e aproveitar ao máximo cada dia.
         </p>
-        
+
         <div className={styles.tips}>
           <h4 className={styles.tipsTitle}>Dicas para começar:</h4>
           <ul className={styles.tipsList}>
@@ -32,7 +32,8 @@ export function ItineraryEmptyState() {
 
 const styles = {
   container: 'text-center py-8 sm:py-16',
-  iconContainer: 'w-16 h-16 sm:w-20 sm:h-20 bg-midnight-blue rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6',
+  iconContainer:
+    'w-16 h-16 sm:w-20 sm:h-20 bg-midnight-blue rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6',
   icon: 'w-8 h-8 sm:w-10 sm:h-10 text-mist-gray',
   content: 'space-y-3 sm:space-y-4',
   title: 'text-lg sm:text-xl font-semibold text-parchment-white',

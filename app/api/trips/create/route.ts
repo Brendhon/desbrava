@@ -1,14 +1,14 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { createTrip } from '@/services/firebase/trip.service';
 import { CreateTripData } from '@/lib/types/trip';
-import { parsePtBrToDate } from '@/lib/utils/trip';
 import {
-  requireAuth,
-  createSuccessResponse,
-  validateRequiredFields,
-  validateDateRange,
   createInternalErrorResponse,
+  createSuccessResponse,
+  parsePtBrToDate,
+  requireAuth,
+  validateDateRange,
+  validateRequiredFields,
 } from '@/lib/utils';
+import { createTrip } from '@/services/firebase/trip.service';
+import { NextRequest, NextResponse } from 'next/server';
 
 /**
  * POST /api/trips/create

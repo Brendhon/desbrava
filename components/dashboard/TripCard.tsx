@@ -7,7 +7,7 @@ import {
   calculateTripDuration,
   formatTripDates,
   getTripStatus,
-} from '@/lib/utils/trip';
+} from '@/lib/utils';
 import { Calendar, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { useCallback, useMemo } from 'react';

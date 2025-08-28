@@ -21,7 +21,7 @@ export function ItineraryFilters({
 
   const handleTypeToggle = (type: ActivityTypeKey) => {
     if (selectedTypes.includes(type)) {
-      onTypeChange(selectedTypes.filter(t => t !== type));
+      onTypeChange(selectedTypes.filter((t) => t !== type));
     } else {
       onTypeChange([...selectedTypes, type]);
     }
@@ -51,7 +51,8 @@ export function ItineraryFilters({
 
         <div className={styles.stats}>
           <span className={styles.totalCount}>
-            {filteredCount} de {totalActivities} atividade{totalActivities !== 1 ? 's' : ''}
+            {filteredCount} de {totalActivities} atividade
+            {totalActivities !== 1 ? 's' : ''}
           </span>
         </div>
       </div>
@@ -71,7 +72,6 @@ export function ItineraryFilters({
                   Limpar Filtros
                 </button>
               )}
-
             </h5>
             <div className={styles.typeFilters}>
               {Object.entries(ActivityType).map(([key, label]) => (
@@ -95,19 +95,26 @@ export function ItineraryFilters({
 
 const styles = {
   container: 'bg-slate-dark rounded-lg border border-slate-dark/20',
-  header: 'flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 gap-3',
-  expandButton: 'flex items-center gap-2 text-mist-gray hover:text-parchment-white transition-colors',
+  header:
+    'flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 gap-3',
+  expandButton:
+    'flex items-center gap-2 text-mist-gray hover:text-parchment-white transition-colors',
   filterIcon: 'w-4 h-4',
-  filterCount: 'bg-royal-purple text-parchment-white text-xs px-2 py-1 rounded-full',
+  filterCount:
+    'bg-royal-purple text-parchment-white text-xs px-2 py-1 rounded-full',
   stats: 'text-sm text-mist-gray text-center sm:text-left',
   totalCount: 'font-medium',
   filtersContent: 'border-t border-slate-dark/20 p-4 space-y-4',
   filterSection: 'space-y-3',
-  filterTitle: 'flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm font-medium text-parchment-white gap-2',
+  filterTitle:
+    'flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm font-medium text-parchment-white gap-2',
   typeFilters: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3',
-  typeFilter: 'flex items-center gap-2 cursor-pointer hover:text-parchment-white transition-colors',
-  checkbox: 'w-4 h-4 text-royal-purple bg-slate-dark border-slate-dark/40 rounded',
+  typeFilter:
+    'flex items-center gap-2 cursor-pointer hover:text-parchment-white transition-colors',
+  checkbox:
+    'w-4 h-4 text-royal-purple bg-slate-dark border-slate-dark/40 rounded',
   typeLabel: 'text-sm text-mist-gray',
-  clearButton: 'flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors text-sm cursor-pointer',
+  clearButton:
+    'flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors text-sm cursor-pointer',
   clearIcon: 'w-4 h-4',
 };
