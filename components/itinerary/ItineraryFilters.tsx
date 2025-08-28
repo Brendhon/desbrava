@@ -48,7 +48,7 @@ export function ItineraryFilters({
             <span className={styles.filterCount}>{selectedTypes.length}</span>
           )}
         </button>
-        
+
         <div className={styles.stats}>
           <span className={styles.totalCount}>
             {filteredCount} de {totalActivities} atividade{totalActivities !== 1 ? 's' : ''}
@@ -59,7 +59,20 @@ export function ItineraryFilters({
       {isExpanded && (
         <div className={styles.filtersContent}>
           <div className={styles.filterSection}>
-            <h5 className={styles.filterTitle}>Tipo de Atividade</h5>
+            <h5 className={styles.filterTitle}>
+              Tipo de Atividade
+              {hasActiveFilters && (
+                <button
+                  onClick={clearFilters}
+                  className={styles.clearButton}
+                  aria-label="Limpar filtros"
+                >
+                  <X className={styles.clearIcon} />
+                  Limpar Filtros
+                </button>
+              )}
+
+            </h5>
             <div className={styles.typeFilters}>
               {Object.entries(ActivityType).map(([key, label]) => (
                 <label key={key} className={styles.typeFilter}>
@@ -74,17 +87,6 @@ export function ItineraryFilters({
               ))}
             </div>
           </div>
-
-          {hasActiveFilters && (
-            <button
-              onClick={clearFilters}
-              className={styles.clearButton}
-              aria-label="Limpar filtros"
-            >
-              <X className={styles.clearIcon} />
-              Limpar Filtros
-            </button>
-          )}
         </div>
       )}
     </div>
@@ -101,11 +103,11 @@ const styles = {
   totalCount: 'font-medium',
   filtersContent: 'border-t border-slate-dark/20 p-4 space-y-4',
   filterSection: 'space-y-3',
-  filterTitle: 'text-sm font-medium text-parchment-white',
+  filterTitle: 'flex items-center justify-between text-sm font-medium text-parchment-white',
   typeFilters: 'grid grid-cols-2 gap-3',
   typeFilter: 'flex items-center gap-2 cursor-pointer hover:text-parchment-white transition-colors',
   checkbox: 'w-4 h-4 text-royal-purple bg-slate-dark border-slate-dark/40 rounded',
   typeLabel: 'text-sm text-mist-gray',
-  clearButton: 'flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors text-sm',
+  clearButton: 'flex items-center gap-2 text-red-400 hover:text-red-300 transition-colors text-sm cursor-pointer',
   clearIcon: 'w-4 h-4',
 };
