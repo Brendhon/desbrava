@@ -1,9 +1,9 @@
 'use client';
 
 import { Activity } from '@/lib/types';
-import { getDayOfWeek, sortActivitiesByTime } from '@/lib/utils';
+import { getDayOfWeek, parsePtBrToDate, sortActivitiesByTime } from '@/lib/utils';
 import { ItineraryActivityCard } from './ItineraryActivityCard';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 interface ItineraryDayProps {
@@ -13,11 +13,28 @@ interface ItineraryDayProps {
 
 export function ItineraryDay({ date, activities }: ItineraryDayProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  
+
   const sortedActivities = useCallback(
     () => activities.length > 0 ? sortActivitiesByTime(activities) : [],
     [activities]
   );
+
+  // Auto-collapse if the current date is after the itinerary date
+  useEffect(() => {
+    if (date) {
+      const currentDate = new Date();
+      const itineraryDate = parsePtBrToDate(date)!;
+
+      // Reset time to compare only dates
+      currentDate.setHours(0, 0, 0, 0);
+      itineraryDate.setHours(0, 0, 0, 0);
+
+      // If current date is after itinerary date, collapse automatically
+      if (currentDate > itineraryDate) {
+        setIsCollapsed(true);
+      }
+    }
+  }, [date]);
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -25,7 +42,7 @@ export function ItineraryDay({ date, activities }: ItineraryDayProps) {
 
   return (
     <div className={styles.container}>
-      <div 
+      <div
         className={styles.dayHeader}
         onClick={toggleCollapse}
         role="button"
@@ -45,13 +62,13 @@ export function ItineraryDay({ date, activities }: ItineraryDayProps) {
           <span className={styles.activityCount}>
             {activities.length} atividade{activities.length !== 1 ? 's' : ''}
           </span>
-          <ChevronDown 
+          <ChevronDown
             className={`${styles.chevron} ${isCollapsed ? styles.chevronCollapsed : ''}`}
             size={20}
           />
         </div>
       </div>
-      
+
       <div className={`${styles.activitiesContainer} ${isCollapsed ? styles.collapsed : ''}`}>
         {sortedActivities().map((activity, index) => (
           <ItineraryActivityCard
