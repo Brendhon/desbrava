@@ -21,4 +21,6 @@ export const ActivityRoutes = {
   create: (tripId: string) => `/trip/${tripId}/activity/create`,
   details: (tripId: string, id: string) =>
     `/trip/${tripId}/activity/${id}/details`,
+  edit: (tripId: string, id: string) =>
+    `/trip/${tripId}/activity/${id}/edit`,
 } as const;

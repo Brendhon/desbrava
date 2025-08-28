@@ -11,7 +11,7 @@ interface UseActivitiesReturn {
   activities: Activity[];
   loading: boolean;
   error: string | null;
-  fetchTripActivities: (tripId: string) => Promise<void>;
+  fetchTripActivities: (tripId: string) => Promise<Activity[]>;
   fetchActivity: (tripId: string, id: string) => Promise<Activity | null>;
   createActivity: (
     tripId: string,
@@ -65,8 +65,10 @@ export function useActivities(): UseActivitiesReturn {
         }
 
         setActivities(result.data || []);
+        return result.data || [];
       } catch (error) {
         handleError(error);
+        return [];
       } finally {
         setLoading(false);
       }

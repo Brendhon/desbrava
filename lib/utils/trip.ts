@@ -1,5 +1,5 @@
 import { Trip } from '@/lib/types/trip';
-import { addDays, format, isValid, parse } from 'date-fns';
+import { parsePtBrToDate } from './date';
 import { normalizeString } from './string-utils';
 
 /**
@@ -131,50 +131,4 @@ export function searchTripsByText(trips: Trip[], searchTerm: string): Trip[] {
       normalizeString(trip.startDate).includes(term) ||
       normalizeString(trip.endDate).includes(term)
   );
-}
-
-/**
- * Parse date from string to Date
- */
-export function parsePtBrToDate(date: string | undefined): Date | undefined {
-  if (!date) return undefined;
-  const parsed = parse(date, 'dd/MM/yyyy', new Date());
-  return isValid(parsed) ? parsed : undefined;
-}
-
-/**
- * Add days to a date
- */
-export function addDaysToDate(
-  date: Date | undefined,
-  days: number
-): Date | undefined {
-  if (!date) return undefined;
-  return addDays(date, days);
-}
-
-/**
- * Parse date from Date to string
- */
-export function parseDateToPtBr(date: Date | undefined): string | undefined {
-  if (!date) return undefined;
-  return format(date, 'dd/MM/yyyy');
-}
-
-/**
- * Check if start date is before end date
- */
-export function isStartDateBeforeEndDate(
-  startDate: string | undefined,
-  endDate: string | undefined
-): boolean {
-  // If start date or end date is not provided, return false
-  if (!startDate || !endDate) return false;
-
-  // Get start and end dates
-  const start = parsePtBrToDate(startDate);
-  const end = parsePtBrToDate(endDate);
-
-  // If start date is before end date, return true
-  return !(start && end && start > end);
 }

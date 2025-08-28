@@ -2,7 +2,8 @@
 
 import { ErrorPage } from '@/components/error';
 import { PageHeader } from '@/components/layout';
-import { Button, Card } from '@/components/ui';
+import { Card } from '@/components/ui';
+import { ItineraryContainer } from '@/components/itinerary';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
 import { Trip } from '@/lib/types/trip';
@@ -13,9 +14,7 @@ import {
   Globe,
   LanguagesIcon,
   LucideIcon,
-  Map,
   MapIcon,
-  Plus,
   Settings,
   TimerIcon,
 } from 'lucide-react';
@@ -23,7 +22,11 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import TripDetailsLoading from './loading';
-import { DashboardRoutes, TripRoutes, ActivityRoutes } from '@/lib/types';
+import {
+  DashboardRoutes,
+  TripRoutes,
+} from '@/lib/types';
+import { useActivities } from '@/hooks';
 
 const TripInfoCard = ({
   Icon,
@@ -63,6 +66,7 @@ export default function TripDetailsPage() {
   // Hooks
   const { fetchTrip, error, clearError } = useTrips();
   const { error: showErrorToast } = useToast();
+  const { activities, fetchTripActivities, loading } = useActivities();
 
   // Duration
   const duration = useMemo(
@@ -82,7 +86,11 @@ export default function TripDetailsPage() {
       const tripData = await fetchTrip(tripId);
 
       if (tripData) {
+        // Set trip data
         setTrip(tripData);
+
+        // Fetch activities
+        await fetchTripActivities(tripId);
       } else {
         showErrorToast(
           'Viagem não encontrada',
@@ -169,43 +177,12 @@ export default function TripDetailsPage() {
         </TripInfoCard>
       </div>
 
-      {/* Content Tabs */}
-      <Card
-        shadow="none"
-        background="dark"
-        maxWidth="none"
-        border={false}
-        className={styles.tabContainer}
-      >
-        {/* Itinerary Tab */}
-        <div className={styles.itineraryContent}>
-          <div className={styles.itineraryHeader}>
-            <h3 className={styles.itineraryTitle}>Seu Itinerário</h3>
-            <Link href={ActivityRoutes.create(tripId)}>
-              <Button
-                variant="primary"
-                icon={Plus}
-                aria-label="Adicionar nova atividade"
-                size="sm"
-              >
-                Adicionar Atividade
-              </Button>
-            </Link>
-          </div>
-
-          {/* Empty State */}
-          <div className={styles.emptyState}>
-            <div className={styles.emptyIcon}>
-              <Map className={styles.emptyIconImage} aria-hidden="true" />
-            </div>
-            <h3 className={styles.emptyTitle}>Nenhuma atividade planejada</h3>
-            <p className={styles.emptyDescription}>
-              Comece adicionando atividades ao seu itinerário para organizar
-              melhor sua viagem.
-            </p>
-          </div>
-        </div>
-      </Card>
+      {/* Itinerary */}
+      <ItineraryContainer
+        tripId={tripId}
+        activities={activities}
+        loading={loading}
+      />
     </div>
   );
 }
@@ -221,21 +198,5 @@ const styles = {
   infoIcon: 'w-5 h-5 text-royal-purple',
   infoLabel: 'text-sm text-mist-gray',
   infoValue: 'text-parchment-white font-medium',
-  tabContainer: '',
-  tabNav: 'border-b border-slate-dark/20',
-  tabNavContent: 'flex space-x-8 px-6',
-  tabButton:
-    'py-4 px-1 border-b-2 border-transparent text-mist-gray hover:text-parchment-white font-medium',
-  tabButtonActive:
-    'py-4 px-1 border-b-2 border-royal-purple text-royal-purple font-medium',
-  tabContent: 'p-6',
-  itineraryContent: 'space-y-6',
-  itineraryHeader: 'flex items-center justify-between',
-  itineraryTitle: 'text-xl font-semibold text-parchment-white',
-  emptyState: 'text-center py-16',
-  emptyIcon:
-    'w-20 h-20 bg-midnight-blue rounded-full flex items-center justify-center mx-auto mb-6',
-  emptyIconImage: 'w-10 h-10 text-mist-gray',
-  emptyTitle: 'text-xl font-semibold text-parchment-white mb-3',
-  emptyDescription: 'text-mist-gray mb-6 max-w-md mx-auto',
+
 };
