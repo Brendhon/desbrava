@@ -4,13 +4,13 @@ import {
   requireAuth
 } from '@/lib/utils';
 import { deleteAllTripsByUser } from '@/services/firebase';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 /**
  * DELETE /api/trips/clear
  * Clear all trips for the authenticated user
  */
-export async function DELETE(request: NextRequest) {
+export async function DELETE() {
   try {
     // Check authentication
     const authResult = await requireAuth();
