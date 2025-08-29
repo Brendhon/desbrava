@@ -89,7 +89,7 @@ export default function ActivityDetailsPage() {
           backHref={TripRoutes.details(tripId)}
           backText="Voltar aos Detalhes da Viagem"
           backAriaLabel="Voltar aos Detalhes da Viagem"
-          title='Detalhes da Atividade'
+          title="Detalhes da Atividade"
           subtitle="Informações completas sobre esta atividade"
         />
 
@@ -121,5 +121,4 @@ const styles = {
   settingsLink:
     'inline-flex items-center gap-2 bg-slate-dark text-mist-gray px-4 py-2 rounded-lg hover:bg-slate-dark/60 hover:text-parchment-white transition-colors',
   settingsIcon: 'w-4 h-4',
-
 };

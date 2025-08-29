@@ -5,7 +5,11 @@ import { NavigationButtons } from '@/components/steps';
 import { GroupSection, PageStructure } from '@/components/ui';
 import { ActivityDetailsData, activityDetailsSchema } from '@/lib/schemas';
 import { Activity, Trip } from '@/lib/types';
-import { formatTimestamp, parsePtBrToDate, parseTimestampToDate } from '@/lib/utils';
+import {
+  formatTimestamp,
+  parsePtBrToDate,
+  parseTimestampToDate,
+} from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Calendar, Notebook } from 'lucide-react';
 import { useCallback, useEffect, useMemo } from 'react';

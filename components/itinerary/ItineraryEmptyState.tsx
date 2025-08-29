@@ -5,17 +5,15 @@ import { Map } from 'lucide-react';
 export function ItineraryEmptyState() {
   return (
     <div className={styles.container}>
-
       <div className={styles.content}>
-
         <div className={styles.contentItem}>
           <div className={styles.iconContainer}>
             <Map className={styles.icon} aria-hidden="true" />
           </div>
           <h3 className={styles.title}>Nenhuma atividade planejada</h3>
           <p className={styles.description}>
-            Comece adicionando atividades ao seu itinerário para organizar melhor
-            sua viagem e aproveitar ao máximo cada dia.
+            Comece adicionando atividades ao seu itinerário para organizar
+            melhor sua viagem e aproveitar ao máximo cada dia.
           </p>
         </div>
 

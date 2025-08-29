@@ -111,11 +111,7 @@ export async function searchTripActivities(
       constraints.push(where('endDate', '<=', filters.endDate));
     }
 
-    const q = query(
-      activitiesRef,
-      ...constraints,
-      orderBy('startAt', 'asc')
-    );
+    const q = query(activitiesRef, ...constraints, orderBy('startAt', 'asc'));
     const querySnapshot = await getDocs(q);
     const activities: Activity[] = [];
 
@@ -160,8 +156,14 @@ export async function createActivity(
     const now = new Date().toISOString();
 
     // Get startAt and endAt
-    const startAt = getTimestampWithTime(activityData.startDate, activityData.startTime);
-    const endAt = getTimestampWithTime(activityData.endDate, activityData.endTime);
+    const startAt = getTimestampWithTime(
+      activityData.startDate,
+      activityData.startTime
+    );
+    const endAt = getTimestampWithTime(
+      activityData.endDate,
+      activityData.endTime
+    );
 
     // Create new activity
     const newActivity = {
@@ -181,8 +183,6 @@ export async function createActivity(
   }
 }
 
-
-
 /**
  * Update an existing activity
  */
@@ -199,7 +199,10 @@ export async function updateActivity(
     const updatedAt = new Date().toISOString();
 
     // Calculate startAt and endAt
-    const startAt = getTimestampWithTime(updateData.startDate, updateData.startTime);
+    const startAt = getTimestampWithTime(
+      updateData.startDate,
+      updateData.startTime
+    );
     const endAt = getTimestampWithTime(updateData.endDate, updateData.endTime);
 
     // Create update data

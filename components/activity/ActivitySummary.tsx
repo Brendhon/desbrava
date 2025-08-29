@@ -16,8 +16,6 @@ interface ActivitySummaryProps {
   isSubmitting?: boolean;
 }
 
-
-
 export default function ActivitySummary({
   activityType,
   destinations,

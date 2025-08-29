@@ -138,11 +138,14 @@ export function isStartDateBeforeEndDate(
  * @param time - Time string
  * @returns Timestamp or null
  */
-export const getTimestampWithTime = (value?: string | Date, time?: string): Timestamp | null => {
+export const getTimestampWithTime = (
+  value?: string | Date,
+  time?: string
+): Timestamp | null => {
   // If no date, return null
   if (!value) return null;
 
-  // Get date 
+  // Get date
   const date = value instanceof Date ? value : parsePtBrToDate(value);
 
   // If no date, return null
@@ -166,7 +169,10 @@ export const getTimestampWithTime = (value?: string | Date, time?: string): Time
  * @param outputFormat - Date-fns format string (e.g., 'dd/MM/yyyy', 'HH:mm')
  * @returns Formatted date/time string or empty string if invalid
  */
-export const formatTimestamp = (timestamp?: Timestamp, outputFormat: string = 'dd/MM/yyyy'): string => {
+export const formatTimestamp = (
+  timestamp?: Timestamp,
+  outputFormat: string = 'dd/MM/yyyy'
+): string => {
   if (!timestamp) return '';
 
   // Handle serialized Firestore timestamp
@@ -186,9 +192,11 @@ export const formatTimestamp = (timestamp?: Timestamp, outputFormat: string = 'd
 /**
  * Parse timestamp to date
  */
-export const parseTimestampToDate = (timestamp?: Timestamp): Date | undefined => {
+export const parseTimestampToDate = (
+  timestamp?: Timestamp
+): Date | undefined => {
   if (!timestamp) return undefined;
-  
+
   // Handle serialized Firestore timestamp
   if (typeof timestamp.seconds === 'number') {
     return new Date(timestamp.seconds * 1000);
@@ -196,7 +204,7 @@ export const parseTimestampToDate = (timestamp?: Timestamp): Date | undefined =>
 
   // Handle real Firestore Timestamp
   if (timestamp.toDate && typeof timestamp.toDate === 'function') {
-    return timestamp.toDate()
+    return timestamp.toDate();
   }
 
   // If no date, return undefined

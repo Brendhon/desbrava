@@ -30,19 +30,22 @@ const searchTypeButtons: Record<SearchType, SearchTypeButton> = {
   street: {
     label: 'Busca por Nome de Rua',
     buttonText: 'Buscar por Rua',
-    placeholder: 'Digite o nome da rua (ex: "Rua das Flores", "Avenida Paulista")',
+    placeholder:
+      'Digite o nome da rua (ex: "Rua das Flores", "Avenida Paulista")',
   },
   searchText: {
     label: 'Busca por Texto com Autocompletar',
     buttonText: 'Já sei o que quero',
-    placeholder: 'Digite o nome do lugar, endereço ou qualquer termo que você lembrar',
+    placeholder:
+      'Digite o nome do lugar, endereço ou qualquer termo que você lembrar',
   },
   searchNearby: {
     label: 'Busca por Proximidade',
     buttonText: 'Me dê sugestões',
-    placeholder: 'Descubra lugares interessantes próximos à sua última atividade',
+    placeholder:
+      'Descubra lugares interessantes próximos à sua última atividade',
   },
-}
+};
 
 const SearchTypeButtons = ({
   searchType,
@@ -66,9 +69,9 @@ const SearchTypeButtons = ({
           styles.searchTypeButton,
           searchType === 'searchText' && styles.active
         )}
-              >
-          {searchTypeButtons.searchText.buttonText}
-        </span>
+      >
+        {searchTypeButtons.searchText.buttonText}
+      </span>
 
       <span
         onClick={() => setSearchType('searchNearby')}
@@ -76,7 +79,10 @@ const SearchTypeButtons = ({
           styles.searchTypeButton,
           searchType === 'searchNearby' && styles.active
         )}
-      > {searchTypeButtons.searchNearby.buttonText} </span>
+      >
+        {' '}
+        {searchTypeButtons.searchNearby.buttonText}{' '}
+      </span>
     </div>
   );
 };

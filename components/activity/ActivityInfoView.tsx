@@ -50,14 +50,16 @@ function ActivityItem({
  */
 export default function ActivityInfoView({
   activity,
-  className = ''
+  className = '',
 }: ActivityInfoViewProps) {
   // Hooks
   const { getSubtypeLabel } = usePlaceTypes();
 
   // Get the label for the activity type
   const activityTypeLabel = useMemo(() => {
-    return activity.subType ? getSubtypeLabel(activity.type, activity.subType) : ActivityType[activity.type];
+    return activity.subType
+      ? getSubtypeLabel(activity.type, activity.subType)
+      : ActivityType[activity.type];
   }, [activity.type, activity.subType, getSubtypeLabel]);
 
   // Render
@@ -98,11 +100,7 @@ export default function ActivityInfoView({
 
             {/* End Time Section */}
             {activity.endTime && (
-              <ActivityItem
-                label="Fim"
-                value={activity.endTime}
-                Icon={Clock}
-              />
+              <ActivityItem label="Fim" value={activity.endTime} Icon={Clock} />
             )}
           </div>
 

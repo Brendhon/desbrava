@@ -27,7 +27,7 @@ export default function ActivityDetailsLoading() {
               <LoadingSkeleton className={styles.sectionDescription} />
             </div>
           </div>
-          
+
           <div className={styles.infoItems}>
             <div className={styles.infoItem}>
               <div className={styles.itemIcon} />
@@ -36,7 +36,7 @@ export default function ActivityDetailsLoading() {
                 <LoadingSkeleton className={styles.itemValue} />
               </div>
             </div>
-            
+
             <div className={styles.infoItem}>
               <div className={styles.itemIcon} />
               <div className={styles.itemContent}>
@@ -44,7 +44,7 @@ export default function ActivityDetailsLoading() {
                 <LoadingSkeleton className={styles.itemValue} />
               </div>
             </div>
-            
+
             <div className={styles.infoItem}>
               <div className={styles.itemIcon} />
               <div className={styles.itemContent}>
@@ -64,7 +64,7 @@ export default function ActivityDetailsLoading() {
               <LoadingSkeleton className={styles.sectionDescription} />
             </div>
           </div>
-          
+
           <div className={styles.placeInfo}>
             <LoadingSkeleton className={styles.placeName} />
             <LoadingSkeleton className={styles.placeAddress} />
@@ -85,18 +85,21 @@ const styles = {
   title: 'h-10 w-80 mb-3',
   description: 'h-6 w-96',
   contentArea: 'space-y-6',
-  section: 'bg-slate-dark rounded-lg border border-midnight-blue/20 p-6 animate-pulse',
+  section:
+    'bg-slate-dark rounded-lg border border-midnight-blue/20 p-6 animate-pulse',
   sectionHeader: 'flex items-center gap-3 mb-6',
   sectionIcon: 'w-6 h-6 bg-royal-purple/20 rounded-full',
   sectionTitle: 'h-6 w-32 mb-2',
   sectionDescription: 'h-4 w-48',
   infoItems: 'space-y-4',
-  infoItem: 'flex items-start gap-3 p-4 bg-slate-800/20 rounded-lg border border-slate-700/30',
+  infoItem:
+    'flex items-start gap-3 p-4 bg-slate-800/20 rounded-lg border border-slate-700/30',
   itemIcon: 'w-5 h-5 bg-royal-purple/20 rounded-full mt-0.5 flex-shrink-0',
   itemContent: 'space-y-2',
   itemLabel: 'h-4 w-24',
   itemValue: 'h-4 w-32',
-  placeInfo: 'p-4 bg-slate-800/20 rounded-lg border border-slate-700/30 space-y-3',
+  placeInfo:
+    'p-4 bg-slate-800/20 rounded-lg border border-slate-700/30 space-y-3',
   placeName: 'h-5 w-48',
   placeAddress: 'h-4 w-64',
   placeType: 'h-4 w-32',

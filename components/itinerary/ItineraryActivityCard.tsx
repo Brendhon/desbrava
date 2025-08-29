@@ -13,7 +13,7 @@ import {
   ExternalLink,
   EyeIcon,
   MapPin,
-  Trash2
+  Trash2,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -24,7 +24,6 @@ interface ItineraryActivityCardProps {
 
 export function ItineraryActivityCard({
   activity,
-  isLast = false,
 }: ItineraryActivityCardProps) {
   const ActivityIcon = getActivityTypeIcon(activity.type);
   const typeColor = getActivityTypeColor(activity.type);
