@@ -44,7 +44,7 @@ export default function GroupSection({
 }
 
 const styles = {
-  group: 'bg-slate-800/30 rounded-xl p-6 border border-slate-700/50',
+  group: 'bg-slate-dark/30 rounded-xl p-6 border border-slate-dark/50',
   groupHeader: 'mb-6 text-center',
   groupTitle:
     'text-parchment-white mb-2 text-xl font-semibold flex items-center justify-center gap-2',

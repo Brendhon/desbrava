@@ -12,6 +12,7 @@ import {
   Clock,
   Edit,
   ExternalLink,
+  EyeIcon,
   MapPin,
   Trash2,
 } from 'lucide-react';
@@ -56,11 +57,11 @@ export function ItineraryActivityCard({
 
         <div className={styles.actions}>
           <Link
-            href={ActivityRoutes.edit(activity.tripId, activity.id!)}
+            href={ActivityRoutes.details(activity.tripId, activity.id!)}
             className={styles.actionButton}
-            aria-label="Editar atividade"
+            aria-label="Ver detalhes da atividade"
           >
-            <Edit className={styles.actionIcon} />
+            <EyeIcon className={styles.actionIcon} />
           </Link>
           <button
             className={`${styles.actionButton} ${styles.deleteButton}`}
