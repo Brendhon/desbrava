@@ -10,11 +10,10 @@ import {
 import {
   Calendar,
   Clock,
-  Edit,
   ExternalLink,
   EyeIcon,
   MapPin,
-  Trash2,
+  Trash2
 } from 'lucide-react';
 import Link from 'next/link';
 
