@@ -9,9 +9,8 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
-  useMemo,
   useRef,
-  useState,
+  useState
 } from 'react';
 
 // Interface for imperative handle
