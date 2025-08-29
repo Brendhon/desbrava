@@ -1,16 +1,28 @@
 'use client';
 
 import { Activity } from '@/lib/types';
-import { groupActivitiesByDate } from '@/lib/utils';
+import { groupActivitiesByDate, parsePtBrToDate } from '@/lib/utils';
 import { ItineraryDay } from './ItineraryDay';
 
 interface ItineraryListProps {
   activities: Activity[];
 }
 
+/**
+ * Sort grouped activities by date
+ */
+function sortGroupedActivities(groupedActivities: Record<string, Activity[]>) {
+  return Object.keys(groupedActivities).sort((a, b) => {
+    const dateA = parsePtBrToDate(a);
+    const dateB = parsePtBrToDate(b);
+    if (!dateA || !dateB) return 0;
+    return dateA.getTime() - dateB.getTime();
+  });
+}
+
 export function ItineraryList({ activities }: ItineraryListProps) {
   const groupedActivities = groupActivitiesByDate(activities);
-  const sortedDates = Object.keys(groupedActivities).sort();
+  const sortedDates = sortGroupedActivities(groupedActivities);
 
   if (sortedDates.length === 0) {
     return null;

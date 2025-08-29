@@ -1,5 +1,5 @@
 import { Activity } from '@/lib/types';
-import { parsePtBrToDate } from './date';
+import { parseTimestampToDate } from './date';
 
 /**
  * Groups activities by date for itinerary organization
@@ -24,12 +24,13 @@ export function groupActivitiesByDate(
  * Sorts activities by start time within each day
  */
 export function sortActivitiesByTime(activities: Activity[]): Activity[] {
-  return activities.sort((a, b) => {
-    const timeA = parsePtBrToDate(a.startTime);
-    const timeB = parsePtBrToDate(b.startTime);
+  const res = activities.sort((a, b) => {
+    const timeA = parseTimestampToDate(a.startAt);
+    const timeB = parseTimestampToDate(b.startAt);
     if (!timeA || !timeB) return 0;
     return timeA.getTime() - timeB.getTime();
   });
+  return res;
 }
 
 /**
@@ -37,8 +38,8 @@ export function sortActivitiesByTime(activities: Activity[]): Activity[] {
  */
 export function getDayActivitiesDuration(activities: Activity[]): number {
   return activities.reduce((total, activity) => {
-    const start = parsePtBrToDate(activity.startTime);
-    const end = parsePtBrToDate(activity.endTime);
+    const start = parseTimestampToDate(activity.startAt);
+    const end = parseTimestampToDate(activity.endAt);
     if (!start || !end) return total;
     const duration = end.getTime() - start.getTime();
     return total + duration;
@@ -55,8 +56,8 @@ export function hasTimeConflict(activities: Activity[]): boolean {
     const current = sortedActivities[i];
     const next = sortedActivities[i + 1];
 
-    const currentEnd = parsePtBrToDate(current.endTime);
-    const nextStart = parsePtBrToDate(next.startTime);
+    const currentEnd = parseTimestampToDate(current.endAt);
+    const nextStart = parseTimestampToDate(next.startAt);
 
     if (!currentEnd || !nextStart) return false;
     if (currentEnd > nextStart) {
@@ -65,26 +66,4 @@ export function hasTimeConflict(activities: Activity[]): boolean {
   }
 
   return false;
-}
-
-/**
- * Gets activities for a specific date range
- */
-export function getActivitiesInDateRange(
-  activities: Activity[],
-  startDate: string,
-  endDate: string
-): Activity[] {
-  return activities.filter((activity) => {
-    // Parse the dates
-    const activityDate = parsePtBrToDate(activity.startDate);
-    const rangeStart = parsePtBrToDate(startDate);
-    const rangeEnd = parsePtBrToDate(endDate);
-
-    // If any of the dates are invalid, return false
-    if (!activityDate || !rangeStart || !rangeEnd) return false;
-
-    // Check if the activity date is within the range
-    return activityDate >= rangeStart && activityDate <= rangeEnd;
-  });
 }

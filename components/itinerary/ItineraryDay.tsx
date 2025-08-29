@@ -91,7 +91,7 @@ export function ItineraryDay({ date, activities }: ItineraryDayProps) {
 const styles = {
   container: 'space-y-4',
   dayHeader:
-    'flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 bg-midnight-blue rounded-lg cursor-pointer hover:bg-midnight-blue/90 transition-colors duration-200 select-none gap-3',
+    'flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 mb-2 bg-midnight-blue rounded-lg cursor-pointer hover:bg-midnight-blue/90 transition-colors duration-200 select-none gap-3',
   dateInfo: 'space-y-1',
   date: 'text-lg font-semibold text-parchment-white',
   dayOfWeek: 'text-sm text-mist-gray capitalize',

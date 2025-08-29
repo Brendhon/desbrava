@@ -188,5 +188,17 @@ export const formatTimestamp = (timestamp?: Timestamp, outputFormat: string = 'd
  */
 export const parseTimestampToDate = (timestamp?: Timestamp): Date | undefined => {
   if (!timestamp) return undefined;
-  return parsePtBrToDate(formatTimestamp(timestamp, 'dd/MM/yyyy'));
+  
+  // Handle serialized Firestore timestamp
+  if (typeof timestamp.seconds === 'number') {
+    return new Date(timestamp.seconds * 1000);
+  }
+
+  // Handle real Firestore Timestamp
+  if (timestamp.toDate && typeof timestamp.toDate === 'function') {
+    return timestamp.toDate()
+  }
+
+  // If no date, return undefined
+  return undefined;
 };

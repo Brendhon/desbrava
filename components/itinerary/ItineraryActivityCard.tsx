@@ -33,11 +33,10 @@ export function ItineraryActivityCard({
   return (
     <Card
       padding="md"
-      shadow="none"
-      background="royal-purple"
+      shadow="lg"
       maxWidth="none"
       border={false}
-      className={`${styles.container} ${!isLast ? styles.withConnector : ''}`}
+      className={styles.container}
     >
       <div className={styles.header}>
         <div className={styles.typeSection}>
@@ -124,9 +123,7 @@ export function ItineraryActivityCard({
 }
 
 const styles = {
-  container: 'relative transition-colors',
-  withConnector:
-    'after:content-[""] after:absolute after:left-6 after:top-full after:w-0.5 after:h-3 after:bg-slate-dark/40',
+  container: 'relative transition-colors bg-slate-dark/40',
   header:
     'flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-3',
   typeSection: 'flex items-center gap-3',
