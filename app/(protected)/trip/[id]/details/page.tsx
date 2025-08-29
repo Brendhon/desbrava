@@ -63,7 +63,8 @@ export default function TripDetailsPage() {
   // Hooks
   const { fetchTrip, error, clearError } = useTrips();
   const { error: showErrorToast, success } = useToast();
-  const { activities, fetchTripActivities, loading, deleteActivity } = useActivities();
+  const { activities, fetchTripActivities, loading, deleteActivity } =
+    useActivities();
 
   // Duration
   const duration = useMemo(

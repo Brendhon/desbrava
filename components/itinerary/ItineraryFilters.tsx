@@ -98,7 +98,7 @@ const styles = {
   header:
     'flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 gap-3',
   expandButton:
-    'flex items-center gap-2 text-mist-gray hover:text-parchment-white transition-colors',
+    'flex items-center gap-2 text-mist-gray hover:text-parchment-white transition-colors cursor-pointer',
   filterIcon: 'w-4 h-4',
   filterCount:
     'bg-royal-purple text-parchment-white text-xs px-2 py-1 rounded-full',

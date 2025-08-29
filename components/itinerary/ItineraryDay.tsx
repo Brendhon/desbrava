@@ -16,7 +16,11 @@ interface ItineraryDayProps {
   onDelete: (activity: Activity) => Promise<void>;
 }
 
-export function ItineraryDay({ date, activities, onDelete }: ItineraryDayProps) {
+export function ItineraryDay({
+  date,
+  activities,
+  onDelete,
+}: ItineraryDayProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const sortedActivities = useCallback(

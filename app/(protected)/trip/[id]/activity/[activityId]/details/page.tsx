@@ -5,9 +5,7 @@ import { ErrorPage } from '@/components/error';
 import { PageHeader } from '@/components/layout';
 import { useActivities } from '@/hooks';
 import { useToast } from '@/hooks/useToast';
-import { Activity, ActivityRoutes, TripRoutes } from '@/lib/types';
-import { Settings } from 'lucide-react';
-import Link from 'next/link';
+import { Activity, TripRoutes } from '@/lib/types';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import ActivityDetailsLoading from './loading';
@@ -93,7 +91,7 @@ export default function ActivityDetailsPage() {
           subtitle="Informações completas sobre esta atividade"
         />
 
-        <div className={styles.actionsContainer}>
+        {/* <div className={styles.actionsContainer}>
           <Link
             href={ActivityRoutes.edit(tripId, activityId)}
             className={styles.settingsLink}
@@ -102,7 +100,7 @@ export default function ActivityDetailsPage() {
             <Settings className={styles.settingsIcon} aria-hidden="true" />
             Configurações
           </Link>
-        </div>
+        </div> */}
       </div>
 
       {/* Activity Info */}
