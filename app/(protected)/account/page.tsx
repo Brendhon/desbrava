@@ -4,6 +4,7 @@ import { PageHeader } from '@/components/layout';
 import { DangerZone } from '@/components/settings';
 import { Button, Card } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
+import { useTrips } from '@/hooks/useTrips';
 import { DashboardRoutes } from '@/lib/types';
 import { Calendar, ExternalLink, Shield, Trash2 } from 'lucide-react';
 import { useState } from 'react';
@@ -13,14 +14,17 @@ export default function AccountPage() {
   const [isCalendarConnected, setIsCalendarConnected] = useState(false);
   const [isClearingData, setIsClearingData] = useState(false);
 
+  // hooks
+  const { clearTrips } = useTrips();
+
   const handleGoogleCalendarConnect = () => {
-    // TODO: Implementar integração com Google Calendar
+    // TODO: Call the API to connect to Google Calendar
     console.log('Conectando com Google Calendar...');
     setIsCalendarConnected(true);
   };
 
   const handleGoogleCalendarDisconnect = () => {
-    // TODO: Implementar desconexão do Google Calendar
+    // TODO: Call the API to disconnect from Google Calendar
     console.log('Desconectando do Google Calendar...');
     setIsCalendarConnected(false);
   };
@@ -36,12 +40,7 @@ export default function AccountPage() {
 
     setIsClearingData(true);
     try {
-      // TODO: Implementar limpeza de dados da conta
-      console.log('Limpando dados da conta...');
-      // Aguardar um pouco para simular a operação
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Redirecionar para logout após limpeza
+      await clearTrips();
       logout();
     } catch (error) {
       console.error('Erro ao limpar dados:', error);

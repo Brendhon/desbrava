@@ -12,6 +12,7 @@ interface UseTripsReturn {
   createTrip: (data: Omit<CreateTripData, 'user'>) => Promise<Trip | null>;
   updateTrip: (id: string, data: UpdateTripData) => Promise<Trip | null>;
   deleteTrip: (id: string) => Promise<boolean>;
+  clearTrips: () => Promise<void>;
   searchTrips: (searchTerm: string, filters?: any) => Promise<void>;
   clearError: () => void;
 }
@@ -173,6 +174,31 @@ export function useTrips(): UseTripsReturn {
     [handleError]
   );
 
+  const clearTrips = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch(`/api/trips/clear`, {
+        method: 'DELETE',
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Failed to clear user trips');
+      }
+
+      setTrips([]);
+    } catch (error) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
+  },
+    [handleError]
+  );
+
   const searchTrips = useCallback(
     async (searchTerm: string, filters?: any) => {
       try {
@@ -211,6 +237,7 @@ export function useTrips(): UseTripsReturn {
     createTrip,
     updateTrip,
     deleteTrip,
+    clearTrips,
     searchTrips,
     clearError,
   };

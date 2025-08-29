@@ -17,6 +17,7 @@ import {
   QueryConstraint,
   updateDoc,
   where,
+  writeBatch,
 } from 'firebase/firestore';
 
 const COLLECTION_NAME = 'activities';
@@ -235,6 +236,32 @@ export async function deleteActivity(
   } catch (error) {
     console.error('Error deleting activity:', error);
     throw new Error('Failed to delete activity');
+  }
+}
+
+/**
+ * Delete all activities for a specific trip
+ */
+export async function deleteAllActivitiesByTrip(tripId: string): Promise<void> {
+  try {
+    const activitiesRef = collection(db, getPath(tripId));
+    const q = query(activitiesRef, where('tripId', '==', tripId));
+
+    const querySnapshot = await getDocs(q);
+
+    // Use batch operations for better performance and atomicity
+    const batch = writeBatch(db);
+
+    // Delete all activities for the trip
+    querySnapshot.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+
+    // Commit the batch
+    await batch.commit();
+  } catch (error) {
+    console.error('Error deleting all activities:', error);
+    throw new Error('Failed to delete all activities');
   }
 }
 

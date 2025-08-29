@@ -10,10 +10,12 @@ import {
   doc,
   orderBy,
   QueryConstraint,
+  writeBatch,
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import { Trip } from '@/lib/types/trip';
 import { getTimestampWithTime } from '@/lib/utils';
+import { deleteAllActivitiesByTrip } from './activity.service';
 
 const COLLECTION_NAME = 'trip';
 
@@ -176,10 +178,57 @@ export async function updateTrip(
  */
 export async function deleteTrip(tripId: string): Promise<void> {
   try {
+    // Get trip reference
     const tripRef = doc(db, COLLECTION_NAME, tripId);
+
+    // Delete activities for this trip
+    await deleteAllActivitiesByTrip(tripId);
+
+    // Delete trip
     await deleteDoc(tripRef);
   } catch (error) {
     console.error('Error deleting trip:', error);
     throw new Error('Failed to delete trip');
+  }
+}
+
+/**
+ * Delete all trips for a specific user using batch operations
+ */
+export async function deleteAllTripsByUser(userEmail: string): Promise<void> {
+  try {
+    // Get all trips for the user
+    const tripsRef = collection(db, COLLECTION_NAME);
+    const q = query(tripsRef, where('user', '==', userEmail));
+    const querySnapshot = await getDocs(q);
+
+    // No trips to delete
+    if (querySnapshot.empty) {
+      return;
+    }
+
+    // Use batch operations for better performance and atomicity
+    const batch = writeBatch(db);
+
+    // Promise array to delete activities
+    const activitiesPromises: Promise<void>[] = [];
+
+    // Delete all trips and activities
+    querySnapshot.forEach(async (doc) => {
+      // Delete activities for this trip
+      activitiesPromises.push(deleteAllActivitiesByTrip(doc.id));
+
+      // Delete trip
+      batch.delete(doc.ref);
+    });
+
+    // Wait for all activities to be deleted
+    await Promise.allSettled(activitiesPromises);
+
+    // Commit the batch
+    await batch.commit();
+  } catch (error) {
+    console.error('Error deleting all trips:', error);
+    throw new Error('Failed to delete all trips');
   }
 }
