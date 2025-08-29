@@ -66,11 +66,14 @@ export function usePlaces(options: UsePlacesOptions = {}): UsePlacesReturn {
     setError(null);
 
     try {
+      // Get the radius (default 150km)
+      const radius = options.radius || 50000;
+
       // Create the request body
       const reqBody = {
         latitude: options.latitude ?? 0,
         longitude: options.longitude ?? 0,
-        radius: options.radius || 50000,
+        radius,
         type,
       };
 

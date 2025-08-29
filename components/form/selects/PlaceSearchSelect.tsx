@@ -38,7 +38,7 @@ export default function PlaceSearchSelect({
   activityType,
   latitude,
   longitude,
-  radius = 50000,
+  radius,
   maxResults = 20,
   ...props
 }: PlaceSearchSelectProps) {

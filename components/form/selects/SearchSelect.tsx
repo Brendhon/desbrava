@@ -53,6 +53,9 @@ const SearchSelect = forwardRef<SearchSelectRef, SearchSelectProps>(
     // Local state for selected value
     const [selectedValue, setSelectedValue] = useState('');
 
+    // Local state for options
+    const [optionsState, setOptionsState] = useState<SelectOption[]>([]);
+
     // Ref for input element
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -75,13 +78,15 @@ const SearchSelect = forwardRef<SearchSelectRef, SearchSelectProps>(
       }
     }, [defaultValue]);
 
-    // Filtered options based on input value
-    const filteredOptions = useMemo(() => {
-      return !inputValue?.trim()
-        ? options
-        : options.filter((option: SelectOption) =>
-            containsString(option.label, inputValue)
-          );
+    // use effect to set the options
+    useEffect(() => {
+      const filteredOptions = options?.filter((option: SelectOption) =>
+        containsString(option.label, inputValue)
+      );
+
+      if (filteredOptions?.length) {
+        setOptionsState(filteredOptions);
+      }
     }, [options, inputValue]);
 
     // update register value
@@ -146,25 +151,25 @@ const SearchSelect = forwardRef<SearchSelectRef, SearchSelectProps>(
     // Handle keyboard navigation
     const handleKeyDown = useCallback(
       (e: KeyboardEvent<HTMLInputElement>) => {
-        if (!isDropdownOpen || filteredOptions.length === 0) return;
+        if (!isDropdownOpen || optionsState.length === 0) return;
 
         switch (e.key) {
           case 'ArrowDown':
             e.preventDefault();
             setHighlightedIndex((prev) =>
-              prev < filteredOptions.length - 1 ? prev + 1 : 0
+              prev < optionsState.length - 1 ? prev + 1 : 0
             );
             break;
           case 'ArrowUp':
             e.preventDefault();
             setHighlightedIndex((prev) =>
-              prev > 0 ? prev - 1 : filteredOptions.length - 1
+              prev > 0 ? prev - 1 : optionsState.length - 1
             );
             break;
           case 'Enter':
             e.preventDefault();
-            if (highlightedIndex >= 0 && filteredOptions[highlightedIndex]) {
-              handleOptionSelect(filteredOptions[highlightedIndex]);
+            if (highlightedIndex >= 0 && optionsState[highlightedIndex]) {
+              handleOptionSelect(optionsState[highlightedIndex]);
             }
             break;
           case 'Escape':
@@ -173,7 +178,7 @@ const SearchSelect = forwardRef<SearchSelectRef, SearchSelectProps>(
             break;
         }
       },
-      [isDropdownOpen, filteredOptions, highlightedIndex, handleOptionSelect]
+      [isDropdownOpen, optionsState, highlightedIndex, handleOptionSelect]
     );
 
     return (
@@ -200,12 +205,12 @@ const SearchSelect = forwardRef<SearchSelectRef, SearchSelectProps>(
         />
 
         {/* Dropdown */}
-        {isDropdownOpen && filteredOptions.length > 0 && (
+        {isDropdownOpen && optionsState.length > 0 && (
           <div className="relative">
             <Dropdown
               isOpen={isDropdownOpen}
               position={position}
-              options={filteredOptions}
+              options={optionsState}
               highlightedIndex={highlightedIndex}
               selectedValue={selectedValue}
               onOptionSelect={handleOptionSelect}

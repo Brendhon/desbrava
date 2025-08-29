@@ -123,13 +123,13 @@ export default function PlaceSelector({
     switch (searchType) {
       // Search text
       case 'searchText':
-        return 'Perfeito! Digite o nome do lugar, endereço ou qualquer termo que você lembrar. Vamos te ajudar com sugestões enquanto você digita.';
+        return 'Digite o nome do lugar, endereço ou qualquer termo que você lembrar. Vamos te ajudar com sugestões enquanto você digita.';
 
       // Search nearby
       case 'searchNearby':
         // Get the display name of the last activity
         const displayName = lastActivity?.place?.displayName?.text;
-        return `Ótima ideia! Vamos te mostrar lugares interessantes próximos à sua última atividade${displayName ? ` em ${displayName}` : ''}. Ideal para descobrir novos locais na região.`;
+        return `Vamos te mostrar lugares próximos (até 50km) à sua última atividade${displayName ? ` em ${displayName}` : ''}. Ideal para descobrir novos locais na região.`;
 
       // Default
       default:

@@ -29,7 +29,7 @@ export async function searchNearbyPlaces(
     longitude,
     radius,
     type,
-    rankByDistance = true,
+    rankByDistance = false,
     config,
   } = options;
 
@@ -49,7 +49,7 @@ export async function searchNearbyPlaces(
         radius,
       },
     },
-    rankPreference: rankByDistance ? 'DISTANCE' : 'RELEVANCE',
+    rankPreference: rankByDistance ? 'DISTANCE' : 'POPULARITY',
   };
 
   // Make the request

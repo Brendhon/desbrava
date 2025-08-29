@@ -61,7 +61,7 @@ export interface PlaceStructuredFormat {
 export interface PlaceNearbySearchRequest {
   locationRestriction: PlaceLocationRestriction;
   includedPrimaryTypes: string[];
-  rankPreference?: 'DISTANCE' | 'RELEVANCE';
+  rankPreference?: 'DISTANCE' | 'POPULARITY';
 }
 
 export interface PlaceNearbySearchResponse {
