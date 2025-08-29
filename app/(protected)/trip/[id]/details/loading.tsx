@@ -86,11 +86,11 @@ const styles = {
   description: 'h-6 w-96',
   infoGrid: 'grid grid-cols-1 md:grid-cols-3 gap-6 mb-8',
   infoCard:
-    'bg-slate-dark rounded-lg border border-midnight-blue/20 p-6 flex items-center gap-4 animate-pulse',
+    'bg-slate-dark/40 rounded-lg border border-midnight-blue/20 p-6 flex items-center gap-4 animate-pulse',
   infoIcon: 'w-8 h-8 bg-royal-purple/20 rounded-full',
   infoContent: 'space-y-2',
   infoLabel: 'h-4 w-20',
   infoValue: 'h-5 w-32',
-  card: 'bg-slate-dark rounded-lg shadow-lg border border-midnight-blue/20 p-8 animate-pulse',
+  card: 'bg-slate-dark/40 rounded-lg shadow-lg border border-midnight-blue/20 p-8 animate-pulse',
   content: 'h-6 w-full mb-4',
 };

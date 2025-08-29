@@ -54,7 +54,7 @@ const styles = {
     '2xl': 'shadow-2xl',
   },
   background: {
-    dark: 'bg-slate-dark',
+    dark: 'bg-slate-dark/40',
     light: 'bg-parchment-white',
     gray: 'bg-mist-gray',
     blue: 'bg-midnight-blue',

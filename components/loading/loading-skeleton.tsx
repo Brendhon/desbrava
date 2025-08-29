@@ -122,7 +122,7 @@ const styles = {
   w56: 'w-full', // Increased from w-5/6 to w-full
 
   // Component styles
-  card: 'bg-slate-dark rounded-lg shadow-lg border border-midnight-blue/20 p-10 animate-pulse', // Increased padding from p-6 to p-10
+  card: 'bg-slate-dark/40 rounded-lg shadow-lg border border-midnight-blue/20 p-10 animate-pulse', // Increased padding from p-6 to p-10
   tripCard:
     'bg-slate-dark rounded-lg shadow-lg border border-midnight-blue/20 p-8 animate-pulse', // Increased padding from p-4 to p-8
   button: 'h-14 bg-royal-purple/20 rounded-md', // Increased height from h-10 to h-14
