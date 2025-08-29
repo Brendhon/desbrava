@@ -13,6 +13,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import { Trip } from '@/lib/types/trip';
+import { getTimestampWithTime } from '@/lib/utils';
 
 const COLLECTION_NAME = 'trip';
 
@@ -25,7 +26,7 @@ export async function getUserTrips(userEmail: string): Promise<Trip[]> {
     const q = query(
       tripsRef,
       where('user', '==', userEmail),
-      orderBy('startDate', 'desc')
+      orderBy('startAt', 'desc')
     );
 
     const querySnapshot = await getDocs(q);
@@ -74,8 +75,6 @@ export async function searchTrips(
   userEmail: string,
   searchTerm?: string,
   filters?: {
-    startDate?: string;
-    endDate?: string;
     country?: string;
   }
 ): Promise<Trip[]> {
@@ -83,20 +82,11 @@ export async function searchTrips(
     const tripsRef = collection(db, COLLECTION_NAME);
     const constraints: QueryConstraint[] = [where('user', '==', userEmail)];
 
-    // Add filters if provided
-    if (filters?.startDate) {
-      constraints.push(where('startDate', '>=', filters.startDate));
-    }
-
-    if (filters?.endDate) {
-      constraints.push(where('endDate', '<=', filters.endDate));
-    }
-
     if (filters?.country) {
       constraints.push(where('country.code', '==', filters.country));
     }
 
-    const q = query(tripsRef, ...constraints, orderBy('startDate', 'desc'));
+    const q = query(tripsRef, ...constraints, orderBy('startAt', 'desc'));
     const querySnapshot = await getDocs(q);
 
     let trips: Trip[] = [];
@@ -133,6 +123,8 @@ export async function createTrip(tripData: Omit<Trip, 'id'>): Promise<string> {
       ...tripData,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      startAt: getTimestampWithTime(tripData.startDate),
+      endAt: getTimestampWithTime(tripData.endDate),
     });
 
     return docRef.id;
@@ -151,10 +143,28 @@ export async function updateTrip(
 ): Promise<void> {
   try {
     const tripRef = doc(db, COLLECTION_NAME, tripId);
-    await updateDoc(tripRef, {
+
+    // Get updatedAt
+    const updatedAt = new Date().toISOString();
+
+    // Get startAt and endAt
+    const startAt = getTimestampWithTime(updates.startDate);
+    const endAt = getTimestampWithTime(updates.endDate);
+
+    // Create update data
+    const updateData = {
       ...updates,
-      updatedAt: new Date().toISOString(),
-    });
+      updatedAt,
+    };
+
+    // If has startAt, set startAt
+    if (startAt) updateData.startAt = startAt;
+
+    // If has endAt, set endAt
+    if (endAt) updateData.endAt = endAt;
+
+    // Update trip
+    await updateDoc(tripRef, updateData);
   } catch (error) {
     console.error('Error updating trip:', error);
     throw new Error('Failed to update trip');

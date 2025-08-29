@@ -1,3 +1,4 @@
+import { Timestamp } from 'firebase/firestore';
 import { Country } from './country';
 
 export interface Trip {
@@ -10,6 +11,8 @@ export interface Trip {
   country: Country;
   createdAt?: string;
   updatedAt?: string;
+  startAt?: Timestamp;
+  endAt?: Timestamp;
 }
 
 export interface CreateTripData {
@@ -19,6 +22,8 @@ export interface CreateTripData {
   startDate: string;
   endDate: string;
   country: Country;
+  startAt?: Timestamp;
+  endAt?: Timestamp;
 }
 
 export interface UpdateTripData {
@@ -27,6 +32,9 @@ export interface UpdateTripData {
   startDate?: string;
   endDate?: string;
   country?: Country;
+  startAt?: Timestamp;
+  endAt?: Timestamp;
+  updatedAt?: string;
 }
 
 export const STATUS_OPTIONS = ['all', 'past', 'active', 'future'] as const;

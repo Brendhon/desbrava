@@ -93,21 +93,23 @@ export default function PlaceSelector({
             !showSearchTypeButtons && styles.invisible
           )}
         >
-          <Button
-            size="xs"
-            variant={searchType === 'searchText' ? 'primary' : 'ghost'}
+          <span
             onClick={() => setSearchType('searchText')}
+            className={cn(
+              styles.searchTypeButton,
+              searchType === 'searchText' && styles.active
+            )}
           >
-            <span> Texto </span>
-          </Button>
+            Texto
+          </span>
 
-          <Button
-            size="xs"
-            variant={searchType === 'searchNearby' ? 'primary' : 'ghost'}
+          <span
             onClick={() => setSearchType('searchNearby')}
-          >
-            <span> Proximidade </span>
-          </Button>
+            className={cn(
+              styles.searchTypeButton,
+              searchType === 'searchNearby' && styles.active
+            )}
+          > Proximidade </span>
         </div>
       </div>
 
@@ -141,7 +143,9 @@ const styles = {
   title: 'flex items-center gap-2 text-lg font-semibold',
   icon: 'text-royal-purple h-5 w-5',
   searchContainer: 'space-y-3',
-  searchTypeButtons: 'flex gap-1',
+  searchTypeButtons: 'flex gap-1 rounded-md px-2 py-1',
+  searchTypeButton: 'text-xs cursor-pointer',
+  active: 'bg-royal-purple text-white',
   loadingContainer: 'text-mist-gray flex items-center gap-2 text-sm',
   spinner:
     'border-mist-gray h-4 w-4 animate-spin rounded-full border-2 border-t-transparent',

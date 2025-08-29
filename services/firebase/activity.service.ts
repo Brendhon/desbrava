@@ -1,22 +1,23 @@
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  getDoc,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-  orderBy,
-  QueryConstraint,
-} from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import {
   Activity,
   CreateActivityData,
   UpdateActivityData,
 } from '@/lib/types/activity';
+import { getTimestampWithTime } from '@/lib/utils';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  QueryConstraint,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 
 const COLLECTION_NAME = 'activities';
 
@@ -31,7 +32,7 @@ export async function getTripActivities(tripId: string): Promise<Activity[]> {
     const q = query(
       activitiesRef,
       where('tripId', '==', tripId),
-      orderBy('startDate', 'asc')
+      orderBy('startAt', 'asc')
     );
 
     const querySnapshot = await getDocs(q);
@@ -110,7 +111,11 @@ export async function searchTripActivities(
       constraints.push(where('endDate', '<=', filters.endDate));
     }
 
-    const q = query(activitiesRef, ...constraints, orderBy('startDate', 'asc'));
+    const q = query(
+      activitiesRef,
+      ...constraints,
+      orderBy('startAt', 'asc')
+    );
     const querySnapshot = await getDocs(q);
     const activities: Activity[] = [];
 
@@ -154,20 +159,29 @@ export async function createActivity(
     const activitiesRef = collection(db, getPath(tripId));
     const now = new Date().toISOString();
 
+    // Get startAt and endAt
+    const startAt = getTimestampWithTime(activityData.startDate, activityData.startTime);
+    const endAt = getTimestampWithTime(activityData.endDate, activityData.endTime);
+
+    // Create new activity
     const newActivity = {
       ...activityData,
       tripId,
       createdAt: now,
       updatedAt: now,
+      startAt,
+      endAt,
     };
 
-    const docRef = await addDoc(activitiesRef, newActivity as any);
+    const docRef = await addDoc(activitiesRef, newActivity);
     return docRef.id;
   } catch (error) {
     console.error('Error creating activity:', error);
     throw new Error('Failed to create activity');
   }
 }
+
+
 
 /**
  * Update an existing activity
@@ -178,13 +192,27 @@ export async function updateActivity(
   updateData: UpdateActivityData
 ): Promise<void> {
   try {
+    // Get activity reference
     const activityRef = doc(db, getPath(tripId), activityId);
-    const now = new Date().toISOString();
 
-    await updateDoc(activityRef, {
-      ...updateData,
-      updatedAt: now,
-    } as any);
+    // Get updatedAt
+    const updatedAt = new Date().toISOString();
+
+    // Calculate startAt and endAt
+    const startAt = getTimestampWithTime(updateData.startDate, updateData.startTime);
+    const endAt = getTimestampWithTime(updateData.endDate, updateData.endTime);
+
+    // Create update data
+    const updateDataWithDates = { ...updateData, updatedAt };
+
+    // If has startAt, set startAt
+    if (startAt) updateDataWithDates.startAt = startAt;
+
+    // If has endAt, set endAt
+    if (endAt) updateDataWithDates.endAt = endAt;
+
+    // Update activity
+    await updateDoc(activityRef, updateDataWithDates);
   } catch (error) {
     console.error('Error updating activity:', error);
     throw new Error('Failed to update activity');
@@ -220,7 +248,7 @@ export async function getTripActivitiesByType(
       activitiesRef,
       where('tripId', '==', tripId),
       where('type', '==', type),
-      orderBy('startDate', 'asc')
+      orderBy('startAt', 'asc')
     );
 
     const querySnapshot = await getDocs(q);
@@ -251,7 +279,7 @@ export async function getLastActivity(
     const q = query(
       activitiesRef,
       where('tripId', '==', tripId),
-      orderBy('startDate', 'desc')
+      orderBy('startAt', 'desc')
     );
     const querySnapshot = await getDocs(q);
     const activities: Activity[] = [];

@@ -1,5 +1,6 @@
 import { addDays, format, isValid, parse } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { Timestamp } from 'firebase/firestore';
 
 /**
  * Formats a date string to Brazilian Portuguese format
@@ -130,3 +131,31 @@ export function isStartDateBeforeEndDate(
   // If start date is before end date, return true
   return !(start && end && start > end);
 }
+
+/**
+ * Get Firebase timestamp with time
+ * @param value - Date or string
+ * @param time - Time string
+ * @returns Timestamp or null
+ */
+export const getTimestampWithTime = (value?: string | Date, time?: string): Timestamp | null => {
+  // If no date, return null
+  if (!value) return null;
+
+  // Get date 
+  const date = value instanceof Date ? value : parsePtBrToDate(value);
+
+  // If no date, return null
+  if (!date) return null;
+
+  // Get hours and minutes
+  const hours = time ? parseInt(time.split(':')[0]) : 0;
+  const minutes = time ? parseInt(time.split(':')[1]) : 0;
+
+  // If has time, set time to the date
+  date.setHours(hours);
+  date.setMinutes(minutes);
+
+  // Return Timestamp
+  return Timestamp.fromDate(date);
+};

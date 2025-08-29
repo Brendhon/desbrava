@@ -1,3 +1,4 @@
+import { Timestamp } from 'firebase/firestore';
 import { Place, PlaceSearchType } from './places';
 
 export interface Activity {
@@ -10,6 +11,8 @@ export interface Activity {
   startDate: string;
   endDate: string;
   startTime: string;
+  startAt?: Timestamp;
+  endAt?: Timestamp;
   endTime: string;
   createdAt?: string;
   updatedAt?: string;
@@ -42,6 +45,9 @@ export interface UpdateActivityData {
   endDate?: string;
   startTime?: string;
   endTime?: string;
+  startAt?: Timestamp;
+  endAt?: Timestamp;
+  updatedAt?: string;
 }
 
 /**
