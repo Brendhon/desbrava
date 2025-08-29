@@ -13,9 +13,10 @@ import { ChevronDown } from 'lucide-react';
 interface ItineraryDayProps {
   date: string;
   activities: Activity[];
+  onDelete: (activity: Activity) => Promise<void>;
 }
 
-export function ItineraryDay({ date, activities }: ItineraryDayProps) {
+export function ItineraryDay({ date, activities, onDelete }: ItineraryDayProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const sortedActivities = useCallback(
@@ -81,6 +82,7 @@ export function ItineraryDay({ date, activities }: ItineraryDayProps) {
             key={activity.id || index}
             activity={activity}
             isLast={index === activities.length - 1}
+            onDelete={onDelete}
           />
         ))}
       </div>

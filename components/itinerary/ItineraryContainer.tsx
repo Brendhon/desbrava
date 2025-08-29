@@ -11,12 +11,14 @@ import { ItineraryList } from './ItineraryList';
 interface ItineraryContainerProps {
   tripId: string;
   activities: Activity[];
+  onDelete: (activity: Activity) => Promise<void>;
   loading?: boolean;
 }
 
 export function ItineraryContainer({
   tripId,
   activities,
+  onDelete,
   loading = false,
 }: ItineraryContainerProps) {
   const [selectedTypes, setSelectedTypes] = useState<ActivityTypeKey[]>([]);
@@ -55,7 +57,7 @@ export function ItineraryContainer({
           <p className={styles.loadingText}>Carregando atividades...</p>
         </div>
       ) : filteredActivities.length > 0 ? (
-        <ItineraryList activities={filteredActivities} />
+        <ItineraryList activities={filteredActivities} onDelete={onDelete} />
       ) : hasActivities ? (
         <div className={styles.noResults}>
           <p className={styles.noResultsText}>

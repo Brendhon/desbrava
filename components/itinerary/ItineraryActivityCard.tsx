@@ -1,6 +1,7 @@
 'use client';
 
 import { Card } from '@/components/ui';
+import { usePlaceTypes } from '@/hooks/usePlaceTypes';
 import { Activity, ActivityRoutes, ActivityType } from '@/lib/types';
 import {
   formatTime,
@@ -20,14 +21,19 @@ import Link from 'next/link';
 interface ItineraryActivityCardProps {
   activity: Activity;
   isLast?: boolean;
+  onDelete: (activity: Activity) => Promise<void>;
 }
 
 export function ItineraryActivityCard({
   activity,
+  onDelete,
 }: ItineraryActivityCardProps) {
   const ActivityIcon = getActivityTypeIcon(activity.type);
   const typeColor = getActivityTypeColor(activity.type);
   const isSameDay = activity.startDate === activity.endDate;
+
+  // Hooks
+  const { getSubtypeLabel } = usePlaceTypes();
 
   return (
     <Card
@@ -47,7 +53,9 @@ export function ItineraryActivityCard({
               {ActivityType[activity.type]}
             </span>
             {activity.subType && (
-              <span className={styles.subType}>{activity.subType}</span>
+              <span className={styles.subType}>
+                {getSubtypeLabel(activity.type, activity.subType)}
+              </span>
             )}
           </div>
         </div>
@@ -63,6 +71,7 @@ export function ItineraryActivityCard({
           <button
             className={`${styles.actionButton} ${styles.deleteButton}`}
             aria-label="Excluir atividade"
+            onClick={() => onDelete(activity)}
           >
             <Trash2 className={styles.actionIcon} />
           </button>

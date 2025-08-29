@@ -1,11 +1,13 @@
 'use client';
 
 import { ErrorPage } from '@/components/error';
+import { ItineraryContainer } from '@/components/itinerary';
 import { PageHeader } from '@/components/layout';
 import { Card } from '@/components/ui';
-import { ItineraryContainer } from '@/components/itinerary';
+import { useActivities } from '@/hooks';
 import { useToast } from '@/hooks/useToast';
 import { useTrips } from '@/hooks/useTrips';
+import { Activity, DashboardRoutes, TripRoutes } from '@/lib/types';
 import { Trip } from '@/lib/types/trip';
 import { calculateTripDuration } from '@/lib/utils';
 import {
@@ -22,8 +24,6 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import TripDetailsLoading from './loading';
-import { DashboardRoutes, TripRoutes } from '@/lib/types';
-import { useActivities } from '@/hooks';
 
 const TripInfoCard = ({
   Icon,
@@ -62,8 +62,8 @@ export default function TripDetailsPage() {
 
   // Hooks
   const { fetchTrip, error, clearError } = useTrips();
-  const { error: showErrorToast } = useToast();
-  const { activities, fetchTripActivities, loading } = useActivities();
+  const { error: showErrorToast, success } = useToast();
+  const { activities, fetchTripActivities, loading, deleteActivity } = useActivities();
 
   // Duration
   const duration = useMemo(
@@ -102,6 +102,33 @@ export default function TripDetailsPage() {
 
   // Load trip data when tripId changes
   useEffect(() => void loadTrip(), [loadTrip]);
+
+  // Handle delete activity
+  const handleDeleteActivity = async (activity: Activity) => {
+    if (
+      !activity.id ||
+      !confirm(
+        'Tem certeza que deseja excluir esta atividade? Esta ação não pode ser desfeita.'
+      )
+    ) {
+      return;
+    }
+
+    // Delete activity
+    const deleted = await deleteActivity(activity.tripId, activity.id);
+
+    // Show success or error toast
+    if (deleted) {
+      // Show success toast
+      success('Sucesso', 'Atividade excluída com sucesso');
+
+      // Refresh activities
+      await fetchTripActivities(tripId);
+    } else {
+      // Show error toast
+      showErrorToast('Erro', 'Erro ao excluir atividade');
+    }
+  };
 
   // Show loading while fetching trip data
   if (isLoadingTrip) return <TripDetailsLoading />;
@@ -179,6 +206,7 @@ export default function TripDetailsPage() {
         tripId={tripId}
         activities={activities}
         loading={loading}
+        onDelete={handleDeleteActivity}
       />
     </div>
   );

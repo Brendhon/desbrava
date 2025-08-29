@@ -6,6 +6,7 @@ import { ItineraryDay } from './ItineraryDay';
 
 interface ItineraryListProps {
   activities: Activity[];
+  onDelete: (activity: Activity) => Promise<void>;
 }
 
 /**
@@ -20,7 +21,7 @@ function sortGroupedActivities(groupedActivities: Record<string, Activity[]>) {
   });
 }
 
-export function ItineraryList({ activities }: ItineraryListProps) {
+export function ItineraryList({ activities, onDelete }: ItineraryListProps) {
   const groupedActivities = groupActivitiesByDate(activities);
   const sortedDates = sortGroupedActivities(groupedActivities);
 
@@ -43,6 +44,7 @@ export function ItineraryList({ activities }: ItineraryListProps) {
             key={date}
             date={date}
             activities={groupedActivities[date]}
+            onDelete={onDelete}
           />
         ))}
       </div>
