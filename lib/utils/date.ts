@@ -1,4 +1,4 @@
-import { addDays, format, isValid, parse } from 'date-fns';
+import { addDays, format, isValid } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Timestamp } from 'firebase/firestore';
 
@@ -92,7 +92,8 @@ export function getCurrentTime(): string {
  */
 export function parsePtBrToDate(date: string | undefined): Date | undefined {
   if (!date) return undefined;
-  const parsed = parse(date, 'dd/MM/yyyy', new Date());
+  const [day, month, year] = date.split('/').map(Number);
+  const parsed = new Date(year, month - 1, day);
   return isValid(parsed) ? parsed : undefined;
 }
 
@@ -178,12 +179,12 @@ export const formatTimestamp = (
   // Handle serialized Firestore timestamp
   if (typeof timestamp.seconds === 'number') {
     const date = new Date(timestamp.seconds * 1000);
-    return format(date, outputFormat);
+    return format(date, outputFormat, { locale: ptBR });
   }
 
   // Handle real Firestore Timestamp
   if (timestamp.toDate && typeof timestamp.toDate === 'function') {
-    return format(timestamp.toDate(), outputFormat);
+    return format(timestamp.toDate(), outputFormat, { locale: ptBR });
   }
 
   return '';
