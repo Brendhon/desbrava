@@ -1,6 +1,5 @@
 import { PlaceInfo } from '@/components/activity/destination';
 import { PlaceSearchSelect } from '@/components/form/selects';
-import { Button } from '@/components/ui';
 import { usePlaces } from '@/hooks/usePlaces';
 import { Activity, SearchType } from '@/lib/types';
 import { Place } from '@/lib/types/places';
@@ -12,8 +11,6 @@ import { DestinationData } from '../DestinationSelector';
 
 interface PlaceSelectorProps {
   title: string;
-  searchLabel: string;
-  searchPlaceholder: string;
   activityType: ActivityTypeData;
   onSearchChange: (value?: Place) => void;
   onSearchTypeChange: (value: SearchType) => void;
@@ -23,10 +20,69 @@ interface PlaceSelectorProps {
   defaultData?: DestinationData;
 }
 
+interface SearchTypeButton {
+  label: string;
+  buttonText: string;
+  placeholder: string;
+}
+
+const searchTypeButtons: Record<SearchType, SearchTypeButton> = {
+  street: {
+    label: 'Busca por Nome de Rua',
+    buttonText: 'Buscar por Rua',
+    placeholder: 'Digite o nome da rua (ex: "Rua das Flores", "Avenida Paulista")',
+  },
+  searchText: {
+    label: 'Busca por Texto com Autocompletar',
+    buttonText: 'Já sei o que quero',
+    placeholder: 'Digite o nome do lugar, endereço ou qualquer termo que você lembrar',
+  },
+  searchNearby: {
+    label: 'Busca por Proximidade',
+    buttonText: 'Me dê sugestões',
+    placeholder: 'Descubra lugares interessantes próximos à sua última atividade',
+  },
+}
+
+const SearchTypeButtons = ({
+  searchType,
+  setSearchType,
+  showSearchTypeButtons = true,
+}: {
+  searchType: SearchType;
+  setSearchType: (value: SearchType) => void;
+  showSearchTypeButtons?: boolean;
+}) => {
+  return (
+    <div
+      className={cn(
+        styles.searchTypeButtons,
+        !showSearchTypeButtons && styles.invisible
+      )}
+    >
+      <span
+        onClick={() => setSearchType('searchText')}
+        className={cn(
+          styles.searchTypeButton,
+          searchType === 'searchText' && styles.active
+        )}
+              >
+          {searchTypeButtons.searchText.buttonText}
+        </span>
+
+      <span
+        onClick={() => setSearchType('searchNearby')}
+        className={cn(
+          styles.searchTypeButton,
+          searchType === 'searchNearby' && styles.active
+        )}
+      > {searchTypeButtons.searchNearby.buttonText} </span>
+    </div>
+  );
+};
+
 export default function PlaceSelector({
   title,
-  searchLabel,
-  searchPlaceholder,
   activityType,
   defaultData,
   onSearchChange,
@@ -61,13 +117,13 @@ export default function PlaceSelector({
     switch (searchType) {
       // Search text
       case 'searchText':
-        return 'Busca padrão: digite o nome, endereço ou outro termo para encontrar o local desejado usando autocompletar.';
+        return 'Perfeito! Digite o nome do lugar, endereço ou qualquer termo que você lembrar. Vamos te ajudar com sugestões enquanto você digita.';
 
       // Search nearby
       case 'searchNearby':
         // Get the display name of the last activity
         const displayName = lastActivity?.place?.displayName?.text;
-        return `Busca por proximidade: mostra locais próximos ao local da última atividade cadastrada ${displayName ? `(${displayName})` : ''}.`;
+        return `Ótima ideia! Vamos te mostrar lugares interessantes próximos à sua última atividade${displayName ? ` em ${displayName}` : ''}. Ideal para descobrir novos locais na região.`;
 
       // Default
       default:
@@ -87,37 +143,18 @@ export default function PlaceSelector({
         </h3>
 
         {/* Search type buttons */}
-        <div
-          className={cn(
-            styles.searchTypeButtons,
-            !showSearchTypeButtons && styles.invisible
-          )}
-        >
-          <span
-            onClick={() => setSearchType('searchText')}
-            className={cn(
-              styles.searchTypeButton,
-              searchType === 'searchText' && styles.active
-            )}
-          >
-            Texto
-          </span>
-
-          <span
-            onClick={() => setSearchType('searchNearby')}
-            className={cn(
-              styles.searchTypeButton,
-              searchType === 'searchNearby' && styles.active
-            )}
-          > Proximidade </span>
-        </div>
+        <SearchTypeButtons
+          searchType={searchType}
+          setSearchType={setSearchType}
+          showSearchTypeButtons={showSearchTypeButtons}
+        />
       </div>
 
       {/* Search */}
       <div className={styles.searchContainer}>
         <PlaceSearchSelect
-          label={searchLabel}
-          placeholder={searchPlaceholder}
+          label={searchTypeButtons[searchType].label}
+          placeholder={searchTypeButtons[searchType].placeholder}
           helperText={searchTypeDescription}
           onValueChange={(value) => setSearch(value)}
           defaultValue={defaultData?.place}
@@ -143,8 +180,8 @@ const styles = {
   title: 'flex items-center gap-2 text-lg font-semibold',
   icon: 'text-royal-purple h-5 w-5',
   searchContainer: 'space-y-3',
-  searchTypeButtons: 'flex gap-1 rounded-md px-2 py-1',
-  searchTypeButton: 'text-xs cursor-pointer',
+  searchTypeButtons: 'flex gap-1 bg-midnight-blue/80 rounded-lg',
+  searchTypeButton: 'text-xs cursor-pointer px-3 py-2 rounded-lg',
   active: 'bg-royal-purple text-white',
   loadingContainer: 'text-mist-gray flex items-center gap-2 text-sm',
   spinner:

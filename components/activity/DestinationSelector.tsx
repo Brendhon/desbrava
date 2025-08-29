@@ -2,7 +2,6 @@
 
 import { NavigationButtons } from '@/components/steps';
 import { PageStructure } from '@/components/ui';
-import { usePlaceTypes } from '@/hooks/usePlaceTypes';
 import { Activity, SearchType } from '@/lib/types';
 import { Place } from '@/lib/types/places';
 import { useCallback, useState } from 'react';
@@ -35,9 +34,6 @@ export default function DestinationSelector({
     }
   );
 
-  // Hooks
-  const { getSubtypeLabel } = usePlaceTypes();
-
   // Handle next step
   const handleNext = useCallback(
     () => onNext(destinations),
@@ -54,12 +50,6 @@ export default function DestinationSelector({
     setDestinations((prev) => ({ ...prev, searchType }));
   }, []);
 
-  // Form placeholder
-  const placeholder = useCallback(() => {
-    const localName = getSubtypeLabel(activityType.type, activityType.subType);
-    return `Digite o nome do(a) ${localName.toLowerCase()} desejado`;
-  }, [activityType]);
-
   // Render
   return (
     <PageStructure
@@ -69,8 +59,6 @@ export default function DestinationSelector({
       {/* Selectors */}
       <PlaceSelector
         title={'Local da Atividade'}
-        searchLabel={'Buscar local'}
-        searchPlaceholder={placeholder()}
         defaultData={defaultData}
         activityType={activityType}
         onSearchChange={handleSearchChange}
