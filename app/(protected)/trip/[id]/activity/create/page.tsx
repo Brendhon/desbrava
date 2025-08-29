@@ -11,12 +11,13 @@ import ActivityDetails from '@/components/activity/ActivityDetails';
 import { PageHeader } from '@/components/layout';
 import { Steps } from '@/components/steps';
 import { ActivityDetailsData } from '@/lib/schemas';
-import { Activity, Step } from '@/lib/types';
+import { Activity, Step, Trip } from '@/lib/types';
 import { TripRoutes } from '@/lib/types/route';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useActivities } from '@/hooks/useActivities';
 import { useToast } from '@/hooks/useToast';
+import { useTrips } from '@/hooks/useTrips';
 
 export default function CreateActivityPage() {
   const params = useParams();
@@ -26,6 +27,7 @@ export default function CreateActivityPage() {
   // Step management
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [trip, setTrip] = useState<Trip | null>(null);
   const [lastActivity, setLastActivity] = useState<Activity | null>(null);
 
   // Form data
@@ -45,11 +47,12 @@ export default function CreateActivityPage() {
   });
 
   // Hooks
+  const { fetchTrip } = useTrips();
   const { createActivity, getLastActivity } = useActivities();
   const { success, error } = useToast();
 
   useEffect(() => {
-    console.log('tripId', tripId);
+    fetchTrip(tripId).then(setTrip);
     getLastActivity(tripId).then(setLastActivity);
   }, [tripId]);
 
@@ -202,6 +205,8 @@ export default function CreateActivityPage() {
       children: (
         <ActivityDetails
           defaultData={detailsData}
+          trip={trip}
+          lastActivity={lastActivity}
           onNext={handlePeriodNext}
           onBack={handlePeriodBack}
         />
@@ -243,6 +248,11 @@ export default function CreateActivityPage() {
     }
   };
 
+  // Subtitle
+  const subtitle = trip
+    ? `${trip?.name} - De ${trip?.startDate} até ${trip?.endDate}`
+    : 'Carregando dados da viagem...';
+
   return (
     <div className={styles.container}>
       {/* Header */}
@@ -250,8 +260,8 @@ export default function CreateActivityPage() {
         backHref={TripRoutes.details(tripId)}
         backText="Voltar aos Detalhes"
         backAriaLabel="Voltar aos detalhes da viagem"
-        title="Nova Atividade"
-        subtitle="Crie uma nova atividade seguindo os passos abaixo"
+        title={'Nova Atividade'}
+        subtitle={subtitle}
       />
 
       <Steps

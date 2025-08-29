@@ -4,7 +4,8 @@ import { DatePicker, Input, Textarea } from '@/components/form';
 import { NavigationButtons } from '@/components/steps';
 import { GroupSection, PageStructure } from '@/components/ui';
 import { ActivityDetailsData, activityDetailsSchema } from '@/lib/schemas';
-import { parsePtBrToDate } from '@/lib/utils';
+import { Activity, Trip } from '@/lib/types';
+import { formatTimestamp, parsePtBrToDate, parseTimestampToDate } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Calendar, Notebook } from 'lucide-react';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -12,15 +13,43 @@ import { useForm } from 'react-hook-form';
 
 interface ActivityDetailsProps {
   defaultData?: ActivityDetailsData;
+  trip: Trip | null;
+  lastActivity: Activity | null;
   onNext: (periodData: ActivityDetailsData) => void;
   onBack: () => void;
 }
 
 export default function ActivityDetails({
   defaultData,
+  trip,
+  lastActivity,
   onNext,
   onBack,
 }: ActivityDetailsProps) {
+  // Get default values
+  const defaultValues = useMemo(() => {
+    // If last activity is provided, use it as the default values
+    if (lastActivity) {
+      return {
+        ...defaultData,
+        startDate: formatTimestamp(lastActivity.endAt, 'dd/MM/yyyy'),
+        startTime: formatTimestamp(lastActivity.endAt, 'HH:mm'),
+      };
+    }
+
+    // If trip is provided, use it as the default values
+    if (trip) {
+      return {
+        ...defaultData,
+        startDate: formatTimestamp(trip.startAt, 'dd/MM/yyyy'),
+        startTime: formatTimestamp(trip.startAt, 'HH:mm'),
+      };
+    }
+
+    // If no default values are provided, return an empty object
+    return defaultData || {};
+  }, [defaultData, trip, lastActivity]);
+
   const {
     register,
     handleSubmit,
@@ -30,12 +59,10 @@ export default function ActivityDetails({
   } = useForm<ActivityDetailsData>({
     resolver: zodResolver(activityDetailsSchema),
     defaultValues: {
-      startDate: '',
       endDate: '',
-      startTime: '',
       endTime: '',
       description: '',
-      ...defaultData,
+      ...defaultValues,
     },
     mode: 'onChange',
   });
@@ -118,6 +145,7 @@ export default function ActivityDetails({
                   value={startDate}
                   error={errors.startDate?.message}
                   minDate={new Date()}
+                  maxDate={parseTimestampToDate(trip?.endAt)}
                 />
               </div>
 
@@ -132,6 +160,7 @@ export default function ActivityDetails({
                   error={errors.endDate?.message}
                   disabled={!startDate}
                   minDate={endMinDate}
+                  maxDate={parseTimestampToDate(trip?.endAt)}
                 />
               </div>
             </div>

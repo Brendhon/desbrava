@@ -159,3 +159,34 @@ export const getTimestampWithTime = (value?: string | Date, time?: string): Time
   // Return Timestamp
   return Timestamp.fromDate(date);
 };
+
+/**
+ * Format a Firestore Timestamp to a string using the provided format.
+ * @param timestamp - Firestore Timestamp object (can be serialized or real)
+ * @param outputFormat - Date-fns format string (e.g., 'dd/MM/yyyy', 'HH:mm')
+ * @returns Formatted date/time string or empty string if invalid
+ */
+export const formatTimestamp = (timestamp?: Timestamp, outputFormat: string = 'dd/MM/yyyy'): string => {
+  if (!timestamp) return '';
+
+  // Handle serialized Firestore timestamp
+  if (typeof timestamp.seconds === 'number') {
+    const date = new Date(timestamp.seconds * 1000);
+    return format(date, outputFormat);
+  }
+
+  // Handle real Firestore Timestamp
+  if (timestamp.toDate && typeof timestamp.toDate === 'function') {
+    return format(timestamp.toDate(), outputFormat);
+  }
+
+  return '';
+};
+
+/**
+ * Parse timestamp to date
+ */
+export const parseTimestampToDate = (timestamp?: Timestamp): Date | undefined => {
+  if (!timestamp) return undefined;
+  return parsePtBrToDate(formatTimestamp(timestamp, 'dd/MM/yyyy'));
+};
